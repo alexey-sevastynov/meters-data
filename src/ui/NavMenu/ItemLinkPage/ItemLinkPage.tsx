@@ -1,6 +1,6 @@
 import React, { Children } from "react";
 import Styles from "./itemLinkPage.module.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getIconUrl } from "../../../helpers/getIconUrl";
 
 interface ItemLinkPageProps {
@@ -17,9 +17,16 @@ export const ItemLinkPage: React.FC<ItemLinkPageProps> = ({
   children,
 }) => {
   return (
-    <Link to={link} className={Styles.itemLinkPage}>
-      <img src={getIconUrl(imageName)} alt={id} width={30} height={30} />
-      <p className={Styles.text}>{children}</p>
-    </Link>
+    <li>
+      <NavLink
+        to={link}
+        className={({ isActive }) =>
+          isActive ? Styles.active : Styles.itemLinkPage
+        }
+      >
+        <img src={getIconUrl(imageName)} alt={id} width={30} height={30} />
+        <p className={Styles.text}>{children}</p>
+      </NavLink>
+    </li>
   );
 };

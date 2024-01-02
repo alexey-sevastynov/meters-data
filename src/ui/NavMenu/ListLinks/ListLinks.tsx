@@ -5,12 +5,12 @@ import { ItemLinkPage } from "../ItemLinkPage/ItemLinkPage";
 
 export const ListLinks = () => {
   return (
-    <div className={Styles.listLinks}>
+    <ul className={Styles.listLinks}>
       {LIST_NAV.map(({ link, id, imageName }) => (
         <ItemLinkPage link={link} id={id} imageName={imageName}>
           {id}
         </ItemLinkPage>
       ))}
-    </div>
+    </ul>
   );
 };

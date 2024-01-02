@@ -1,6 +1,11 @@
 @import "../../../styles/colors.scss";
 
-.itemLinkPage {
+.itemLinkPage,
+.active {
+  padding-left: 25px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+
   display: flex;
   align-items: center;
   gap: 25px;
@@ -8,4 +13,9 @@
   .text {
     color: $white;
   }
+}
+
+.active {
+  background-color: $navLink;
+  border-radius: 20px;
 }

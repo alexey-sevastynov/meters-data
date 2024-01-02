@@ -7,11 +7,15 @@ export const BREAK_POINTS = {
 
 export const ROUTES = {
   HOME: "/",
+  CHELUSKINA: "/chelyuskina",
+  ANTONOVICHA_75: "/antonovicha-75",
+  ANTONOVICHA_73: "/antonovicha-73",
+  SLOBOZHANSKY_68A: "/slobozhansky-68a",
 };
 
 export const LIST_NAV = [
   {
-    link: "/home",
+    link: "/",
     id: "Home",
     imageName: "home.png",
   },
