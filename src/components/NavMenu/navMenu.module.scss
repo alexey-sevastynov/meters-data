@@ -1,4 +1,8 @@
 .navMenu {
+  position: fixed;
+  left: 0;
+  top: 80px;
+
   width: 350px;
   height: calc(100vh - 80px);
 

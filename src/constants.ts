@@ -20,8 +20,8 @@ export const LIST_NAV = [
     imageName: "home.png",
   },
   {
-    link: "/chelyuskina",
-    id: "Chelyuskina street, 1/12",
+    link: "/antonovicha-73",
+    id: "Volodymyr Antonovicha street, 73/8",
     imageName: "adress.png",
   },
   {
@@ -30,13 +30,13 @@ export const LIST_NAV = [
     imageName: "adress.png",
   },
   {
-    link: "/antonovicha-73",
-    id: "Volodymyr Antonovicha street, 73/8",
+    link: "/slobozhansky-68a",
+    id: "Slobozhansky Avenue, 68A/63",
     imageName: "adress.png",
   },
   {
-    link: "/slobozhansky-68a",
-    id: "Slobozhansky Avenue, 68A/63",
+    link: "/chelyuskina",
+    id: "Chelyuskina street, 1/12",
     imageName: "adress.png",
   },
 ];

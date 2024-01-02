@@ -1,5 +1,12 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
+import "../styles/pages/home.scss";
 
-export const Home = () => {
-  return <div>Home</div>;
+interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
+
+export const Home: React.FC<HomeProps> = ({ ...props }) => {
+  return (
+    <section className="home" {...props}>
+      Home
+    </section>
+  );
 };

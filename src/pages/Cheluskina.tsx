@@ -1,5 +1,6 @@
 import React from "react";
+import "../styles/pages/cheluskina.scss";
 
 export const Cheluskina = () => {
-  return <div>Cheluskina</div>;
+  return <div className="cheluskina">Cheluskina</div>;
 };
