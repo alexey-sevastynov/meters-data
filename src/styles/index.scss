@@ -1,3 +1,5 @@
+@import "./colors.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -5,16 +7,37 @@
   font-family: "Roboto", sans-serif;
 }
 
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: unset;
+}
+
 h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+p {
   line-height: normal;
   font-weight: 400;
 }
 
 h3 {
   font-size: 20px;
-  font-weight: 400;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+p {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
 }

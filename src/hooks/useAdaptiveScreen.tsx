@@ -1,0 +1,26 @@
+import { useState, useEffect } from "react";
+
+type MediaQueryParams = {
+  maxWidth: number;
+};
+
+const useAdaptiveScreen: React.FC<MediaQueryParams> = ({ maxWidth }) => {
+  const [isScreenAdaptive, setIsScreenAdaptive] = useState(false);
+
+  const checkScreenSize = () => {
+    setIsScreenAdaptive(window.innerWidth <= maxWidth);
+  };
+
+  useEffect(() => {
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, [maxWidth]);
+
+  return isScreenAdaptive;
+};
+
+export default useAdaptiveScreen;

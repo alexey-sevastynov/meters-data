@@ -1,0 +1,19 @@
+@import "../../../styles/colors.scss";
+
+.authPanel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  & span {
+    display: inline-block;
+    height: 50px;
+    width: 1px;
+    background-color: $green;
+  }
+
+  & button {
+    color: $blue;
+    font-size: 14px;
+  }
+}
