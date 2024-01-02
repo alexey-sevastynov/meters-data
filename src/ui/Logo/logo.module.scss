@@ -1,0 +1,12 @@
+@import "../../styles/colors.scss";
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  .text::first-letter {
+    font-size: 30px;
+    color: $red;
+  }
+}
