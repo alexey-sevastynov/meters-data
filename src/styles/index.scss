@@ -21,7 +21,8 @@ h2,
 h3,
 h4,
 h5,
-p {
+p,
+a {
   line-height: normal;
   font-weight: 400;
 }
@@ -40,4 +41,10 @@ p {
 
 h5 {
   font-size: 14px;
+}
+
+a {
+  font-style: 16px;
+  text-decoration: none;
+  color: $black;
 }

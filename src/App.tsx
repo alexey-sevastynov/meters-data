@@ -1,12 +1,12 @@
 import React from "react";
-import { Header } from "./components/Header/Header";
+
+import { useRoutes } from "react-router-dom";
+import routes from "./routes";
 
 function App() {
-  return (
-    <main>
-      <Header />
-    </main>
-  );
+  const pages = useRoutes(routes);
+
+  return <main>{pages}</main>;
 }
 
 export default App;
