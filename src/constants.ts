@@ -3,6 +3,7 @@ import { TypeListUtylityPrices } from "./types/constants";
 export const BREAK_POINTS = {
   MOBILE_S: 350,
   MOBILE: 450,
+  MOBILE_XL: 567,
   TABLET: 768,
   LAPTOP: 1024,
 };
@@ -135,4 +136,13 @@ export const LIST_UTILITY_PRICES: TypeListUtylityPrices = [
     valueName: "piece",
     value: 300,
   },
+];
+
+export const LIST_INFO_DATA_MONTH = [
+  { title: "Date", description: "December, 2023" },
+  { title: "Light general", description: 300 },
+  { title: "Light day", description: 200 },
+  { title: "Light night", description: 100 },
+  { title: "Gas General", description: 11 },
+  { title: "Water general", description: 10 },
 ];

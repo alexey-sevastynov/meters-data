@@ -1,5 +1,14 @@
 @import "../mixins.scss";
+@import "../breakpoints.scss";
 
 .slobozhansky {
   @include layoutStyle;
+
+  .title {
+    @include titlePage;
+  }
+
+  @media (max-width: $laptop) {
+    @include layoutStyleForMobile;
+  }
 }

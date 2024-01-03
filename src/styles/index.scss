@@ -30,9 +30,15 @@ h3,
 h4,
 h5,
 p,
-a {
+a,
+dd,
+dt {
   line-height: normal;
   font-weight: 400;
+}
+
+dt {
+  font-weight: bold;
 }
 
 h3 {

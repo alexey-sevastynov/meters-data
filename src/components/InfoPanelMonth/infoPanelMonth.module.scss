@@ -1,0 +1,14 @@
+@import "../../styles/breakpoints.scss";
+@import "../../styles/colors.scss";
+
+.infoPanelMonth {
+  display: flex;
+
+  align-items: flex-end;
+  gap: 10px;
+
+  @media (max-width: $mobile-xl) {
+    flex-direction: column;
+    align-items: unset;
+  }
+}
