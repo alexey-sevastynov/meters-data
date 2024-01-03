@@ -1,5 +1,21 @@
 @import "../mixins.scss";
+@import "../breakpoints.scss";
 
 .home {
   @include layoutStyle;
+
+  .title {
+    @include titlePage;
+  }
+
+  .subtitle {
+    margin-top: 20px;
+    padding-left: 7px;
+
+    font-weight: bold;
+  }
+
+  @media (max-width: $laptop) {
+    @include layoutStyleForMobile;
+  }
 }

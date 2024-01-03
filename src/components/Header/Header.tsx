@@ -6,7 +6,7 @@ import useAdaptiveScreen from "../../hooks/useAdaptiveScreen";
 import { BREAK_POINTS } from "../../constants";
 
 export const Header = () => {
-  const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.TABLET });
+  const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.LAPTOP });
 
   return (
     <header className={Styles.header}>

@@ -1,5 +1,19 @@
+@import "../styles/colors.scss";
+
 @mixin layoutStyle {
   position: absolute;
   left: 350px;
   top: 80px;
+
+  padding: 35px 20px;
+}
+
+@mixin layoutStyleForMobile {
+  left: 0px;
+  width: 100%;
+}
+
+@mixin titlePage {
+  font-weight: bold;
+  color: $green;
 }

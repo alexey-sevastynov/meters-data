@@ -1,0 +1,11 @@
+@import "../../../styles/breakpoints.scss";
+
+.listUtilityPrices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @media (max-width: $mobile-xl) {
+    width: 100%;
+  }
+}
