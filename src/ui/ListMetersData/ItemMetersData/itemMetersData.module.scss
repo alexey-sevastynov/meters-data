@@ -1,0 +1,34 @@
+@import "../../../styles/colors.scss";
+
+.itemMetersData {
+  display: flex;
+  gap: 20px;
+
+  .data {
+    display: flex;
+    gap: 7px;
+    border-bottom: 1px solid $grey;
+    p {
+      line-height: 1.8;
+    }
+
+    .date {
+      min-width: 151px;
+    }
+
+    .light,
+    .lightDay,
+    .lightNight,
+    .gas,
+    .water {
+      min-width: 130px;
+      padding-left: 5px;
+    }
+  }
+
+  .btns {
+    display: flex;
+
+    gap: 10px;
+  }
+}

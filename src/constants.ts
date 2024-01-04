@@ -146,3 +146,33 @@ export const LIST_INFO_DATA_MONTH = [
   { title: "Gas General", description: 11 },
   { title: "Water general", description: 10 },
 ];
+
+export const LIST_DATA = [
+  {
+    id: 1,
+    date: "January, 2023",
+    light: 4720.23,
+    lightDay: 4500.23,
+    lightNight: 320,
+    gas: 112.44,
+    water: 22.4,
+  },
+  {
+    id: 2,
+    date: "February, 2023",
+    light: 4720.23,
+    lightDay: 4500.23,
+    lightNight: 320,
+    gas: 112.44,
+    water: 22.4,
+  },
+  {
+    id: 3,
+    date: "Mart, 2023",
+    light: 4720.23,
+    lightDay: 4500.23,
+    lightNight: 320,
+    gas: 112.44,
+    water: 22.4,
+  },
+];
