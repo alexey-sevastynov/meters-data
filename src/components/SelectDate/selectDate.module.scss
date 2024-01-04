@@ -1,0 +1,18 @@
+@import "../../styles/colors.scss";
+
+.selectDate {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: bold;
+  }
+
+  .datePicker {
+    margin-top: 10px;
+    border: 1px solid $green;
+    height: 39px;
+
+    min-width: 151px;
+  }
+}
