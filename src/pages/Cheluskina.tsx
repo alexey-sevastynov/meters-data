@@ -7,9 +7,9 @@ export const Cheluskina = () => {
   return (
     <section className="cheluskina">
       <h3 className="title">Chelyuskina street, 1/12</h3>
-      <InfoPanelMonth isWaterBlock={false} />
+      <InfoPanelMonth />
 
-      <MetersData isWaterBlock={false} />
+      <MetersData />
     </section>
   );
 };
