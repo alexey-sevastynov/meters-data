@@ -1,0 +1,25 @@
+.extraServicesForm {
+  margin-top: 20px;
+
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  align-items: flex-end;
+  select {
+  }
+  .inputs {
+    display: flex;
+    gap: 10px;
+
+    .input {
+      margin-top: 10px;
+    }
+  }
+  .btns {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 4.5px;
+  }
+}
