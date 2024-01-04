@@ -7,7 +7,7 @@ export const ListLinks = () => {
   return (
     <ul className={Styles.listLinks}>
       {LIST_NAV.map(({ link, id, imageName }) => (
-        <ItemLinkPage link={link} id={id} imageName={imageName}>
+        <ItemLinkPage key={id} link={link} id={id} imageName={imageName}>
           {id}
         </ItemLinkPage>
       ))}

@@ -14,6 +14,7 @@ export const ROUTES = {
   ANTONOVICHA_75: "/antonovicha-75",
   ANTONOVICHA_73: "/antonovicha-73",
   SLOBOZHANSKY_68A: "/slobozhansky-68a",
+  PRICE: `/:address/price`,
 };
 
 export const LIST_NAV = [

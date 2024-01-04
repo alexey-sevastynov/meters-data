@@ -18,32 +18,32 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         <Input
           className={Style.input}
           labelTextBold
-          value={4720.23}
+          defaultValue={4720.23}
           labelText="Light general"
         />
         <Input
           className={Style.input}
           labelTextBold
-          value={4720.23}
+          defaultValue={4720.23}
           labelText="Light day"
         />
         <Input
           className={Style.input}
           labelTextBold
-          value={4720.23}
+          defaultValue={4720.23}
           labelText="Light night"
         />
         <Input
           className={Style.input}
           labelTextBold
-          value={1009.23}
+          defaultValue={1009.23}
           labelText="Gas general"
         />
         {isWaterBlock && (
           <Input
             className={Style.input}
             labelTextBold
-            value={1009.23}
+            defaultValue={1009.23}
             labelText="Water general"
           />
         )}

@@ -13,7 +13,7 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
   return (
     <ul className={Style.listMetersData}>
       {LIST_DATA.map((item) => (
-        <ItemMetersData isWaterBlock={isWaterBlock} {...item} />
+        <ItemMetersData key={item.id} isWaterBlock={isWaterBlock} {...item} />
       ))}
     </ul>
   );

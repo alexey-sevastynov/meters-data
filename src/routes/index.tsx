@@ -8,6 +8,7 @@ import {
   Cheluskina,
   Slobozhansky,
 } from "../pages";
+import { Price } from "../pages/Price";
 
 const routes: RouteObject[] = [
   {
@@ -19,6 +20,7 @@ const routes: RouteObject[] = [
       { path: ROUTES.ANTONOVICHA_75, element: <Antonovicha75 /> },
       { path: ROUTES.SLOBOZHANSKY_68A, element: <Slobozhansky /> },
       { path: ROUTES.CHELUSKINA, element: <Cheluskina /> },
+      { path: ROUTES.PRICE, element: <Price /> },
     ],
   },
 ];
