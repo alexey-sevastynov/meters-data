@@ -1,5 +1,13 @@
 @import "../mixins.scss";
+@import "../breakpoints.scss";
 
 .antonovicha75 {
   @include layoutStyle;
+  .title {
+    @include titlePage;
+  }
+
+  @media (max-width: $laptop) {
+    @include layoutStyleForMobile;
+  }
 }
