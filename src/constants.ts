@@ -176,3 +176,11 @@ export const LIST_DATA = [
     water: 22.4,
   },
 ];
+
+export const VALUE_BY_TITLE: Record<string, string> = {
+  "Light general": "кВт",
+  "Light day": "кВт",
+  "Light night": "кВт",
+  "Gas General": "м³",
+  "Water general": "м³",
+};

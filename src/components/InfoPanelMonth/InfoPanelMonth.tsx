@@ -3,10 +3,16 @@ import Styles from "./infoPanelMonth.module.scss";
 import { ListInfoPanelMonth } from "../../ui/InfoPanelMonth/ListInfoPanelMonth/ListInfoPanelMonth";
 import { Button } from "../Button/Button";
 
-export const InfoPanelMonth = () => {
+interface InfoPanelMonthProps {
+  isWaterBlock?: boolean;
+}
+
+export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
+  isWaterBlock = true,
+}) => {
   return (
     <div className={Styles.infoPanelMonth}>
-      <ListInfoPanelMonth />
+      <ListInfoPanelMonth isWaterBlock={isWaterBlock} />
 
       <Button>price</Button>
     </div>

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import Style from "./formDataMonth.module.scss";
-import { Input } from "../Input/Input";
-import { SelectDate } from "../SelectDate/SelectDate";
-import { Button } from "../Button/Button";
+import { SelectDate } from "../../../components/SelectDate/SelectDate";
+import { Input } from "../../../components/Input/Input";
+import { Button } from "../../../components/Button/Button";
 
-export const FormDataMonth = () => {
+interface FormDataMonthProps {
+  isWaterBlock: boolean;
+}
+
+export const FormDataMonth: React.FC<FormDataMonthProps> = ({
+  isWaterBlock,
+}) => {
   return (
     <form className={Style.formDataMonth}>
       <div className={Style.inputs}>
@@ -33,12 +39,14 @@ export const FormDataMonth = () => {
           value={1009.23}
           labelText="Gas general"
         />
-        <Input
-          className={Style.input}
-          labelTextBold
-          value={1009.23}
-          labelText="Water general"
-        />
+        {isWaterBlock && (
+          <Input
+            className={Style.input}
+            labelTextBold
+            value={1009.23}
+            labelText="Water general"
+          />
+        )}
       </div>
 
       <div className={Style.btns}>

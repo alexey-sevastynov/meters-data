@@ -1,8 +1,9 @@
 import React from "react";
 import Styles from "./itemMetersData.module.scss";
-import { getIconUrl } from "../../../helpers/getIconUrl";
+import { getIconUrl } from "../../../../helpers/getIconUrl";
 
 interface ItemMetersDataProps {
+  isWaterBlock: boolean;
   date: string;
   light: number;
   lightDay: number;
@@ -12,6 +13,7 @@ interface ItemMetersDataProps {
 }
 
 export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
+  isWaterBlock,
   date,
   light,
   lightDay,
@@ -27,7 +29,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
         <p className={Styles.lightDay}>{lightDay} kW</p>
         <p className={Styles.lightNight}>{lightNight} kW</p>
         <p className={Styles.gas}>{gas} m³</p>
-        <p className={Styles.water}>{water} m³</p>
+        {isWaterBlock && <p className={Styles.water}>{water} m³</p>}
       </div>
 
       <div className={Styles.btns}>
