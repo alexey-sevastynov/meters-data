@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/pages/price.scss";
 import { Link, useParams } from "react-router-dom";
 import { LIST_NAV } from "../constants";
-import { ExtraServicesForm } from "../ui/Price";
+import { ExtraServicesForm, ListCategoriesWithPrices } from "../ui/Price";
 
 export const Price = () => {
   const { address } = useParams();
@@ -20,6 +20,7 @@ export const Price = () => {
       </div>
 
       <ExtraServicesForm />
+      <ListCategoriesWithPrices />
     </div>
   );
 };
