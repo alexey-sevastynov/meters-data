@@ -1,5 +1,7 @@
 import { TypeListUtylityPrices } from "./types/constants";
 
+export const API_URL = "https://meters-data-backend.vercel.app/";
+
 export const BREAK_POINTS = {
   MOBILE_S: 350,
   MOBILE: 450,
