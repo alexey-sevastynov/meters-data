@@ -4,6 +4,7 @@ import { CategoryUtilityPrices } from "../CategoryUtilityPrices/CategoryUtilityP
 import { ValueUtilityPrices } from "../ValueUtilityPrices/ValueUtilityPrices";
 
 interface ItemUtilityPricesProps {
+  id: string;
   category: string;
   image: string[];
   valueName: "kW" | "m³" | "piece";
@@ -15,12 +16,13 @@ export const ItemUtilityPrices: React.FC<ItemUtilityPricesProps> = ({
   image,
   valueName,
   value,
+  id,
 }) => {
   return (
     <li className={Styles.itemUtilityPrices}>
       <CategoryUtilityPrices category={category} image={image} />
 
-      <ValueUtilityPrices valueName={valueName} value={value} />
+      <ValueUtilityPrices valueName={valueName} value={value} id={id} />
     </li>
   );
 };

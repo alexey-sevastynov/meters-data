@@ -13,4 +13,9 @@
   &:active {
     background-color: $navLink;
   }
+
+  &:disabled {
+    background-color: $grey;
+    cursor: no-drop;
+  }
 }

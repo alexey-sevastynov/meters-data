@@ -1,5 +1,5 @@
 export type TypeListUtylityPrices = {
-  id: number;
+  _id: string;
   category: string;
   image: string[];
   valueName: "kW" | "m³" | "piece";

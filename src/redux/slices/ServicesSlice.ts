@@ -1,20 +1,44 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { API_URL } from "../../constants";
 import { TypeListUtylityPrices } from "../../types/constants";
 
-export const fetchAllServices = createAsyncThunk<TypeListUtylityPrices>(
-  "services/fetchAllServices",
-  async () => {
-    const { data } = await axios.get(`${API_URL}prices`);
-
+export const fetchAllServices = createAsyncThunk<
+  TypeListUtylityPrices,
+  void,
+  { rejectValue: AxiosError }
+>("services/fetchAllServices", async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get<TypeListUtylityPrices>(`${API_URL}prices`);
     return data;
+  } catch (error: any) {
+    if (!error.response) {
+      throw error;
+    }
+    return rejectWithValue(error as AxiosError);
   }
-);
+});
+
+export const editServicePrice = createAsyncThunk<
+  TypeListUtylityPrices,
+  { _id: string; value: number }
+>("editServicePrice/fetchAllServices", async (params) => {
+  const { _id, value } = params;
+
+  const { data } = await axios.patch(`${API_URL}prices/${_id}`, {
+    value,
+  });
+
+  return data;
+});
 
 interface IServicesSlice {
   services: {
     items: TypeListUtylityPrices;
+    status: string;
+  };
+
+  patch: {
     status: string;
   };
 }
@@ -23,6 +47,9 @@ const initialState: IServicesSlice = {
   services: {
     items: [],
     status: "loading",
+  },
+  patch: {
+    status: "inactive",
   },
 };
 
@@ -39,9 +66,18 @@ const ServicesSlice = createSlice({
       state.services.items = action.payload;
       state.services.status = "loaded";
     });
-    builder.addCase(fetchAllServices.rejected, (state) => {
+    builder.addCase(fetchAllServices.rejected, (state, action) => {
       state.services.items = [];
-      state.services.status = "error";
+      state.services.status = `Error message: "${action.error.message}"`;
+    });
+    builder.addCase(editServicePrice.pending, (state) => {
+      state.patch.status = "loading";
+    });
+    builder.addCase(editServicePrice.fulfilled, (state) => {
+      state.patch.status = "loaded";
+    });
+    builder.addCase(editServicePrice.rejected, (state) => {
+      state.patch.status = "error";
     });
   },
 });

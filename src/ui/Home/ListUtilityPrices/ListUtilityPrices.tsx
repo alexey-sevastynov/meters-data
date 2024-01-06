@@ -16,9 +16,13 @@ export const ListUtilityPrices = () => {
   return (
     <ul className={Styles.listUtilityPrices}>
       {status === "loading" && <p className={Styles.loading}>Loading...</p>}
-      {items.map(({ value, valueName, image, category }) => (
+      {status.toLowerCase().includes("error") && (
+        <p className={Styles.loading}>{status}</p>
+      )}
+      {items.map(({ value, valueName, image, category, _id }) => (
         <ItemUtilityPrices
           key={category}
+          id={_id}
           value={value}
           valueName={valueName}
           image={image}

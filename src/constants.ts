@@ -47,7 +47,7 @@ export const LIST_NAV = [
   },
 ];
 
-export const LIST_UTILITY_PRICES: TypeListUtylityPrices = [
+export const LIST_UTILITY_PRICES = [
   {
     id: 1,
     category: "Light general",
