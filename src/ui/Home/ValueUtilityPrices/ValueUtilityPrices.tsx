@@ -25,8 +25,6 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
   const [idStatus, setIdStatus] = useState<string>("");
 
   const editValueUtilityPrice = () => {
-    console.log(id, valueInput);
-
     if (id && valueInput) {
       dispatch(editServicePrice({ _id: id, value: valueInput }));
       setIdStatus(id);
@@ -53,8 +51,7 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
       )}
 
       <Button
-        // @ts-ignore
-        type="submit"
+        type="button"
         disabled={valueInput === value}
         onClick={editValueUtilityPrice}
       >

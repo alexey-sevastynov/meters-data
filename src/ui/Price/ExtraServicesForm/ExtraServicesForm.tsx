@@ -1,22 +1,88 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "./extraServicesForm.module.scss";
 import { Select } from "../../../components/Select/Select";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
-import { LIST_UTILITY_PRICES } from "../../../constants";
 
-export const ExtraServicesForm = () => {
+import { useAppSelector } from "../../../redux/hook";
+import {
+  editServicePrice,
+  fetchAllServices,
+} from "../../../redux/slices/ServicesSlice";
+import { AppDispatch } from "../../../redux/store";
+
+interface ExtraServicesFormProps {
+  dispatch: AppDispatch;
+}
+
+export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
+  dispatch,
+}) => {
+  const items = useAppSelector((props) => props.services.services.items);
+  const options = items.filter(
+    ({ category }) =>
+      category !== "Light general" &&
+      category !== "Light day" &&
+      category !== "Light night" &&
+      category !== "Water" &&
+      category !== "Gas"
+  );
+
+  const [selectedOption, setSelectedOption] = useState<string>(
+    options[0]?.category || "Fixed Water"
+  );
+  const currentItemValue =
+    options.find((item) => item.category === selectedOption)?.value || 0;
+  const currentId = options.find(
+    (item) => item.category === selectedOption
+  )?._id;
+
+  const [inputValue, setInputValue] = useState<number>(currentItemValue);
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const editValueUtilityPrice = () => {
+    if (currentId && inputValue) {
+      dispatch(editServicePrice({ _id: currentId, value: inputValue }))
+        .then((response: any) => {
+          if (response.payload) {
+            dispatch(fetchAllServices());
+          }
+        })
+        .catch((error: any) => {
+          console.error("Error fetch all data services:", error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    setInputValue(currentItemValue);
+  }, [selectedOption]);
+
   return (
     <form className={Styles.extraServicesForm}>
       <div className={Styles.inputs}>
-        <Select className={Styles.select} options={LIST_UTILITY_PRICES} />
-        <Input className={Styles.input} defaultValue={1000} labelTextBold />
+        <Select
+          className={Styles.select}
+          options={options}
+          value={selectedOption}
+          onChange={handleSelectChange}
+        />
+
+        <Input
+          className={Styles.input}
+          value={inputValue}
+          setValue={setInputValue}
+          defaultValue={currentItemValue}
+          labelTextBold
+        />
       </div>
       <div className={Styles.btns}>
-        {/* @ts-ignore */}
-        <Button type="button">clear</Button>
-        {/* @ts-ignore */}
-        <Button type="submit">add</Button>
+        <Button type="button" onClick={editValueUtilityPrice}>
+          add
+        </Button>
       </div>
     </form>
   );
