@@ -23,12 +23,12 @@
   }
 
   .close {
+    margin: 0;
+    width: 16px;
+    height: 16px;
     position: absolute;
-    bottom: 7px;
+    bottom: 11px;
     right: 12px;
     cursor: pointer;
-    img {
-      display: flex;
-    }
   }
 }

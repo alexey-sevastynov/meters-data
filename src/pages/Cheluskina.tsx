@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/pages/cheluskina.scss";
 import { InfoPanelMonth } from "../components/InfoPanelMonth/InfoPanelMonth";
 import { MetersData } from "../components/MetersData/MetersData";

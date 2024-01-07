@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import Style from "./selectDate.module.scss";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
-import DatePicker from "react-date-picker";
+import DatePicker, { DatePickerProps } from "react-date-picker";
+import { format } from "date-fns";
+import { useAppSelector } from "../../redux/hook";
 
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+interface SelectDateProps extends DatePickerProps {
+  value: any;
+  onChange: any;
+}
 
-export const SelectDate = () => {
-  const [value, onChange] = useState<Value>(new Date());
+export const SelectDate: React.FC<SelectDateProps> = ({
+  value,
+  onChange,
+  ...props
+}) => {
+  const isEdit = useAppSelector((props) => props.metersData.isEdit);
+
   return (
     <div className={Style.selectDate}>
       <label>Date:</label>
@@ -21,7 +30,8 @@ export const SelectDate = () => {
         locale="en"
         disableCalendar
         clearIcon={null}
-        className={Style.datePicker}
+        className={`${Style.datePicker} ${isEdit ? Style.datePickerEdit : ""}`}
+        {...props}
       />
     </div>
   );
