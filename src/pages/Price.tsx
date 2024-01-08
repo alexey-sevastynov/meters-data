@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import "../styles/pages/price.scss";
 import { Link, useParams } from "react-router-dom";
 import { LIST_NAV } from "../constants";
-import { ExtraServicesForm, ListCategoriesWithPrices } from "../ui/Price";
+import {
+  ExtraServicesForm,
+  ListCategoriesWithPrices,
+  MonthlyMoneyCalculations,
+} from "../ui/Price";
 import { useAppDispatch } from "../redux/hook";
 import { fetchAllServices } from "../redux/slices/ServicesSlice";
 
@@ -30,6 +34,8 @@ export const Price = () => {
       <div className="overflow-auto mt-40">
         <ListCategoriesWithPrices dispatch={dispatch} />
       </div>
+
+      <MonthlyMoneyCalculations />
     </div>
   );
 };

@@ -3,11 +3,12 @@ import Styles from "./input.module.scss";
 import { getIconUrl } from "../../helpers/getIconUrl";
 
 interface InputProps extends HTMLAttributes<HTMLInputElement> {
-  defaultValue: number;
+  defaultValue: number | string;
   labelText?: string;
   labelTextBold?: boolean;
-  value: number;
-  setValue: (value: number) => void;
+  value: number | string;
+  type?: string;
+  setValue: (value: string | number) => void;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -16,13 +17,18 @@ export const Input: React.FC<InputProps> = ({
   labelTextBold,
   id,
   value,
+  type = "number",
   setValue,
 
   ...props
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseFloat(e.target.value);
-    setValue(newValue);
+    if (type === "number") {
+      const newValue = parseFloat(e.target.value);
+      setValue(newValue);
+    } else {
+      setValue(e.target.value);
+    }
   };
 
   const returnСurrentМalues = () => {
@@ -35,7 +41,7 @@ export const Input: React.FC<InputProps> = ({
         {labelText}:
       </label>
       <input
-        type="number"
+        type={type}
         value={value}
         onChange={handleChange}
         step={0.01}
