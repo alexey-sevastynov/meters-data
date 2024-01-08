@@ -10,6 +10,7 @@ import {
   fetchAllServices,
 } from "../../../redux/slices/ServicesSlice";
 import { AppDispatch } from "../../../redux/store";
+import { addServiceToCurrentItem } from "../../../redux/slices/PriceSlice";
 
 interface ExtraServicesFormProps {
   dispatch: AppDispatch;
@@ -54,6 +55,13 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
         .catch((error: any) => {
           console.error("Error fetch all data services:", error);
         });
+
+      dispatch(
+        addServiceToCurrentItem({
+          title: selectedOption,
+          description: inputValue,
+        })
+      );
     }
   };
 

@@ -6,8 +6,9 @@ import { findPenultimateDate } from "../helpers/findPenultimateDate";
 import { filterAndSortItemsByAddressAndDate } from "../../helpers/filterAndSortItemsByAddressAndDate";
 import { findPreviousDateById } from "../helpers/findPreviousDateById";
 import { calculateDifference } from "../helpers/calculateDifference";
+import { getKeyOnPage } from "../../helpers/getKeyOnPage";
 
-type ListInfoDataMonthType = {
+export type ListInfoDataMonthType = {
   title: string;
   description: string | number;
 };
@@ -141,24 +142,6 @@ const MetersDataSlice = createSlice({
         action.payload.id
       );
 
-      // console.log("listItemsAddress", listItemsAddress);
-      // console.log("currentItem", currentItem);
-      // console.log("previousItem", previousItem);
-
-      function getKeyOnPage(address: AddressType) {
-        switch (address) {
-          case "chelyuskina":
-            return "chelyuskina";
-          case "antonovicha-73":
-            return "antonovicha73";
-          case "antonovicha-75":
-            return "antonovicha75";
-          case "slobozhansky-68a":
-            return "slobozhansky";
-        }
-      }
-
-      // if previousItem === null, than not information Meter Reading
       if (!previousItem) {
         state.infoMeterReading = {
           ...state.infoMeterReading,

@@ -27,7 +27,9 @@ export const Price = () => {
       </div>
 
       <ExtraServicesForm dispatch={dispatch} />
-      <ListCategoriesWithPrices />
+      <div className="overflow-auto mt-40">
+        <ListCategoriesWithPrices dispatch={dispatch} />
+      </div>
     </div>
   );
 };
