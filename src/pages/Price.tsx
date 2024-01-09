@@ -9,6 +9,7 @@ import {
 } from "../ui/Price";
 import { useAppDispatch } from "../redux/hook";
 import { fetchAllServices } from "../redux/slices/ServicesSlice";
+import { fetchAllMonthlyMoneyCalculations } from "../redux/slices/PriceSlice";
 
 export const Price = () => {
   const { address } = useParams();
@@ -19,6 +20,7 @@ export const Price = () => {
 
   useEffect(() => {
     dispatch(fetchAllServices());
+    dispatch(fetchAllMonthlyMoneyCalculations());
   }, []);
 
   return (

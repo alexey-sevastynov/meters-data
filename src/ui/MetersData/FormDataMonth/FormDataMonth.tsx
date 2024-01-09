@@ -79,7 +79,6 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
       gas,
       water: water || 0,
     };
-    console.log(formData);
 
     const isUniqueDate = !listCurrentPage.some(
       (item: MeterDataType) =>

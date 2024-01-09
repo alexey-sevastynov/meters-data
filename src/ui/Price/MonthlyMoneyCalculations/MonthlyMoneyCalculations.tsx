@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import Style from "./monthlyMoneyCalculations.module.scss";
 import { Input } from "../../../components/Input/Input";
 import { ListMonthlyMoneyCalculations } from "./ListMonthlyMoneyCalculations/ListMonthlyMoneyCalculations";
+import { AppDispatch } from "../../../redux/store";
 
-export const MonthlyMoneyCalculations = () => {
+interface MonthlyMoneyCalculationsProps {}
+
+export const MonthlyMoneyCalculations: React.FC<
+  MonthlyMoneyCalculationsProps
+> = () => {
   const [inputValue, setInputValue] = useState<string>("");
   return (
     <section className={Style.monthlyMoneyCalculations}>

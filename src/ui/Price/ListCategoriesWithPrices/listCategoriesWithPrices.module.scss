@@ -36,4 +36,9 @@
       color: $green;
     }
   }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  }
 }

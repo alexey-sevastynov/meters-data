@@ -12,7 +12,6 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   isWaterBlock = true,
 }) => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <div className={Styles.infoPanelMonth}>

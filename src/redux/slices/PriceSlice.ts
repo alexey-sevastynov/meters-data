@@ -1,13 +1,105 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ListInfoDataMonthType } from "./MetersDataSlice";
 import { TypeListUtylityPrices } from "../../types/constants";
+import { MonthlyMoneyCalculationsType } from "../../types/MonthlyMoneyCalculationsType";
+import axios, { AxiosError } from "axios";
+import { API_URL } from "../../constants";
+import { AddressType } from "../../types/MeterDataType";
+
+export const fetchAllMonthlyMoneyCalculations = createAsyncThunk<
+  MonthlyMoneyCalculationsType[],
+  void,
+  { rejectValue: AxiosError }
+>(
+  "MonthlyMoneyCalculations/fetchAllMonthlyMoneyCalculations",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get<MonthlyMoneyCalculationsType[]>(
+        `${API_URL}monthlymoneycalculations`
+      );
+      return data;
+    } catch (error: any) {
+      if (!error.response) {
+        throw error;
+      }
+      return rejectWithValue(error as AxiosError);
+    }
+  }
+);
+
+export const getOneMonthMoneyCalculations = createAsyncThunk<
+  MonthlyMoneyCalculationsType,
+  { id: string }
+>("MonthlyMoneyCalculations/getOneMonthMoneyCalculations", async ({ id }) => {
+  const { data } = await axios.get(`${API_URL}monthlymoneycalculations/${id}`);
+
+  return data;
+});
+
+export const fetchPostMonthMoneyCalculations = createAsyncThunk<
+  MonthlyMoneyCalculationsType,
+  { address: AddressType; data: ListInfoDataMonthType[]; sumMoney: number }
+>(
+  "MonthlyMoneyCalculations/fetchPostMonthMoneyCalculations",
+  async (params) => {
+    const { data } = await axios.post(
+      `${API_URL}monthlymoneycalculations`,
+      params
+    );
+    return data;
+  }
+);
+
+export const deleteMonthMoneyCalculations = createAsyncThunk<
+  MonthlyMoneyCalculationsType,
+  { id: string }
+>("MonthlyMoneyCalculations/deleteMonthMoneyCalculations", async (params) => {
+  const { id } = params;
+  const { data } = await axios.delete(
+    `${API_URL}monthlymoneycalculations/${id}`
+  );
+  return data;
+});
+
+export const editMonthMoneyCalculations = createAsyncThunk<
+  TypeListUtylityPrices,
+  {
+    _id: string;
+    data: ListInfoDataMonthType[];
+    sumMoney: number;
+  }
+>("MonthlyMoneyCalculations/editMonthMoneyCalculations", async (params) => {
+  const { _id, data, sumMoney } = params;
+
+  const { data: responseData } = await axios.patch(
+    `${API_URL}monthlymoneycalculations/${_id}`,
+    {
+      data,
+      sumMoney,
+    }
+  );
+
+  return responseData;
+});
 
 interface IPriceSlice {
+  itemsMonthlyMoneyCalculations: {
+    status: string;
+    items: MonthlyMoneyCalculationsType[] | null;
+    isEdit: boolean;
+    idEdit: null | string;
+  };
   currentItem: ListInfoDataMonthType[] | null;
   sumMoney: number;
 }
 
 const initialState: IPriceSlice = {
+  itemsMonthlyMoneyCalculations: {
+    status: "inactive",
+    items: null,
+    isEdit: false,
+    idEdit: null,
+  },
   currentItem: null,
   sumMoney: 0,
 };
@@ -136,6 +228,40 @@ const PriceSlice = createSlice({
         state.sumMoney = +(state.sumMoney - value).toFixed(1);
       }
     },
+
+    dissableEdit: (state) => {
+      state.itemsMonthlyMoneyCalculations.isEdit = false;
+      state.itemsMonthlyMoneyCalculations.idEdit = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchAllMonthlyMoneyCalculations.pending, (state) => {
+      state.itemsMonthlyMoneyCalculations.items = [];
+      state.itemsMonthlyMoneyCalculations.status = "loading";
+    });
+    builder.addCase(
+      fetchAllMonthlyMoneyCalculations.fulfilled,
+      (state, action) => {
+        state.itemsMonthlyMoneyCalculations.items = action.payload;
+        state.itemsMonthlyMoneyCalculations.status = "loaded";
+      }
+    );
+    builder.addCase(
+      fetchAllMonthlyMoneyCalculations.rejected,
+      (state, action) => {
+        state.itemsMonthlyMoneyCalculations.items = [];
+        state.itemsMonthlyMoneyCalculations.status = `Error message: "${action.error.message}"`;
+      }
+    );
+
+    builder.addCase(getOneMonthMoneyCalculations.fulfilled, (state, action) => {
+      state.currentItem = action.payload.data;
+      state.sumMoney = action.payload.sumMoney;
+      state.itemsMonthlyMoneyCalculations.isEdit = true;
+      if (action.payload._id) {
+        state.itemsMonthlyMoneyCalculations.idEdit = action.payload._id;
+      }
+    });
   },
 });
 
@@ -143,6 +269,7 @@ export const {
   calcPrice,
   addServiceToCurrentItem,
   deleteServiceWithCurrentItem,
+  dissableEdit,
 } = PriceSlice.actions;
 
 export const pricesReducer = PriceSlice.reducer;
