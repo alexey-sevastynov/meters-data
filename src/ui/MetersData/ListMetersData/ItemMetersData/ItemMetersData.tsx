@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Styles from "./itemMetersData.module.scss";
 import { getIconUrl } from "../../../../helpers/getIconUrl";
 import { AddressType } from "../../../../types/MeterDataType";
@@ -10,6 +10,7 @@ import {
   showMeterReadingCalc,
 } from "../../../../redux/slices/MetersDataSlice";
 import { formatDate } from "../../../../helpers/formatDate";
+import { smoothScrollOnLoad } from "../../../../helpers/smoothScrollOnLoad";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -69,6 +70,10 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
       });
   };
 
+  useEffect(() => {
+    if (isEdit) smoothScrollOnLoad(0);
+  }, [isEdit]);
+
   return (
     <li className={Styles.itemMetersData}>
       <div className={Styles.data}>
@@ -86,7 +91,10 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
             type="button"
             disabled={isEdit}
             title={`Сalculation of meter readings for ${date}`}
-            onClick={() => dispatch(showMeterReadingCalc({ id: _id, address }))}
+            onClick={() => {
+              dispatch(showMeterReadingCalc({ id: _id, address }));
+              smoothScrollOnLoad();
+            }}
           >
             <img
               src={getIconUrl("show.png")}

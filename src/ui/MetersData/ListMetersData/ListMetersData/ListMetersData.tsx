@@ -16,6 +16,13 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
 }) => {
   const { pathname } = useLocation();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Добавляем параметр behavior для плавного скролла
+    });
+  };
+
   const items = useAppSelector((props) => props.metersData.metersData.items);
   const status = useAppSelector((props) => props.metersData.metersData.status);
   const addressCurrentPage = pathname.slice(1);
