@@ -3,14 +3,14 @@ import Styles from "./extraServicesForm.module.scss";
 import { Select } from "../../../components/Select/Select";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
-
-import { useAppSelector } from "../../../redux/hook";
 import {
   editServicePrice,
   fetchAllServices,
 } from "../../../redux/slices/ServicesSlice";
 import { AppDispatch } from "../../../redux/store";
 import { addServiceToCurrentItem } from "../../../redux/slices/PriceSlice";
+import { ToastContainer } from "react-toastify";
+import useUtilityPrices from "../../../hooks/useUtilityPrices";
 
 interface ExtraServicesFormProps {
   dispatch: AppDispatch;
@@ -19,7 +19,7 @@ interface ExtraServicesFormProps {
 export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
   dispatch,
 }) => {
-  const items = useAppSelector((props) => props.services.services.items);
+  const { items } = useUtilityPrices();
   const options = items.filter(
     ({ category }) =>
       category !== "Light general" &&
@@ -46,15 +46,15 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
 
   const editValueUtilityPrice = () => {
     if (currentId && inputValue) {
-      dispatch(editServicePrice({ _id: currentId, value: inputValue }))
-        .then((response: any) => {
-          if (response.payload) {
-            dispatch(fetchAllServices());
+      dispatch(editServicePrice({ _id: currentId, value: inputValue })).then(
+        (action) => {
+          if (action.payload) {
+            setTimeout(() => {
+              dispatch(fetchAllServices());
+            }, 2500);
           }
-        })
-        .catch((error: any) => {
-          console.error("Error fetch all data services:", error);
-        });
+        }
+      );
 
       dispatch(
         addServiceToCurrentItem({
@@ -92,6 +92,19 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
           add
         </Button>
       </div>
+
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeButton={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </form>
   );
 };

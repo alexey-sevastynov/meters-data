@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { API_URL } from "../../constants";
 import { TypeListUtylityPrices } from "../../types/constants";
+import { toast } from "react-toastify";
 
 export const fetchAllServices = createAsyncThunk<
   TypeListUtylityPrices,
@@ -71,12 +72,18 @@ const ServicesSlice = createSlice({
       state.services.status = `Error message: "${action.error.message}"`;
     });
     builder.addCase(editServicePrice.pending, (state) => {
+      toast.loading("Loading...");
       state.patch.status = "loading";
     });
     builder.addCase(editServicePrice.fulfilled, (state) => {
+      toast.dismiss();
+      toast.success("Price changed, success! 👌");
+
       state.patch.status = "loaded";
     });
     builder.addCase(editServicePrice.rejected, (state) => {
+      toast.dismiss();
+      toast.error("Request error 🤯 😣");
       state.patch.status = "error";
     });
   },

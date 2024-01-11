@@ -1,11 +1,12 @@
 import React from "react";
 import Style from "./listMetersData.module.scss";
-import { LIST_DATA } from "../../../../constants";
+
 import { ItemMetersData } from "../ItemMetersData/ItemMetersData";
 import { useAppSelector } from "../../../../redux/hook";
 import { useLocation } from "react-router-dom";
 import { filterAndSortItemsByAddressAndDate } from "../../../../helpers/filterAndSortItemsByAddressAndDate";
-import { AddressType } from "../../../../types/MeterDataType";
+
+import useMetersData from "../../../../hooks/useMetersData";
 
 interface ListMetersDataProps {
   isWaterBlock: boolean;
@@ -14,14 +15,8 @@ interface ListMetersDataProps {
 export const ListMetersData: React.FC<ListMetersDataProps> = ({
   isWaterBlock,
 }) => {
+  const { isDataFromLocalStorage } = useMetersData();
   const { pathname } = useLocation();
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // Добавляем параметр behavior для плавного скролла
-    });
-  };
 
   const items = useAppSelector((props) => props.metersData.metersData.items);
   const status = useAppSelector((props) => props.metersData.metersData.status);
@@ -37,7 +32,7 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
     <ul className={Style.listMetersData}>
       {status === "loading" && <li>Loading...</li>}
       {isEmptyList ? (
-        <p>not items</p>
+        <p>{isDataFromLocalStorage ? "No cached items" : "No items"}</p>
       ) : (
         listMetersData.map((item, index) => (
           <ItemMetersData

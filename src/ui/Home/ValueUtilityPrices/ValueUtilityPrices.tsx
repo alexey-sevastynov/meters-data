@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Styles from "./ValueUtilityPrices.module.scss";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { useAppDispatch } from "../../../redux/hook";
 import {
   editServicePrice,
   fetchAllServices,
 } from "../../../redux/slices/ServicesSlice";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ValueUtilityPricesProps {
   id: string;
@@ -20,35 +23,28 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
   id,
 }) => {
   const dispatch = useAppDispatch();
-  const status = useAppSelector((props) => props.services.patch.status);
+
   const [valueInput, setValueInput] = useState<number>(value);
-  const [idStatus, setIdStatus] = useState<string>("");
 
   const editValueUtilityPrice = () => {
     if (id && valueInput) {
-      dispatch(editServicePrice({ _id: id, value: valueInput }));
-      setIdStatus(id);
+      dispatch(editServicePrice({ _id: id, value: valueInput })).then(
+        (action) => {
+          if (action.payload) {
+            setTimeout(() => {
+              dispatch(fetchAllServices());
+            }, 2500);
+          }
+        }
+      );
     }
   };
-
-  useEffect(() => {
-    if (status === "loaded" && id === idStatus) {
-      dispatch(fetchAllServices());
-    }
-  }, [status, dispatch, id, idStatus]);
 
   return (
     <div className={Styles.valueUtilityPrices}>
       <p>1 {valueName} =</p>
 
       <Input defaultValue={value} value={valueInput} setValue={setValueInput} />
-      {id === idStatus && (
-        <>
-          {status === "loading" && <p>Loading...</p>}
-          {status === "loaded" && <p>Loaded!</p>}
-          {status === "error" && <p>Error!</p>}
-        </>
-      )}
 
       <Button
         type="button"
@@ -57,6 +53,19 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
       >
         publish
       </Button>
+
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeButton={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

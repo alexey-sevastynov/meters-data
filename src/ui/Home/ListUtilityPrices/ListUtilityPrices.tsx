@@ -1,17 +1,9 @@
-import React, { useEffect } from "react";
 import Styles from "./listUtilityPrices.module.scss";
-import { LIST_UTILITY_PRICES } from "../../../constants";
 import { ItemUtilityPrices } from "../ItemUtilityPrices/ItemUtilityPrices";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
-import { fetchAllServices } from "../../../redux/slices/ServicesSlice";
+import useUtilityPrices from "../../../hooks/useUtilityPrices";
 
 export const ListUtilityPrices = () => {
-  const dispatch = useAppDispatch();
-  const { items, status } = useAppSelector((props) => props.services.services);
-
-  useEffect(() => {
-    dispatch(fetchAllServices());
-  }, []);
+  const { items, status } = useUtilityPrices();
 
   return (
     <ul className={Styles.listUtilityPrices}>
