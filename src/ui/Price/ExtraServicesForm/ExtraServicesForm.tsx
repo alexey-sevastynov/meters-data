@@ -3,13 +3,10 @@ import Styles from "./extraServicesForm.module.scss";
 import { Select } from "../../../components/Select/Select";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
-import {
-  editServicePrice,
-  fetchAllServices,
-} from "../../../redux/slices/ServicesSlice";
+
 import { AppDispatch } from "../../../redux/store";
 import { addServiceToCurrentItem } from "../../../redux/slices/PriceSlice";
-import { ToastContainer } from "react-toastify";
+
 import useUtilityPrices from "../../../hooks/useUtilityPrices";
 
 interface ExtraServicesFormProps {
@@ -46,16 +43,6 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
 
   const editValueUtilityPrice = () => {
     if (currentId && inputValue) {
-      dispatch(editServicePrice({ _id: currentId, value: inputValue })).then(
-        (action) => {
-          if (action.payload) {
-            setTimeout(() => {
-              dispatch(fetchAllServices());
-            }, 2500);
-          }
-        }
-      );
-
       dispatch(
         addServiceToCurrentItem({
           title: selectedOption,
@@ -92,19 +79,6 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
           add
         </Button>
       </div>
-
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeButton={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </form>
   );
 };

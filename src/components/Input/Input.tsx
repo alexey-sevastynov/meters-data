@@ -8,7 +8,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
   labelTextBold?: boolean;
   value: number | string;
   type?: string;
-  setValue: (value: string | number) => void;
+  setValue: (value: any) => void;
 }
 
 export const Input: React.FC<InputProps> = ({
