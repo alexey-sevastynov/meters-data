@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { MeterDataType } from "../types/MeterDataType";
 import { AppDispatch, RootState } from "../redux/store";
+import { fetchAllMetersData } from "../redux/slices/MetersDataSlice";
 
 const useMetersData = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -23,6 +24,12 @@ const useMetersData = () => {
             payload: parsedData,
           });
           setIsDataFromLocalStorage(true);
+        } else {
+          // Otherwise, we make a request to the server
+          const response = await dispatch(fetchAllMetersData());
+
+          // We save the received data in localStorage
+          localStorage.setItem("metersData", JSON.stringify(response.payload));
         }
       } catch (error) {
         console.error("Error fetching data from Local Storage:", error);
