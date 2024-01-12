@@ -1,11 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// A function that tries to get the isAuth value from localStorage
+const loadAuthFromLocalStorage = () => {
+  try {
+    const serializedAuth = localStorage.getItem("isAuth");
+    if (serializedAuth === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedAuth);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+// Function that stores the isAuth value in localStorage
+const saveAuthToLocalStorage = (isAuth: boolean) => {
+  try {
+    const serializedAuth = JSON.stringify(isAuth);
+    localStorage.setItem("isAuth", serializedAuth);
+  } catch (err) {
+    // You can add storage error handling to localStorage
+  }
+};
+
 interface IAuthSlice {
   isAuth: boolean;
 }
 
 const initialState: IAuthSlice = {
-  isAuth: false,
+  // Trying to load isAuth from localStorage, if unsuccessful, set the default value (false)
+  isAuth: loadAuthFromLocalStorage() || false,
 };
 
 const AuthSlice = createSlice({
@@ -14,9 +38,13 @@ const AuthSlice = createSlice({
   reducers: {
     logIn: (state) => {
       state.isAuth = true;
+      // We save isAuth in localStorage upon successful login
+      saveAuthToLocalStorage(true);
     },
     logOut: (state) => {
       state.isAuth = false;
+      // Saving isAuth in localStorage upon exit
+      saveAuthToLocalStorage(false);
     },
   },
 });
