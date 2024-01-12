@@ -9,7 +9,7 @@ import store from "./redux/store.ts";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/meters-data">
         <App />
       </BrowserRouter>
     </Provider>
