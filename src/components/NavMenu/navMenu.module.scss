@@ -1,3 +1,5 @@
+@import "../../styles//breakpoints.scss";
+
 .navMenu {
   position: fixed;
   left: 0;
@@ -20,4 +22,31 @@
     hsl(94deg 90% 72%) 95%,
     hsl(87deg 100% 74%) 100%
   );
+
+  transition: transform 0.3s ease-in-out;
+
+  .authMobile {
+    display: none;
+  }
+
+  @media (max-width: $laptop) {
+    padding-top: 80px;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    transform: translateY(100%);
+    &.showMenu {
+      transform: translateY(0);
+    }
+
+    .authMobile {
+      display: block;
+      bottom: 10px;
+      left: 50%;
+      width: max-content;
+      transform: translateX(-50%);
+      position: absolute;
+    }
+  }
 }

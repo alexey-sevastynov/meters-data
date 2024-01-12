@@ -1,9 +1,9 @@
-import React, { Children } from "react";
+import React from "react";
 import Styles from "./itemLinkPage.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, NavLinkProps } from "react-router-dom";
 import { getIconUrl } from "../../../helpers/getIconUrl";
 
-interface ItemLinkPageProps {
+interface ItemLinkPageProps extends Omit<NavLinkProps, "to"> {
   link: string;
   imageName: string;
   id: string;
@@ -15,6 +15,7 @@ export const ItemLinkPage: React.FC<ItemLinkPageProps> = ({
   imageName,
   id,
   children,
+  ...props
 }) => {
   return (
     <li>
@@ -23,6 +24,7 @@ export const ItemLinkPage: React.FC<ItemLinkPageProps> = ({
         className={({ isActive }) =>
           isActive ? Styles.active : Styles.itemLinkPage
         }
+        {...props}
       >
         <img src={getIconUrl(imageName)} alt={id} width={30} height={30} />
         <p className={Styles.text}>{children}</p>
