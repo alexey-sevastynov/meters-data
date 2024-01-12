@@ -37,10 +37,14 @@ export const Input: React.FC<InputProps> = ({
 
   return (
     <div className={Styles.input}>
-      <label className={labelTextBold ? Styles.labelTextBold : Styles.label}>
+      <label
+        id={labelText}
+        className={labelTextBold ? Styles.labelTextBold : Styles.label}
+      >
         {labelText}:
       </label>
       <input
+        id={labelText}
         type={type}
         value={value}
         onChange={handleChange}
