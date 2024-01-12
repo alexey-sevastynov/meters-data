@@ -7,10 +7,5 @@ import svgr from "vite-plugin-svgr";
 export default defineConfig({
   plugins: [react(), svgr()], // register the plugin
 
-  define: {
-    "import.meta.env": {
-      email: process.env.EMAIL,
-      password: process.env.PASSWORD,
-    },
-  },
+  base: "/meters-data/",
 });
