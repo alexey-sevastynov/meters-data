@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Style from "./login.module.scss";
 import { ButtonLogin, InputLogin } from "../../ui/Login";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
 import { logIn } from "../../redux/slices/AuthSlice";
-import { set } from "date-fns";
 
 interface LoginProps {}
 

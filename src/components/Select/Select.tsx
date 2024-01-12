@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useState } from "react";
+import React, { HTMLAttributes } from "react";
 import Styles from "./select.module.scss";
 import { TypeListUtylityPrices } from "../../types/constants";
 

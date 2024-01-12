@@ -1,4 +1,3 @@
-import React from "react";
 import Styles from "./authPanel.module.scss";
 import { useAppDispatch } from "../../../redux/hook";
 import { logOut } from "../../../redux/slices/AuthSlice";

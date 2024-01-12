@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "../styles/pages/price.scss";
 import { Link, useParams } from "react-router-dom";
 import { LIST_NAV } from "../constants";

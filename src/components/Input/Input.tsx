@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useState } from "react";
+import React, { HTMLAttributes } from "react";
 import Styles from "./input.module.scss";
 import { getIconUrl } from "../../helpers/getIconUrl";
 
@@ -9,6 +9,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
   value: number | string;
   type?: string;
   setValue: (value: any) => void;
+  placeholder?: string;
 }
 
 export const Input: React.FC<InputProps> = ({

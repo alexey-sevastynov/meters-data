@@ -221,10 +221,6 @@ const PriceSlice = createSlice({
           (item) => item.title !== title
         );
 
-        const findItemValue = state.currentItem.find(
-          (item) => item.title === title
-        )?.description;
-
         state.sumMoney = +(state.sumMoney - value).toFixed(1);
       }
     },

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Style from "./monthlyMoneyCalculations.module.scss";
 import { Input } from "../../../components/Input/Input";
 import { ListMonthlyMoneyCalculations } from "./ListMonthlyMoneyCalculations/ListMonthlyMoneyCalculations";
-import { AppDispatch } from "../../../redux/store";
 
 interface MonthlyMoneyCalculationsProps {}
 

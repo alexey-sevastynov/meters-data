@@ -1,4 +1,3 @@
-import React from "react";
 import Style from "./buttonLogin.module.scss";
 import { getIconUrl } from "../../../helpers/getIconUrl";
 

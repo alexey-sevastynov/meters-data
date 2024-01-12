@@ -6,7 +6,6 @@ import { COLORS } from "../../../../constants";
 import { ListInfoDataMonthType } from "../../../../redux/slices/MetersDataSlice";
 import {
   deleteMonthMoneyCalculations,
-  editMonthMoneyCalculations,
   fetchAllMonthlyMoneyCalculations,
   getOneMonthMoneyCalculations,
 } from "../../../../redux/slices/PriceSlice";

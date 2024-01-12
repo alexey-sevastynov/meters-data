@@ -1,4 +1,3 @@
-import React from "react";
 import Styles from "./logo.module.scss";
 import { getIconUrl } from "../../../helpers/getIconUrl";
 

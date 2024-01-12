@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "./infoPanelMonth.module.scss";
 import { ListInfoPanelMonth } from "../../ui/InfoPanelMonth/ListInfoPanelMonth/ListInfoPanelMonth";
 import { Button } from "../Button/Button";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;

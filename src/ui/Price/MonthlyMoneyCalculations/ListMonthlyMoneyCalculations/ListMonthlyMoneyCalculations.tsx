@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Style from "./listMonthlyMoneyCalculations.module.scss";
 import { ItemMonthlyMoneyCalculations } from "../ItemMonthlyMoneyCalculations/ItemMonthlyMoneyCalculations";
 import { useAppSelector } from "../../../../redux/hook";

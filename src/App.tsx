@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useRoutes } from "react-router-dom";
 import routes from "./routes";
 import { createPortal } from "react-dom";

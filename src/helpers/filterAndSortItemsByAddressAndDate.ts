@@ -1,4 +1,4 @@
-import { AddressType, MeterDataType } from "../types/MeterDataType";
+import { MeterDataType } from "../types/MeterDataType";
 
 export function filterAndSortItemsByAddressAndDate(
   items: MeterDataType[],
