@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "./ValueUtilityPrices.module.scss";
+import Styles from "./valueUtilityPrices.module.scss";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
 import { useAppDispatch } from "../../../redux/hook";
