@@ -156,7 +156,7 @@ export const ListCategoriesWithPrices: React.FC<
           <p className={Styles.sumMoney}>{sumMoney} uah</p>
         </li>
         {isEdit ? (
-          <div>
+          <div className={Styles.btns}>
             <Button
               type="button"
               onClick={cancel}
