@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { fetchAllServices } from "../redux/slices/ServicesSlice";
@@ -8,6 +8,8 @@ const useUtilityPrices = () => {
   const { items, status } = useSelector(
     (state: RootState) => state.services.services
   );
+
+  const [isDataFromLocalStorage, setIsDataFromLocalStorage] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +24,7 @@ const useUtilityPrices = () => {
             type: "services/fetchAllServices/fulfilled",
             payload: parsedData,
           });
+          setIsDataFromLocalStorage(true);
         } else {
           // Otherwise, we make a request to the server
           const response = await dispatch(fetchAllServices());
@@ -40,7 +43,21 @@ const useUtilityPrices = () => {
     fetchData();
   }, [dispatch]);
 
-  return { items, status };
+  useEffect(() => {
+    const updateLocalStorage = async () => {
+      try {
+        localStorage.setItem("utilityPrices", JSON.stringify(items));
+      } catch (error) {
+        console.error("Error updating Local Storage:", error);
+      }
+    };
+
+    if (isDataFromLocalStorage) {
+      updateLocalStorage();
+    }
+  }, [items, isDataFromLocalStorage]);
+
+  return { items, status, isDataFromLocalStorage };
 };
 
 export default useUtilityPrices;
