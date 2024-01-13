@@ -121,6 +121,10 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   };
 
   useEffect(() => {
+    dispatch(fetchAllMetersData());
+  }, []);
+
+  useEffect(() => {
     if (isEdit && meterDataEdit && parsedDate) {
       const customDate = new Date(
         parsedDate.getFullYear(),
