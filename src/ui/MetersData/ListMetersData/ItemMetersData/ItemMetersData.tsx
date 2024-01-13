@@ -11,6 +11,7 @@ import {
 } from "../../../../redux/slices/MetersDataSlice";
 import { formatDate } from "../../../../helpers/formatDate";
 import { smoothScrollOnLoad } from "../../../../helpers/smoothScrollOnLoad";
+import { ToastContainer } from "react-toastify";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -129,6 +130,19 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
           </button>
         )}
       </div>
+
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeButton={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </li>
   );
 };

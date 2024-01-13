@@ -7,6 +7,7 @@ import { filterAndSortItemsByAddressAndDate } from "../../helpers/filterAndSortI
 import { findPreviousDateById } from "../helpers/findPreviousDateById";
 import { calculateDifference } from "../helpers/calculateDifference";
 import { getKeyOnPage } from "../../helpers/getKeyOnPage";
+import { toast } from "react-toastify";
 
 export type ListInfoDataMonthType = {
   title: string;
@@ -205,6 +206,18 @@ const MetersDataSlice = createSlice({
     builder.addCase(fetchAllMetersData.rejected, (state, action) => {
       state.metersData.items = [];
       state.metersData.status = `Error message: "${action.error.message}"`;
+    });
+
+    builder.addCase(fetchPostMetersData.pending, () => {
+      toast.loading("Loading...");
+    });
+    builder.addCase(fetchPostMetersData.fulfilled, () => {
+      toast.dismiss();
+      toast.success("Success! Month was added 👌");
+    });
+    builder.addCase(fetchPostMetersData.rejected, () => {
+      toast.dismiss();
+      toast.error("Request error 🤯 😣");
     });
   },
 });

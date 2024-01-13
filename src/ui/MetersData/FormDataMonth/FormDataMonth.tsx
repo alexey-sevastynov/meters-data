@@ -108,7 +108,9 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         dispatch(fetchPostMetersData(formData))
           .then((response: any) => {
             if (response.payload) {
-              dispatch(fetchAllMetersData());
+              setTimeout(() => {
+                dispatch(fetchAllMetersData());
+              }, 2500);
             }
           })
           .catch((error: any) => {
