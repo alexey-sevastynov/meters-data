@@ -5,9 +5,9 @@
   border: 1px solid $grey;
   border-radius: 4px;
   width: max-content;
-  padding: 0px 10px 10px;
 
   ul {
+    padding: 10px;
     .item {
       display: flex;
 
@@ -40,6 +40,13 @@
     gap: 40px;
 
     justify-content: space-between;
+
+    padding: 10px;
+
+    .active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
   }
 
   @media (max-width: $mobile-xl) {

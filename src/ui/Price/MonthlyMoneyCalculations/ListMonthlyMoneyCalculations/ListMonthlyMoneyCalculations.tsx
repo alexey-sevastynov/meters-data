@@ -24,12 +24,13 @@ export const ListMonthlyMoneyCalculations = () => {
     <ul className={Style.listMonthlyMoneyCalculations}>
       {status === "loading" && <p>loading...</p>}
       {itemsFilter &&
-        itemsFilter.map(({ _id, data, sumMoney }) => (
+        itemsFilter.map(({ _id, data, sumMoney, address }) => (
           <ItemMonthlyMoneyCalculations
             key={_id}
             id={_id}
             items={data}
             sumMoney={sumMoney}
+            address={address}
           />
         ))}
     </ul>
