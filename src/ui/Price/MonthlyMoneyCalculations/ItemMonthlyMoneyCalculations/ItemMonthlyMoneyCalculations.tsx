@@ -10,8 +10,7 @@ import {
   fetchAllMonthlyMoneyCalculations,
   getOneMonthMoneyCalculations,
 } from "../../../../redux/slices/PriceSlice";
-import { translationTitle } from "./helpers";
-import { translationDescription } from "./helpers/translationDescription";
+import { translationDescription, translationTitle } from "./helpers";
 
 interface ItemMonthlyMoneyCalculationsProps {
   items: ListInfoDataMonthType[];

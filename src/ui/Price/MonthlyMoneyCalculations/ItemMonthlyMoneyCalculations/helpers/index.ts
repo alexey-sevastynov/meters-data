@@ -1,2 +1,2 @@
-export { traceDeprecation } from "process";
+export { translationDescription } from "./translationDescription";
 export { translationTitle } from "./translationTitle";
