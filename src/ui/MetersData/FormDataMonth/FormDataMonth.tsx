@@ -17,6 +17,7 @@ import { AddressType, MeterDataType } from "../../../types/MeterDataType";
 import { filterAndSortItemsByAddressAndDate } from "../../../helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "../../../types/KeysItemUtilityPricesType";
 import { COLORS } from "../../../constants";
+import { updateLocalStorageValues } from "./helpers/updateLocalStorageValue";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -44,6 +45,13 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   const [valueSelectDate, onChange] = useState<any>(new Date());
 
   const setDefaultValue = (key: KeysItemUtilityPricesType): number => {
+    const localStorageValue = localStorage.getItem(
+      `metersData_${key}_${currentPage}`
+    );
+    if (localStorageValue !== null) {
+      return Number(localStorageValue);
+    }
+
     if (listCurrentPage.length > 0) {
       const lastItem = listCurrentPage[listCurrentPage.length - 1][key];
       if (typeof lastItem === "number") {
@@ -118,6 +126,15 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
           });
       }
     }
+
+    updateLocalStorageValues(
+      currentPage,
+      light,
+      lightDay,
+      lightNight,
+      gas,
+      water
+    );
   };
 
   useEffect(() => {
@@ -156,6 +173,14 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         setLightNight(setDefaultValue("lightNight"));
         setGas(setDefaultValue("gas"));
         setWater(setDefaultValue("water"));
+        updateLocalStorageValues(
+          currentPage,
+          light,
+          lightDay,
+          lightNight,
+          gas,
+          water
+        );
       }
     }
   }, [isEdit, dispatch]);

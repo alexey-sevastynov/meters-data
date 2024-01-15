@@ -6,6 +6,7 @@ export const BREAK_POINTS = {
   MOBILE_XL: 567,
   TABLET: 768,
   LAPTOP: 1024,
+  LAPTOP_L: 1356,
 };
 
 export const COLORS = {
@@ -203,3 +204,7 @@ export const VALUE_BY_TITLE: Record<string, string> = {
   "Gas General": "м³",
   "Water general": "м³",
 };
+
+export const WIDTH_COMPONENT_LIST_METERS_DATA_SMALL = 820;
+export const WIDTH_COMPONENT_LIST_METERS_DATA_BIG = 955;
+export const HEIGHT_COMPONENT_HEADER = 80;
