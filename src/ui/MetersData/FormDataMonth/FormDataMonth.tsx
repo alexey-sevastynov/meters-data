@@ -140,14 +140,16 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   useEffect(() => {
     dispatch(fetchAllMetersData());
 
-    updateLocalStorageValues(
-      currentPage,
-      listCurrentPage[listCurrentPage.length - 1].light,
-      listCurrentPage[listCurrentPage.length - 1].lightDay,
-      listCurrentPage[listCurrentPage.length - 1].lightNight,
-      listCurrentPage[listCurrentPage.length - 1].gas,
-      listCurrentPage[listCurrentPage.length - 1].water
-    );
+    if (currentPage && listCurrentPage) {
+      updateLocalStorageValues(
+        currentPage,
+        listCurrentPage[listCurrentPage.length - 1].light,
+        listCurrentPage[listCurrentPage.length - 1].lightDay,
+        listCurrentPage[listCurrentPage.length - 1].lightNight,
+        listCurrentPage[listCurrentPage.length - 1].gas,
+        listCurrentPage[listCurrentPage.length - 1].water
+      );
+    }
   }, []);
 
   useEffect(() => {
