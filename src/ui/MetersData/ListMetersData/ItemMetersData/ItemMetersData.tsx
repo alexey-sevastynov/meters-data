@@ -12,6 +12,9 @@ import {
 import { formatDate } from "../../../../helpers/formatDate";
 import { smoothScrollOnLoad } from "../../../../helpers/smoothScrollOnLoad";
 import { ToastContainer } from "react-toastify";
+import { updateLocalStorageValues } from "../../helpers/updateLocalStorageValue";
+import { useLocation } from "react-router-dom";
+import { filterAndSortItemsByAddressAndDate } from "../../../../helpers/filterAndSortItemsByAddressAndDate";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -42,8 +45,16 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   isFirstItem,
 }) => {
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
 
   const isEdit = useAppSelector((props) => props.metersData.isEdit);
+  const items = useAppSelector((props) => props.metersData.metersData.items);
+  const currentPage: AddressType = pathname.slice(1) as AddressType;
+
+  const listCurrentPage = filterAndSortItemsByAddressAndDate(
+    items,
+    currentPage
+  );
 
   const editItem = () => {
     dispatch(
@@ -69,6 +80,15 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
       .catch((error: any) => {
         console.error("Error adding data:", error);
       });
+
+    updateLocalStorageValues(
+      currentPage,
+      listCurrentPage[listCurrentPage.length - 2].light,
+      listCurrentPage[listCurrentPage.length - 2].lightDay,
+      listCurrentPage[listCurrentPage.length - 2].lightNight,
+      listCurrentPage[listCurrentPage.length - 2].gas,
+      listCurrentPage[listCurrentPage.length - 2].water
+    );
   };
 
   useEffect(() => {

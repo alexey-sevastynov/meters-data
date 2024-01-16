@@ -4,7 +4,7 @@ export const updateLocalStorageValues = (
   lightDay: number,
   lightNight: number,
   gas: number,
-  water: number
+  water: number | undefined
 ) => {
   localStorage.setItem(`metersData_light_${currentPage}`, String(light));
   localStorage.setItem(`metersData_lightDay_${currentPage}`, String(lightDay));

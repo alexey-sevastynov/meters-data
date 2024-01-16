@@ -17,7 +17,7 @@ import { AddressType, MeterDataType } from "../../../types/MeterDataType";
 import { filterAndSortItemsByAddressAndDate } from "../../../helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "../../../types/KeysItemUtilityPricesType";
 import { COLORS } from "../../../constants";
-import { updateLocalStorageValues } from "./helpers/updateLocalStorageValue";
+import { updateLocalStorageValues } from "../helpers/updateLocalStorageValue";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -48,7 +48,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     const localStorageValue = localStorage.getItem(
       `metersData_${key}_${currentPage}`
     );
-    if (localStorageValue !== null) {
+    if (localStorageValue !== null && listCurrentPage.length > 0) {
       return Number(localStorageValue);
     }
 
@@ -139,6 +139,15 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
 
   useEffect(() => {
     dispatch(fetchAllMetersData());
+
+    updateLocalStorageValues(
+      currentPage,
+      listCurrentPage[listCurrentPage.length - 1].light,
+      listCurrentPage[listCurrentPage.length - 1].lightDay,
+      listCurrentPage[listCurrentPage.length - 1].lightNight,
+      listCurrentPage[listCurrentPage.length - 1].gas,
+      listCurrentPage[listCurrentPage.length - 1].water
+    );
   }, []);
 
   useEffect(() => {
@@ -175,11 +184,11 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         setWater(setDefaultValue("water"));
         updateLocalStorageValues(
           currentPage,
-          light,
-          lightDay,
-          lightNight,
-          gas,
-          water
+          listCurrentPage[listCurrentPage.length - 1].light,
+          listCurrentPage[listCurrentPage.length - 1].lightDay,
+          listCurrentPage[listCurrentPage.length - 1].lightNight,
+          listCurrentPage[listCurrentPage.length - 1].gas,
+          listCurrentPage[listCurrentPage.length - 1].water
         );
       }
     }
