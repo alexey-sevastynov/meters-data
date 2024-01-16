@@ -48,7 +48,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     const localStorageValue = localStorage.getItem(
       `metersData_${key}_${currentPage}`
     );
-    if (localStorageValue !== null && listCurrentPage.length > 0) {
+    if (localStorageValue !== null) {
       return Number(localStorageValue);
     }
 
@@ -143,11 +143,11 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     if (currentPage && listCurrentPage.length > 0) {
       updateLocalStorageValues(
         currentPage,
-        listCurrentPage[listCurrentPage.length - 1].light,
-        listCurrentPage[listCurrentPage.length - 1].lightDay,
-        listCurrentPage[listCurrentPage.length - 1].lightNight,
-        listCurrentPage[listCurrentPage.length - 1].gas,
-        listCurrentPage[listCurrentPage.length - 1].water
+        light,
+        lightDay,
+        lightNight,
+        gas,
+        water
       );
     }
   }, []);

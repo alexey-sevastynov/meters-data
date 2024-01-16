@@ -46,8 +46,11 @@ export const ItemMonthlyMoneyCalculations: React.FC<
   };
   const editItem = () => {
     if (id) {
-      smoothScrollOnLoad();
-      dispatch(getOneMonthMoneyCalculations({ id }));
+      dispatch(getOneMonthMoneyCalculations({ id })).then((payload) => {
+        if (payload) {
+          smoothScrollOnLoad();
+        }
+      });
     }
   };
 
