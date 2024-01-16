@@ -215,7 +215,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               ? meterDataEdit?.light
               : setDefaultValue("light")
           }
-          labelText="Light general"
+          labelText="Light"
           value={light}
           setValue={setLight}
         />
@@ -254,7 +254,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               ? meterDataEdit?.gas
               : setDefaultValue("gas")
           }
-          labelText="Gas general"
+          labelText="Gas"
           value={gas}
           setValue={setGas}
         />
@@ -268,7 +268,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
                 ? meterDataEdit?.water || 0
                 : setDefaultValue("water")
             }
-            labelText="Water general"
+            labelText="Water"
             value={water}
             setValue={setWater}
           />

@@ -198,11 +198,11 @@ export const LIST_DATA = [
 ];
 
 export const VALUE_BY_TITLE: Record<string, string> = {
-  "Light general": "кВт",
-  "Light day": "кВт",
-  "Light night": "кВт",
-  "Gas General": "м³",
-  "Water general": "м³",
+  "Light general": "kW",
+  "Light day": "kW",
+  "Light night": "kW",
+  "Gas General": "m³",
+  "Water general": "m³",
 };
 
 export const WIDTH_COMPONENT_LIST_METERS_DATA_SMALL = 820;
