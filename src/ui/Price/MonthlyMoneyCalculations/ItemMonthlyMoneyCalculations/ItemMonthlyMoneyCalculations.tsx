@@ -11,6 +11,7 @@ import {
   getOneMonthMoneyCalculations,
 } from "../../../../redux/slices/PriceSlice";
 import { translationDescription, translationTitle } from "./helpers";
+import { smoothScrollOnLoad } from "../../../../helpers/smoothScrollOnLoad";
 
 interface ItemMonthlyMoneyCalculationsProps {
   items: ListInfoDataMonthType[];
@@ -45,6 +46,7 @@ export const ItemMonthlyMoneyCalculations: React.FC<
   };
   const editItem = () => {
     if (id) {
+      smoothScrollOnLoad();
       dispatch(getOneMonthMoneyCalculations({ id }));
     }
   };
