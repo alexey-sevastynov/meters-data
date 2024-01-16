@@ -140,7 +140,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   useEffect(() => {
     dispatch(fetchAllMetersData());
 
-    if (currentPage && listCurrentPage) {
+    if (currentPage && listCurrentPage.length > 0) {
       updateLocalStorageValues(
         currentPage,
         listCurrentPage[listCurrentPage.length - 1].light,
