@@ -65,9 +65,6 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
 
   const isEmptyList = listMetersData.length === 0 && status === "loaded";
 
-  console.log("listMetersDataTop:", listMetersDataTop);
-  console.log("listMetersDataWidth:", listMetersDataWidth);
-
   const widthComponent =
     ((addressCurrentPage == "chelyuskina" ||
       addressCurrentPage === "slobozhansky-68a") &&

@@ -10,11 +10,9 @@ const Layout: React.FC<LayoutProps> = () => {
   const [isShowMenu, setIsShowMenu] = useState<boolean>(false);
 
   const openMenu = () => {
-    console.log("open");
     setIsShowMenu(true);
   };
   const closeMenu = () => {
-    console.log("cancel");
     setIsShowMenu(false);
   };
 
