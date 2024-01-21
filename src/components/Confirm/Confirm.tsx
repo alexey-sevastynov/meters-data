@@ -18,7 +18,7 @@ interface ConfirmProps {
 
 export const Confirm: React.FC<ConfirmProps> = ({ question }) => {
   const dispatch = useAppDispatch();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const cancel = () => {
     setIsOpen(false);
