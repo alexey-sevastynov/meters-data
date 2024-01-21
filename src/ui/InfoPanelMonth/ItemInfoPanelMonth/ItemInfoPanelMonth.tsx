@@ -34,7 +34,7 @@ export const ItemInfoPanelMonth: React.FC<ItemInfoPanelMonthProps> = ({
   }
 
   return (
-    <div className={Style.ItemInfoPanelMonth}>
+    <div className={Style.itemInfoPanelMonth}>
       {shouldRenderDescriptionTitle && showDescriptionTitle}
       <dd className={Style.description} style={descriptionStyles}>
         {description} {showValue(title)}

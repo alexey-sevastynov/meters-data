@@ -1,12 +1,37 @@
 import Styles from "./authPanel.module.scss";
-import { useAppDispatch } from "../../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import { logOut } from "../../../redux/slices/AuthSlice";
+import {
+  closePopup,
+  confirmActionExit,
+  confirmActionOnDelete,
+  openPopup,
+  setIdDelete,
+  setQuestion,
+} from "../../../redux/slices/ConfirmPopupSlice";
+import { useEffect } from "react";
 
 export const AuthPanel = () => {
   const dispatch = useAppDispatch();
+  const isExit = useAppSelector((props) => props.confirm.isActionExit);
+  const idDeleteItem = useAppSelector((props) => props.confirm.idDeleteItem);
+
   const exit = () => {
-    dispatch(logOut());
+    dispatch(openPopup());
+
+    dispatch(setQuestion("Do you really want to exit?"));
+    dispatch(setIdDelete(null));
   };
+
+  useEffect(() => {
+    if (isExit && idDeleteItem === null) {
+      dispatch(logOut());
+
+      dispatch(closePopup());
+      dispatch(confirmActionOnDelete(false));
+      dispatch(confirmActionExit(false));
+    }
+  }, [isExit]);
 
   return (
     <div className={Styles.authPanel}>

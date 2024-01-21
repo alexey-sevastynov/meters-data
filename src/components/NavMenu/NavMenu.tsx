@@ -25,7 +25,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ closeMenu, isShowMenu }) => {
   }, [isShowMenu]);
 
   return (
-    <nav className={`${Styles.navMenu} ${isShowMenu ? Styles.showMenu : ""}`}>
+    <nav className={`${Styles.navMenu} ${isShowMenu ? Styles.showMenu : ""} `}>
       <ListLinks closeMenu={closeMenu} />
       <div className={Styles.authMobile}>
         <AuthPanel />

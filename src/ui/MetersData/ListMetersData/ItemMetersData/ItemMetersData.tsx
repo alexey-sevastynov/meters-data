@@ -15,6 +15,13 @@ import { ToastContainer } from "react-toastify";
 import { updateLocalStorageValues } from "../../helpers/updateLocalStorageValue";
 import { useLocation } from "react-router-dom";
 import { filterAndSortItemsByAddressAndDate } from "../../../../helpers/filterAndSortItemsByAddressAndDate";
+import {
+  confirmActionExit,
+  confirmActionOnDelete,
+  openPopup,
+  setIdDelete,
+  setQuestion,
+} from "../../../../redux/slices/ConfirmPopupSlice";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -48,6 +55,9 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   const { pathname } = useLocation();
 
   const isEdit = useAppSelector((props) => props.metersData.isEdit);
+  const isDelete = useAppSelector((props) => props.confirm.isActionDeleteItem);
+  const idDelete = useAppSelector((props) => props.confirm.idDeleteItem);
+
   const items = useAppSelector((props) => props.metersData.metersData.items);
   const currentPage: AddressType = pathname.slice(1) as AddressType;
 
@@ -71,25 +81,39 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     );
   };
   const removeItem = () => {
-    dispatch(deleteMeterData({ id: _id }))
-      .then((response: any) => {
-        if (response.payload) {
-          dispatch(fetchAllMetersData());
-        }
-      })
-      .catch((error: any) => {
-        console.error("Error adding data:", error);
-      });
-
-    updateLocalStorageValues(
-      currentPage,
-      listCurrentPage[listCurrentPage.length - 2].light,
-      listCurrentPage[listCurrentPage.length - 2].lightDay,
-      listCurrentPage[listCurrentPage.length - 2].lightNight,
-      listCurrentPage[listCurrentPage.length - 2].gas,
-      listCurrentPage[listCurrentPage.length - 2].water
-    );
+    dispatch(openPopup());
+    dispatch(setQuestion("Do you really want to delete?"));
+    dispatch(setIdDelete(_id));
   };
+
+  useEffect(() => {
+    console.log(isDelete ? true : false);
+    if (isDelete && idDelete === _id) {
+      console.log(`DELETE ${_id}`);
+      dispatch(deleteMeterData({ id: _id }))
+        .then((response: any) => {
+          if (response.payload) {
+            dispatch(fetchAllMetersData());
+          }
+        })
+        .catch((error: any) => {
+          console.error("Error adding data:", error);
+        });
+
+      updateLocalStorageValues(
+        currentPage,
+        listCurrentPage[listCurrentPage.length - 2].light,
+        listCurrentPage[listCurrentPage.length - 2].lightDay,
+        listCurrentPage[listCurrentPage.length - 2].lightNight,
+        listCurrentPage[listCurrentPage.length - 2].gas,
+        listCurrentPage[listCurrentPage.length - 2].water
+      );
+
+      dispatch(confirmActionOnDelete(false));
+      dispatch(confirmActionExit(false));
+      dispatch(setIdDelete(null));
+    }
+  }, [isDelete]);
 
   useEffect(() => {
     if (isEdit) smoothScrollOnLoad(0);

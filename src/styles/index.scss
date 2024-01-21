@@ -70,3 +70,13 @@ a {
 .mt-40 {
   margin-top: 40px;
 }
+
+.blur {
+  filter: blur(0);
+  transition: filter 0.5s ease-in-out;
+}
+
+.blur.active {
+  pointer-events: none;
+  filter: blur(5px);
+}

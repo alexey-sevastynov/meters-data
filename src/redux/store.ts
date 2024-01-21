@@ -3,6 +3,7 @@ import { servicesReducer } from "./slices/ServicesSlice";
 import { metersDataReducer } from "./slices/MetersDataSlice";
 import { pricesReducer } from "./slices/PriceSlice";
 import { authReducer } from "./slices/AuthSlice";
+import { confirmReducer } from "./slices/ConfirmPopupSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     metersData: metersDataReducer,
     prices: pricesReducer,
     auth: authReducer,
+    confirm: confirmReducer,
   },
 });
 
