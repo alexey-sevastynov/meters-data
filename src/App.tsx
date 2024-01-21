@@ -18,11 +18,12 @@ function App() {
   return (
     <main>
       {createPortal(!isAuth && <Login />, mountElement)}
-      <div className={isOpenPopup ? "blur active" : ""}>{isAuth && pages}</div>
+
       {createPortal(
         isOpenPopup && <Confirm question={messagePopup} />,
         confirmWindowPopup
       )}
+      <div className={isOpenPopup ? "blur active" : ""}>{isAuth && pages}</div>
     </main>
   );
 }
