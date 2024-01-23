@@ -81,7 +81,6 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     );
   };
   const removeItem = () => {
-    smoothScrollOnLoad();
     dispatch(openPopup());
     dispatch(setQuestion("Do you really want to delete?"));
     dispatch(setIdDelete(_id));

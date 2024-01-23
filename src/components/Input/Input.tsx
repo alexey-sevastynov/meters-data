@@ -24,11 +24,15 @@ export const Input: React.FC<InputProps> = ({
   ...props
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
     if (type === "number") {
-      const newValue = parseFloat(e.target.value);
-      setValue(newValue);
+      const newValue = parseFloat(value);
+      if (!isNaN(newValue)) {
+        setValue(newValue);
+      }
     } else {
-      setValue(e.target.value);
+      setValue(value);
     }
   };
 

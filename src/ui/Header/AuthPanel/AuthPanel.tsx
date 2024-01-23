@@ -10,7 +10,6 @@ import {
   setQuestion,
 } from "../../../redux/slices/ConfirmPopupSlice";
 import { useEffect } from "react";
-import { smoothScrollOnLoad } from "../../../helpers/smoothScrollOnLoad";
 
 export const AuthPanel = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +17,6 @@ export const AuthPanel = () => {
   const idDeleteItem = useAppSelector((props) => props.confirm.idDeleteItem);
 
   const exit = () => {
-    smoothScrollOnLoad();
     dispatch(openPopup());
 
     dispatch(setQuestion("Do you really want to exit?"));
