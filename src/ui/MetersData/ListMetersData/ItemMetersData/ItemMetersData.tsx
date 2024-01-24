@@ -35,6 +35,8 @@ interface ItemMetersDataProps {
   water?: number;
   isLastItem: boolean;
   isFirstItem: boolean;
+  setIdActiveBtn: (showActiveBtn: string) => void;
+  idActiveBtn: string;
 }
 
 export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
@@ -50,6 +52,8 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
 
   isLastItem,
   isFirstItem,
+  setIdActiveBtn,
+  idActiveBtn,
 }) => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
@@ -87,9 +91,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   };
 
   useEffect(() => {
-    console.log(isDelete ? true : false);
     if (isDelete && idDelete === _id) {
-      console.log(`DELETE ${_id}`);
       dispatch(deleteMeterData({ id: _id }))
         .then((response: any) => {
           if (response.payload) {
@@ -119,6 +121,10 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     if (isEdit) smoothScrollOnLoad(0);
   }, [isEdit]);
 
+  useEffect(() => {
+    if (isLastItem) setIdActiveBtn(isLastItem && _id);
+  }, []);
+
   return (
     <li className={Styles.itemMetersData}>
       <div className={Styles.data}>
@@ -139,10 +145,14 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
             onClick={() => {
               dispatch(showMeterReadingCalc({ id: _id, address }));
               smoothScrollOnLoad();
+
+              setIdActiveBtn(_id);
             }}
           >
             <img
-              src={getIconUrl("show.png")}
+              src={getIconUrl(
+                idActiveBtn === _id ? "show-active.png" : "show.png"
+              )}
               alt="show"
               width={25}
               height={25}
@@ -152,7 +162,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
         <button
           type="button"
           disabled={isEdit}
-          title={`edit meter readings`}
+          title={`edit meter readings `}
           onClick={editItem}
         >
           <img src={getIconUrl("edit.png")} alt="edit" width={25} height={25} />

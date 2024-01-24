@@ -33,6 +33,7 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
 
   const [listMetersDataTop, setListMetersDataTop] = useState(0);
   const [listMetersDataWidth, setListMetersDataWidth] = useState(0);
+  const [idActiveBtn, setIdActiveBtn] = useState<string>("");
   const listMetersDataRef = useRef<HTMLUListElement>(null);
 
   const handleScroll = () => {
@@ -95,6 +96,8 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
             isFirstItem={index === 0}
             isLastItem={index === listMetersData.length - 1}
             isWaterBlock={isWaterBlock}
+            setIdActiveBtn={setIdActiveBtn}
+            idActiveBtn={idActiveBtn}
             {...item}
           />
         ))
