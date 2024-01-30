@@ -25,18 +25,10 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-
-    if (type === "number") {
-      const newValue = parseFloat(value);
-      if (!isNaN(newValue)) {
-        setValue(newValue);
-      }
-    } else {
-      setValue(value);
-    }
+    setValue(value);
   };
 
-  const returnСurrentМalues = () => {
+  const returnСurrentValues = () => {
     setValue(defaultValue);
   };
 
@@ -58,7 +50,7 @@ export const Input: React.FC<InputProps> = ({
         {...props}
       />
       {value !== defaultValue && (
-        <button className={Styles.close} onClick={returnСurrentМalues}>
+        <button className={Styles.close} onClick={returnСurrentValues}>
           <img
             src={getIconUrl("close.png")}
             alt="close"
