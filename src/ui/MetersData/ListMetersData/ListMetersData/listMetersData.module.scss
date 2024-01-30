@@ -1,10 +1,13 @@
 @import "../../../../styles/colors.scss";
 
 .listMetersData {
+  display: flex;
+  flex-direction: column-reverse;
   .headerList {
     position: fixed;
     top: 80px;
     display: flex;
+
     gap: 7px;
     padding-left: 5px;
     padding-bottom: 5px;
