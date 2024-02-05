@@ -3,10 +3,6 @@ import Styles from "./infoPanelMonth.module.scss";
 import { ListInfoPanelMonth } from "../../ui/InfoPanelMonth/ListInfoPanelMonth/ListInfoPanelMonth";
 import { Button } from "../Button/Button";
 import { Link, useLocation } from "react-router-dom";
-import { Chart } from "../Chart/Chart";
-import { useAppSelector } from "../../redux/hook";
-import { filterAndSortItemsByAddressAndDate } from "../../helpers/filterAndSortItemsByAddressAndDate";
-import { formatDate } from "../../helpers/formatDate";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;
