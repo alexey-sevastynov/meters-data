@@ -1,0 +1,43 @@
+@import "../mixins.scss";
+@import "../breakpoints.scss";
+
+.graphics {
+  @include layoutStyle;
+
+  .title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .items {
+      display: flex;
+      flex-direction: column;
+
+      width: 100%;
+
+      gap: 60px;
+    }
+
+    .link {
+      color: $green;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    p {
+      color: $black;
+    }
+
+    .link,
+    p {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: $laptop) {
+    @include layoutStyleForMobile;
+  }
+}

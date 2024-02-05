@@ -9,8 +9,17 @@
 
   flex-wrap: wrap;
 
+  .links {
+    display: flex;
+    gap: 10px;
+  }
+
   @media (max-width: $mobile-xl) {
     flex-direction: column;
     align-items: unset;
+
+    .links {
+      justify-content: space-between;
+    }
   }
 }

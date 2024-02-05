@@ -9,6 +9,7 @@ import {
   Slobozhansky,
 } from "../pages";
 import { Price } from "../pages/Price";
+import { Graphics } from "../pages/Graphics";
 
 const routes: RouteObject[] = [
   {
@@ -21,6 +22,7 @@ const routes: RouteObject[] = [
       { path: ROUTES.SLOBOZHANSKY_68A, element: <Slobozhansky /> },
       { path: ROUTES.CHELUSKINA, element: <Cheluskina /> },
       { path: ROUTES.PRICE, element: <Price /> },
+      { path: ROUTES.GRAPHICS, element: <Graphics /> },
     ],
   },
 ];

@@ -32,9 +32,10 @@ defaults.responsive = true;
 
 interface ChartProps {
   data: ChartsDataType[];
+  label: string;
 }
 
-export const Chart: React.FC<ChartProps> = ({ data }) => {
+export const Chart: React.FC<ChartProps> = ({ data, label }) => {
   const filteredData = data.map((obj: ChartsDataType) => {
     const { label, light, lightDay, lightNight, gas, water } = obj;
     if (water === null) {
@@ -54,6 +55,7 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
 
   return (
     <div className={Styles.chart}>
+      <h4>{label} graphics:</h4>
       <Line
         data={{
           labels: filteredData.map((data) => data.label),
@@ -88,7 +90,13 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
               backgroundColor: COLORS.blue,
               borderColor: COLORS.blue,
             },
-          ],
+          ].filter((dataset) =>
+            label !== "Light"
+              ? dataset.label === label
+              : dataset.label === "Light" ||
+                dataset.label === "Light Day" ||
+                dataset.label === "Light Night"
+          ),
         }}
         options={{
           elements: {
