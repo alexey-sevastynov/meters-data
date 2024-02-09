@@ -30,7 +30,11 @@ export const ItemInfoPanelMonth: React.FC<ItemInfoPanelMonthProps> = ({
       : {};
 
   if (hideBlockWater) {
-    return null; // Возвращаем null, чтобы не отображать блок
+    return null;
+  }
+
+  if (title === "Date") {
+    return null;
   }
 
   return (

@@ -1,25 +1,36 @@
 @import "../../styles/breakpoints.scss";
 @import "../../styles/colors.scss";
 
-.infoPanelMonth {
-  display: flex;
-
-  align-items: flex-end;
-  gap: 10px;
-
-  flex-wrap: wrap;
-
-  .links {
+.infoPanelMonthSection {
+  margin-top: 20px;
+  .title {
+    position: relative;
+    b {
+      color: $red;
+    }
+  }
+  .infoPanelMonth {
     display: flex;
+
+    align-items: flex-end;
     gap: 10px;
+
+    flex-wrap: wrap;
+
+    .links {
+      display: flex;
+      gap: 10px;
+    }
   }
 
   @media (max-width: $mobile-xl) {
-    flex-direction: column;
-    align-items: unset;
+    .infoPanelMonth {
+      flex-direction: column;
+      align-items: unset;
 
-    .links {
-      justify-content: space-between;
+      .links {
+        justify-content: space-between;
+      }
     }
   }
 }
