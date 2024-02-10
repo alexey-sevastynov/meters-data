@@ -6,6 +6,7 @@ import { Button } from "../Button/Button";
 import { Link, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 import { selectTranslations } from "../../redux/slices/I18next";
+import { BsCalculator } from "react-icons/bs";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;
@@ -44,6 +45,7 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   return (
     <section className={Styles.infoPanelMonthSection}>
       <h4 className={Styles.title}>
+        <BsCalculator style={{ marginRight: "10px" }} />
         {lang.infoPanel.title}{" "}
         <motion.b
           key={selectedMonth}

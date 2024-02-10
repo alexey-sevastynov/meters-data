@@ -75,5 +75,9 @@
     "Light night": "Light Night",
     "Gas": "Gas",
     "Water": "Water"
+  },
+  "metersData": {
+    "Meter Reading Submission Form for the end of the month": "Meter Reading Submission Form for the end of the month",
+    "Meter Reading Data Table by Months": "Meter Reading Data Table by Months"
   }
 }
