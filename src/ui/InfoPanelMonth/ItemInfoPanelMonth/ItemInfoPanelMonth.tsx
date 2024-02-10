@@ -2,6 +2,8 @@ import React from "react";
 import Style from "./itemInfoPanelMonth.module.scss";
 import useAdaptiveScreen from "../../../hooks/useAdaptiveScreen";
 import { BREAK_POINTS, VALUE_BY_TITLE } from "../../../constants";
+import { useAppSelector } from "../../../redux/hook";
+import { selectTranslations } from "../../../redux/slices/I18next";
 
 interface ItemInfoPanelMonthProps {
   isWaterBlock: boolean;
@@ -15,13 +17,18 @@ export const ItemInfoPanelMonth: React.FC<ItemInfoPanelMonthProps> = ({
   description,
 }) => {
   const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.MOBILE_XL });
+  const lang = useAppSelector(selectTranslations);
 
   const showValue = (title: string) => {
-    return VALUE_BY_TITLE[title] || "";
+    const unitOfChange = VALUE_BY_TITLE[title];
+
+    return lang.value[unitOfChange] || "";
   };
 
   const shouldRenderDescriptionTitle = isMobileView ? title !== "Date" : true;
-  const showDescriptionTitle = <dt className={Style.title}>{title}</dt>;
+  const showDescriptionTitle = (
+    <dt className={Style.title}>{lang.infoPanel[title]}</dt>
+  );
   const hideBlockWater = !isWaterBlock && title === "Water general";
 
   const descriptionStyles =

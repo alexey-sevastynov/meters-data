@@ -22,6 +22,7 @@ import {
   setIdDelete,
   setQuestion,
 } from "../../../../redux/slices/ConfirmPopupSlice";
+import { selectTranslations } from "../../../../redux/slices/I18next";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -61,9 +62,14 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   const isEdit = useAppSelector((props) => props.metersData.isEdit);
   const isDelete = useAppSelector((props) => props.confirm.isActionDeleteItem);
   const idDelete = useAppSelector((props) => props.confirm.idDeleteItem);
+  const lang = useAppSelector(selectTranslations);
 
   const items = useAppSelector((props) => props.metersData.metersData.items);
   const currentPage: AddressType = pathname.slice(1) as AddressType;
+
+  const newDate = formatDate(date);
+  const month = newDate.split(",")[0];
+  const year = newDate.split(",")[1];
 
   const listCurrentPage = filterAndSortItemsByAddressAndDate(
     items,
@@ -128,12 +134,26 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   return (
     <li className={Styles.itemMetersData}>
       <div className={Styles.data}>
-        <p className={Styles.date}>{formatDate(date)}</p>
-        <p className={Styles.light}>{light} kW</p>
-        <p className={Styles.lightDay}>{lightDay} kW</p>
-        <p className={Styles.lightNight}>{lightNight} kW</p>
-        <p className={Styles.gas}>{gas} m³</p>
-        {isWaterBlock && <p className={Styles.water}>{water} m³</p>}
+        <p className={Styles.date}>
+          {lang.months[month]}, {year}
+        </p>
+        <p className={Styles.light}>
+          {light} {lang.value.kW}
+        </p>
+        <p className={Styles.lightDay}>
+          {lightDay} {lang.value.kW}
+        </p>
+        <p className={Styles.lightNight}>
+          {lightNight} {lang.value.kW}
+        </p>
+        <p className={Styles.gas}>
+          {gas} {lang.value["m³"]}
+        </p>
+        {isWaterBlock && (
+          <p className={Styles.water}>
+            {water} {lang.value["m³"]}
+          </p>
+        )}
       </div>
 
       <div className={Styles.btns}>

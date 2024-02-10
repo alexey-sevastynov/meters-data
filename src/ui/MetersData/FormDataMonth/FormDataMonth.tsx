@@ -18,6 +18,7 @@ import { filterAndSortItemsByAddressAndDate } from "../../../helpers/filterAndSo
 import { KeysItemUtilityPricesType } from "../../../types/KeysItemUtilityPricesType";
 import { COLORS } from "../../../constants";
 import { updateLocalStorageValues } from "../helpers/updateLocalStorageValue";
+import { selectTranslations } from "../../../redux/slices/I18next";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -34,6 +35,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   const meterDataEdit = useAppSelector(
     (props) => props.metersData.meterDataEdit
   );
+  const lang = useAppSelector(selectTranslations);
 
   const currentPage: AddressType = pathname.slice(1) as AddressType;
 
@@ -215,7 +217,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               ? meterDataEdit?.light
               : setDefaultValue("light")
           }
-          labelText="Light"
+          labelText={lang.infoPanel["Light general"]}
           value={light}
           setValue={setLight}
         />
@@ -228,7 +230,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               ? meterDataEdit?.lightDay
               : setDefaultValue("lightDay")
           }
-          labelText="Light day"
+          labelText={lang.infoPanel["Light day"]}
           value={lightDay}
           setValue={setLightDay}
         />
@@ -241,7 +243,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               ? meterDataEdit?.lightNight
               : setDefaultValue("lightNight")
           }
-          labelText="Light night"
+          labelText={lang.infoPanel["Light night"]}
           value={lightNight}
           setValue={setLightNight}
         />
@@ -254,7 +256,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               ? meterDataEdit?.gas
               : setDefaultValue("gas")
           }
-          labelText="Gas"
+          labelText={lang.infoPanel["Gas General"]}
           value={gas}
           setValue={setGas}
         />
@@ -268,7 +270,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
                 ? meterDataEdit?.water || 0
                 : setDefaultValue("water")
             }
-            labelText="Water"
+            labelText={lang.infoPanel["Water general"]}
             value={water}
             setValue={setWater}
           />
@@ -282,14 +284,14 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
             style={{ backgroundColor: COLORS.red }}
             onClick={() => dispatch(setNotEdit())}
           >
-            cancel
+            {lang.btn["cancel"]}
           </Button>
         )}
 
         {isEdit ? (
-          <Button type="submit">edit</Button>
+          <Button type="submit">{lang.btn["edit"]}</Button>
         ) : (
-          <Button type="submit">add</Button>
+          <Button type="submit">{lang.btn["add"]}</Button>
         )}
       </div>
     </form>

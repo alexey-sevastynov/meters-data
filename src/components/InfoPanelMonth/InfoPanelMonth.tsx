@@ -5,6 +5,7 @@ import { ListInfoPanelMonth } from "../../ui/InfoPanelMonth/ListInfoPanelMonth/L
 import { Button } from "../Button/Button";
 import { Link, useLocation } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
+import { selectTranslations } from "../../redux/slices/I18next";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;
@@ -18,6 +19,7 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   const infoMeterReading = useAppSelector(
     (props) => props.metersData.infoMeterReading
   );
+  const lang = useAppSelector(selectTranslations);
 
   const lastValueMeter = (address: string) => {
     switch (address) {
@@ -35,12 +37,14 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   };
 
   const lastValue = lastValueMeter(currentPage);
-  const selectedMonth = lastValue ? lastValue[0].description : "unknown";
+  const selectedMonth: any = lastValue ? lastValue[0].description : "unknown";
+  const month = selectedMonth.split(",")[0];
+  const year = selectedMonth.split(",")[1];
 
   return (
     <section className={Styles.infoPanelMonthSection}>
       <h4 className={Styles.title}>
-        Consumption of Utilities for{" "}
+        {lang.infoPanel.title}{" "}
         <motion.b
           key={selectedMonth}
           initial={{ opacity: 0 }}
@@ -50,7 +54,7 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
             duration: 0.7,
           }}
         >
-          {selectedMonth}
+          {lang.months[month]}, {year}
         </motion.b>
         :
       </h4>
@@ -59,10 +63,10 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
         <ListInfoPanelMonth isWaterBlock={isWaterBlock} items={lastValue} />
         <div className={Styles.links}>
           <Link to={`${pathname}/price`}>
-            <Button>price</Button>
+            <Button>{lang.infoPanel.price}</Button>
           </Link>
           <Link to={`${pathname}/graphics`}>
-            <Button>graphics</Button>
+            <Button>{lang.infoPanel.graphics}</Button>
           </Link>
         </div>
       </div>

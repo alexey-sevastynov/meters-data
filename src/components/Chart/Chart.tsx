@@ -15,6 +15,8 @@ import {
 import { Line } from "react-chartjs-2";
 import { COLORS } from "../../constants";
 import { ChartsDataType } from "../../types/ChartsDataType";
+import { useAppSelector } from "../../redux/hook";
+import { selectTranslations } from "../../redux/slices/I18next";
 
 ChartJS.register(
   ArcElement,
@@ -36,6 +38,7 @@ interface ChartProps {
 }
 
 export const Chart: React.FC<ChartProps> = ({ data, label }) => {
+  const lang = useAppSelector(selectTranslations);
   const filteredData = data.map((obj: ChartsDataType) => {
     const { label, light, lightDay, lightNight, gas, water } = obj;
     if (water === null) {
@@ -51,11 +54,11 @@ export const Chart: React.FC<ChartProps> = ({ data, label }) => {
     }
   });
 
-  console.log(filteredData);
-
   return (
     <div className={Styles.chart}>
-      <h4>{label} graphics:</h4>
+      <h4>
+        {label} {lang.graphics["graphic"]}:
+      </h4>
       <Line
         data={{
           labels: filteredData.map((data) => data.label),

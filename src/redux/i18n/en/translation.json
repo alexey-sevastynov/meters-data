@@ -1,0 +1,79 @@
+{
+  "header": {
+    "metersData": "MetersData",
+    "mail": "Hello, alexseva94@gmail.com",
+    "signOut": "Sign out"
+  },
+  "navigation": {
+    "home": "Home",
+    "volodymyrAntonovicha73": "Volodymyr Antonovicha street, 73/8",
+    "volodymyrAntonovicha75": "Volodymyr Antonovicha street, 75/1",
+    "slobozhanskyAvenue": "Slobozhansky Avenue, 68A/63",
+    "chelyuskina": "Chelyuskina street, 1/12"
+  },
+  "home": {
+    "home": "Home",
+    "utilityPrices": "Utility prices:",
+    "Light general": "Light general",
+    "Light day": "Light day",
+    "Light night": "Light night",
+    "Gas": "Gas",
+    "Water": "Water",
+    "Fixed water": "Fixed water",
+    "Delivery Gas": "Delivery Gas",
+    "Delivery Water": "Delivery Water",
+    "OSMD": "OSMD",
+    "Trash": "Trash",
+    "Intercom": "Intercom",
+    "Internet Kyivstar": "Internet Kyivstar",
+    "Internet Soyuz T.": "Internet Soyuz T.",
+    "Internet": "Internet",
+    "Heating": "Heating",
+    "publish": "publish",
+    "price": "price"
+  },
+  "value": {
+    "kW": "kW",
+    "m³": "m³",
+    "piece": "piece"
+  },
+  "infoPanel": {
+    "title": "Consumption of Utilities for",
+    "price": "price",
+    "graphics": "graphics",
+    "Light general": "Light",
+    "Light day": "Light day",
+    "Light night": "Light night",
+    "Gas General": "Gas",
+    "Water general": "Water",
+    "date": "Date"
+  },
+  "months": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
+  },
+  "btn": {
+    "add": "add",
+    "edit": "edit",
+    "cancel": "cancel"
+  },
+  "graphics": {
+    "graphics": "graphics",
+    "graphic": "graphic",
+    "Light": "Light",
+    "Light day": "Light Day",
+    "Light night": "Light Night",
+    "Gas": "Gas",
+    "Water": "Water"
+  }
+}

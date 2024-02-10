@@ -12,6 +12,7 @@ import {
   WIDTH_COMPONENT_LIST_METERS_DATA_BIG,
   WIDTH_COMPONENT_LIST_METERS_DATA_SMALL,
 } from "../../../../constants";
+import { selectTranslations } from "../../../../redux/slices/I18next";
 
 interface ListMetersDataProps {
   isWaterBlock: boolean;
@@ -30,6 +31,7 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
     items,
     addressCurrentPage
   );
+  const lang = useAppSelector(selectTranslations);
 
   const [listMetersDataTop, setListMetersDataTop] = useState(0);
   const [listMetersDataWidth, setListMetersDataWidth] = useState(0);
@@ -77,13 +79,15 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
       {listMetersDataTop < HEIGHT_COMPONENT_HEADER &&
         listMetersDataWidth > widthComponent && (
           <li className={Style.headerList}>
-            <p>Date:</p>
-            <p>Light:</p>
-            <p>Light day:</p>
-            <p>Light night:</p>
-            <p>Gas:</p>
+            <p>{lang.infoPanel["date"]}:</p>
+            <p>{lang.infoPanel["Light general"]}:</p>
+            <p>{lang.infoPanel["Light day"]}:</p>
+            <p>{lang.infoPanel["Light night"]}:</p>
+            <p>{lang.infoPanel["Gas General"]}:</p>
             {(addressCurrentPage === "chelyuskina" ||
-              addressCurrentPage === "slobozhansky-68a") && <p>Water:</p>}
+              addressCurrentPage === "slobozhansky-68a") && (
+              <p>{lang.infoPanel["Water general"]}:</p>
+            )}
           </li>
         )}
       {status === "loading" && <li>Loading...</li>}

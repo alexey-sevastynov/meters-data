@@ -4,6 +4,7 @@ import { metersDataReducer } from "./slices/MetersDataSlice";
 import { pricesReducer } from "./slices/PriceSlice";
 import { authReducer } from "./slices/AuthSlice";
 import { confirmReducer } from "./slices/ConfirmPopupSlice";
+import { i18nReducer } from "./slices/I18next";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     prices: pricesReducer,
     auth: authReducer,
     confirm: confirmReducer,
+    i18n: i18nReducer,
   },
 });
 

@@ -1,0 +1,79 @@
+{
+  "header": {
+    "metersData": "Лічильники",
+    "mail": "Привіт, alexseva94@gmail.com",
+    "signOut": "Вийти"
+  },
+  "navigation": {
+    "home": "Ціни на комунальні послуги",
+    "volodymyrAntonovicha73": "Володимира Антоновича, 73/8",
+    "volodymyrAntonovicha75": "Володимира Антоновича, 75/1",
+    "slobozhanskyAvenue": "пр. Слобожанський, 68A/63",
+    "chelyuskina": "вул. Челюськіна, 1/12"
+  },
+  "home": {
+    "home": "Сюрпризові Відомості",
+    "utilityPrices": "Ціни на комунальні послуги:",
+    "Light general": "Світло",
+    "Light day": "Світло день",
+    "Light night": "Світло нічь",
+    "Gas": "Газ",
+    "Water": "Вода",
+    "Fixed water": "Фіксована вода",
+    "Delivery Gas": "Доставка газу",
+    "Delivery Water": "Доставка води",
+    "OSMD": "ОСББ",
+    "Trash": "Сміття",
+    "Intercom": "Домофон",
+    "Internet Kyivstar": "Kyivstar",
+    "Internet Soyuz T.": "Soyuz T.",
+    "Internet": "Інтеренет",
+    "Heating": "Опалення",
+    "publish": "змінити",
+    "price": "ціна"
+  },
+  "value": {
+    "kW": "кВт",
+    "m³": "м³",
+    "piece": "шт."
+  },
+  "infoPanel": {
+    "title": "Споживання комунальних послуг за",
+    "price": "Ціни",
+    "graphics": "Графіки",
+    "Light general": "Світло",
+    "Light day": "Світло день",
+    "Light night": "Світло нічь",
+    "Gas General": "Газ",
+    "Water general": "Вода",
+    "date": "Дата"
+  },
+  "months": {
+    "January": "Січень",
+    "February": "Лютий",
+    "March": "Березень",
+    "April": "Квітень",
+    "May": "Травень",
+    "June": "Червень",
+    "July": "Липень",
+    "August": "Серпень",
+    "September": "Вересень",
+    "October": "Жовтень",
+    "November": "Листопад",
+    "December": "Грудень"
+  },
+  "btn": {
+    "add": "додати",
+    "edit": "редаг.",
+    "cancel": "відміна"
+  },
+  "graphics": {
+    "graphics": "графіки",
+    "graphic": "графік",
+    "Light": "Світло",
+    "Light day": "Світло День",
+    "Light night": "Світло Ніч",
+    "Gas": "Газ",
+    "Water": "Вода"
+  }
+}

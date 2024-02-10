@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Styles from "./valueUtilityPrices.module.scss";
 import { Input } from "../../../components/Input/Input";
 import { Button } from "../../../components/Button/Button";
-import { useAppDispatch } from "../../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import {
   editServicePrice,
   fetchAllServices,
@@ -10,6 +10,7 @@ import {
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { selectTranslations } from "../../../redux/slices/I18next";
 
 interface ValueUtilityPricesProps {
   id: string;
@@ -23,6 +24,7 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
   id,
 }) => {
   const dispatch = useAppDispatch();
+  const lang = useAppSelector(selectTranslations);
 
   const [valueInput, setValueInput] = useState<number>(value);
 
@@ -42,7 +44,7 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
 
   return (
     <div className={Styles.valueUtilityPrices}>
-      <p>1 {valueName} =</p>
+      <p>1 {lang.value[valueName]} =</p>
 
       <Input defaultValue={value} value={valueInput} setValue={setValueInput} />
 
@@ -51,7 +53,7 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
         disabled={valueInput === value}
         onClick={editValueUtilityPrice}
       >
-        publish
+        {lang.home.publish}
       </Button>
 
       <ToastContainer
