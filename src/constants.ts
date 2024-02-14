@@ -214,3 +214,7 @@ export const VALUE_BY_TITLE: Record<string, string> = {
 export const WIDTH_COMPONENT_LIST_METERS_DATA_SMALL = 820;
 export const WIDTH_COMPONENT_LIST_METERS_DATA_BIG = 955;
 export const HEIGHT_COMPONENT_HEADER = 80;
+
+export const URL_API_TELEGRAM_SEND_MESSAGE = `https://api.telegram.org/bot${
+  import.meta.env.VITE_TOKEN
+}/sendMessage`;

@@ -16,9 +16,11 @@ import { format, parse } from "date-fns";
 import { AddressType, MeterDataType } from "../../../types/MeterDataType";
 import { filterAndSortItemsByAddressAndDate } from "../../../helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "../../../types/KeysItemUtilityPricesType";
-import { COLORS } from "../../../constants";
+import { COLORS, LIST_NAV } from "../../../constants";
 import { updateLocalStorageValues } from "../helpers/updateLocalStorageValue";
 import { selectTranslations } from "../../../redux/slices/I18next";
+
+import { sendMessageToTelegram } from "../../../helpers/sendMessageToTelegram";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -77,6 +79,17 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   const parsedDate =
     meterDataEdit && parse(meterDataEdit?.date, "MM.yyyy", new Date());
 
+  // for telegram
+  let message = `<b>${
+    LIST_NAV.find((item) => item.link === `/${currentPage}`)?.id
+  }</b>`;
+  message += ` (${format(valueSelectDate, "MM.yyyy")})\n`;
+  message += `\u{1F4A1} Light: ${light} kWt\n`;
+  message += `\u{1F4A1}\u{1F31E} Light Day: ${lightDay} kWt\n`;
+  message += `\u{1F4A1}\u{1F319} Light Night: ${lightNight} kWt\n`;
+  message += `\u{1F525} Gas: ${gas} m³\n`;
+  message += water ? `\u{1F6BF} Water: ${water} m³\n` : "";
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -119,7 +132,9 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
           .then((response: any) => {
             if (response.payload) {
               setTimeout(() => {
-                dispatch(fetchAllMetersData());
+                dispatch(fetchAllMetersData()).then(() => {
+                  sendMessageToTelegram(import.meta.env.VITE_CHAD_ID, message);
+                });
               }, 2500);
             }
           })
