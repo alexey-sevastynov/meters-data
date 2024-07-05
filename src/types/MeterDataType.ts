@@ -1,6 +1,7 @@
 export type AddressType =
   | "antonovicha-73"
   | "antonovicha-75"
+  | "antonovicha-75-3"
   | "slobozhansky-68a"
   | "chelyuskina";
 

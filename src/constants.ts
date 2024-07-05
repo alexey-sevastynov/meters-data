@@ -24,6 +24,7 @@ export const ROUTES = {
   HOME: "/",
   CHELUSKINA: "/chelyuskina",
   ANTONOVICHA_75: "/antonovicha-75",
+  ANTONOVICHA_75_3: "/antonovicha-75-3",
   ANTONOVICHA_73: "/antonovicha-73",
   SLOBOZHANSKY_68A: "/slobozhansky-68a",
   PRICE: `/:address/price`,
@@ -48,6 +49,12 @@ export const LIST_NAV = [
     id: "Volodymyr Antonovicha street, 75/1",
     imageName: "adress.png",
     key: "volodymyrAntonovicha75",
+  },
+  {
+    link: "/antonovicha-75-3",
+    id: "Volodymyr Antonovicha street, 75/3",
+    imageName: "adress.png",
+    key: "volodymyrAntonovicha75_3",
   },
   {
     link: "/slobozhansky-68a",

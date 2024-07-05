@@ -17,6 +17,7 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
 }) => {
   const { pathname } = useLocation();
   const currentPage = pathname.slice(1);
+
   const infoMeterReading = useAppSelector(
     (props) => props.metersData.infoMeterReading
   );
@@ -32,6 +33,8 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
         return infoMeterReading.antonovicha73;
       case "antonovicha-75":
         return infoMeterReading.antonovicha75;
+      case "antonovicha-75-3":
+        return infoMeterReading.antonovicha75_3;
       default:
         return null;
     }

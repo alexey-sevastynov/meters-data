@@ -5,6 +5,7 @@ import { Home } from "../pages/Home";
 import {
   Antonovicha73,
   Antonovicha75,
+  Antonovicha75_3,
   Cheluskina,
   Slobozhansky,
 } from "../pages";
@@ -19,6 +20,7 @@ const routes: RouteObject[] = [
       { index: true, element: <Home /> },
       { path: ROUTES.ANTONOVICHA_73, element: <Antonovicha73 /> },
       { path: ROUTES.ANTONOVICHA_75, element: <Antonovicha75 /> },
+      { path: ROUTES.ANTONOVICHA_75_3, element: <Antonovicha75_3 /> },
       { path: ROUTES.SLOBOZHANSKY_68A, element: <Slobozhansky /> },
       { path: ROUTES.CHELUSKINA, element: <Cheluskina /> },
       { path: ROUTES.PRICE, element: <Price /> },

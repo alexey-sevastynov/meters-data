@@ -8,6 +8,8 @@ export function getKeyOnPage(address: AddressType) {
       return "antonovicha73";
     case "antonovicha-75":
       return "antonovicha75";
+    case "antonovicha-75-3":
+      return "antonovicha75_3";
     case "slobozhansky-68a":
       return "slobozhansky";
   }

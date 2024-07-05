@@ -92,6 +92,7 @@ interface IMetersDataSlice {
     slobozhansky: null | ListInfoDataMonthType[];
     antonovicha73: null | ListInfoDataMonthType[];
     antonovicha75: null | ListInfoDataMonthType[];
+    antonovicha75_3: null | ListInfoDataMonthType[];
   };
 }
 
@@ -108,6 +109,7 @@ const initialState: IMetersDataSlice = {
     slobozhansky: null,
     antonovicha73: null,
     antonovicha75: null,
+    antonovicha75_3: null,
   },
 };
 
@@ -201,6 +203,7 @@ const MetersDataSlice = createSlice({
         slobozhansky: setCurrentMetersDataPage("slobozhansky-68a"),
         antonovicha73: setCurrentMetersDataPage("antonovicha-73"),
         antonovicha75: setCurrentMetersDataPage("antonovicha-75"),
+        antonovicha75_3: setCurrentMetersDataPage("antonovicha-75-3"),
       };
     });
     builder.addCase(fetchAllMetersData.rejected, (state, action) => {
