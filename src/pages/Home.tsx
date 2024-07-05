@@ -10,7 +10,7 @@ export const Home: React.FC<HomeProps> = ({ ...props }) => {
   const lang = useAppSelector(selectTranslations);
   return (
     <section className="home" {...props}>
-      <h3 className="title">{lang.home.home}</h3>
+      <h3 className="title">{lang.home.home} @</h3>
       <p className="subtitle">{lang.home.utilityPrices}</p>
 
       <ListUtilityPrices />
