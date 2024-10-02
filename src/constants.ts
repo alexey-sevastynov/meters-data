@@ -41,31 +41,31 @@ export const LIST_NAV = [
   {
     link: "/antonovicha-73",
     id: "Volodymyr Antonovicha street, 73/8",
-    imageName: "adress.png",
+    imageName: "73-8.svg",
     key: "volodymyrAntonovicha73",
   },
   {
     link: "/antonovicha-75",
     id: "Volodymyr Antonovicha street, 75/1",
-    imageName: "adress.png",
+    imageName: "75-1.svg",
     key: "volodymyrAntonovicha75",
   },
   {
     link: "/antonovicha-75-3",
     id: "Volodymyr Antonovicha street, 75/3",
-    imageName: "adress.png",
+    imageName: "75-3.svg",
     key: "volodymyrAntonovicha75_3",
   },
   {
     link: "/slobozhansky-68a",
     id: "Slobozhansky Avenue, 68A/63",
-    imageName: "adress.png",
+    imageName: "68a-63.svg",
     key: "slobozhanskyAvenue",
   },
   {
     link: "/chelyuskina",
     id: "Chelyuskina street, 1/12",
-    imageName: "adress.png",
+    imageName: "1-12.svg",
     key: "chelyuskina",
   },
 ];
