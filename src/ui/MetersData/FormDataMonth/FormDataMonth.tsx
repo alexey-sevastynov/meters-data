@@ -21,6 +21,7 @@ import { updateLocalStorageValues } from "../helpers/updateLocalStorageValue";
 import { selectTranslations } from "../../../redux/slices/I18next";
 
 import { sendMessageToTelegram } from "../../../helpers/sendMessageToTelegram";
+import { calculateSum } from "../../../helpers/calculateTotal";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -75,6 +76,11 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   );
   const [gas, setGas] = useState<number>(setDefaultValue("gas"));
   const [water, setWater] = useState<number>(setDefaultValue("water"));
+
+  useEffect(() => {
+    const totalLight = calculateSum(Number(lightDay), Number(lightNight));
+    setLight(totalLight);
+  }, [lightDay, lightNight]);
 
   const parsedDate =
     meterDataEdit && parse(meterDataEdit?.date, "MM.yyyy", new Date());
@@ -220,9 +226,15 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   }, [pathname]);
 
   return (
-    <form className={Style.formDataMonth} onSubmit={onSubmit}>
+    <form
+      className={Style.formDataMonth}
+      onSubmit={onSubmit}
+    >
       <div className={Style.inputs}>
-        <SelectDate value={valueSelectDate} onChange={onChange} />
+        <SelectDate
+          value={valueSelectDate}
+          onChange={onChange}
+        />
         <Input
           className={Style.input}
           style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
