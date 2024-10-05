@@ -22,3 +22,13 @@ $heightHeader: 80px;
   font-weight: bold;
   color: $green;
 }
+
+@mixin noFocusBorder {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+@mixin borderInput {
+  border: 1px solid $green;
+}
