@@ -1,18 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import Style from "./listMetersData.module.scss";
-
-import { ItemMetersData } from "../ItemMetersData/ItemMetersData";
+import GroupYear from "../GroupYear/GroupYear";
 import { useAppSelector } from "../../../../redux/hook";
 import { useLocation } from "react-router-dom";
-import { filterAndSortItemsByAddressAndDate } from "../../../../helpers/filterAndSortItemsByAddressAndDate";
-
 import useMetersData from "../../../../hooks/useMetersData";
 import {
   HEIGHT_COMPONENT_HEADER,
   WIDTH_COMPONENT_LIST_METERS_DATA_BIG,
   WIDTH_COMPONENT_LIST_METERS_DATA_SMALL,
 } from "../../../../constants";
+import { GroupedData } from "../../../../types/MeterDataType";
+import { isEmptyObject } from "../../../../helpers/isEmptyObject";
 import { selectTranslations } from "../../../../redux/slices/I18next";
+import { groupAndSortItemsByYear } from "../../../../helpers/groupAndSortItemsByYear";
+import { checkScreenSize, handleScroll } from "./listMetersData.function";
 
 interface ListMetersDataProps {
   isWaterBlock: boolean;
@@ -21,61 +22,60 @@ interface ListMetersDataProps {
 export const ListMetersData: React.FC<ListMetersDataProps> = ({
   isWaterBlock,
 }) => {
+  const lang = useAppSelector(selectTranslations);
+
   const { isDataFromLocalStorage } = useMetersData();
   const { pathname } = useLocation();
 
   const items = useAppSelector((props) => props.metersData.metersData.items);
   const status = useAppSelector((props) => props.metersData.metersData.status);
   const addressCurrentPage = pathname.slice(1);
-  const listMetersData = filterAndSortItemsByAddressAndDate(
-    items,
-    addressCurrentPage
-  );
-  const lang = useAppSelector(selectTranslations);
+  const [groupedData, setGroupedData] = useState<GroupedData>({});
 
   const [listMetersDataTop, setListMetersDataTop] = useState(0);
   const [listMetersDataWidth, setListMetersDataWidth] = useState(0);
   const [idActiveBtn, setIdActiveBtn] = useState<string>("");
+
   const listMetersDataRef = useRef<HTMLUListElement>(null);
 
-  const handleScroll = () => {
-    if (listMetersDataRef.current) {
-      setListMetersDataTop(
-        listMetersDataRef.current.getBoundingClientRect().top
-      );
+  useEffect(() => {
+    if (items.length > 0) {
+      const grouped = groupAndSortItemsByYear(items, addressCurrentPage);
+      setGroupedData(grouped);
     }
-  };
+  }, [items, addressCurrentPage]);
 
-  const checkScreenSize: any = () => {
-    if (listMetersDataRef.current) {
-      setListMetersDataWidth(
-        listMetersDataRef.current.getBoundingClientRect().width
-      );
-    }
+  const handleScrollEvent = () => {
+    handleScroll(listMetersDataRef, setListMetersDataTop);
+  };
+  const checkScreenSizeEvent = () => {
+    checkScreenSize(listMetersDataRef, setListMetersDataWidth);
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scroll", checkScreenSize);
-    window.addEventListener("resize", checkScreenSize);
+    window.addEventListener("scroll", handleScrollEvent);
+    window.addEventListener("scroll", checkScreenSizeEvent);
+    window.addEventListener("resize", checkScreenSizeEvent);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", checkScreenSize);
-      window.removeEventListener("resize", checkScreenSize);
+      window.removeEventListener("scroll", handleScrollEvent);
+      window.removeEventListener("scroll", checkScreenSizeEvent);
+      window.removeEventListener("resize", checkScreenSizeEvent);
     };
   }, []);
 
-  const isEmptyList = listMetersData.length === 0 && status === "loaded";
-
+  const isEmptyList = isEmptyObject(groupedData) && status === "loaded";
   const widthComponent =
-    ((addressCurrentPage == "chelyuskina" ||
+    ((addressCurrentPage === "chelyuskina" ||
       addressCurrentPage === "slobozhansky-68a") &&
       WIDTH_COMPONENT_LIST_METERS_DATA_BIG) ||
     WIDTH_COMPONENT_LIST_METERS_DATA_SMALL;
 
   return (
-    <ul ref={listMetersDataRef} className={Style.listMetersData}>
+    <ul
+      ref={listMetersDataRef}
+      className={Style.listMetersData}
+    >
       {listMetersDataTop < HEIGHT_COMPONENT_HEADER &&
         listMetersDataWidth > widthComponent && (
           <li className={Style.headerList}>
@@ -94,15 +94,18 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
       {isEmptyList ? (
         <p>{isDataFromLocalStorage ? "No cached items" : "No items"}</p>
       ) : (
-        listMetersData.map((item, index) => (
-          <ItemMetersData
-            key={item._id}
-            isFirstItem={index === 0}
-            isLastItem={index === listMetersData.length - 1}
+        Object.entries(groupedData).map(([year, group], index, array) => (
+          <GroupYear
+            key={year}
+            year={year}
+            group={group}
+            isFirstGroup={index === 0}
+            isLastGroup={index === array.length - 1}
             isWaterBlock={isWaterBlock}
             setIdActiveBtn={setIdActiveBtn}
             idActiveBtn={idActiveBtn}
-            {...item}
+            setGroupedData={setGroupedData}
+            groupedData={groupedData}
           />
         ))
       )}
