@@ -99,12 +99,12 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   useEffect(() => {
     if (isDelete && idDelete === _id) {
       dispatch(deleteMeterData({ id: _id }))
-        .then((response: any) => {
+        .then((response) => {
           if (response.payload) {
             dispatch(fetchAllMetersData());
           }
         })
-        .catch((error: any) => {
+        .catch((error) => {
           console.error("Error adding data:", error);
         });
 
@@ -185,7 +185,12 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
           title={`edit meter readings `}
           onClick={editItem}
         >
-          <img src={getIconUrl("edit.png")} alt="edit" width={25} height={25} />
+          <img
+            src={getIconUrl("edit.png")}
+            alt="edit"
+            width={25}
+            height={25}
+          />
         </button>
 
         {isLastItem && (

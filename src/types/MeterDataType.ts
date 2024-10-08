@@ -15,3 +15,10 @@ export type MeterDataType = {
   gas: number;
   water?: number;
 };
+
+export interface GroupedData {
+  [year: string]: {
+    items: MeterDataType[];
+    isOpen: boolean;
+  };
+}

@@ -1,4 +1,5 @@
 import { MeterDataType } from "../types/MeterDataType";
+import { compareDates } from "./compareDates";
 
 export function filterAndSortItemsByAddressAndDate(
   items: MeterDataType[],
@@ -6,16 +7,5 @@ export function filterAndSortItemsByAddressAndDate(
 ) {
   return items
     .filter((item) => item.address === address)
-    .sort((a, b) => compareByDate(a.date, b.date));
-}
-
-function compareByDate(dateA: string, dateB: string) {
-  const [aMonth, aYear] = dateA.split(".");
-  const [bMonth, bYear] = dateB.split(".");
-
-  if (aYear !== bYear) {
-    return +aYear - +bYear;
-  } else {
-    return +aMonth - +bMonth;
-  }
+    .sort((a, b) => compareDates(a.date, b.date));
 }
