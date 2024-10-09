@@ -29,9 +29,11 @@ const GroupYear: React.FC<GroupYearProps> = ({
   setGroupedData,
   groupedData,
 }) => {
+  const hasMultipleYears = !hasOneElement(groupedData);
+
   return (
     <div key={year}>
-      {!hasOneElement(groupedData) && (
+      {hasMultipleYears && (
         <YearHeader
           year={year}
           isOpen={group.isOpen}
@@ -40,7 +42,7 @@ const GroupYear: React.FC<GroupYearProps> = ({
       )}
       <div className={`${Style.yearGroup} ${group.isOpen ? Style.open : ""}`}>
         {group.items.map((item, index) => {
-          const isFirstItem = isFirstGroup && index === 0;
+          const isFirstItem = hasMultipleYears && isFirstGroup && index === 0;
           const isLastItem = isLastGroup && index === 0;
 
           return (
