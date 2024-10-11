@@ -1,5 +1,4 @@
 import { RouteObject } from "react-router-dom";
-import { ROUTES } from "../constants";
 import Layout from "../pages/Layout";
 import { Home } from "../pages/Home";
 import {
@@ -11,6 +10,7 @@ import {
 } from "../pages";
 import { Price } from "../pages/Price";
 import { Graphics } from "../pages/Graphics";
+import { ROUTES } from "../constants/routes";
 
 const routes: RouteObject[] = [
   {
@@ -18,11 +18,11 @@ const routes: RouteObject[] = [
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
-      { path: ROUTES.ANTONOVICHA_73, element: <Antonovicha73 /> },
-      { path: ROUTES.ANTONOVICHA_75, element: <Antonovicha75 /> },
-      { path: ROUTES.ANTONOVICHA_75_3, element: <Antonovicha75_3 /> },
-      { path: ROUTES.SLOBOZHANSKY_68A, element: <Slobozhansky /> },
-      { path: ROUTES.CHELUSKINA, element: <Cheluskina /> },
+      { path: ROUTES.ADDR_001, element: <Cheluskina /> },
+      { path: ROUTES.ADDR_002, element: <Slobozhansky /> },
+      { path: ROUTES.ADDR_003, element: <Antonovicha73 /> },
+      { path: ROUTES.ADDR_004, element: <Antonovicha75 /> },
+      { path: ROUTES.ADDR_005, element: <Antonovicha75_3 /> },
       { path: ROUTES.PRICE, element: <Price /> },
       { path: ROUTES.GRAPHICS, element: <Graphics /> },
     ],

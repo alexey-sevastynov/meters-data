@@ -1,14 +1,14 @@
 import "../styles/pages/slobozhansky.scss";
 import { InfoPanelMonth } from "../components/InfoPanelMonth/InfoPanelMonth";
 import { MetersData } from "../components/MetersData/MetersData";
-import { useAppSelector } from "../redux/hook";
-import { selectTranslations } from "../redux/slices/I18next";
+import { Breadcrumb } from "../components/Breadcrumb/Breadcrumb";
+import { BREADCRUMB_ITEMS_ADDR_002 } from "../constants/breadcrumbItems";
 
 export const Slobozhansky = () => {
-  const lang = useAppSelector(selectTranslations);
   return (
     <section className="slobozhansky">
-      <h3 className="title">{lang.navigation.slobozhanskyAvenue}</h3>
+      <Breadcrumb items={BREADCRUMB_ITEMS_ADDR_002} />
+
       <InfoPanelMonth />
 
       <MetersData />

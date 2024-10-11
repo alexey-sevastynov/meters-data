@@ -1,14 +1,14 @@
 import "../styles/pages/antonovicha75.scss";
 import { InfoPanelMonth } from "../components/InfoPanelMonth/InfoPanelMonth";
 import { MetersData } from "../components/MetersData/MetersData";
-import { useAppSelector } from "../redux/hook";
-import { selectTranslations } from "../redux/slices/I18next";
+import { Breadcrumb } from "../components/Breadcrumb/Breadcrumb";
+import { BREADCRUMB_ITEMS_ADDR_004 } from "../constants/breadcrumbItems";
 
 export const Antonovicha75 = () => {
-  const lang = useAppSelector(selectTranslations);
   return (
     <section className="antonovicha75">
-      <h3 className="title">{lang.navigation.volodymyrAntonovicha75}</h3>
+      <Breadcrumb items={BREADCRUMB_ITEMS_ADDR_004} />
+
       <InfoPanelMonth isWaterBlock={false} />
 
       <MetersData isWaterBlock={false} />

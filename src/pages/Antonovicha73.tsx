@@ -1,17 +1,17 @@
-import React, { HTMLAttributes } from "react";
 import "../styles/pages/antonovicha73.scss";
+import React, { HTMLAttributes } from "react";
 import { InfoPanelMonth } from "../components/InfoPanelMonth/InfoPanelMonth";
 import { MetersData } from "../components/MetersData/MetersData";
-import { useAppSelector } from "../redux/hook";
-import { selectTranslations } from "../redux/slices/I18next";
+import { BREADCRUMB_ITEMS_ADDR_003 } from "../constants/breadcrumbItems";
+import { Breadcrumb } from "../components/Breadcrumb/Breadcrumb";
 
 interface Antonovicha73Props extends HTMLAttributes<HTMLDivElement> {}
 
 export const Antonovicha73: React.FC<Antonovicha73Props> = () => {
-  const lang = useAppSelector(selectTranslations);
   return (
     <section className="antonovicha73">
-      <h3 className="title">{lang.navigation.volodymyrAntonovicha73}</h3>
+      <Breadcrumb items={BREADCRUMB_ITEMS_ADDR_003} />
+
       <InfoPanelMonth isWaterBlock={false} />
 
       <MetersData isWaterBlock={false} />
