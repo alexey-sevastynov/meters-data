@@ -20,17 +20,6 @@ export const COLORS = {
   blue: "#006ed3",
 };
 
-export const ROUTES = {
-  HOME: "/",
-  CHELUSKINA: "/chelyuskina",
-  ANTONOVICHA_75: "/antonovicha-75",
-  ANTONOVICHA_75_3: "/antonovicha-75-3",
-  ANTONOVICHA_73: "/antonovicha-73",
-  SLOBOZHANSKY_68A: "/slobozhansky-68a",
-  PRICE: `/:address/price`,
-  GRAPHICS: `/:address/graphics`,
-};
-
 export const LIST_NAV = [
   {
     link: "/",

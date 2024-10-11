@@ -1,0 +1,29 @@
+@import "../../styles/colors.scss";
+
+.breadcrumb {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  .breadcrumbItem {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    .homeIcon {
+      display: flex;
+    }
+
+    .link {
+      text-decoration: none;
+    }
+
+    .active {
+      color: $green;
+    }
+
+    .separator {
+      margin: 0 0.5rem;
+    }
+  }
+}

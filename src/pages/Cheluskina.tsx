@@ -1,14 +1,14 @@
 import "../styles/pages/cheluskina.scss";
 import { InfoPanelMonth } from "../components/InfoPanelMonth/InfoPanelMonth";
 import { MetersData } from "../components/MetersData/MetersData";
-import { useAppSelector } from "../redux/hook";
-import { selectTranslations } from "../redux/slices/I18next";
+import { Breadcrumb } from "../components/Breadcrumb/Breadcrumb";
+import { BREADCRUMB_ITEMS_ADDR_001 } from "../constants/breadcrumbItems";
 
 export const Cheluskina = () => {
-  const lang = useAppSelector(selectTranslations);
   return (
     <section className="cheluskina">
-      <h3 className="title">{lang.navigation.chelyuskina}</h3>
+      <Breadcrumb items={BREADCRUMB_ITEMS_ADDR_001} />
+
       <InfoPanelMonth />
 
       <MetersData />
