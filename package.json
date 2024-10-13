@@ -9,7 +9,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "replace-paths": "node plugins/replace-paths.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",

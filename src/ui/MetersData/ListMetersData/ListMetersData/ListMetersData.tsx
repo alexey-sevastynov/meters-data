@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import Style from "./listMetersData.module.scss";
 import GroupYear from "../GroupYear/GroupYear";
-import { useAppSelector } from "../../../../redux/hook";
+import { useAppSelector } from "@/redux/hook";
 import { useLocation } from "react-router-dom";
-import useMetersData from "../../../../hooks/useMetersData";
+import useMetersData from "@/hooks/useMetersData";
 import {
   HEIGHT_COMPONENT_HEADER,
   WIDTH_COMPONENT_LIST_METERS_DATA_BIG,
   WIDTH_COMPONENT_LIST_METERS_DATA_SMALL,
-} from "../../../../constants";
-import { GroupedData } from "../../../../types/MeterDataType";
-import { isEmptyObject } from "../../../../helpers/isEmptyObject";
-import { selectTranslations } from "../../../../redux/slices/I18next";
-import { groupAndSortItemsByYear } from "../../../../helpers/groupAndSortItemsByYear";
+} from "@/constants";
+import { GroupedData } from "@/types/MeterDataType";
+import { isEmptyObject } from "@/helpers/isEmptyObject";
+import { selectTranslations } from "@/redux/slices/I18next";
+import { groupAndSortItemsByYear } from "@/helpers/groupAndSortItemsByYear";
 import { checkScreenSize, handleScroll } from "./listMetersData.function";
 
 interface ListMetersDataProps {

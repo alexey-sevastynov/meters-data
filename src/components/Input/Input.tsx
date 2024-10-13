@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import Styles from "./input.module.scss";
-import { getIconUrl } from "../../helpers/getIconUrl";
+import { getIconUrl } from "@/helpers/getIconUrl";
 
 interface InputProps extends HTMLAttributes<HTMLInputElement> {
   defaultValue: number | string;
@@ -50,7 +50,10 @@ export const Input: React.FC<InputProps> = ({
         {...props}
       />
       {value !== defaultValue && (
-        <button className={Styles.close} onClick={returnСurrentValues}>
+        <button
+          className={Styles.close}
+          onClick={returnСurrentValues}
+        >
           <img
             src={getIconUrl("close.png")}
             alt="close"

@@ -1,9 +1,9 @@
 import { useRoutes } from "react-router-dom";
-import routes from "./routes";
 import { createPortal } from "react-dom";
-import { Login } from "./components/Login/Login";
-import { useAppSelector } from "./redux/hook";
-import { Confirm } from "./components/Confirm/Confirm";
+import routes from "@/routes";
+import { Login } from "@/components/Login/Login";
+import { useAppSelector } from "@/redux/hook";
+import { Confirm } from "@/components/Confirm/Confirm";
 
 const mountElement = document.getElementById("auth")!;
 const confirmWindowPopup = document.getElementById("popup")!;

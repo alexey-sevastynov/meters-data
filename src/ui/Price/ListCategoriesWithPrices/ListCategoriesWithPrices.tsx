@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import Styles from "./listCategoriesWithPrices.module.scss";
-import { useAppSelector } from "../../../redux/hook";
+import { useAppSelector } from "@/redux/hook";
 import { useLocation } from "react-router-dom";
-import { ListInfoDataMonthType } from "../../../redux/slices/MetersDataSlice";
+import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
 
-import { getKeyOnPage } from "../../../helpers/getKeyOnPage";
-import { AddressType } from "../../../types/MeterDataType";
-import { AppDispatch } from "../../../redux/store";
+import { getKeyOnPage } from "@/helpers/getKeyOnPage";
+import { AddressType } from "@/types/MeterDataType";
+import { AppDispatch } from "@/redux/store";
 import {
   calcPrice,
   deleteServiceWithCurrentItem,
@@ -14,10 +14,10 @@ import {
   editMonthMoneyCalculations,
   fetchAllMonthlyMoneyCalculations,
   fetchPostMonthMoneyCalculations,
-} from "../../../redux/slices/PriceSlice";
-import { getIconUrl } from "../../../helpers/getIconUrl";
-import { Button } from "../../../components/Button/Button";
-import { COLORS } from "../../../constants";
+} from "@/redux/slices/PriceSlice";
+import { getIconUrl } from "@/helpers/getIconUrl";
+import { Button } from "@/components/Button/Button";
+import { COLORS } from "@/constants";
 
 interface ListCategoriesWithPricesProps {
   dispatch: AppDispatch;

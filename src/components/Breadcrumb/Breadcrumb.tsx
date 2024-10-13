@@ -1,11 +1,11 @@
 import React from "react";
-import Styles from "./breadcrumb.module.scss";
 import { FaCircle } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
-import { COLORS } from "../../constants";
-import { SIZE_ICONS } from "../../constants/sizeIcons";
+import { COLORS } from "@/constants";
+import { SIZE_ICONS } from "@/constants/sizeIcons";
+import Link from "@/components/Link/Link";
+import Styles from "./breadcrumb.module.scss";
 import { isHomeRoute, isNotLastItem } from "./breadcrumb.function";
-import Link from "../Link/Link";
 import { BreadcrumbProps } from "./breadcrumb.type";
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {

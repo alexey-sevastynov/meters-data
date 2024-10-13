@@ -1,9 +1,9 @@
 import Styles from "./logo.module.scss";
-import { selectTranslations } from "../../../redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/I18next";
 
-import { getIconUrl } from "../../../helpers/getIconUrl";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
-import { fetchAllMetersData } from "../../../redux/slices/MetersDataSlice";
+import { getIconUrl } from "@/helpers/getIconUrl";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { fetchAllMetersData } from "@/redux/slices/MetersDataSlice";
 
 export const Logo = () => {
   const dispatch = useAppDispatch();

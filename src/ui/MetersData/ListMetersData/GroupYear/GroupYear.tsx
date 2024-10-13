@@ -1,10 +1,10 @@
 import React from "react";
 import Style from "./groupYear.module.scss";
 import { ItemMetersData } from "../ItemMetersData/ItemMetersData";
-import { GroupedData } from "../../../../types/MeterDataType";
+import { GroupedData } from "@/types/MeterDataType";
 import YearHeader from "../YearHeader/YearHeader";
 import { handleToggle } from "./GroupYear.function";
-import { hasOneElement } from "../../../../helpers/hasOneElement";
+import { hasOneElement } from "@/helpers/hasOneElement";
 
 interface GroupYearProps {
   year: string;

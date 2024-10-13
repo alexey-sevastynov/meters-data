@@ -1,6 +1,6 @@
 import Style from "./listMonthlyMoneyCalculations.module.scss";
 import { ItemMonthlyMoneyCalculations } from "../ItemMonthlyMoneyCalculations/ItemMonthlyMoneyCalculations";
-import { MonthlyMoneyCalculationsType } from "../../../../types/MonthlyMoneyCalculationsType";
+import { MonthlyMoneyCalculationsType } from "@/types/MonthlyMoneyCalculationsType";
 
 interface ListMonthlyMoneyCalculationsProps {
   items: MonthlyMoneyCalculationsType[] | undefined;

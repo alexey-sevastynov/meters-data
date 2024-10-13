@@ -1,8 +1,8 @@
 import React from "react";
 import Styles from "./categoryUtilityPrices.module.scss";
-import { getIconUrl } from "../../../helpers/getIconUrl";
-import { useAppSelector } from "../../../redux/hook";
-import { selectTranslations } from "../../../redux/slices/I18next";
+import { getIconUrl } from "@/helpers/getIconUrl";
+import { useAppSelector } from "@/redux/hook";
+import { selectTranslations } from "@/redux/slices/I18next";
 
 interface CategoryUtilityPricesProps {
   category: string;

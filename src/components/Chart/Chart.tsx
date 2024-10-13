@@ -13,10 +13,10 @@ import {
   defaults,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { COLORS } from "../../constants";
-import { ChartsDataType } from "../../types/ChartsDataType";
-import { useAppSelector } from "../../redux/hook";
-import { selectTranslations } from "../../redux/slices/I18next";
+import { COLORS } from "@/constants";
+import { ChartsDataType } from "@/types/ChartsDataType";
+import { useAppSelector } from "@/redux/hook";
+import { selectTranslations } from "@/redux/slices/I18next";
 
 ChartJS.register(
   ArcElement,

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Style from "./monthlyMoneyCalculations.module.scss";
-import { Input } from "../../../components/Input/Input";
+import { Input } from "@/components/Input/Input";
 import { ListMonthlyMoneyCalculations } from "./ListMonthlyMoneyCalculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
-import { useAppSelector } from "../../../redux/hook";
-import { AddressType } from "../../../types/MeterDataType";
+import { useAppSelector } from "@/redux/hook";
+import { AddressType } from "@/types/MeterDataType";
 
 interface MonthlyMoneyCalculationsProps {}
 

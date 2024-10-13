@@ -1,9 +1,9 @@
 import React from "react";
 import Styles from "./header.module.scss";
 
-import { Logo, AuthPanel, ButtonMenu } from "../../ui/Header";
-import useAdaptiveScreen from "../../hooks/useAdaptiveScreen";
-import { BREAK_POINTS } from "../../constants";
+import { Logo, AuthPanel, ButtonMenu } from "@/ui/Header";
+import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
+import { BREAK_POINTS } from "@/constants";
 
 interface HeaderProps {
   isShowMenu: boolean;
