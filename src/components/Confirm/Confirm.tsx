@@ -7,7 +7,7 @@ import {
   setIdDelete,
 } from "@/redux/slices/ConfirmPopupSlice";
 import { getIconUrl } from "@/helpers/getIconUrl";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/ui/Button/Button";
 import { COLORS } from "@/constants";
 import Styles from "./confirm.module.scss";
 

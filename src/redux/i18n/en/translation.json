@@ -40,8 +40,8 @@
   },
   "infoPanel": {
     "title": "Consumption of Utilities for",
-    "price": "price",
-    "graphics": "graphics",
+    "price": "Price",
+    "graphics": "Graphics",
     "Light general": "Light",
     "Light day": "Light day",
     "Light night": "Light night",
@@ -64,9 +64,9 @@
     "December": "December"
   },
   "btn": {
-    "add": "add",
-    "edit": "edit",
-    "cancel": "cancel"
+    "add": "Add",
+    "edit": "Edit",
+    "cancel": "Cancel"
   },
   "graphics": {
     "graphics": "graphics",

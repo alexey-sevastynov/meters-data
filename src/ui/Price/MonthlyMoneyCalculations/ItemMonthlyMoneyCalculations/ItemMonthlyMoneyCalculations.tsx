@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Style from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/ui/Button/Button";
 import { COLORS } from "@/constants";
 import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
 import {

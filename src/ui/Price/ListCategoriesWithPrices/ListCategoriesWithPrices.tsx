@@ -16,7 +16,7 @@ import {
   fetchPostMonthMoneyCalculations,
 } from "@/redux/slices/PriceSlice";
 import { getIconUrl } from "@/helpers/getIconUrl";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/ui/Button/Button";
 import { COLORS } from "@/constants";
 
 interface ListCategoriesWithPricesProps {
@@ -125,7 +125,10 @@ export const ListCategoriesWithPrices: React.FC<
     <ul className={Styles.listCategoriesWithPrices}>
       {currentItem &&
         currentItem.map(({ title, description }) => (
-          <div key={title} className={Styles.itemBlock}>
+          <div
+            key={title}
+            className={Styles.itemBlock}
+          >
             {isShowDeleteButton(title) && (
               <button
                 className={Styles.btn}
@@ -164,12 +167,19 @@ export const ListCategoriesWithPrices: React.FC<
             >
               Cancel
             </Button>
-            <Button type="button" onClick={editItem}>
+            <Button
+              type="button"
+              onClick={editItem}
+            >
               Edit
             </Button>
           </div>
         ) : (
-          <Button type="button" onClick={saveItemDB} disabled={!isUniqueObj}>
+          <Button
+            type="button"
+            onClick={saveItemDB}
+            disabled={!isUniqueObj}
+          >
             Save
           </Button>
         )}

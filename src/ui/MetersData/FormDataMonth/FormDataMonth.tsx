@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Style from "./formDataMonth.module.scss";
+import { FaEdit, FaPlusCircle } from "react-icons/fa";
 import { SelectDate } from "@/components/SelectDate/SelectDate";
 import { Input } from "@/components/Input/Input";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/ui/Button/Button";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   editMeterData,
@@ -22,6 +23,7 @@ import { selectTranslations } from "@/redux/slices/I18next";
 
 import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
 import { calculateSum } from "@/helpers/calculateTotal";
+import { SIZE_ICONS } from "@/constants/sizeIcons";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -316,9 +318,19 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         )}
 
         {isEdit ? (
-          <Button type="submit">{lang.btn["edit"]}</Button>
+          <Button
+            type="submit"
+            icon={<FaEdit size={SIZE_ICONS.medium} />}
+          >
+            {lang.btn["edit"]}
+          </Button>
         ) : (
-          <Button type="submit">{lang.btn["add"]}</Button>
+          <Button
+            type="submit"
+            icon={<FaPlusCircle size={SIZE_ICONS.medium} />}
+          >
+            {lang.btn["add"]}
+          </Button>
         )}
       </div>
     </form>

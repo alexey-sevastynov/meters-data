@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Styles from "./extraServicesForm.module.scss";
 import { Select } from "@/components/Select/Select";
 import { Input } from "@/components/Input/Input";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/ui/Button/Button";
 
 import { AppDispatch } from "@/redux/store";
 import { addServiceToCurrentItem } from "@/redux/slices/PriceSlice";
@@ -75,7 +75,10 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
         />
       </div>
       <div className={Styles.btns}>
-        <Button type="button" onClick={editValueUtilityPrice}>
+        <Button
+          type="button"
+          onClick={editValueUtilityPrice}
+        >
           add
         </Button>
       </div>
