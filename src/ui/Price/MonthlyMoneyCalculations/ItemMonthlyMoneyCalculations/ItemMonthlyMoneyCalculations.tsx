@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import Style from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hook";
-import { Button } from "../../../../components/Button/Button";
-import { COLORS } from "../../../../constants";
-import { ListInfoDataMonthType } from "../../../../redux/slices/MetersDataSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { Button } from "@/components/Button/Button";
+import { COLORS } from "@/constants";
+import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
 import {
   deleteMonthMoneyCalculations,
   fetchAllMonthlyMoneyCalculations,
   getOneMonthMoneyCalculations,
-} from "../../../../redux/slices/PriceSlice";
+} from "@/redux/slices/PriceSlice";
 import { translationDescription, translationTitle } from "./helpers";
-import { smoothScrollOnLoad } from "../../../../helpers/smoothScrollOnLoad";
+import { smoothScrollOnLoad } from "@/helpers/smoothScrollOnLoad";
 
 interface ItemMonthlyMoneyCalculationsProps {
   items: ListInfoDataMonthType[];
@@ -94,7 +94,10 @@ export const ItemMonthlyMoneyCalculations: React.FC<
         {items &&
           items.map(({ title, description }) => {
             return (
-              <li key={title} className={Style.item}>
+              <li
+                key={title}
+                className={Style.item}
+              >
                 <p className={Style.title}>
                   {language === "EN" ? title : translationTitle(title)}:
                 </p>
@@ -118,7 +121,10 @@ export const ItemMonthlyMoneyCalculations: React.FC<
       </ul>
 
       <div className={Style.btns}>
-        <Button onClick={editItem} disabled={isEdit}>
+        <Button
+          onClick={editItem}
+          disabled={isEdit}
+        >
           edit
         </Button>
         <Button
@@ -128,7 +134,10 @@ export const ItemMonthlyMoneyCalculations: React.FC<
         >
           delete
         </Button>
-        <Button onClick={captureScreen} disabled={isEdit}>
+        <Button
+          onClick={captureScreen}
+          disabled={isEdit}
+        >
           capture
         </Button>
       </div>

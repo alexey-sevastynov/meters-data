@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Style from "./formDataMonth.module.scss";
-import { SelectDate } from "../../../components/SelectDate/SelectDate";
-import { Input } from "../../../components/Input/Input";
-import { Button } from "../../../components/Button/Button";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { SelectDate } from "@/components/SelectDate/SelectDate";
+import { Input } from "@/components/Input/Input";
+import { Button } from "@/components/Button/Button";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   editMeterData,
   fetchAllMetersData,
   fetchPostMetersData,
   setNotEdit,
-} from "../../../redux/slices/MetersDataSlice";
+} from "@/redux/slices/MetersDataSlice";
 import { useLocation } from "react-router-dom";
 
 import { format, parse } from "date-fns";
-import { AddressType, MeterDataType } from "../../../types/MeterDataType";
-import { filterAndSortItemsByAddressAndDate } from "../../../helpers/filterAndSortItemsByAddressAndDate";
-import { KeysItemUtilityPricesType } from "../../../types/KeysItemUtilityPricesType";
-import { COLORS, LIST_NAV } from "../../../constants";
+import { AddressType, MeterDataType } from "@/types/MeterDataType";
+import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
+import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
+import { COLORS, LIST_NAV } from "@/constants";
 import { updateLocalStorageValues } from "../helpers/updateLocalStorageValue";
-import { selectTranslations } from "../../../redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/I18next";
 
-import { sendMessageToTelegram } from "../../../helpers/sendMessageToTelegram";
-import { calculateSum } from "../../../helpers/calculateTotal";
+import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
+import { calculateSum } from "@/helpers/calculateTotal";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;

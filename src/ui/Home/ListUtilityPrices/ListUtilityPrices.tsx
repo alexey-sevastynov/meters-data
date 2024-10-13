@@ -1,6 +1,6 @@
 import Styles from "./listUtilityPrices.module.scss";
 import { ItemUtilityPrices } from "../ItemUtilityPrices/ItemUtilityPrices";
-import useUtilityPrices from "../../../hooks/useUtilityPrices";
+import useUtilityPrices from "@/hooks/useUtilityPrices";
 
 export const ListUtilityPrices = () => {
   const { items, status } = useUtilityPrices();

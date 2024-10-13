@@ -1,9 +1,9 @@
 import React from "react";
 import Style from "./itemInfoPanelMonth.module.scss";
-import useAdaptiveScreen from "../../../hooks/useAdaptiveScreen";
-import { BREAK_POINTS, VALUE_BY_TITLE } from "../../../constants";
-import { useAppSelector } from "../../../redux/hook";
-import { selectTranslations } from "../../../redux/slices/I18next";
+import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
+import { BREAK_POINTS, VALUE_BY_TITLE } from "@/constants";
+import { useAppSelector } from "@/redux/hook";
+import { selectTranslations } from "@/redux/slices/I18next";
 
 interface ItemInfoPanelMonthProps {
   isWaterBlock: boolean;

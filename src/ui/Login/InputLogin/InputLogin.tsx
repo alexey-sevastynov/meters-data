@@ -1,6 +1,6 @@
 import React from "react";
 import Style from "./inputLogin.module.scss";
-import { getIconUrl } from "../../../helpers/getIconUrl";
+import { getIconUrl } from "@/helpers/getIconUrl";
 
 interface InputLoginProps {
   labelText: "Email" | "Password";

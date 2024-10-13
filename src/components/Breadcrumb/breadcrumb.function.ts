@@ -1,4 +1,4 @@
-import { ROUTES } from "../../constants/routes";
+import { ROUTES } from "@/constants/routes";
 import { BreadcrumbItem } from "./breadcrumb.type";
 
 export const isNotLastItem = (index: number, length: number) => {

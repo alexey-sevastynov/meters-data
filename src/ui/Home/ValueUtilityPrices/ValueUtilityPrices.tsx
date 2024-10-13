@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Styles from "./valueUtilityPrices.module.scss";
-import { Input } from "../../../components/Input/Input";
-import { Button } from "../../../components/Button/Button";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { Input } from "@/components/Input/Input";
+import { Button } from "@/components/Button/Button";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   editServicePrice,
   fetchAllServices,
-} from "../../../redux/slices/ServicesSlice";
+} from "@/redux/slices/ServicesSlice";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { selectTranslations } from "../../../redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/I18next";
 
 interface ValueUtilityPricesProps {
   id: string;

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Styles from "./confirm.module.scss";
-import { getIconUrl } from "../../helpers/getIconUrl";
-import { Button } from "../Button/Button";
-import { COLORS } from "../../constants";
-
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch } from "@/redux/hook";
 import {
   closePopup,
   confirmActionExit,
   confirmActionOnDelete,
   setIdDelete,
-} from "../../redux/slices/ConfirmPopupSlice";
+} from "@/redux/slices/ConfirmPopupSlice";
+import { getIconUrl } from "@/helpers/getIconUrl";
+import { Button } from "@/components/Button/Button";
+import { COLORS } from "@/constants";
+import Styles from "./confirm.module.scss";
 
 interface ConfirmProps {
   question: string;
@@ -51,8 +50,16 @@ export const Confirm: React.FC<ConfirmProps> = ({ question }) => {
           alt="cat-eyes"
           width={300}
         />
-        <button type="button" className={Styles.close} onClick={cancel}>
-          <img src={getIconUrl("cross.png")} alt="exit" width={30} />
+        <button
+          type="button"
+          className={Styles.close}
+          onClick={cancel}
+        >
+          <img
+            src={getIconUrl("cross.png")}
+            alt="exit"
+            width={30}
+          />
         </button>
 
         <p className={Styles.text}>{question}</p>

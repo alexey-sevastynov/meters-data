@@ -1,7 +1,7 @@
 import React from "react";
 import Styles from "./itemLinkPage.module.scss";
 import { NavLink, NavLinkProps } from "react-router-dom";
-import { getIconUrl } from "../../../helpers/getIconUrl";
+import { getIconUrl } from "@/helpers/getIconUrl";
 
 interface ItemLinkPageProps extends Omit<NavLinkProps, "to"> {
   link: string;

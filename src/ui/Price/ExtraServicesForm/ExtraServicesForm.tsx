@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Styles from "./extraServicesForm.module.scss";
-import { Select } from "../../../components/Select/Select";
-import { Input } from "../../../components/Input/Input";
-import { Button } from "../../../components/Button/Button";
+import { Select } from "@/components/Select/Select";
+import { Input } from "@/components/Input/Input";
+import { Button } from "@/components/Button/Button";
 
-import { AppDispatch } from "../../../redux/store";
-import { addServiceToCurrentItem } from "../../../redux/slices/PriceSlice";
+import { AppDispatch } from "@/redux/store";
+import { addServiceToCurrentItem } from "@/redux/slices/PriceSlice";
 
-import useUtilityPrices from "../../../hooks/useUtilityPrices";
+import useUtilityPrices from "@/hooks/useUtilityPrices";
 
 interface ExtraServicesFormProps {
   dispatch: AppDispatch;

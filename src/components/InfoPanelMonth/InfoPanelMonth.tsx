@@ -1,11 +1,11 @@
 import React from "react";
 import Styles from "./infoPanelMonth.module.scss";
 import { motion } from "framer-motion";
-import { ListInfoPanelMonth } from "../../ui/InfoPanelMonth/ListInfoPanelMonth/ListInfoPanelMonth";
-import { Button } from "../Button/Button";
+import { ListInfoPanelMonth } from "@/ui/InfoPanelMonth/ListInfoPanelMonth/ListInfoPanelMonth";
+import { Button } from "@/components/Button/Button";
 import { Link, useLocation } from "react-router-dom";
-import { useAppSelector } from "../../redux/hook";
-import { selectTranslations } from "../../redux/slices/I18next";
+import { useAppSelector } from "@/redux/hook";
+import { selectTranslations } from "@/redux/slices/I18next";
 import { BsCalculator } from "react-icons/bs";
 
 interface InfoPanelMonthProps {
@@ -65,7 +65,10 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
       </h4>
 
       <div className={Styles.infoPanelMonth}>
-        <ListInfoPanelMonth isWaterBlock={isWaterBlock} items={lastValue} />
+        <ListInfoPanelMonth
+          isWaterBlock={isWaterBlock}
+          items={lastValue}
+        />
         <div className={Styles.links}>
           <Link to={`${pathname}/price`}>
             <Button>{lang.infoPanel.price}</Button>

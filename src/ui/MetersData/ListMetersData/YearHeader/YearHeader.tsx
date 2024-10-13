@@ -2,8 +2,8 @@ import React from "react";
 import Style from "./yearHeader.module.scss";
 import { IoTriangle } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { SIZE_ICONS } from "../../../../constants/sizeIcons";
-import { COLORS } from "../../../../constants";
+import { SIZE_ICONS } from "@/constants/sizeIcons";
+import { COLORS } from "@/constants";
 
 interface YearHeaderProps {
   year: string;

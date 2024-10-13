@@ -1,6 +1,6 @@
 import React from "react";
 import Style from "./buttonMenu.module.scss";
-import { getIconUrl } from "../../../helpers/getIconUrl";
+import { getIconUrl } from "@/helpers/getIconUrl";
 
 interface ButtonMenuProps {
   isShowMenu: boolean;

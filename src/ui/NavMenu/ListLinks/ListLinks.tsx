@@ -1,9 +1,9 @@
 import React from "react";
 import Styles from "./listLinks.module.scss";
-import { selectTranslations } from "../../../redux/slices/I18next";
-import { LIST_NAV } from "../../../constants";
+import { selectTranslations } from "@/redux/slices/I18next";
+import { LIST_NAV } from "@/constants";
 import { ItemLinkPage } from "../ItemLinkPage/ItemLinkPage";
-import { useAppSelector } from "../../../redux/hook";
+import { useAppSelector } from "@/redux/hook";
 
 interface ListLinksProps {
   closeMenu: () => void;

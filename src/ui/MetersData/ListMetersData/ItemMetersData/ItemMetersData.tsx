@@ -1,28 +1,28 @@
 import React, { useEffect } from "react";
 import Styles from "./itemMetersData.module.scss";
-import { getIconUrl } from "../../../../helpers/getIconUrl";
-import { AddressType } from "../../../../types/MeterDataType";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hook";
+import { getIconUrl } from "@/helpers/getIconUrl";
+import { AddressType } from "@/types/MeterDataType";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   deleteMeterData,
   fetchAllMetersData,
   setMeterDataEdit,
   showMeterReadingCalc,
-} from "../../../../redux/slices/MetersDataSlice";
-import { formatDate } from "../../../../helpers/formatDate";
-import { smoothScrollOnLoad } from "../../../../helpers/smoothScrollOnLoad";
+} from "@/redux/slices/MetersDataSlice";
+import { formatDate } from "@/helpers/formatDate";
+import { smoothScrollOnLoad } from "@/helpers/smoothScrollOnLoad";
 import { ToastContainer } from "react-toastify";
-import { updateLocalStorageValues } from "../../helpers/updateLocalStorageValue";
+import { updateLocalStorageValues } from "@/ui/MetersData/helpers/updateLocalStorageValue";
 import { useLocation } from "react-router-dom";
-import { filterAndSortItemsByAddressAndDate } from "../../../../helpers/filterAndSortItemsByAddressAndDate";
+import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import {
   confirmActionExit,
   confirmActionOnDelete,
   openPopup,
   setIdDelete,
   setQuestion,
-} from "../../../../redux/slices/ConfirmPopupSlice";
-import { selectTranslations } from "../../../../redux/slices/I18next";
+} from "@/redux/slices/ConfirmPopupSlice";
+import { selectTranslations } from "@/redux/slices/I18next";
 
 interface ItemMetersDataProps {
   _id: string;

@@ -2,7 +2,7 @@ import React from "react";
 import Style from "./listInfoPanelMonth.module.scss";
 
 import { ItemInfoPanelMonth } from "../ItemInfoPanelMonth/ItemInfoPanelMonth";
-import { ListInfoDataMonthType } from "../../../redux/slices/MetersDataSlice";
+import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
 
 interface ListInfoPanelMonthProps {
   isWaterBlock: boolean;
