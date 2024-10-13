@@ -1,4 +1,4 @@
-@import "../../../styles/breakpoints.scss";
+@import "@/styles/breakpoints.scss";
 
 .valueUtilityPrices {
   display: flex;
@@ -12,7 +12,6 @@
 
   button {
     margin-left: 30px;
-    margin-bottom: 5px;
   }
 
   @media (max-width: $mobile-xl) {

@@ -1,12 +1,15 @@
 import React from "react";
 import Styles from "./infoPanelMonth.module.scss";
+import { RiPriceTagFill } from "react-icons/ri";
+import { IoBarChartSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { ListInfoPanelMonth } from "@/ui/InfoPanelMonth/ListInfoPanelMonth/ListInfoPanelMonth";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/ui/Button/Button";
 import { Link, useLocation } from "react-router-dom";
 import { useAppSelector } from "@/redux/hook";
 import { selectTranslations } from "@/redux/slices/I18next";
 import { BsCalculator } from "react-icons/bs";
+import { SIZE_ICONS } from "@/constants/sizeIcons";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;
@@ -71,10 +74,14 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
         />
         <div className={Styles.links}>
           <Link to={`${pathname}/price`}>
-            <Button>{lang.infoPanel.price}</Button>
+            <Button icon={<RiPriceTagFill size={SIZE_ICONS.medium} />}>
+              {lang.infoPanel.price}
+            </Button>
           </Link>
           <Link to={`${pathname}/graphics`}>
-            <Button>{lang.infoPanel.graphics}</Button>
+            <Button icon={<IoBarChartSharp size={SIZE_ICONS.medium} />}>
+              {lang.infoPanel.graphics}
+            </Button>
           </Link>
         </div>
       </div>

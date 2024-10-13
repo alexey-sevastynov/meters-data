@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Styles from "./valueUtilityPrices.module.scss";
 import { Input } from "@/components/Input/Input";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/ui/Button/Button";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   editServicePrice,
@@ -46,7 +46,11 @@ export const ValueUtilityPrices: React.FC<ValueUtilityPricesProps> = ({
     <div className={Styles.valueUtilityPrices}>
       <p>1 {lang.value[valueName]} =</p>
 
-      <Input defaultValue={value} value={valueInput} setValue={setValueInput} />
+      <Input
+        defaultValue={value}
+        value={valueInput}
+        setValue={setValueInput}
+      />
 
       <Button
         type="button"
