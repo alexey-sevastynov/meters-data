@@ -2,14 +2,15 @@ import React from "react";
 import Styles from "./infoPanelMonth.module.scss";
 import { RiPriceTagFill } from "react-icons/ri";
 import { IoBarChartSharp } from "react-icons/io5";
-import { motion } from "framer-motion";
 import { ListInfoPanelMonth } from "@/ui/InfoPanelMonth/ListInfoPanelMonth/ListInfoPanelMonth";
-import { Button } from "@/ui/Button/Button";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/redux/hook";
 import { selectTranslations } from "@/redux/slices/I18next";
-import { BsCalculator } from "react-icons/bs";
 import { SIZE_ICONS } from "@/constants/sizeIcons";
+import { filterItemsByAddress } from "@/helpers/filterAndSortItemsByAddressAndDate";
+import { removeFirstAddedMonth } from "@/helpers/removeFirstAddedMonth";
+import { DateRangeSelector } from "../DateRangeSelector/DateRangeSelector";
+import LinkButtonGroup from "../LinkButtonGroup/LinkButtonGroup";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;
@@ -21,6 +22,7 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   const { pathname } = useLocation();
   const currentPage = pathname.slice(1);
 
+  const items = useAppSelector((props) => props.metersData.metersData.items);
   const infoMeterReading = useAppSelector(
     (props) => props.metersData.infoMeterReading
   );
@@ -48,42 +50,45 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   const month = selectedMonth.split(",")[0];
   const year = selectedMonth.split(",")[1];
 
+  const linksGroup = [
+    {
+      path: `${pathname}/price`,
+      icon: <RiPriceTagFill size={SIZE_ICONS.medium} />,
+      label: lang.infoPanel.price,
+    },
+    {
+      path: `${pathname}/graphics`,
+      icon: <IoBarChartSharp size={SIZE_ICONS.medium} />,
+      label: lang.infoPanel.graphics,
+    },
+  ];
+
   return (
     <section className={Styles.infoPanelMonthSection}>
-      <h4 className={Styles.title}>
-        <BsCalculator style={{ marginRight: "10px" }} />
-        {lang.infoPanel.title}{" "}
-        <motion.b
-          key={selectedMonth}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            ease: "easeOut",
-            duration: 0.7,
-          }}
-        >
-          {lang.months[month]}, {year}
-        </motion.b>
-        :
-      </h4>
-
       <div className={Styles.infoPanelMonth}>
+        <div className={Styles.infoPanelMonth__header}>
+          <DateRangeSelector
+            data={removeFirstAddedMonth(
+              filterItemsByAddress(items, currentPage)
+            )}
+            selectedMonth={month}
+            selectedYear={year}
+          />
+
+          <LinkButtonGroup
+            linksGroup={linksGroup}
+            className={Styles.infoPanelMonth__header_btns}
+          />
+        </div>
+
         <ListInfoPanelMonth
           isWaterBlock={isWaterBlock}
           items={lastValue}
         />
-        <div className={Styles.links}>
-          <Link to={`${pathname}/price`}>
-            <Button icon={<RiPriceTagFill size={SIZE_ICONS.medium} />}>
-              {lang.infoPanel.price}
-            </Button>
-          </Link>
-          <Link to={`${pathname}/graphics`}>
-            <Button icon={<IoBarChartSharp size={SIZE_ICONS.medium} />}>
-              {lang.infoPanel.graphics}
-            </Button>
-          </Link>
-        </div>
+        <LinkButtonGroup
+          linksGroup={linksGroup}
+          className={Styles.infoPanelMonth__btns}
+        />
       </div>
     </section>
   );

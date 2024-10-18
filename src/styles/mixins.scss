@@ -32,3 +32,30 @@ $heightHeader: 80px;
 @mixin borderInput {
   border: 1px solid $green;
 }
+
+@mixin custom-scroll(
+  $width: 8px,
+  $thumb-color: #888,
+  $thumb-hover-color: #555,
+  $track-color: #f1f1f1
+) {
+  scrollbar-width: thin;
+  scrollbar-color: $thumb-color $track-color;
+
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb-hover-color;
+  }
+}

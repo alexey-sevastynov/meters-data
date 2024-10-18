@@ -14,6 +14,8 @@ export type MeterDataType = {
   lightNight: number;
   gas: number;
   water?: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export interface GroupedData {

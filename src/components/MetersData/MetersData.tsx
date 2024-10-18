@@ -15,7 +15,7 @@ export const MetersData: React.FC<MetersDataProps> = ({
   const lang = useAppSelector(selectTranslations);
   return (
     <section className={Styles.metersData}>
-      <div className="overflow-auto mt-40">
+      <div className="overflow-auto">
         <h4 className={Styles.title}>
           <BsCalendar2Plus style={{ marginRight: "10px" }} />
           {

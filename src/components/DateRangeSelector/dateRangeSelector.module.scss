@@ -1,0 +1,73 @@
+@import "@/styles/breakpoints.scss";
+@import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
+
+$width: 250px;
+$border-radius: 5px;
+$padding-window: 5px 10px;
+
+.dateRangeSelector {
+  position: relative;
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: $padding-window;
+    border: 1px solid $grey;
+    border-radius: $border-radius;
+    height: 39px;
+    width: $width;
+
+    &_active {
+      border-color: $green;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 49px;
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+    z-index: 2;
+    border-radius: $border-radius;
+
+    border: 1px solid $grey;
+    width: $width;
+
+    height: 30px * 6;
+
+    overflow-y: scroll;
+
+    @include custom-scroll;
+    &_btn {
+      padding: $padding-window;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &_active {
+        background-color: $green;
+        color: white;
+
+        &:hover {
+          background-color: $green !important;
+        }
+      }
+
+      &:hover {
+        background-color: $grey;
+      }
+    }
+  }
+
+  @media (max-width: $mobile-xl) {
+    width: 100%;
+    &__btn,
+    &__dropdown {
+      width: 100%;
+    }
+  }
+}
