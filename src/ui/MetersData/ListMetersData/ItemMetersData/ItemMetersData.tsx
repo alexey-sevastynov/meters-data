@@ -34,6 +34,8 @@ interface ItemMetersDataProps {
   lightNight: number;
   gas: number;
   water?: number;
+  createdAt: string;
+  updatedAt: string;
   isLastItem: boolean;
   isFirstItem: boolean;
   setIdActiveBtn: (showActiveBtn: string) => void;
@@ -50,6 +52,8 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   lightNight,
   gas,
   water,
+  createdAt,
+  updatedAt,
 
   isLastItem,
   isFirstItem,
@@ -87,6 +91,8 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
         lightNight,
         gas,
         water,
+        createdAt,
+        updatedAt,
       })
     );
   };
