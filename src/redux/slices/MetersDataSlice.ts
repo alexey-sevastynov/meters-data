@@ -1,17 +1,19 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { API_URL } from "../../constants";
-import { AddressType, MeterDataType } from "../../types/MeterDataType";
-import { findPenultimateDate } from "../helpers/findPenultimateDate";
-import { filterAndSortItemsByAddressAndDate } from "../../helpers/filterAndSortItemsByAddressAndDate";
+import { toast } from "react-toastify";
+import { API_URL } from "@/constants";
+import { AddressType, MeterDataType } from "@/types/MeterDataType";
+import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
+import { getKeyOnPage } from "@/helpers/getKeyOnPage";
 import { findPreviousDateById } from "../helpers/findPreviousDateById";
 import { calculateDifference } from "../helpers/calculateDifference";
-import { getKeyOnPage } from "../../helpers/getKeyOnPage";
-import { toast } from "react-toastify";
+import { findPenultimateDate } from "../helpers/findPenultimateDate";
 
 export type ListInfoDataMonthType = {
+  id: string;
   title: string;
   description: string | number;
+  percentDifference: number;
 };
 
 type ParamsMeterDataType = {
@@ -33,11 +35,11 @@ export const fetchAllMetersData = createAsyncThunk<
   try {
     const { data } = await axios.get<MeterDataType[]>(`${API_URL}metersdatas`);
     return data;
-  } catch (error: any) {
-    if (!error.response) {
-      throw error;
+  } catch (e) {
+    if (e instanceof AxiosError && !e.response) {
+      throw e;
     }
-    return rejectWithValue(error as AxiosError);
+    return rejectWithValue(e as AxiosError);
   }
 });
 
@@ -157,7 +159,8 @@ const MetersDataSlice = createSlice({
           ...state.infoMeterReading,
           [getKeyOnPage(action.payload.address)]: calculateDifference(
             currentItem,
-            previousItem
+            previousItem,
+            findPreviousDateById(listItemsAddress, previousItem?._id)!
           ),
         };
       }
@@ -181,15 +184,27 @@ const MetersDataSlice = createSlice({
         );
 
         if (items.length > 0) {
-          const itemLast = items[items.length - 1];
+          const latestItem = items[items.length - 1];
+          const secondLatestItem = items[items.length - 2];
 
-          const itemPenulimateDate = findPenultimateDate(itemLast.date);
-          const itemPenulimate = items.find(
-            (item) => item.date === itemPenulimateDate
+          const secondLatestItemDate = findPenultimateDate(latestItem.date);
+          const thirdLatestItemDate = findPenultimateDate(
+            secondLatestItem.date
           );
 
-          if (itemPenulimate) {
-            return calculateDifference(itemLast, itemPenulimate);
+          const secondMostRecentItem = items.find(
+            (item) => item.date === secondLatestItemDate
+          );
+          const thirdMostRecentItem = items.find(
+            (item) => item.date === thirdLatestItemDate
+          );
+
+          if (secondMostRecentItem && thirdMostRecentItem) {
+            return calculateDifference(
+              latestItem,
+              secondMostRecentItem,
+              thirdMostRecentItem
+            );
           } else {
             return null;
           }
@@ -227,4 +242,5 @@ const MetersDataSlice = createSlice({
 
 export const { setMeterDataEdit, setNotEdit, showMeterReadingCalc } =
   MetersDataSlice.actions;
+
 export const metersDataReducer = MetersDataSlice.reducer;

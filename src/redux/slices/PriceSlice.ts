@@ -1,10 +1,11 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { v4 } from "uuid";
 import { ListInfoDataMonthType } from "./MetersDataSlice";
-import { TypeListUtylityPrices } from "../../types/constants";
-import { MonthlyMoneyCalculationsType } from "../../types/MonthlyMoneyCalculationsType";
+import { TypeListUtylityPrices } from "@/types/constants";
+import { MonthlyMoneyCalculationsType } from "@/types/MonthlyMoneyCalculationsType";
 import axios, { AxiosError } from "axios";
-import { API_URL } from "../../constants";
-import { AddressType } from "../../types/MeterDataType";
+import { API_URL } from "@/constants";
+import { AddressType } from "@/types/MeterDataType";
 
 export const fetchAllMonthlyMoneyCalculations = createAsyncThunk<
   MonthlyMoneyCalculationsType[],
@@ -188,6 +189,7 @@ const PriceSlice = createSlice({
       action: PayloadAction<{
         title: string;
         description: string | number;
+        percentDifference: number;
       }>
     ) => {
       const isUniqueCategory = !state.currentItem?.some(
@@ -197,8 +199,10 @@ const PriceSlice = createSlice({
         state.currentItem = [
           ...state.currentItem,
           {
+            id: v4(),
             title: action.payload.title,
             description: action.payload.description,
+            percentDifference: action.payload.percentDifference,
           },
         ];
 
@@ -251,7 +255,13 @@ const PriceSlice = createSlice({
     );
 
     builder.addCase(getOneMonthMoneyCalculations.fulfilled, (state, action) => {
-      state.currentItem = action.payload.data;
+      const dataWithPercentDifference = action.payload.data.map((item) => ({
+        ...item,
+        id: item._id,
+        percentDifference: 0,
+      }));
+
+      state.currentItem = dataWithPercentDifference;
       state.sumMoney = action.payload.sumMoney;
       state.itemsMonthlyMoneyCalculations.isEdit = true;
       if (action.payload._id) {

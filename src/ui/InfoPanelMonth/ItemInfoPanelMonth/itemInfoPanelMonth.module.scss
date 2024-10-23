@@ -1,29 +1,46 @@
-@import "../../../styles/colors.scss";
-@import "../../../styles/breakpoints.scss";
+@import "@/styles/colors.scss";
+@import "@/styles/breakpoints.scss";
+
+$width: 150px;
+$border-radius: 5px;
+$gap-line: 3px;
 
 .itemInfoPanelMonth {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  width: 100%;
+  width: $width;
 
-  .title,
-  .description {
-    text-align: center;
-  }
-
-  .title {
-  }
-
-  .description {
-    background-color: $lightGreen;
-    padding: 5px 5px;
-  }
-
-  @media (max-width: $mobile-xl) {
-    flex-direction: row;
+  &__header {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    row-gap: 5px;
+
+    &_value_percent {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__line {
+    position: relative;
+    background-color: $grey;
+    width: 100%;
+    height: 10px;
+    border-radius: $border-radius;
+
+    &_center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: $gap-line;
+      height: 100%;
+      background-color: white;
+    }
+  }
+
+  &__title {
+    text-align: center;
   }
 }

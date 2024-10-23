@@ -1,8 +1,7 @@
 import React from "react";
-import Style from "./listInfoPanelMonth.module.scss";
-
-import { ItemInfoPanelMonth } from "../ItemInfoPanelMonth/ItemInfoPanelMonth";
 import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
+import Style from "./listInfoPanelMonth.module.scss";
+import { ItemInfoPanelMonth } from "../ItemInfoPanelMonth/ItemInfoPanelMonth";
 
 interface ListInfoPanelMonthProps {
   isWaterBlock: boolean;
@@ -16,10 +15,11 @@ export const ListInfoPanelMonth: React.FC<ListInfoPanelMonthProps> = ({
   return (
     <dl className={Style.listInfoPanelMonth}>
       {items &&
-        items.map((props) => (
+        items.map((props, index) => (
           <ItemInfoPanelMonth
-            key={props.title}
+            key={props.id}
             isWaterBlock={isWaterBlock}
+            index={index}
             {...props}
           />
         ))}

@@ -4,7 +4,7 @@ type MediaQueryParams = {
   maxWidth: number;
 };
 
-const useAdaptiveScreen: React.FC<MediaQueryParams> = ({ maxWidth }) => {
+const useAdaptiveScreen = ({ maxWidth }: MediaQueryParams) => {
   const [isScreenAdaptive, setIsScreenAdaptive] = useState(false);
 
   const checkScreenSize = () => {

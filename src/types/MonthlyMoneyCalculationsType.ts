@@ -1,8 +1,15 @@
 import { AddressType } from "./MeterDataType";
 
 export type MonthlyMoneyCalculationsType = {
-  _id?: string;
+  _id: string;
   address: AddressType;
-  data: [{ _id?: string; title: string; description: string }];
+  data: [
+    {
+      _id: string;
+      title: string;
+      description: string;
+      percentDifference: number;
+    }
+  ];
   sumMoney: number;
 };

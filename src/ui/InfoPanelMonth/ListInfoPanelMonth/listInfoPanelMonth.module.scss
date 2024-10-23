@@ -1,18 +1,17 @@
-@import "../../../styles/breakpoints.scss";
-@import "../../../styles/colors.scss";
+@import "@/styles/breakpoints.scss";
+@import "@/styles/colors.scss";
 
 .listInfoPanelMonth {
   margin-top: 10px;
 
   display: flex;
-  justify-content: space-between;
 
   flex-grow: 1;
+  gap: 50px;
+
+  flex-wrap: wrap;
 
   @media (max-width: $mobile-xl) {
-    flex-direction: column;
-    background-color: $lightGreen;
-    padding: 10px 5px;
-    border-radius: 5px;
+    justify-content: space-between;
   }
 }
