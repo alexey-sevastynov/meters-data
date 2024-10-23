@@ -16,7 +16,7 @@ import { smoothScrollOnLoad } from "@/helpers/smoothScrollOnLoad";
 interface ItemMonthlyMoneyCalculationsProps {
   items: ListInfoDataMonthType[];
   sumMoney: number;
-  id: string | undefined;
+  id: string;
   address: string;
 }
 

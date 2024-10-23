@@ -47,6 +47,7 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
         addServiceToCurrentItem({
           title: selectedOption,
           description: inputValue,
+          percentDifference: 0,
         })
       );
     }

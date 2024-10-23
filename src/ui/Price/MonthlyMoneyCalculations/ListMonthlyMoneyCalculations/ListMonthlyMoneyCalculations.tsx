@@ -18,7 +18,7 @@ export const ListMonthlyMoneyCalculations: React.FC<
           <ItemMonthlyMoneyCalculations
             key={_id}
             id={_id}
-            items={data}
+            items={data.map((item) => ({ ...item, id: item._id }))}
             sumMoney={sumMoney}
             address={address}
           />

@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
 import englishTranslate from "../i18n/en/translation.json";
 import ukraineTranslate from "../i18n/ua/translation.json";
-
 import { defaultLang, supportedLangs } from "../i18n/config";
+
+export interface Lang {
+  value: {
+    [key: string]: string;
+  };
+}
 
 interface i18n {
   lang: string;
