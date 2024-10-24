@@ -1,4 +1,6 @@
-import { EN } from "@/constants/language";
+import { EN, language } from "@/constants/language";
+import { ukrainianMonths } from "@/constants/ukrainianMonths";
+import { ukrainianShortMonths } from "@/constants/ukrainianShortMonths";
 
 const toPascalCase = (str: string): string => {
   return str
@@ -16,6 +18,8 @@ export function getDaysInMonths(
   let month: number;
   let year: number;
 
+  const shortNames = true;
+
   if (date.includes(".")) {
     const [monthStr, yearStr] = date.split(".");
     month = parseInt(monthStr, 10) - 1;
@@ -29,9 +33,17 @@ export function getDaysInMonths(
   const firstDayNextMonth = new Date(year, month + 1, 1);
   const lastDayCurrentMonth = new Date(firstDayNextMonth.getTime() - 86400000);
 
-  const monthFullName = lastDayCurrentMonth.toLocaleString(locale, {
-    month: "short",
-  });
+  let monthFullName;
+
+  if (locale === language.ua) {
+    monthFullName = shortNames
+      ? ukrainianShortMonths[month]
+      : ukrainianMonths[month];
+  } else {
+    monthFullName = lastDayCurrentMonth.toLocaleString(locale, {
+      month: shortNames ? "short" : "long",
+    });
+  }
 
   const monthFullNamePascal = toPascalCase(monthFullName);
 
