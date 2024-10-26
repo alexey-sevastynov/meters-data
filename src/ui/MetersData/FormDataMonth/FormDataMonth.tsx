@@ -27,10 +27,12 @@ import { SIZE_ICONS } from "@/constants/sizeIcons";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
+  hideTotalLight?: boolean;
 }
 
 export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   isWaterBlock,
+  hideTotalLight = true,
 }) => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
@@ -237,19 +239,21 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
           value={valueSelectDate}
           onChange={onChange}
         />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.light
-              : setDefaultValue("light")
-          }
-          labelText={lang.infoPanel["Light general"]}
-          value={light}
-          setValue={setLight}
-        />
+        {hideTotalLight && (
+          <Input
+            className={Style.input}
+            style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
+            labelTextBold
+            defaultValue={
+              isEdit && meterDataEdit
+                ? meterDataEdit?.light
+                : setDefaultValue("light")
+            }
+            labelText={lang.infoPanel["Light general"]}
+            value={light}
+            setValue={setLight}
+          />
+        )}
         <Input
           className={Style.input}
           style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}

@@ -13,6 +13,12 @@ export const MetersData: React.FC<MetersDataProps> = ({
   isWaterBlock = true,
 }) => {
   const lang = useAppSelector(selectTranslations);
+
+  const [hideTotalLight, setHideTotalLight] = React.useState(false);
+
+  const toggleHideTotalLight = () => {
+    setHideTotalLight((prevState) => !prevState);
+  };
   return (
     <section className={Styles.metersData}>
       <div className="overflow-auto">
@@ -25,7 +31,13 @@ export const MetersData: React.FC<MetersDataProps> = ({
           }
           :
         </h4>
-        <FormDataMonth isWaterBlock={isWaterBlock} />
+        <button onClick={toggleHideTotalLight}>
+          {!hideTotalLight ? "Show Total Light" : "Hide Total Light"}
+        </button>
+        <FormDataMonth
+          isWaterBlock={isWaterBlock}
+          hideTotalLight={hideTotalLight}
+        />
         <h4 className={Styles.title}>
           <BsCalendar3 style={{ marginRight: "10px" }} />
           {lang.metersData["Meter Reading Data Table by Months"]}:
