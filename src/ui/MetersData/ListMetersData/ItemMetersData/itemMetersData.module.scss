@@ -1,13 +1,24 @@
-@import "../../../../styles/colors.scss";
+@import "@/styles/colors.scss";
 
 .itemMetersData {
   display: flex;
   gap: 20px;
+  border-bottom: 1px solid $grey;
+
+  &:nth-child(odd) {
+    background: $white;
+  }
+
+  &.active {
+    background-color: $lightGreen;
+  }
 
   .data {
     display: flex;
+    padding: 10px;
+
     gap: 7px;
-    border-bottom: 1px solid $grey;
+
     p {
       line-height: 1.8;
     }
@@ -22,7 +33,16 @@
     .gas,
     .water {
       min-width: 130px;
-      padding-left: 5px;
+
+      letter-spacing: 0.8px;
+    }
+
+    .water {
+      color: $blue;
+    }
+
+    .gas {
+      color: $red;
     }
   }
 

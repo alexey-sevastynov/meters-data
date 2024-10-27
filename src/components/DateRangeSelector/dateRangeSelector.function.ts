@@ -14,7 +14,7 @@ export const formatDateDisplay = (
   itemDate: string,
   isDayView: boolean,
   isMonthView: boolean,
-  currentLang: string
+  currentLang?: string
 ) => {
   return getDaysInMonths(itemDate, isDayView, isMonthView, currentLang);
 };

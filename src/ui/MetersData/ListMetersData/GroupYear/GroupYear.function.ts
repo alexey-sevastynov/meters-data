@@ -12,3 +12,12 @@ export const handleToggle = (
     },
   }));
 };
+
+export function getLastYear(groupedData: GroupedData): string | undefined {
+  const years = getYears(groupedData);
+  return years[years.length - 1];
+}
+
+function getYears(groupedData: GroupedData): string[] {
+  return Object.keys(groupedData).sort();
+}
