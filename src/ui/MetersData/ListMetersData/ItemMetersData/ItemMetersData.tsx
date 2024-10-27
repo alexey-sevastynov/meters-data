@@ -23,6 +23,7 @@ import {
   setQuestion,
 } from "@/redux/slices/ConfirmPopupSlice";
 import { selectTranslations } from "@/redux/slices/I18next";
+import { formatDateDisplay } from "@/components/DateRangeSelector/dateRangeSelector.function";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -79,6 +80,8 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     items,
     currentPage
   );
+
+  const selectedDateDisplay = formatDateDisplay(`${month},${year}`, true, true);
 
   const editItem = () => {
     dispatch(
@@ -138,28 +141,23 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   }, []);
 
   return (
-    <li className={Styles.itemMetersData}>
-      <div className={Styles.data}>
-        <p className={Styles.date}>
-          {lang.months[month]}, {year}
+    <li
+      className={`${Styles.itemMetersData} ${
+        idActiveBtn === _id ? Styles.active : ""
+      }`}
+    >
+      <div className={`${Styles.data} `}>
+        <p
+          className={Styles.date}
+          title={selectedDateDisplay}
+        >
+          {lang.months[month]}
         </p>
-        <p className={Styles.light}>
-          {light} {lang.value.kW}
-        </p>
-        <p className={Styles.lightDay}>
-          {lightDay} {lang.value.kW}
-        </p>
-        <p className={Styles.lightNight}>
-          {lightNight} {lang.value.kW}
-        </p>
-        <p className={Styles.gas}>
-          {gas} {lang.value["m³"]}
-        </p>
-        {isWaterBlock && (
-          <p className={Styles.water}>
-            {water} {lang.value["m³"]}
-          </p>
-        )}
+        <p className={Styles.light}>{light}</p>
+        <p className={Styles.lightDay}>{lightDay}</p>
+        <p className={Styles.lightNight}>{lightNight}</p>
+        <p className={Styles.gas}>{gas}</p>
+        {isWaterBlock && <p className={Styles.water}>{water}</p>}
       </div>
 
       <div className={Styles.btns}>

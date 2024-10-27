@@ -47,7 +47,8 @@
     "Light night": "Light night",
     "Gas General": "Gas",
     "Water general": "Water",
-    "date": "Date"
+    "date": "Date",
+    "month": "Month"
   },
   "months": {
     "January": "January",

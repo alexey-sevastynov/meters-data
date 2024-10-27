@@ -1,10 +1,12 @@
 import React from "react";
+
+import { GroupedData } from "@/types/MeterDataType";
+import { hasOneElement } from "@/helpers/hasOneElement";
 import Style from "./groupYear.module.scss";
 import { ItemMetersData } from "../ItemMetersData/ItemMetersData";
-import { GroupedData } from "@/types/MeterDataType";
+import { getLastYear, handleToggle } from "./groupYear.function";
 import YearHeader from "../YearHeader/YearHeader";
-import { handleToggle } from "./GroupYear.function";
-import { hasOneElement } from "@/helpers/hasOneElement";
+import { HeadMetersData } from "../HeadMeterData/HeadMetersData";
 
 interface GroupYearProps {
   year: string;
@@ -30,16 +32,22 @@ const GroupYear: React.FC<GroupYearProps> = ({
   groupedData,
 }) => {
   const hasMultipleYears = !hasOneElement(groupedData);
+  const lastYear = getLastYear(groupedData);
 
   return (
     <div key={year}>
-      {hasMultipleYears && (
+      {hasMultipleYears && year !== lastYear && (
         <YearHeader
           year={year}
           isOpen={group.isOpen}
           onToggle={() => handleToggle(year, setGroupedData)}
         />
       )}
+
+      <HeadMetersData
+        isWaterBlock={isWaterBlock}
+        isOpen={group.isOpen}
+      />
       <div className={`${Style.yearGroup} ${group.isOpen ? Style.open : ""}`}>
         {group.items.map((item, index) => {
           const isFirstItem = isFirstGroup && index === group.items.length - 1;
