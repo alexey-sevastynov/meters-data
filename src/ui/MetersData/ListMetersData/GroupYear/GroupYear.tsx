@@ -4,7 +4,7 @@ import { GroupedData } from "@/types/MeterDataType";
 import { hasOneElement } from "@/helpers/hasOneElement";
 import Style from "./groupYear.module.scss";
 import { ItemMetersData } from "../ItemMetersData/ItemMetersData";
-import { getLastYear, handleToggle } from "./groupYear.function";
+import { getLastYear, handleToggle } from "./GroupYear.function";
 import YearHeader from "../YearHeader/YearHeader";
 import { HeadMetersData } from "../HeadMeterData/HeadMetersData";
 
