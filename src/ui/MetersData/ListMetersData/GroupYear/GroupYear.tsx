@@ -46,7 +46,12 @@ const GroupYear: React.FC<GroupYearProps> = ({
       />
       <div className={`${Style.yearGroup} ${group.isOpen ? Style.open : ""}`}>
         {group.items.map((item, index) => {
-          const isFirstItem = isFirstGroup && index === group.items.length - 1;
+          const isOnlyOneYear = !hasMultipleYears;
+          const isFirstIndex = index === 0;
+          const isLastIndex = index === group.items.length - 1;
+
+          const isFirstItem =
+            isFirstGroup && (isOnlyOneYear ? isLastIndex : isFirstIndex);
           const isLastItem = isLastGroup && index === 0;
 
           return (
