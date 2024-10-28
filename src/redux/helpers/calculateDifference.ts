@@ -29,7 +29,7 @@ export function calculateDifference(
 
   return [
     {
-      id: v4(),
+      id: mostRecentItem._id,
       title: titlesForMeterReadings.date,
       description: formatDate(mostRecentItem.date),
       percentDifference: 0,

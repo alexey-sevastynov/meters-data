@@ -14,8 +14,6 @@ interface GroupYearProps {
   isFirstGroup: boolean;
   isLastGroup: boolean;
   isWaterBlock: boolean;
-  idActiveBtn: string;
-  setIdActiveBtn: React.Dispatch<React.SetStateAction<string>>;
   setGroupedData: React.Dispatch<React.SetStateAction<GroupedData>>;
   groupedData: GroupedData;
 }
@@ -26,8 +24,6 @@ const GroupYear: React.FC<GroupYearProps> = ({
   isFirstGroup,
   isLastGroup,
   isWaterBlock,
-  idActiveBtn,
-  setIdActiveBtn,
   setGroupedData,
   groupedData,
 }) => {
@@ -59,8 +55,6 @@ const GroupYear: React.FC<GroupYearProps> = ({
               isFirstItem={isFirstItem}
               isLastItem={isLastItem}
               isWaterBlock={isWaterBlock}
-              setIdActiveBtn={setIdActiveBtn}
-              idActiveBtn={idActiveBtn}
               {...item}
             />
           );

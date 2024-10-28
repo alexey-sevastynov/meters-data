@@ -23,8 +23,6 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
   const addressCurrentPage = pathname.slice(1);
   const [groupedData, setGroupedData] = useState<GroupedData>({});
 
-  const [idActiveBtn, setIdActiveBtn] = useState<string>("");
-
   const listMetersDataRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -53,8 +51,6 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({
             isFirstGroup={index === 0}
             isLastGroup={index === array.length - 1}
             isWaterBlock={isWaterBlock}
-            setIdActiveBtn={setIdActiveBtn}
-            idActiveBtn={idActiveBtn}
             setGroupedData={setGroupedData}
             groupedData={groupedData}
           />

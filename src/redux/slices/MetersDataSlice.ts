@@ -16,6 +16,14 @@ export type ListInfoDataMonthType = {
   percentDifference: number;
 };
 
+export type InfoMeterReadingType = {
+  chelyuskina: null | ListInfoDataMonthType[];
+  slobozhansky: null | ListInfoDataMonthType[];
+  antonovicha73: null | ListInfoDataMonthType[];
+  antonovicha75: null | ListInfoDataMonthType[];
+  antonovicha75_3: null | ListInfoDataMonthType[];
+};
+
 type ParamsMeterDataType = {
   _id?: string;
   date: string; // "MM.YYYY" /^(0[1-9]|1[0-2])\.(19|20)\d{2}$/
@@ -89,13 +97,7 @@ interface IMetersDataSlice {
   meterDataEdit: MeterDataType | null; // for the form, we will take data from this object for editing
   isEdit: boolean;
 
-  infoMeterReading: {
-    chelyuskina: null | ListInfoDataMonthType[];
-    slobozhansky: null | ListInfoDataMonthType[];
-    antonovicha73: null | ListInfoDataMonthType[];
-    antonovicha75: null | ListInfoDataMonthType[];
-    antonovicha75_3: null | ListInfoDataMonthType[];
-  };
+  infoMeterReading: InfoMeterReadingType;
 }
 
 const initialState: IMetersDataSlice = {

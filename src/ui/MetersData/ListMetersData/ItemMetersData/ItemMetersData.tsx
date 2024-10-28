@@ -24,6 +24,7 @@ import {
 } from "@/redux/slices/ConfirmPopupSlice";
 import { selectTranslations } from "@/redux/slices/I18next";
 import { formatDateDisplay } from "@/components/DateRangeSelector/dateRangeSelector.function";
+import { lastValueMeter } from "@/helpers/lastValueMeter";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -39,8 +40,6 @@ interface ItemMetersDataProps {
   updatedAt: string;
   isLastItem: boolean;
   isFirstItem: boolean;
-  setIdActiveBtn: (showActiveBtn: string) => void;
-  idActiveBtn: string;
 }
 
 export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
@@ -55,11 +54,8 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   water,
   createdAt,
   updatedAt,
-
   isLastItem,
   isFirstItem,
-  setIdActiveBtn,
-  idActiveBtn,
 }) => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
@@ -71,6 +67,13 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
 
   const items = useAppSelector((props) => props.metersData.metersData.items);
   const currentPage: AddressType = pathname.slice(1) as AddressType;
+
+  const infoMeterReading = useAppSelector(
+    (props) => props.metersData.infoMeterReading
+  );
+
+  const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
+  const selectedMonthId = currentInfoMeterReading?.[0].id;
 
   const newDate = formatDate(date);
   const month = newDate.split(",")[0];
@@ -136,14 +139,10 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     if (isEdit) smoothScrollOnLoad(0);
   }, [isEdit]);
 
-  useEffect(() => {
-    if (isLastItem) setIdActiveBtn(isLastItem && _id);
-  }, []);
-
   return (
     <li
       className={`${Styles.itemMetersData} ${
-        idActiveBtn === _id ? Styles.active : ""
+        selectedMonthId === _id ? Styles.active : ""
       }`}
     >
       <div className={`${Styles.data} `}>
@@ -169,13 +168,11 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
             onClick={() => {
               dispatch(showMeterReadingCalc({ id: _id, address }));
               smoothScrollOnLoad();
-
-              setIdActiveBtn(_id);
             }}
           >
             <img
               src={getIconUrl(
-                idActiveBtn === _id ? "show-active.png" : "show.png"
+                selectedMonthId === _id ? "show-active.png" : "show.png"
               )}
               alt="show"
               width={25}
