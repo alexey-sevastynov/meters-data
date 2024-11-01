@@ -49,7 +49,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     currentPage
   );
 
-  const [valueSelectDate, onChange] = useState<any>(new Date());
+  const [valueSelectDate, onChange] = useState<string | Date>(new Date());
 
   const setDefaultValue = (key: KeysItemUtilityPricesType): number => {
     const localStorageValue = localStorage.getItem(
@@ -118,13 +118,13 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
 
     if (isEdit === true && meterDataEdit && isUniqueDate) {
       dispatch(editMeterData({ _id: meterDataEdit?._id, ...formData }))
-        .then((response: any) => {
+        .then((response) => {
           if (response.payload) {
             dispatch(setNotEdit());
             dispatch(fetchAllMetersData());
           }
         })
-        .catch((error: any) => {
+        .catch((error) => {
           console.error("Error adding data:", error);
         });
     }
@@ -137,7 +137,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
 
       if (!isDateAlreadyExists) {
         dispatch(fetchPostMetersData(formData))
-          .then((response: any) => {
+          .then((response) => {
             if (response.payload) {
               setTimeout(() => {
                 dispatch(fetchAllMetersData()).then(() => {
@@ -146,7 +146,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               }, 2500);
             }
           })
-          .catch((error: any) => {
+          .catch((error) => {
             console.error("Error adding data:", error);
           });
       }

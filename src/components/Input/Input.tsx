@@ -8,7 +8,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
   labelTextBold?: boolean;
   value: number | string;
   type?: string;
-  setValue: (value: any) => void;
+  setValue: (value: number | string) => void;
   placeholder?: string;
 }
 
@@ -16,7 +16,6 @@ export const Input: React.FC<InputProps> = ({
   defaultValue = 0,
   labelText = "Price",
   labelTextBold,
-  id,
   value,
   type = "number",
   setValue,

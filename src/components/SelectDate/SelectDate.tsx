@@ -4,12 +4,12 @@ import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import DatePicker, { DatePickerProps } from "react-date-picker";
 
-import { useAppSelector } from "../../redux/hook";
-import { selectTranslations } from "../../redux/slices/I18next";
+import { useAppSelector } from "@/redux/hook";
+import { selectTranslations } from "@/redux/slices/I18next";
 
 interface SelectDateProps extends DatePickerProps {
-  value: any;
-  onChange: any;
+  value: string | Date;
+  onChange: (value: string | Date) => void;
 }
 
 export const SelectDate: React.FC<SelectDateProps> = ({

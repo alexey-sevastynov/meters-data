@@ -12,7 +12,7 @@ import { findPenultimateDate } from "../helpers/findPenultimateDate";
 export type ListInfoDataMonthType = {
   id: string;
   title: string;
-  description: string | number;
+  description: string;
   percentDifference: number;
 };
 

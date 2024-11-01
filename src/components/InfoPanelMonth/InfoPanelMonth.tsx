@@ -11,6 +11,7 @@ import { filterItemsByAddress } from "@/helpers/filterAndSortItemsByAddressAndDa
 import { removeFirstAddedMonth } from "@/helpers/removeFirstAddedMonth";
 import { DateRangeSelector } from "../DateRangeSelector/DateRangeSelector";
 import LinkButtonGroup from "../LinkButtonGroup/LinkButtonGroup";
+import { lastValueMeter } from "@/helpers/lastValueMeter";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;
@@ -28,25 +29,11 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   );
   const lang = useAppSelector(selectTranslations);
 
-  const lastValueMeter = (address: string) => {
-    switch (address) {
-      case "chelyuskina":
-        return infoMeterReading.chelyuskina;
-      case "slobozhansky-68a":
-        return infoMeterReading.slobozhansky;
-      case "antonovicha-73":
-        return infoMeterReading.antonovicha73;
-      case "antonovicha-75":
-        return infoMeterReading.antonovicha75;
-      case "antonovicha-75-3":
-        return infoMeterReading.antonovicha75_3;
-      default:
-        return null;
-    }
-  };
-
-  const lastValue = lastValueMeter(currentPage);
-  const selectedMonth: any = lastValue ? lastValue[0].description : "unknown";
+  const lastValue = lastValueMeter(infoMeterReading, currentPage);
+  console.log("lastValue", lastValue);
+  const selectedMonth: string = lastValue
+    ? lastValue[0].description
+    : "unknown";
   const month = selectedMonth.split(",")[0];
   const year = selectedMonth.split(",")[1];
 
