@@ -1,11 +1,13 @@
 import "../styles/pages/graphics.scss";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { LIST_NAV } from "../constants";
 import { formatDate } from "../helpers/formatDate";
 import { useAppSelector } from "../redux/hook";
 import { filterAndSortItemsByAddressAndDate } from "../helpers/filterAndSortItemsByAddressAndDate";
 import { Chart } from "../components/Chart/Chart";
-import { selectTranslations } from "../redux/slices/I18next";
+import { Breadcrumb } from "@/components/Breadcrumb/Breadcrumb";
+import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumbItems";
+import { ADDRESS_TYPES } from "@/constants/routes";
 
 export const Graphics = () => {
   const { address } = useParams();
@@ -17,12 +19,8 @@ export const Graphics = () => {
     items,
     addressCurrentPage
   );
-  const lang = useAppSelector(selectTranslations);
 
   const addressItem = LIST_NAV.find(({ link }) => link === `/${address}`);
-  const nameAddress = addressItem
-    ? lang.navigation[addressItem.key]
-    : "Unknown Address";
 
   const dataLight = [];
   const dataGas = [];
@@ -62,17 +60,29 @@ export const Graphics = () => {
   return (
     <div className="graphics">
       <div className="title">
-        <Link className="link" to={`/${address}`}>
-          {nameAddress}
-        </Link>
-        <p>/{lang.graphics["graphics"]}</p>
+        <Breadcrumb
+          items={getBreadcrumbItemsGraphics(
+            address!,
+            addressItem?.id,
+            `/${address}/${ADDRESS_TYPES.GRAPHICS}`
+          )}
+        />
 
         <div className="items">
-          <Chart data={dataLight} label={"Light"} />
-          <Chart data={dataGas} label={"Gas"} />
+          <Chart
+            data={dataLight}
+            label={"Light"}
+          />
+          <Chart
+            data={dataGas}
+            label={"Gas"}
+          />
 
           {dataWater.every((item) => item.water !== null) && (
-            <Chart data={dataWater} label={"Water"} />
+            <Chart
+              data={dataWater}
+              label={"Water"}
+            />
           )}
         </div>
       </div>

@@ -1,7 +1,7 @@
-@import "../mixins.scss";
-@import "../breakpoints.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/breakpoints.scss";
 
-.antonovicha73 {
+.address003 {
   @include layoutStyle;
   .title {
     @include titlePage;

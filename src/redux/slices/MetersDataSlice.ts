@@ -17,11 +17,11 @@ export type ListInfoDataMonthType = {
 };
 
 export type InfoMeterReadingType = {
-  chelyuskina: null | ListInfoDataMonthType[];
-  slobozhansky: null | ListInfoDataMonthType[];
-  antonovicha73: null | ListInfoDataMonthType[];
-  antonovicha75: null | ListInfoDataMonthType[];
-  antonovicha75_3: null | ListInfoDataMonthType[];
+  address_001: null | ListInfoDataMonthType[];
+  address_002: null | ListInfoDataMonthType[];
+  address_003: null | ListInfoDataMonthType[];
+  address_004: null | ListInfoDataMonthType[];
+  address_005: null | ListInfoDataMonthType[];
 };
 
 type ParamsMeterDataType = {
@@ -109,11 +109,11 @@ const initialState: IMetersDataSlice = {
   isEdit: false,
 
   infoMeterReading: {
-    chelyuskina: null,
-    slobozhansky: null,
-    antonovicha73: null,
-    antonovicha75: null,
-    antonovicha75_3: null,
+    address_001: null,
+    address_002: null,
+    address_003: null,
+    address_004: null,
+    address_005: null,
   },
 };
 
@@ -216,11 +216,11 @@ const MetersDataSlice = createSlice({
       }
 
       state.infoMeterReading = {
-        chelyuskina: setCurrentMetersDataPage("chelyuskina"),
-        slobozhansky: setCurrentMetersDataPage("slobozhansky-68a"),
-        antonovicha73: setCurrentMetersDataPage("antonovicha-73"),
-        antonovicha75: setCurrentMetersDataPage("antonovicha-75"),
-        antonovicha75_3: setCurrentMetersDataPage("antonovicha-75-3"),
+        address_001: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_001),
+        address_002: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_002),
+        address_003: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_003),
+        address_004: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_004),
+        address_005: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_005),
       };
     });
     builder.addCase(fetchAllMetersData.rejected, (state, action) => {

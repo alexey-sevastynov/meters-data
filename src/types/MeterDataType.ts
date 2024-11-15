@@ -1,9 +1,6 @@
-export type AddressType =
-  | "antonovicha-73"
-  | "antonovicha-75"
-  | "antonovicha-75-3"
-  | "slobozhansky-68a"
-  | "chelyuskina";
+import { ADDRESS } from "@/constants/address";
+
+export type AddressType = (typeof ADDRESS)[keyof typeof ADDRESS];
 
 export type MeterDataType = {
   _id: string;

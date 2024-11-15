@@ -1,3 +1,5 @@
+import { ROUTES } from "./constants/routes";
+
 export const API_URL = "https://meters-data-backend.vercel.app/";
 
 export const BREAK_POINTS = {
@@ -22,40 +24,40 @@ export const COLORS = {
 
 export const LIST_NAV = [
   {
-    link: "/",
+    link: ROUTES.HOME,
     id: "Home",
     imageName: "home.png",
     key: "home",
   },
   {
-    link: "/antonovicha-73",
-    id: "Volodymyr Antonovicha street, 73/8",
+    link: `/${import.meta.env.VITE_ADDR_003}`,
+    id: import.meta.env.VITE_ADDR_NAME_003,
     imageName: "73-8.svg",
     key: "volodymyrAntonovicha73",
   },
   {
-    link: "/antonovicha-75",
-    id: "Volodymyr Antonovicha street, 75/1",
+    link: `/${import.meta.env.VITE_ADDR_004}`,
+    id: import.meta.env.VITE_ADDR_NAME_004,
     imageName: "75-1.svg",
     key: "volodymyrAntonovicha75",
   },
   {
-    link: "/antonovicha-75-3",
-    id: "Volodymyr Antonovicha street, 75/3",
+    link: `/${import.meta.env.VITE_ADDR_005}`,
+    id: import.meta.env.VITE_ADDR_NAME_005,
     imageName: "75-3.svg",
     key: "volodymyrAntonovicha75_3",
   },
   {
-    link: "/slobozhansky-68a",
-    id: "Slobozhansky Avenue, 68A/63",
+    link: `/${import.meta.env.VITE_ADDR_002}`,
+    id: import.meta.env.VITE_ADDR_NAME_002,
     imageName: "68a-63.svg",
     key: "slobozhanskyAvenue",
   },
   {
-    link: "/chelyuskina",
-    id: "Chelyuskina street, 1/12",
+    link: `/${import.meta.env.VITE_ADDR_001}`,
+    id: import.meta.env.VITE_ADDR_NAME_001,
     imageName: "1-12.svg",
-    key: "chelyuskina",
+    key: import.meta.env.VITE_ADDR_001,
   },
 ];
 
