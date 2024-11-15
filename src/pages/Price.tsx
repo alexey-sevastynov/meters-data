@@ -1,22 +1,24 @@
 import { useEffect } from "react";
-import "../styles/pages/price.scss";
-import { Link, useParams } from "react-router-dom";
-import { LIST_NAV } from "../constants";
+import "@/styles/pages/price.scss";
+import { useParams } from "react-router-dom";
+import { LIST_NAV } from "@/constants";
 import {
   ExtraServicesForm,
   ListCategoriesWithPrices,
   MonthlyMoneyCalculations,
-} from "../ui/Price";
-import { useAppDispatch } from "../redux/hook";
-import { fetchAllServices } from "../redux/slices/ServicesSlice";
-import { fetchAllMonthlyMoneyCalculations } from "../redux/slices/PriceSlice";
+} from "@/ui/Price";
+import { useAppDispatch } from "@/redux/hook";
+import { fetchAllServices } from "@/redux/slices/ServicesSlice";
+import { fetchAllMonthlyMoneyCalculations } from "@/redux/slices/PriceSlice";
+import { Breadcrumb } from "@/components/Breadcrumb/Breadcrumb";
+import { getBreadcrumbItemsPrice } from "@/constants/breadcrumbItems";
+import { ADDRESS_TYPES } from "@/constants/routes";
 
 export const Price = () => {
   const { address } = useParams();
   const dispatch = useAppDispatch();
 
   const addressItem = LIST_NAV.find(({ link }) => link === `/${address}`);
-  const nameAddress = addressItem ? addressItem.id : "Unknown Address";
 
   useEffect(() => {
     dispatch(fetchAllServices());
@@ -26,10 +28,13 @@ export const Price = () => {
   return (
     <div className="price">
       <div className="title">
-        <Link className="link" to={`/${address}`}>
-          {nameAddress}
-        </Link>
-        <p>/price</p>
+        <Breadcrumb
+          items={getBreadcrumbItemsPrice(
+            address!,
+            addressItem?.id,
+            `/${address}/${ADDRESS_TYPES.PRICE}`
+          )}
+        />
       </div>
 
       <ExtraServicesForm dispatch={dispatch} />

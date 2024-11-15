@@ -1,9 +1,8 @@
-@import "../mixins.scss";
-@import "../breakpoints.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/breakpoints.scss";
 
-.slobozhansky {
+.address004 {
   @include layoutStyle;
-
   .title {
     @include titlePage;
   }

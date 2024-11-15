@@ -7,15 +7,15 @@ export const lastValueMeter = (
 ) => {
   switch (address) {
     case ADDRESS.ADDR_001:
-      return infoMeterReading.chelyuskina;
+      return infoMeterReading.address_001;
     case ADDRESS.ADDR_002:
-      return infoMeterReading.slobozhansky;
+      return infoMeterReading.address_002;
     case ADDRESS.ADDR_003:
-      return infoMeterReading.antonovicha73;
+      return infoMeterReading.address_003;
     case ADDRESS.ADDR_004:
-      return infoMeterReading.antonovicha75;
+      return infoMeterReading.address_004;
     case ADDRESS.ADDR_005:
-      return infoMeterReading.antonovicha75_3;
+      return infoMeterReading.address_005;
     default:
       return null;
   }

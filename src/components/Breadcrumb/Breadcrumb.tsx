@@ -9,6 +9,7 @@ import { isHomeRoute, isNotLastItem } from "./breadcrumb.function";
 import { BreadcrumbProps } from "./breadcrumb.type";
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
+  if (!items) return null;
   return (
     <nav className={Styles.breadcrumb}>
       {items.map((item, index) => {

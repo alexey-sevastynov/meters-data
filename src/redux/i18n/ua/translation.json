@@ -4,14 +4,6 @@
     "mail": "Привіт, alexseva94@gmail.com",
     "signOut": "Вийти"
   },
-  "navigation": {
-    "home": "Ціни на комунальні послуги",
-    "volodymyrAntonovicha73": "Володимира Антоновича, 73/8",
-    "volodymyrAntonovicha75": "Володимира Антоновича, 75/1",
-    "volodymyrAntonovicha75_3": "Володимира Антоновича, 75/3",
-    "slobozhanskyAvenue": "пр. Слобожанський, 68A/63",
-    "chelyuskina": "вул. Челюскіна, 1/12"
-  },
   "home": {
     "home": "Сюрпризові Відомості",
     "utilityPrices": "Ціни на комунальні послуги:",
