@@ -54,6 +54,7 @@ jobs:
           VITE_ADDR_NAME_003: ${{ secrets.VITE_ADDR_NAME_003 }}
           VITE_ADDR_NAME_004: ${{ secrets.VITE_ADDR_NAME_004 }}
           VITE_ADDR_NAME_005: ${{ secrets.VITE_ADDR_NAME_005 }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
