@@ -44,6 +44,16 @@ jobs:
           VITE_PASSWORD: ${{ secrets.VITE_PASSWORD }}
           VITE_TOKEN: ${{ secrets.VITE_TOKEN }}
           VITE_CHAD_ID: ${{ secrets.VITE_CHAD_ID }}
+          VITE_ADDR_001: ${{ secrets.VITE_ADDR_001 }}
+          VITE_ADDR_002: ${{ secrets.VITE_ADDR_002 }}
+          VITE_ADDR_003: ${{ secrets.VITE_ADDR_003 }}
+          VITE_ADDR_004: ${{ secrets.VITE_ADDR_004 }}
+          VITE_ADDR_005: ${{ secrets.VITE_ADDR_005 }}
+          VITE_ADDR_NAME_001: ${{ secrets.VITE_ADDR_NAME_001 }}
+          VITE_ADDR_NAME_002: ${{ secrets.VITE_ADDR_NAME_002 }}
+          VITE_ADDR_NAME_003: ${{ secrets.VITE_ADDR_NAME_003 }}
+          VITE_ADDR_NAME_004: ${{ secrets.VITE_ADDR_NAME_004 }}
+          VITE_ADDR_NAME_005: ${{ secrets.VITE_ADDR_NAME_005 }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

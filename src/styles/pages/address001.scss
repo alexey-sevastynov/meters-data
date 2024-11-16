@@ -1,7 +1,7 @@
-@import "../mixins.scss";
-@import "../breakpoints.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/breakpoints.scss";
 
-.cheluskina {
+.address001 {
   @include layoutStyle;
   .title {
     @include titlePage;

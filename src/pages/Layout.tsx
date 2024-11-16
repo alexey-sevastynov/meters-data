@@ -29,10 +29,16 @@ const Layout: React.FC<LayoutProps> = () => {
         closeMenu={closeMenu}
       />
       {isMobileView && !isOpenPopupWindow && (
-        <NavMenu closeMenu={closeMenu} isShowMenu={isShowMenu} />
+        <NavMenu
+          closeMenu={closeMenu}
+          isShowMenu={isShowMenu}
+        />
       )}
       {!isMobileView && (
-        <NavMenu closeMenu={closeMenu} isShowMenu={isShowMenu} />
+        <NavMenu
+          closeMenu={closeMenu}
+          isShowMenu={isShowMenu}
+        />
       )}
       <Outlet />
     </>

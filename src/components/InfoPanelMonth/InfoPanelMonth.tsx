@@ -30,16 +30,16 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
 
   const lastValueMeter = (address: string) => {
     switch (address) {
-      case "chelyuskina":
-        return infoMeterReading.chelyuskina;
-      case "slobozhansky-68a":
-        return infoMeterReading.slobozhansky;
-      case "antonovicha-73":
-        return infoMeterReading.antonovicha73;
-      case "antonovicha-75":
-        return infoMeterReading.antonovicha75;
-      case "antonovicha-75-3":
-        return infoMeterReading.antonovicha75_3;
+      case import.meta.env.VITE_ADDR_001:
+        return infoMeterReading.address_001;
+      case import.meta.env.VITE_ADDR_002:
+        return infoMeterReading.address_002;
+      case import.meta.env.VITE_ADDR_003:
+        return infoMeterReading.address_003;
+      case import.meta.env.VITE_ADDR_004:
+        return infoMeterReading.address_004;
+      case import.meta.env.VITE_ADDR_005:
+        return infoMeterReading.address_005;
       default:
         return null;
     }

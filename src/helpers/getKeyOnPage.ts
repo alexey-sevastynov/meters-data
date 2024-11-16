@@ -1,16 +1,18 @@
-import { AddressType } from "../types/MeterDataType";
+import { AddressType } from "@/types/MeterDataType";
 
 export function getKeyOnPage(address: AddressType) {
   switch (address) {
-    case "chelyuskina":
-      return "chelyuskina";
-    case "antonovicha-73":
-      return "antonovicha73";
-    case "antonovicha-75":
-      return "antonovicha75";
-    case "antonovicha-75-3":
-      return "antonovicha75_3";
-    case "slobozhansky-68a":
-      return "slobozhansky";
+    case import.meta.env.VITE_ADDR_001:
+      return "address_001";
+    case import.meta.env.VITE_ADDR_003:
+      return "address_003";
+    case import.meta.env.VITE_ADDR_004:
+      return "address_004";
+    case import.meta.env.VITE_ADDR_005:
+      return "address_005";
+    case import.meta.env.VITE_ADDR_002:
+      return "address_002";
+    default:
+      return "";
   }
 }

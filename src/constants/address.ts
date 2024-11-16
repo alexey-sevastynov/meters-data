@@ -1,17 +1,17 @@
 export const ADDRESS = {
   HOME: "home",
-  ADDR_001: "chelyuskina",
-  ADDR_002: "slobozhansky-68a",
-  ADDR_003: "antonovicha-73",
-  ADDR_004: "antonovicha-75",
-  ADDR_005: "antonovicha-75-3",
+  ADDR_001: import.meta.env.VITE_ADDR_001,
+  ADDR_002: import.meta.env.VITE_ADDR_002,
+  ADDR_003: import.meta.env.VITE_ADDR_003,
+  ADDR_004: import.meta.env.VITE_ADDR_004,
+  ADDR_005: import.meta.env.VITE_ADDR_005,
 } as const;
 
 export const ADDRESS_NAME = {
   HOME: "Home",
-  ADDR_001: "Chelyuskina street, 1/12",
-  ADDR_002: "Slobozhansky Avenue , 68A/63",
-  ADDR_003: "Volodymyr Antonovicha street, 73/8",
-  ADDR_004: "Volodymyr Antonovicha street, 75/1",
-  ADDR_005: "Volodymyr Antonovicha street, 75/3",
+  ADDR_001: import.meta.env.VITE_ADDR_NAME_001,
+  ADDR_002: import.meta.env.VITE_ADDR_NAME_002,
+  ADDR_003: import.meta.env.VITE_ADDR_NAME_003,
+  ADDR_004: import.meta.env.VITE_ADDR_NAME_004,
+  ADDR_005: import.meta.env.VITE_ADDR_NAME_005,
 } as const;
