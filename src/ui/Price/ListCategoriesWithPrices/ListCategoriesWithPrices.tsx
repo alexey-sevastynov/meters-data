@@ -27,11 +27,11 @@ export const ListCategoriesWithPrices: React.FC<
   ListCategoriesWithPricesProps
 > = ({ dispatch }) => {
   const { pathname } = useLocation();
-  console.log("pathname", pathname);
 
-  const currentPageName = pathname.replace(/^\/|\/price$/g, "") as AddressType;
-  console.log("currentPageName", currentPageName);
-  console.log("getKeyOnPage(currentPageName)", getKeyOnPage(currentPageName));
+  const currentPageName: AddressType = pathname.replace(
+    /^\/|\/price$/g,
+    ""
+  ) as AddressType;
 
   const currentItem = useAppSelector((props) => props.prices.currentItem);
   const sumMoney = useAppSelector((props) => props.prices.sumMoney);

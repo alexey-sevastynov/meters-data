@@ -1,6 +1,6 @@
-import { ROUTES } from "./constants/routes";
+import { ROUTES } from "@/constants/routes";
 
-export const API_URL = "https://meters-data-backend.vercel.app/";
+export const API_URL = import.meta.env.VITE_API_URL;
 
 export const BREAK_POINTS = {
   MOBILE_S: 350,
@@ -27,37 +27,31 @@ export const LIST_NAV = [
     link: ROUTES.HOME,
     id: "Home",
     imageName: "home.png",
-    key: "home",
   },
   {
     link: `/${import.meta.env.VITE_ADDR_003}`,
     id: import.meta.env.VITE_ADDR_NAME_003,
     imageName: "73-8.svg",
-    key: "volodymyrAntonovicha73",
   },
   {
     link: `/${import.meta.env.VITE_ADDR_004}`,
     id: import.meta.env.VITE_ADDR_NAME_004,
     imageName: "75-1.svg",
-    key: "volodymyrAntonovicha75",
   },
   {
     link: `/${import.meta.env.VITE_ADDR_005}`,
     id: import.meta.env.VITE_ADDR_NAME_005,
     imageName: "75-3.svg",
-    key: "volodymyrAntonovicha75_3",
   },
   {
     link: `/${import.meta.env.VITE_ADDR_002}`,
     id: import.meta.env.VITE_ADDR_NAME_002,
     imageName: "68a-63.svg",
-    key: "slobozhanskyAvenue",
   },
   {
     link: `/${import.meta.env.VITE_ADDR_001}`,
     id: import.meta.env.VITE_ADDR_NAME_001,
     imageName: "1-12.svg",
-    key: import.meta.env.VITE_ADDR_001,
   },
 ];
 
