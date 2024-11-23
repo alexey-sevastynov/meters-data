@@ -1,0 +1,36 @@
+@import "@/styles/colors.scss";
+
+.utilityAccount {
+  margin-top: 20px;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &_item {
+      display: flex;
+      gap: 10px;
+
+      &_content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &_value {
+          letter-spacing: 0.8px;
+        }
+
+        &_copy {
+          & svg {
+            color: $black;
+          }
+        }
+      }
+    }
+  }
+}

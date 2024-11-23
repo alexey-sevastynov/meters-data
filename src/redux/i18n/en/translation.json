@@ -73,5 +73,12 @@
   "metersData": {
     "Meter Reading Submission Form for the end of the month": "Meter Reading Submission Form for the end of the month",
     "Meter Reading Data Table by Months": "Meter Reading Data Table by Months"
+  },
+  "utilityAccount": {
+    "title": "Personal accounts",
+    "copy": "Copy",
+    "light": "Light",
+    "gas": "Gas",
+    "water": "Water"
   }
 }
