@@ -13,6 +13,7 @@ import { fetchAllMonthlyMoneyCalculations } from "@/redux/slices/PriceSlice";
 import { Breadcrumb } from "@/components/Breadcrumb/Breadcrumb";
 import { getBreadcrumbItemsPrice } from "@/constants/breadcrumbItems";
 import { ADDRESS_TYPES } from "@/constants/routes";
+import { UtilityAccount } from "@/components/UtilityAccount/UtilityAccount";
 
 export const Price = () => {
   const { address } = useParams();
@@ -36,6 +37,8 @@ export const Price = () => {
           )}
         />
       </div>
+
+      <UtilityAccount />
 
       <ExtraServicesForm dispatch={dispatch} />
       <div className="overflow-auto mt-40">
