@@ -5,33 +5,52 @@ export function groupAndSortItemsByYear(
   items: MeterDataType[],
   address: string
 ) {
-  const grouped: GroupedData = {};
+  const filteredItemsByAddress = getFilteredItemsByAddress(items, address);
+  const grouped = groupItemsByYear(filteredItemsByAddress);
 
-  items
-    .filter((item) => item.address === address)
-    .forEach((item) => {
-      const [month, year] = item.date.split(".").map(Number);
-      const date = new Date(year, month - 1, 1);
-      const yearString = date.getFullYear().toString();
-
-      if (!grouped[yearString]) {
-        grouped[yearString] = {
-          items: [],
-          isOpen: yearString === new Date().getFullYear().toString(),
-        };
-      }
-      grouped[yearString].items.push(item);
-    });
-
-  Object.keys(grouped).forEach((year) => {
-    grouped[year].items.sort((a, b) => {
-      const isCurrentYear = year === new Date().getFullYear().toString();
-
-      return isCurrentYear
-        ? compareDates(b.date, a.date)
-        : compareDates(a.date, b.date);
-    });
-  });
+  setLastYearAsOpen(grouped);
+  sortItemsByDate(grouped);
 
   return grouped;
+}
+
+function getFilteredItemsByAddress(items: MeterDataType[], address: string) {
+  return items.filter((item) => item.address === address);
+}
+
+function groupItemsByYear(items: MeterDataType[]) {
+  return items.reduce((grouped: GroupedData, item) => {
+    const yearString = getYearFromDate(item.date);
+
+    if (!grouped[yearString]) {
+      grouped[yearString] = {
+        items: [],
+        isOpen: false,
+      };
+    }
+
+    grouped[yearString].items.push(item);
+    return grouped;
+  }, {});
+}
+
+function setLastYearAsOpen(grouped: GroupedData) {
+  const years = Object.keys(grouped);
+  const lastYear = years[years.length - 1];
+
+  if (lastYear) {
+    grouped[lastYear].isOpen = true;
+  }
+}
+
+function sortItemsByDate(grouped: GroupedData) {
+  for (const year of Object.keys(grouped)) {
+    grouped[year].items.sort((a, b) => compareDates(a.date, b.date));
+  }
+}
+
+function getYearFromDate(dateString: string) {
+  const [month, year] = dateString.split(".").map(Number);
+  const date = new Date(year, month - 1, 1);
+  return date.getFullYear().toString();
 }
