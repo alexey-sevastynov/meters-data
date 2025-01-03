@@ -30,6 +30,7 @@ function groupItemsByYear(items: MeterDataType[]) {
     }
 
     grouped[yearString].items.push(item);
+
     return grouped;
   }, {});
 }
@@ -52,5 +53,6 @@ function sortItemsByDate(grouped: GroupedData) {
 function getYearFromDate(dateString: string) {
   const [month, year] = dateString.split(".").map(Number);
   const date = new Date(year, month - 1, 1);
+
   return date.getFullYear().toString();
 }
