@@ -9,4 +9,5 @@ export const errorMessage = {
     "Error in calculating the earliest month. Reason: {0}",
   removeFirstAddedMonthError:
     "Error in removeFirstAddedMonth function. Reason: {0}",
+  unknownFormatType: "Unknown format type: {0}",
 } as const;

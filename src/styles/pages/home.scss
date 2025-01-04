@@ -4,8 +4,16 @@
 .home {
   @include layoutStyle;
 
-  .title {
-    @include titlePage;
+  .title__block {
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+      @include titlePage;
+    }
+
+    .date {
+    }
   }
 
   .subtitle {

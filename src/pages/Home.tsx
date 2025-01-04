@@ -3,14 +3,28 @@ import "../styles/pages/home.scss";
 import { useAppSelector } from "../redux/hook";
 import { selectTranslations } from "../redux/slices/I18next";
 import { ListUtilityPrices } from "../ui/Home/ListUtilityPrices/ListUtilityPrices";
+import DateDisplay from "@/components/DateDisplay/DateDisplay";
 
 interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const Home: React.FC<HomeProps> = ({ ...props }) => {
   const lang = useAppSelector(selectTranslations);
+  const date = new Date();
+
   return (
-    <section className="home" {...props}>
-      <h3 className="title">{lang.home.home}</h3>
+    <section
+      className="home"
+      {...props}
+    >
+      <div className="title__block">
+        <h3 className="title">{lang.home.home}</h3>
+        <DateDisplay
+          date={date}
+          subTitle="Current date"
+          className="date"
+        />
+      </div>
+
       <p className="subtitle">{lang.home.utilityPrices}</p>
 
       <ListUtilityPrices />
