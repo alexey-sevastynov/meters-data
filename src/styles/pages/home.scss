@@ -4,8 +4,17 @@
 .home {
   @include layoutStyle;
 
-  .title {
-    @include titlePage;
+  .title__block {
+    display: flex;
+    column-gap: 50px;
+    row-gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .title {
+      @include titlePage;
+    }
   }
 
   .subtitle {
