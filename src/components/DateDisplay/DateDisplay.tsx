@@ -1,15 +1,18 @@
 import React from "react";
+import { enUS, uk } from "date-fns/locale";
 import { DateDisplayProps } from "./dateDisplay.interfaces";
 import { getFormattedDate } from "./dateDisplay.funcs";
-import { dateFormatKeys } from "./constants";
+import { dateFormatKeys, languages } from "./constants";
 
 const DateDisplay: React.FC<DateDisplayProps> = ({
   date,
   className,
   subTitle,
   formatType = dateFormatKeys.full,
+  language = languages.en,
 }) => {
-  const formattedDate = getFormattedDate(date, formatType);
+  const lang = language === languages.en ? enUS : uk;
+  const formattedDate = getFormattedDate(date, formatType, lang);
 
   return (
     <p className={className}>

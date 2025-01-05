@@ -9,7 +9,7 @@
     "utilityPrices": "Ціни на комунальні послуги:",
     "Light general": "Світло",
     "Light day": "Світло день",
-    "Light night": "Світло нічь",
+    "Light night": "Світло ніч",
     "Gas": "Газ",
     "Water": "Вода",
     "Fixed water": "Фіксована вода",
@@ -20,10 +20,11 @@
     "Intercom": "Домофон",
     "Internet Kyivstar": "Kyivstar",
     "Internet Soyuz T.": "Soyuz T.",
-    "Internet": "Інтеренет",
+    "Internet": "Інтернет",
     "Heating": "Опалення",
     "publish": "змінити",
-    "price": "ціна"
+    "price": "ціна",
+    "currentDate": "Поточна дата"
   },
   "value": {
     "kW": "кВт",
@@ -36,7 +37,7 @@
     "graphics": "Графіки",
     "Light general": "Світло",
     "Light day": "Світло день",
-    "Light night": "Світло нічь",
+    "Light night": "Світло ніч",
     "Gas General": "Газ",
     "Water general": "Вода",
     "date": "Дата",

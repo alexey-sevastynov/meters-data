@@ -23,7 +23,8 @@
     "Internet": "Internet",
     "Heating": "Heating",
     "publish": "publish",
-    "price": "price"
+    "price": "price",
+    "currentDate": "Current date"
   },
   "value": {
     "kW": "kW",

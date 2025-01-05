@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-
 import { Outlet } from "react-router-dom";
-import { Header } from "../components/Header/Header";
-import { NavMenu } from "../components/NavMenu/NavMenu";
-import { useAppDispatch, useAppSelector } from "../redux/hook";
-import useAdaptiveScreen from "../hooks/useAdaptiveScreen";
-import { BREAK_POINTS } from "../constants";
+import { Header } from "@/components/Header/Header";
+import { NavMenu } from "@/components/NavMenu/NavMenu";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
+import { BREAK_POINTS } from "@/constants";
 import { fetchAllAddressData } from "@/redux/slices/AddressDataSlice";
 
 interface LayoutProps {}
