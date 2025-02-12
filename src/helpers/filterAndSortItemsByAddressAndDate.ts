@@ -1,5 +1,5 @@
-import { MeterDataType } from "../types/MeterDataType";
-import { compareDates } from "./compareDates";
+import { MeterDataType } from "@/types/MeterDataType";
+import { sortByDateAsc } from "@/helpers/compareDates";
 
 export function filterAndSortItemsByAddressAndDate(
   items: MeterDataType[],
@@ -10,7 +10,7 @@ export function filterAndSortItemsByAddressAndDate(
 }
 
 export function sortItemsByDate(items: MeterDataType[]) {
-  return items.sort((a, b) => compareDates(a.date, b.date));
+  return items.sort((a, b) => sortByDateAsc(a, b));
 }
 
 export function filterItemsByAddress(

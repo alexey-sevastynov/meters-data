@@ -1,5 +1,5 @@
 import { GroupedData, MeterDataType } from "../types/MeterDataType";
-import { compareDates } from "./compareDates";
+import { sortByDateAsc, sortByDateDesc } from "@/helpers/compareDates";
 
 export function groupAndSortItemsByYear(
   items: MeterDataType[],
@@ -44,9 +44,20 @@ function setLastYearAsOpen(grouped: GroupedData) {
   }
 }
 
+function getSortOrder(year: string, lastYear: string) {
+  if (year === lastYear) {
+    return (a: MeterDataType, b: MeterDataType) => sortByDateDesc(a, b);
+  }
+
+  return (a: MeterDataType, b: MeterDataType) => sortByDateAsc(a, b);
+}
+
 function sortItemsByDate(grouped: GroupedData) {
-  for (const year of Object.keys(grouped)) {
-    grouped[year].items.sort((a, b) => compareDates(a.date, b.date));
+  const years = Object.keys(grouped);
+  const lastYear = years[years.length - 1];
+
+  for (const year of years) {
+    grouped[year].items.sort(getSortOrder(year, lastYear));
   }
 }
 
