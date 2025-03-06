@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Style from "./formDataMonth.module.scss";
-import { FaEdit, FaPlusCircle } from "react-icons/fa";
-import { SelectDate } from "@/components/SelectDate/SelectDate";
-import { Input } from "@/components/Input/Input";
-import { Button } from "@/ui/Button/Button";
+import { useLocation } from "react-router-dom";
+import { format, parse } from "date-fns";
+import Style from "@/ui/MetersData/FormDataMonth/formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   editMeterData,
@@ -11,19 +9,20 @@ import {
   fetchPostMetersData,
   setNotEdit,
 } from "@/redux/slices/MetersDataSlice";
-import { useLocation } from "react-router-dom";
-
-import { format, parse } from "date-fns";
 import { AddressType, MeterDataType } from "@/types/MeterDataType";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
-import { COLORS, LIST_NAV } from "@/constants";
-import { updateLocalStorageValues } from "../helpers/updateLocalStorageValue";
+import { updateLocalStorageValues } from "@/ui/MetersData/helpers/updateLocalStorageValue";
 import { selectTranslations } from "@/redux/slices/I18next";
-
 import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
 import { calculateSum } from "@/helpers/calculateTotal";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
+import {
+  generateMessage,
+  getNextMonthDate,
+  setDefaultValue,
+} from "@/ui/MetersData/FormDataMonth/formDataMonth.function";
+import { FormActions } from "@/ui/MetersData/FormDataMonth/FormActions/FormActions";
+import { FormControls } from "@/ui/MetersData/FormDataMonth/FormControls/FormControls";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -34,6 +33,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
 }) => {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
+  const [valueSelectDate, onChange] = useState<any>(new Date());
 
   const items = useAppSelector((props) => props.metersData.metersData.items);
   const isEdit = useAppSelector((props) => props.metersData.isEdit);
@@ -43,41 +43,33 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   const lang = useAppSelector(selectTranslations);
 
   const currentPage: AddressType = pathname.slice(1) as AddressType;
-
   const listCurrentPage = filterAndSortItemsByAddressAndDate(
     items,
     currentPage
   );
 
-  const [valueSelectDate, onChange] = useState<any>(new Date());
-
-  const setDefaultValue = (key: KeysItemUtilityPricesType): number => {
-    const localStorageValue = localStorage.getItem(
-      `metersData_${key}_${currentPage}`
-    );
-    if (localStorageValue !== null) {
-      return Number(localStorageValue);
+  useEffect(() => {
+    if (!isEdit) {
+      const nextMonth = getNextMonthDate(listCurrentPage);
+      onChange(nextMonth);
     }
+  }, []);
 
-    if (listCurrentPage.length > 0) {
-      const lastItem = listCurrentPage[listCurrentPage.length - 1][key];
-      if (typeof lastItem === "number") {
-        return lastItem;
-      } else {
-        return 0;
-      }
-    } else {
-      return 0;
-    }
-  };
-
-  const [light, setLight] = useState<number>(setDefaultValue("light"));
-  const [lightDay, setLightDay] = useState<number>(setDefaultValue("lightDay"));
-  const [lightNight, setLightNight] = useState<number>(
-    setDefaultValue("lightNight")
+  const [light, setLight] = useState<number>(() =>
+    setDefaultValue("light", currentPage, listCurrentPage)
   );
-  const [gas, setGas] = useState<number>(setDefaultValue("gas"));
-  const [water, setWater] = useState<number>(setDefaultValue("water"));
+  const [lightDay, setLightDay] = useState<number>(() =>
+    setDefaultValue("lightDay", currentPage, listCurrentPage)
+  );
+  const [lightNight, setLightNight] = useState<number>(() =>
+    setDefaultValue("lightNight", currentPage, listCurrentPage)
+  );
+  const [gas, setGas] = useState<number>(() =>
+    setDefaultValue("gas", currentPage, listCurrentPage)
+  );
+  const [water, setWater] = useState<number>(() =>
+    setDefaultValue("water", currentPage, listCurrentPage)
+  );
 
   useEffect(() => {
     const totalLight = calculateSum(Number(lightDay), Number(lightNight));
@@ -86,17 +78,6 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
 
   const parsedDate =
     meterDataEdit && parse(meterDataEdit?.date, "MM.yyyy", new Date());
-
-  // for telegram
-  let message = `<b>${
-    LIST_NAV.find((item) => item.link === `/${currentPage}`)?.id
-  }</b>`;
-  message += ` (${format(valueSelectDate, "MM.yyyy")})\n`;
-  message += `\u{1F4A1} Light: ${light} kWt\n`;
-  message += `\u{1F4A1}\u{1F31E} Light Day: ${lightDay} kWt\n`;
-  message += `\u{1F4A1}\u{1F319} Light Night: ${lightNight} kWt\n`;
-  message += `\u{1F525} Gas: ${gas} m³\n`;
-  message += water ? `\u{1F6BF} Water: ${water} m³\n` : "";
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -141,6 +122,16 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
             if (response.payload) {
               setTimeout(() => {
                 dispatch(fetchAllMetersData()).then(() => {
+                  const message = generateMessage(
+                    currentPage,
+                    valueSelectDate,
+                    light,
+                    lightDay,
+                    lightNight,
+                    gas,
+                    water
+                  );
+
                   sendMessageToTelegram(import.meta.env.VITE_CHAD_ID, message);
                 });
               }, 2500);
@@ -232,107 +223,32 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
       className={Style.formDataMonth}
       onSubmit={onSubmit}
     >
-      <div className={Style.inputs}>
-        <SelectDate
-          value={valueSelectDate}
-          onChange={onChange}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.light
-              : setDefaultValue("light")
-          }
-          labelText={lang.infoPanel["Light general"]}
-          value={light}
-          setValue={setLight}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.lightDay
-              : setDefaultValue("lightDay")
-          }
-          labelText={lang.infoPanel["Light day"]}
-          value={lightDay}
-          setValue={setLightDay}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.lightNight
-              : setDefaultValue("lightNight")
-          }
-          labelText={lang.infoPanel["Light night"]}
-          value={lightNight}
-          setValue={setLightNight}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.gas
-              : setDefaultValue("gas")
-          }
-          labelText={lang.infoPanel["Gas General"]}
-          value={gas}
-          setValue={setGas}
-        />
-        {isWaterBlock && (
-          <Input
-            className={Style.input}
-            style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-            labelTextBold
-            defaultValue={
-              isEdit && meterDataEdit
-                ? meterDataEdit?.water || 0
-                : setDefaultValue("water")
-            }
-            labelText={lang.infoPanel["Water general"]}
-            value={water}
-            setValue={setWater}
-          />
-        )}
-      </div>
+      <FormControls
+        isWaterBlock={isWaterBlock}
+        valueSelectDate={valueSelectDate}
+        onChange={onChange}
+        light={light}
+        setLight={setLight}
+        lightDay={lightDay}
+        setLightDay={setLightDay}
+        lightNight={lightNight}
+        setLightNight={setLightNight}
+        water={water}
+        setWater={setWater}
+        gas={gas}
+        setGas={setGas}
+        isEdit={isEdit}
+        meterDataEdit={meterDataEdit}
+        currentPage={currentPage}
+        listCurrentPage={listCurrentPage}
+        lang={lang}
+      />
 
-      <div className={Style.btns}>
-        {isEdit && (
-          <Button
-            type="button"
-            style={{ backgroundColor: COLORS.red }}
-            onClick={() => dispatch(setNotEdit())}
-          >
-            {lang.btn["cancel"]}
-          </Button>
-        )}
-
-        {isEdit ? (
-          <Button
-            type="submit"
-            icon={<FaEdit size={SIZE_ICONS.medium} />}
-          >
-            {lang.btn["edit"]}
-          </Button>
-        ) : (
-          <Button
-            type="submit"
-            icon={<FaPlusCircle size={SIZE_ICONS.medium} />}
-          >
-            {lang.btn["add"]}
-          </Button>
-        )}
-      </div>
+      <FormActions
+        isEdit={isEdit}
+        dispatch={dispatch}
+        lang={lang}
+      />
     </form>
   );
 };
