@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { format, parse } from "date-fns";
 import Style from "@/ui/MetersData/FormDataMonth/formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
@@ -10,7 +9,6 @@ import {
   setNotEdit,
 } from "@/redux/slices/MetersDataSlice";
 import { AddressType, MeterDataType } from "@/types/MeterDataType";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
 import { updateLocalStorageValues } from "@/ui/MetersData/helpers/updateLocalStorageValue";
 import { selectTranslations } from "@/redux/slices/I18next";
@@ -26,53 +24,55 @@ import { FormControls } from "@/ui/MetersData/FormDataMonth/FormControls/FormCon
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
+  sortedAddressMeterData: MeterDataType[];
+  pathname: string;
+  addressPath: AddressType;
 }
 
-export const FormDataMonth: React.FC<FormDataMonthProps> = ({
+export function FormDataMonth({
   isWaterBlock,
-}) => {
-  const { pathname } = useLocation();
+  sortedAddressMeterData,
+  pathname,
+  addressPath,
+}: FormDataMonthProps) {
   const dispatch = useAppDispatch();
-  const [valueSelectDate, onChange] = useState<any>(new Date());
+  const [valueSelectDate, onChange] = useState<any>(
+    getNextMonthDate(sortedAddressMeterData)
+  );
 
-  const items = useAppSelector((props) => props.metersData.metersData.items);
   const isEdit = useAppSelector((props) => props.metersData.isEdit);
   const meterDataEdit = useAppSelector(
     (props) => props.metersData.meterDataEdit
   );
   const lang = useAppSelector(selectTranslations);
 
-  const currentPage: AddressType = pathname.slice(1) as AddressType;
-  const listCurrentPage = filterAndSortItemsByAddressAndDate(
-    items,
-    currentPage
-  );
-
   useEffect(() => {
     if (!isEdit) {
-      const nextMonth = getNextMonthDate(listCurrentPage);
+      const nextMonth = getNextMonthDate(sortedAddressMeterData);
+
       onChange(nextMonth);
     }
-  }, []);
+  }, [sortedAddressMeterData, isEdit]);
 
   const [light, setLight] = useState<number>(() =>
-    setDefaultValue("light", currentPage, listCurrentPage)
+    setDefaultValue("light", addressPath, sortedAddressMeterData)
   );
   const [lightDay, setLightDay] = useState<number>(() =>
-    setDefaultValue("lightDay", currentPage, listCurrentPage)
+    setDefaultValue("lightDay", addressPath, sortedAddressMeterData)
   );
   const [lightNight, setLightNight] = useState<number>(() =>
-    setDefaultValue("lightNight", currentPage, listCurrentPage)
+    setDefaultValue("lightNight", addressPath, sortedAddressMeterData)
   );
   const [gas, setGas] = useState<number>(() =>
-    setDefaultValue("gas", currentPage, listCurrentPage)
+    setDefaultValue("gas", addressPath, sortedAddressMeterData)
   );
   const [water, setWater] = useState<number>(() =>
-    setDefaultValue("water", currentPage, listCurrentPage)
+    setDefaultValue("water", addressPath, sortedAddressMeterData)
   );
 
   useEffect(() => {
     const totalLight = calculateSum(Number(lightDay), Number(lightNight));
+
     setLight(totalLight);
   }, [lightDay, lightNight]);
 
@@ -84,7 +84,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
 
     const formData = {
       date: format(valueSelectDate, "MM.yyyy"),
-      address: currentPage,
+      address: addressPath,
       light,
       lightDay,
       lightNight,
@@ -92,7 +92,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
       water: water || 0,
     };
 
-    const isUniqueDate = !listCurrentPage.some(
+    const isUniqueDate = !sortedAddressMeterData.some(
       (item: MeterDataType) =>
         item.date === formData.date && meterDataEdit?.date !== formData.date
     );
@@ -111,7 +111,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     }
 
     if (isEdit === false) {
-      const isDateAlreadyExists = listCurrentPage.some(
+      const isDateAlreadyExists = sortedAddressMeterData.some(
         (item: MeterDataType) =>
           item.date === format(valueSelectDate, "MM.yyyy")
       );
@@ -123,7 +123,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
               setTimeout(() => {
                 dispatch(fetchAllMetersData()).then(() => {
                   const message = generateMessage(
-                    currentPage,
+                    addressPath,
                     valueSelectDate,
                     light,
                     lightDay,
@@ -144,7 +144,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     }
 
     updateLocalStorageValues(
-      currentPage,
+      addressPath,
       light,
       lightDay,
       lightNight,
@@ -156,9 +156,9 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   useEffect(() => {
     dispatch(fetchAllMetersData());
 
-    if (currentPage && listCurrentPage.length > 0) {
+    if (addressPath && sortedAddressMeterData.length > 0) {
       updateLocalStorageValues(
-        currentPage,
+        addressPath,
         light,
         lightDay,
         lightNight,
@@ -189,9 +189,11 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   }, [isEdit]);
 
   useEffect(() => {
-    if (listCurrentPage.length > 0) {
+    if (sortedAddressMeterData.length > 0) {
       const setDefaultValue = (key: KeysItemUtilityPricesType) => {
-        return listCurrentPage[listCurrentPage.length - 1][key] || 0;
+        return (
+          sortedAddressMeterData[sortedAddressMeterData.length - 1][key] || 0
+        );
       };
 
       if (!isEdit) {
@@ -201,12 +203,12 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         setGas(setDefaultValue("gas"));
         setWater(setDefaultValue("water"));
         updateLocalStorageValues(
-          currentPage,
-          listCurrentPage[listCurrentPage.length - 1].light,
-          listCurrentPage[listCurrentPage.length - 1].lightDay,
-          listCurrentPage[listCurrentPage.length - 1].lightNight,
-          listCurrentPage[listCurrentPage.length - 1].gas,
-          listCurrentPage[listCurrentPage.length - 1].water
+          addressPath,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].light,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].lightDay,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].lightNight,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].gas,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].water
         );
       }
     }
@@ -239,8 +241,8 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         setGas={setGas}
         isEdit={isEdit}
         meterDataEdit={meterDataEdit}
-        currentPage={currentPage}
-        listCurrentPage={listCurrentPage}
+        currentPage={addressPath}
+        sortedAddressMeterData={sortedAddressMeterData}
         lang={lang}
       />
 
@@ -251,4 +253,4 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
       />
     </form>
   );
-};
+}

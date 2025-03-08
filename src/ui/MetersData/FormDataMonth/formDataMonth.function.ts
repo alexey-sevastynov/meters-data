@@ -2,7 +2,7 @@ import { addMonths, format, parse } from "date-fns";
 import { LIST_NAV } from "@/constants";
 import { sortItemsByDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
-import { MeterDataType } from "@/types/MeterDataType";
+import { AddressType, MeterDataType } from "@/types/MeterDataType";
 
 export function getNextMonthDate(items: MeterDataType[]) {
   if (items.length === 0) return new Date();
@@ -16,7 +16,7 @@ export function getNextMonthDate(items: MeterDataType[]) {
 
 export function setDefaultValue(
   key: KeysItemUtilityPricesType,
-  currentPage: number,
+  currentPage: AddressType,
   listCurrentPage: MeterDataType[]
 ) {
   const localStorageValue = localStorage.getItem(

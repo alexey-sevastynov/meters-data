@@ -29,7 +29,7 @@ export function createInputFields({
   setLightNight,
   gas,
   setGas,
-}: InputFieldsParams) {
+}: InputFieldsParams): InputField[] {
   return [
     {
       key: "light",

@@ -11,7 +11,7 @@ interface MeterInputsListProps {
   isEdit: boolean;
   meterDataEdit: MeterDataType | null;
   currentPage: number;
-  listCurrentPage: MeterDataType[];
+  sortedAddressMeterData: MeterDataType[];
   isWaterBlock: boolean;
   lang: any;
   water: number;
@@ -23,7 +23,7 @@ export function MeterInputsList({
   isEdit,
   meterDataEdit,
   currentPage,
-  listCurrentPage,
+  sortedAddressMeterData,
   isWaterBlock,
   lang,
   water,
@@ -41,7 +41,7 @@ export function MeterInputsList({
           value={value}
           setValue={setValue}
           currentPage={currentPage}
-          listCurrentPage={listCurrentPage}
+          sortedAddressMeterData={sortedAddressMeterData}
           className={Style.input}
         />
       ))}
@@ -54,7 +54,7 @@ export function MeterInputsList({
           defaultValue={
             isEdit && meterDataEdit
               ? meterDataEdit?.water || 0
-              : setDefaultValue("water", currentPage, listCurrentPage)
+              : setDefaultValue("water", currentPage, sortedAddressMeterData)
           }
           labelText={lang.infoPanel["Water general"]}
           value={water}

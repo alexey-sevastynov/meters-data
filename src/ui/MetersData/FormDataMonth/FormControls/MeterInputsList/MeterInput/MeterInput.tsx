@@ -12,7 +12,7 @@ interface MeterInputProps {
   value: number;
   setValue: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
-  listCurrentPage: MeterDataType[];
+  sortedAddressMeterData: MeterDataType[];
   className: string;
 }
 
@@ -24,7 +24,7 @@ export function MeterInput({
   value,
   setValue,
   currentPage,
-  listCurrentPage,
+  sortedAddressMeterData,
   className,
 }: MeterInputProps) {
   return (
@@ -35,7 +35,7 @@ export function MeterInput({
       defaultValue={
         isEdit && meterDataEdit
           ? Number(meterDataEdit?.[fieldKey])
-          : setDefaultValue(fieldKey, currentPage, listCurrentPage)
+          : setDefaultValue(fieldKey, currentPage, sortedAddressMeterData)
       }
       labelText={labelText}
       value={value}

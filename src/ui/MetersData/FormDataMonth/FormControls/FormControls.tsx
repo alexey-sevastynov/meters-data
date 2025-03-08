@@ -21,7 +21,7 @@ export function FormControls({
   isEdit,
   meterDataEdit,
   currentPage,
-  listCurrentPage,
+  sortedAddressMeterData,
   lang,
 }: FormControlsProps) {
   const inputFields = createInputFields({
@@ -48,7 +48,7 @@ export function FormControls({
         isEdit={isEdit}
         meterDataEdit={meterDataEdit}
         currentPage={currentPage}
-        listCurrentPage={listCurrentPage}
+        sortedAddressMeterData={sortedAddressMeterData}
         isWaterBlock={isWaterBlock}
         lang={lang}
         water={water}

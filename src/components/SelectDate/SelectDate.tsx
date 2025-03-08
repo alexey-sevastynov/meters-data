@@ -1,22 +1,17 @@
-import React from "react";
-import Style from "./selectDate.module.scss";
+import Style from "@/components/SelectDate/selectDate.module.scss";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import DatePicker, { DatePickerProps } from "react-date-picker";
 
-import { useAppSelector } from "../../redux/hook";
-import { selectTranslations } from "../../redux/slices/I18next";
+import { useAppSelector } from "@/redux/hook";
+import { selectTranslations } from "@/redux/slices/I18next";
 
 interface SelectDateProps extends DatePickerProps {
   value: any;
   onChange: any;
 }
 
-export const SelectDate: React.FC<SelectDateProps> = ({
-  value,
-  onChange,
-  ...props
-}) => {
+export function SelectDate({ value, onChange, ...props }: SelectDateProps) {
   const isEdit = useAppSelector((props) => props.metersData.isEdit);
   const language = useAppSelector((props) => props.i18n.lang);
   const lang = useAppSelector(selectTranslations);
@@ -38,4 +33,4 @@ export const SelectDate: React.FC<SelectDateProps> = ({
       />
     </div>
   );
-};
+}

@@ -16,7 +16,6 @@ export const Input: React.FC<InputProps> = ({
   defaultValue = 0,
   labelText = "Price",
   labelTextBold,
-  id,
   value,
   type = "number",
   setValue,

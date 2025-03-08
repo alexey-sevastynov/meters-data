@@ -17,6 +17,6 @@ export interface FormControlsProps {
   isEdit: boolean;
   meterDataEdit: MeterDataType | null;
   currentPage: number;
-  listCurrentPage: MeterDataType[];
+  sortedAddressMeterData: MeterDataType[];
   lang: any;
 }
