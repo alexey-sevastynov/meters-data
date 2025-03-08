@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Style from "./formDataMonth.module.scss";
-import { FaEdit, FaPlusCircle } from "react-icons/fa";
-import { SelectDate } from "@/components/SelectDate/SelectDate";
-import { Input } from "@/components/Input/Input";
-import { Button } from "@/ui/Button/Button";
+import { format, parse } from "date-fns";
+import Style from "@/ui/MetersData/FormDataMonth/formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
   editMeterData,
@@ -11,99 +8,83 @@ import {
   fetchPostMetersData,
   setNotEdit,
 } from "@/redux/slices/MetersDataSlice";
-import { useLocation } from "react-router-dom";
-
-import { format, parse } from "date-fns";
 import { AddressType, MeterDataType } from "@/types/MeterDataType";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
-import { COLORS, LIST_NAV } from "@/constants";
-import { updateLocalStorageValues } from "../helpers/updateLocalStorageValue";
+import { updateLocalStorageValues } from "@/ui/MetersData/helpers/updateLocalStorageValue";
 import { selectTranslations } from "@/redux/slices/I18next";
-
 import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
 import { calculateSum } from "@/helpers/calculateTotal";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
+import {
+  generateMessage,
+  getNextMonthDate,
+  setDefaultValue,
+} from "@/ui/MetersData/FormDataMonth/formDataMonth.function";
+import { FormActions } from "@/ui/MetersData/FormDataMonth/FormActions/FormActions";
+import { FormControls } from "@/ui/MetersData/FormDataMonth/FormControls/FormControls";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
+  sortedAddressMeterData: MeterDataType[];
+  pathname: string;
+  addressPath: AddressType;
 }
 
-export const FormDataMonth: React.FC<FormDataMonthProps> = ({
+export function FormDataMonth({
   isWaterBlock,
-}) => {
-  const { pathname } = useLocation();
+  sortedAddressMeterData,
+  pathname,
+  addressPath,
+}: FormDataMonthProps) {
   const dispatch = useAppDispatch();
+  const [valueSelectDate, onChange] = useState<any>(
+    getNextMonthDate(sortedAddressMeterData)
+  );
 
-  const items = useAppSelector((props) => props.metersData.metersData.items);
   const isEdit = useAppSelector((props) => props.metersData.isEdit);
   const meterDataEdit = useAppSelector(
     (props) => props.metersData.meterDataEdit
   );
   const lang = useAppSelector(selectTranslations);
 
-  const currentPage: AddressType = pathname.slice(1) as AddressType;
+  useEffect(() => {
+    if (!isEdit) {
+      const nextMonth = getNextMonthDate(sortedAddressMeterData);
 
-  const listCurrentPage = filterAndSortItemsByAddressAndDate(
-    items,
-    currentPage
-  );
-
-  const [valueSelectDate, onChange] = useState<any>(new Date());
-
-  const setDefaultValue = (key: KeysItemUtilityPricesType): number => {
-    const localStorageValue = localStorage.getItem(
-      `metersData_${key}_${currentPage}`
-    );
-    if (localStorageValue !== null) {
-      return Number(localStorageValue);
+      onChange(nextMonth);
     }
+  }, [sortedAddressMeterData, isEdit]);
 
-    if (listCurrentPage.length > 0) {
-      const lastItem = listCurrentPage[listCurrentPage.length - 1][key];
-      if (typeof lastItem === "number") {
-        return lastItem;
-      } else {
-        return 0;
-      }
-    } else {
-      return 0;
-    }
-  };
-
-  const [light, setLight] = useState<number>(setDefaultValue("light"));
-  const [lightDay, setLightDay] = useState<number>(setDefaultValue("lightDay"));
-  const [lightNight, setLightNight] = useState<number>(
-    setDefaultValue("lightNight")
+  const [light, setLight] = useState<number>(() =>
+    setDefaultValue("light", addressPath, sortedAddressMeterData)
   );
-  const [gas, setGas] = useState<number>(setDefaultValue("gas"));
-  const [water, setWater] = useState<number>(setDefaultValue("water"));
+  const [lightDay, setLightDay] = useState<number>(() =>
+    setDefaultValue("lightDay", addressPath, sortedAddressMeterData)
+  );
+  const [lightNight, setLightNight] = useState<number>(() =>
+    setDefaultValue("lightNight", addressPath, sortedAddressMeterData)
+  );
+  const [gas, setGas] = useState<number>(() =>
+    setDefaultValue("gas", addressPath, sortedAddressMeterData)
+  );
+  const [water, setWater] = useState<number>(() =>
+    setDefaultValue("water", addressPath, sortedAddressMeterData)
+  );
 
   useEffect(() => {
     const totalLight = calculateSum(Number(lightDay), Number(lightNight));
+
     setLight(totalLight);
   }, [lightDay, lightNight]);
 
   const parsedDate =
     meterDataEdit && parse(meterDataEdit?.date, "MM.yyyy", new Date());
 
-  // for telegram
-  let message = `<b>${
-    LIST_NAV.find((item) => item.link === `/${currentPage}`)?.id
-  }</b>`;
-  message += ` (${format(valueSelectDate, "MM.yyyy")})\n`;
-  message += `\u{1F4A1} Light: ${light} kWt\n`;
-  message += `\u{1F4A1}\u{1F31E} Light Day: ${lightDay} kWt\n`;
-  message += `\u{1F4A1}\u{1F319} Light Night: ${lightNight} kWt\n`;
-  message += `\u{1F525} Gas: ${gas} m³\n`;
-  message += water ? `\u{1F6BF} Water: ${water} m³\n` : "";
-
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {
       date: format(valueSelectDate, "MM.yyyy"),
-      address: currentPage,
+      address: addressPath,
       light,
       lightDay,
       lightNight,
@@ -111,7 +92,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
       water: water || 0,
     };
 
-    const isUniqueDate = !listCurrentPage.some(
+    const isUniqueDate = !sortedAddressMeterData.some(
       (item: MeterDataType) =>
         item.date === formData.date && meterDataEdit?.date !== formData.date
     );
@@ -130,7 +111,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     }
 
     if (isEdit === false) {
-      const isDateAlreadyExists = listCurrentPage.some(
+      const isDateAlreadyExists = sortedAddressMeterData.some(
         (item: MeterDataType) =>
           item.date === format(valueSelectDate, "MM.yyyy")
       );
@@ -141,6 +122,16 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
             if (response.payload) {
               setTimeout(() => {
                 dispatch(fetchAllMetersData()).then(() => {
+                  const message = generateMessage(
+                    addressPath,
+                    valueSelectDate,
+                    light,
+                    lightDay,
+                    lightNight,
+                    gas,
+                    water
+                  );
+
                   sendMessageToTelegram(import.meta.env.VITE_CHAD_ID, message);
                 });
               }, 2500);
@@ -153,7 +144,7 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
     }
 
     updateLocalStorageValues(
-      currentPage,
+      addressPath,
       light,
       lightDay,
       lightNight,
@@ -165,9 +156,9 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   useEffect(() => {
     dispatch(fetchAllMetersData());
 
-    if (currentPage && listCurrentPage.length > 0) {
+    if (addressPath && sortedAddressMeterData.length > 0) {
       updateLocalStorageValues(
-        currentPage,
+        addressPath,
         light,
         lightDay,
         lightNight,
@@ -198,9 +189,11 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
   }, [isEdit]);
 
   useEffect(() => {
-    if (listCurrentPage.length > 0) {
+    if (sortedAddressMeterData.length > 0) {
       const setDefaultValue = (key: KeysItemUtilityPricesType) => {
-        return listCurrentPage[listCurrentPage.length - 1][key] || 0;
+        return (
+          sortedAddressMeterData[sortedAddressMeterData.length - 1][key] || 0
+        );
       };
 
       if (!isEdit) {
@@ -210,12 +203,12 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
         setGas(setDefaultValue("gas"));
         setWater(setDefaultValue("water"));
         updateLocalStorageValues(
-          currentPage,
-          listCurrentPage[listCurrentPage.length - 1].light,
-          listCurrentPage[listCurrentPage.length - 1].lightDay,
-          listCurrentPage[listCurrentPage.length - 1].lightNight,
-          listCurrentPage[listCurrentPage.length - 1].gas,
-          listCurrentPage[listCurrentPage.length - 1].water
+          addressPath,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].light,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].lightDay,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].lightNight,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].gas,
+          sortedAddressMeterData[sortedAddressMeterData.length - 1].water
         );
       }
     }
@@ -232,107 +225,32 @@ export const FormDataMonth: React.FC<FormDataMonthProps> = ({
       className={Style.formDataMonth}
       onSubmit={onSubmit}
     >
-      <div className={Style.inputs}>
-        <SelectDate
-          value={valueSelectDate}
-          onChange={onChange}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.light
-              : setDefaultValue("light")
-          }
-          labelText={lang.infoPanel["Light general"]}
-          value={light}
-          setValue={setLight}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.lightDay
-              : setDefaultValue("lightDay")
-          }
-          labelText={lang.infoPanel["Light day"]}
-          value={lightDay}
-          setValue={setLightDay}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.lightNight
-              : setDefaultValue("lightNight")
-          }
-          labelText={lang.infoPanel["Light night"]}
-          value={lightNight}
-          setValue={setLightNight}
-        />
-        <Input
-          className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-          labelTextBold
-          defaultValue={
-            isEdit && meterDataEdit
-              ? meterDataEdit?.gas
-              : setDefaultValue("gas")
-          }
-          labelText={lang.infoPanel["Gas General"]}
-          value={gas}
-          setValue={setGas}
-        />
-        {isWaterBlock && (
-          <Input
-            className={Style.input}
-            style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
-            labelTextBold
-            defaultValue={
-              isEdit && meterDataEdit
-                ? meterDataEdit?.water || 0
-                : setDefaultValue("water")
-            }
-            labelText={lang.infoPanel["Water general"]}
-            value={water}
-            setValue={setWater}
-          />
-        )}
-      </div>
+      <FormControls
+        isWaterBlock={isWaterBlock}
+        valueSelectDate={valueSelectDate}
+        onChange={onChange}
+        light={light}
+        setLight={setLight}
+        lightDay={lightDay}
+        setLightDay={setLightDay}
+        lightNight={lightNight}
+        setLightNight={setLightNight}
+        water={water}
+        setWater={setWater}
+        gas={gas}
+        setGas={setGas}
+        isEdit={isEdit}
+        meterDataEdit={meterDataEdit}
+        currentPage={addressPath}
+        sortedAddressMeterData={sortedAddressMeterData}
+        lang={lang}
+      />
 
-      <div className={Style.btns}>
-        {isEdit && (
-          <Button
-            type="button"
-            style={{ backgroundColor: COLORS.red }}
-            onClick={() => dispatch(setNotEdit())}
-          >
-            {lang.btn["cancel"]}
-          </Button>
-        )}
-
-        {isEdit ? (
-          <Button
-            type="submit"
-            icon={<FaEdit size={SIZE_ICONS.medium} />}
-          >
-            {lang.btn["edit"]}
-          </Button>
-        ) : (
-          <Button
-            type="submit"
-            icon={<FaPlusCircle size={SIZE_ICONS.medium} />}
-          >
-            {lang.btn["add"]}
-          </Button>
-        )}
-      </div>
+      <FormActions
+        isEdit={isEdit}
+        dispatch={dispatch}
+        lang={lang}
+      />
     </form>
   );
-};
+}
