@@ -5,6 +5,7 @@ import { MeterDataType } from "@/types/MeterDataType";
 import { Input } from "@/components/Input/Input";
 import { COLORS } from "@/constants";
 import { setDefaultValue } from "@/ui/MetersData/FormDataMonth/formDataMonth.function";
+import { TranslationKeys } from "@/types/I18nextTypes";
 
 interface MeterInputsListProps {
   items: InputField[];
@@ -13,7 +14,7 @@ interface MeterInputsListProps {
   currentPage: number;
   sortedAddressMeterData: MeterDataType[];
   isWaterBlock: boolean;
-  lang: any;
+  lang: TranslationKeys;
   water: number;
   setWater: React.Dispatch<React.SetStateAction<number>>;
 }

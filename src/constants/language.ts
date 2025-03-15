@@ -5,3 +5,5 @@ export enum language {
   ua = "UA",
   en = "EN",
 }
+
+export const langKey = "lang" as const;

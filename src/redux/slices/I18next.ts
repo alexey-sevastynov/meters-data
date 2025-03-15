@@ -1,28 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import englishTranslate from "../i18n/en/translation.json";
-import ukraineTranslate from "../i18n/ua/translation.json";
-import { defaultLang, supportedLangs } from "../i18n/config";
+import englishTranslate from "@/redux/i18n/en/translation.json";
+import ukraineTranslate from "@/redux/i18n/ua/translation.json";
+import { defaultLang, supportedLangs } from "@/redux/i18n/config";
+import { RootState } from "@/redux/store";
+import { SupportedLang, TranslationsByLang } from "@/types/I18nextTypes";
+import { langKey } from "@/constants/language";
 
-export interface Lang {
-  value: {
-    [key: string]: string;
-  };
+interface I18nState {
+  lang: SupportedLang;
+  supportedLangs: typeof supportedLangs;
+  translations: TranslationsByLang;
 }
 
-interface i18n {
-  lang: string;
-  supportedLangs: {};
-  translations: any;
+function getInitialLang() {
+  const storedLang = localStorage.getItem(langKey);
+
+  if (!storedLang) return defaultLang;
+
+  return storedLang as SupportedLang;
 }
 
-// Function to get initial language from local storage
-const getInitialLang = (): string => {
-  const storedLang = localStorage.getItem("lang");
-  return storedLang || defaultLang;
-};
-
-const initialState: i18n = {
+const initialState: I18nState = {
   lang: getInitialLang(),
   supportedLangs: { ...supportedLangs },
   translations: {
@@ -35,17 +34,16 @@ const i18nSlice = createSlice({
   name: "i18n",
   initialState,
   reducers: {
-    setLang: (state, action: PayloadAction<string>) => {
-      // Update language in state
+    setLang: (state, action: PayloadAction<SupportedLang>) => {
       state.lang = action.payload;
-      // Save language to local storage
-      localStorage.setItem("lang", action.payload);
+      localStorage.setItem(langKey, action.payload);
     },
   },
 });
+
 export const { setLang } = i18nSlice.actions;
 
-export const selectTranslations = (state: any) =>
+export const selectTranslations = (state: RootState) =>
   state.i18n.translations[state.i18n.lang];
 
 export const i18nReducer = i18nSlice.reducer;
