@@ -1,3 +1,4 @@
+import { TranslationKeys } from "@/types/I18nextTypes";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
 
 export interface InputField {
@@ -8,7 +9,7 @@ export interface InputField {
 }
 
 interface InputFieldsParams {
-  lang: any;
+  lang: TranslationKeys;
   light: number;
   setLight: React.Dispatch<React.SetStateAction<number>>;
   lightDay: number;

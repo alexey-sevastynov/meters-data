@@ -5,11 +5,12 @@ import { COLORS } from "@/constants";
 import { FaEdit, FaPlusCircle } from "react-icons/fa";
 import { SIZE_ICONS } from "@/constants/sizeIcons";
 import { AppDispatch } from "@/redux/store";
+import { TranslationsByLang } from "@/types/I18nextTypes";
 
 interface FormActionsProps {
   isEdit: boolean;
   dispatch: AppDispatch;
-  lang: any;
+  lang: TranslationsByLang;
 }
 
 export function FormActions({ isEdit, dispatch, lang }: FormActionsProps) {
