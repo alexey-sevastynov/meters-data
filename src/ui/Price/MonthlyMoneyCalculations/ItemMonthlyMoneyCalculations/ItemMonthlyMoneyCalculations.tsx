@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Style from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { Button } from "@/ui/Button/Button";
 import { COLORS } from "@/constants";
 import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
-import {
-  deleteMonthMoneyCalculations,
-  fetchAllMonthlyMoneyCalculations,
-  getOneMonthMoneyCalculations,
-} from "@/redux/slices/PriceSlice";
+import { getOneMonthMoneyCalculations } from "@/redux/slices/PriceSlice";
 import { translationDescription, translationTitle } from "./helpers";
 import { smoothScrollOnLoad } from "@/helpers/smoothScrollOnLoad";
+import { deleteItem } from "@/ui/Price/MonthlyMoneyCalculations/ItemMonthlyMoneyCalculations/ItemMonthlyMoneyCalculations.function";
 
 interface ItemMonthlyMoneyCalculationsProps {
   items: ListInfoDataMonthType[];
@@ -31,19 +28,10 @@ export const ItemMonthlyMoneyCalculations: React.FC<
   const [language, setLanguage] = useState<"EN" | "UA">("EN");
   const currencyTranslation = language === "EN" ? "uah" : "грн";
 
-  const deleteItem = () => {
-    if (id) {
-      dispatch(deleteMonthMoneyCalculations({ id }))
-        .then((response: any) => {
-          if (response.payload) {
-            dispatch(fetchAllMonthlyMoneyCalculations());
-          }
-        })
-        .catch((error: any) => {
-          console.error("Error adding data:", error);
-        });
-    }
-  };
+  const onDelete = useCallback(() => {
+    deleteItem(id, dispatch);
+  }, [id, dispatch]);
+
   const editItem = () => {
     if (id) {
       dispatch(getOneMonthMoneyCalculations({ id })).then((payload) => {
@@ -129,7 +117,7 @@ export const ItemMonthlyMoneyCalculations: React.FC<
         </Button>
         <Button
           style={isEdit ? {} : { backgroundColor: COLORS.red }}
-          onClick={deleteItem}
+          onClick={onDelete}
           disabled={isEdit}
         >
           delete

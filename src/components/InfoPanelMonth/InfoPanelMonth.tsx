@@ -46,7 +46,9 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   };
 
   const lastValue = lastValueMeter(currentPage);
-  const selectedMonth: any = lastValue ? lastValue[0].description : "unknown";
+  const selectedMonth: string = lastValue
+    ? lastValue[0].description
+    : "unknown";
   const month = selectedMonth.split(",")[0];
   const year = selectedMonth.split(",")[1];
 

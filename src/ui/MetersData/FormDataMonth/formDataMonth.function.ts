@@ -3,6 +3,7 @@ import { LIST_NAV } from "@/constants";
 import { sortItemsByDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
 import { AddressType, MeterDataType } from "@/types/MeterDataType";
+import { DataPickerValue } from "@/types/DataPicker";
 
 export function getNextMonthDate(items: MeterDataType[]) {
   if (items.length === 0) return new Date();
@@ -38,7 +39,7 @@ export function setDefaultValue(
 
 export function generateMessage(
   currentPage: string,
-  valueSelectDate: Date,
+  valueSelectDate: DataPickerValue,
   light: number,
   lightDay: number,
   lightNight: number,
@@ -50,7 +51,7 @@ export function generateMessage(
 
   let message = `<b>${pageId}</b>`;
 
-  message += ` (${format(valueSelectDate, "MM.yyyy")})\n`;
+  message += ` (${format(valueSelectDate as Date, "MM.yyyy")})\n`;
   message += `\u{1F4A1} Light: ${light} kWt\n`;
   message += `\u{1F4A1}\u{1F31E} Light Day: ${lightDay} kWt\n`;
   message += `\u{1F4A1}\u{1F319} Light Night: ${lightNight} kWt\n`;
@@ -61,4 +62,10 @@ export function generateMessage(
   }
 
   return message;
+}
+
+export function checkDate(date: DataPickerValue) {
+  if (!date) return new Date();
+
+  return date as Date;
 }

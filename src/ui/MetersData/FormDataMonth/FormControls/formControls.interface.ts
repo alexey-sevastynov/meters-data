@@ -1,9 +1,10 @@
+import { DataPickerValue } from "@/types/DataPicker";
 import { MeterDataType } from "@/types/MeterDataType";
 
 export interface FormControlsProps {
   isWaterBlock: boolean;
-  valueSelectDate: Date;
-  onChange: React.Dispatch<React.SetStateAction<Date>>;
+  valueSelectDate: DataPickerValue;
+  onChange: React.Dispatch<React.SetStateAction<DataPickerValue>>;
   light: number;
   setLight: React.Dispatch<React.SetStateAction<number>>;
   lightDay: number;

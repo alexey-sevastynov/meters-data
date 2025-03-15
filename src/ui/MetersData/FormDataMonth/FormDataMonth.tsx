@@ -15,12 +15,14 @@ import { selectTranslations } from "@/redux/slices/I18next";
 import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
 import { calculateSum } from "@/helpers/calculateTotal";
 import {
+  checkDate,
   generateMessage,
   getNextMonthDate,
   setDefaultValue,
 } from "@/ui/MetersData/FormDataMonth/formDataMonth.function";
 import { FormActions } from "@/ui/MetersData/FormDataMonth/FormActions/FormActions";
 import { FormControls } from "@/ui/MetersData/FormDataMonth/FormControls/FormControls";
+import { DataPickerValue } from "@/types/DataPicker";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -36,7 +38,7 @@ export function FormDataMonth({
   addressPath,
 }: FormDataMonthProps) {
   const dispatch = useAppDispatch();
-  const [valueSelectDate, onChange] = useState<any>(
+  const [valueSelectDate, onChange] = useState<DataPickerValue>(
     getNextMonthDate(sortedAddressMeterData)
   );
 
@@ -83,7 +85,7 @@ export function FormDataMonth({
     e.preventDefault();
 
     const formData = {
-      date: format(valueSelectDate, "MM.yyyy"),
+      date: format(checkDate(valueSelectDate), "MM.yyyy"),
       address: addressPath,
       light,
       lightDay,
@@ -113,7 +115,7 @@ export function FormDataMonth({
     if (isEdit === false) {
       const isDateAlreadyExists = sortedAddressMeterData.some(
         (item: MeterDataType) =>
-          item.date === format(valueSelectDate, "MM.yyyy")
+          item.date === format(checkDate(valueSelectDate), "MM.yyyy")
       );
 
       if (!isDateAlreadyExists) {
@@ -179,7 +181,12 @@ export function FormDataMonth({
         0 // seconds
       );
 
-      onChange(format(customDate, "EEE MMM dd yyyy HH:mm:ss 'GMT'xxx (zzzz)"));
+      const formattedDate = format(
+        customDate,
+        "EEE MMM dd yyyy HH:mm:ss 'GMT'xxx (zzzz)"
+      );
+
+      onChange(formattedDate);
       setLight(meterDataEdit.light);
       setLightDay(meterDataEdit.lightDay);
       setLightNight(meterDataEdit.lightNight);

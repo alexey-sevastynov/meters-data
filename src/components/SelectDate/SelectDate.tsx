@@ -5,10 +5,11 @@ import DatePicker, { DatePickerProps } from "react-date-picker";
 
 import { useAppSelector } from "@/redux/hook";
 import { selectTranslations } from "@/redux/slices/I18next";
+import { DataPickerValue } from "@/types/DataPicker";
 
 interface SelectDateProps extends DatePickerProps {
-  value: any;
-  onChange: any;
+  value: DataPickerValue;
+  onChange: (value: DataPickerValue) => void;
 }
 
 export function SelectDate({ value, onChange, ...props }: SelectDateProps) {

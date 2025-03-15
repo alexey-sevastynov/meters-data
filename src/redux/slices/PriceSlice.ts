@@ -229,7 +229,7 @@ const PriceSlice = createSlice({
       }
     },
 
-    dissableEdit: (state) => {
+    disableEdit: (state) => {
       state.itemsMonthlyMoneyCalculations.isEdit = false;
       state.itemsMonthlyMoneyCalculations.idEdit = null;
     },
@@ -275,7 +275,7 @@ export const {
   calcPrice,
   addServiceToCurrentItem,
   deleteServiceWithCurrentItem,
-  dissableEdit,
+  disableEdit,
 } = PriceSlice.actions;
 
 export const pricesReducer = PriceSlice.reducer;
