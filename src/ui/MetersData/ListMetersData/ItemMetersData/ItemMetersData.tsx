@@ -25,6 +25,7 @@ import {
 import { selectTranslations } from "@/redux/slices/I18next";
 import { formatDateDisplay } from "@/components/DateRangeSelector/dateRangeSelector.function";
 import { lastValueMeter } from "@/helpers/lastValueMeter";
+import { MonthsType } from "@/types/MonthsType";
 
 interface ItemMetersDataProps {
   _id: string;
@@ -76,7 +77,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
   const selectedMonthId = currentInfoMeterReading?.[0].id;
 
   const newDate = formatDate(date);
-  const month = newDate.split(",")[0];
+  const month = newDate.split(",")[0] as MonthsType;
   const year = newDate.split(",")[1];
 
   const listCurrentPage = filterAndSortItemsByAddressAndDate(

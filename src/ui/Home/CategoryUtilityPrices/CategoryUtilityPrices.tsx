@@ -1,8 +1,9 @@
 import React from "react";
-import Styles from "./categoryUtilityPrices.module.scss";
+import Styles from "@/ui/Home/CategoryUtilityPrices/categoryUtilityPrices.module.scss";
 import { getIconUrl } from "@/helpers/getIconUrl";
 import { useAppSelector } from "@/redux/hook";
 import { selectTranslations } from "@/redux/slices/I18next";
+import { CategoryType } from "@/types/CategoryType";
 
 interface CategoryUtilityPricesProps {
   category: string;
@@ -16,7 +17,7 @@ export const CategoryUtilityPrices: React.FC<CategoryUtilityPricesProps> = ({
   const lang = useAppSelector(selectTranslations);
   return (
     <div className={Styles.categoryUtilityPrices}>
-      <p>{lang.home[category]},</p>
+      <p>{lang.home[category as CategoryType]},</p>
       <div className={Styles.images}>
         {image.map((name) => (
           <img

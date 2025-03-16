@@ -6,12 +6,13 @@ import { selectTranslations } from "@/redux/slices/I18next";
 import {
   shouldRenderDescriptionTitle,
   showValue,
-} from "./itemInfoPanelMonth.function";
+} from "@/ui/InfoPanelMonth/ItemInfoPanelMonth/itemInfoPanelMonth.function";
 import { titlesForMeterReadings } from "@/constants/titlesForMeterReadings";
-import { ValueChangeIndicator } from "../ValueChangeIndicator/ValueChangeIndicator";
-import { ProgressIndicator } from "../ProgressIndicator/ProgressIndicator";
-import Style from "./itemInfoPanelMonth.module.scss";
-import { ItemInfoPanelMonthProps } from "./itemInfoPanelMonth.interface";
+import { ValueChangeIndicator } from "@/ui/InfoPanelMonth/ValueChangeIndicator/ValueChangeIndicator";
+import { ProgressIndicator } from "@/ui/InfoPanelMonth/ProgressIndicator/ProgressIndicator";
+import Style from "@/ui/InfoPanelMonth/ItemInfoPanelMonth/itemInfoPanelMonth.module.scss";
+import { ItemInfoPanelMonthProps } from "@/ui/InfoPanelMonth/ItemInfoPanelMonth/itemInfoPanelMonth.interface";
+import { TitleInfoPanelMonthType } from "@/types/TitleInfoPanelMonthType";
 
 export const ItemInfoPanelMonth: React.FC<ItemInfoPanelMonthProps> = ({
   isWaterBlock,
@@ -24,7 +25,9 @@ export const ItemInfoPanelMonth: React.FC<ItemInfoPanelMonthProps> = ({
   const lang = useAppSelector(selectTranslations);
 
   const showDescriptionTitle = (
-    <dt className={Style.title}>{lang.infoPanel[title]}</dt>
+    <dt className={Style.title}>
+      {lang.infoPanel[title as TitleInfoPanelMonthType]}
+    </dt>
   );
   const hideBlockWater =
     !isWaterBlock && title === titlesForMeterReadings.water;
