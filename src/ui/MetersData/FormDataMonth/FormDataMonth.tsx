@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { format, parse } from "date-fns";
+import { format, parse, startOfDay } from "date-fns";
 import Style from "@/ui/MetersData/FormDataMonth/formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
@@ -15,12 +15,14 @@ import { selectTranslations } from "@/redux/slices/I18next";
 import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
 import { calculateSum } from "@/helpers/calculateTotal";
 import {
+  checkDate,
   generateMessage,
   getNextMonthDate,
   setDefaultValue,
 } from "@/ui/MetersData/FormDataMonth/formDataMonth.function";
 import { FormActions } from "@/ui/MetersData/FormDataMonth/FormActions/FormActions";
 import { FormControls } from "@/ui/MetersData/FormDataMonth/FormControls/FormControls";
+import { DataPickerValue } from "@/types/DataPicker";
 
 interface FormDataMonthProps {
   isWaterBlock: boolean;
@@ -36,7 +38,7 @@ export function FormDataMonth({
   addressPath,
 }: FormDataMonthProps) {
   const dispatch = useAppDispatch();
-  const [valueSelectDate, onChange] = useState<any>(
+  const [selectDate, setSelectDate] = useState<DataPickerValue>(
     getNextMonthDate(sortedAddressMeterData)
   );
 
@@ -50,7 +52,7 @@ export function FormDataMonth({
     if (!isEdit) {
       const nextMonth = getNextMonthDate(sortedAddressMeterData);
 
-      onChange(nextMonth);
+      setSelectDate(nextMonth);
     }
   }, [sortedAddressMeterData, isEdit]);
 
@@ -83,7 +85,7 @@ export function FormDataMonth({
     e.preventDefault();
 
     const formData = {
-      date: format(valueSelectDate, "MM.yyyy"),
+      date: format(checkDate(selectDate), "MM.yyyy"),
       address: addressPath,
       light,
       lightDay,
@@ -113,7 +115,7 @@ export function FormDataMonth({
     if (isEdit === false) {
       const isDateAlreadyExists = sortedAddressMeterData.some(
         (item: MeterDataType) =>
-          item.date === format(valueSelectDate, "MM.yyyy")
+          item.date === format(checkDate(selectDate), "MM.yyyy")
       );
 
       if (!isDateAlreadyExists) {
@@ -124,7 +126,7 @@ export function FormDataMonth({
                 dispatch(fetchAllMetersData()).then(() => {
                   const message = generateMessage(
                     addressPath,
-                    valueSelectDate,
+                    selectDate,
                     light,
                     lightDay,
                     lightNight,
@@ -170,23 +172,17 @@ export function FormDataMonth({
 
   useEffect(() => {
     if (isEdit && meterDataEdit && parsedDate) {
-      const customDate = new Date(
-        parsedDate.getFullYear(),
-        parsedDate.getMonth(),
-        parsedDate.getDate(),
-        0, // hours
-        0, // minets
-        0 // seconds
-      );
+      const normalizedDate = startOfDay(parsedDate);
 
-      onChange(format(customDate, "EEE MMM dd yyyy HH:mm:ss 'GMT'xxx (zzzz)"));
+      setSelectDate(normalizedDate);
       setLight(meterDataEdit.light);
       setLightDay(meterDataEdit.lightDay);
       setLightNight(meterDataEdit.lightNight);
       setGas(meterDataEdit.gas);
-      water && meterDataEdit.water && setWater(meterDataEdit.water);
+
+      if (water && meterDataEdit.water) setWater(meterDataEdit.water);
     }
-  }, [isEdit]);
+  }, [isEdit, meterDataEdit, parsedDate, water]);
 
   useEffect(() => {
     if (sortedAddressMeterData.length > 0) {
@@ -227,8 +223,8 @@ export function FormDataMonth({
     >
       <FormControls
         isWaterBlock={isWaterBlock}
-        valueSelectDate={valueSelectDate}
-        onChange={onChange}
+        selectDate={selectDate}
+        setSelectDate={setSelectDate}
         light={light}
         setLight={setLight}
         lightDay={lightDay}

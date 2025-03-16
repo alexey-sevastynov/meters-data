@@ -6,8 +6,8 @@ import { MeterInputsList } from "@/ui/MetersData/FormDataMonth/FormControls/Mete
 
 export function FormControls({
   isWaterBlock,
-  valueSelectDate,
-  onChange,
+  selectDate,
+  setSelectDate,
   light,
   setLight,
   lightDay,
@@ -39,8 +39,8 @@ export function FormControls({
   return (
     <div className={Style.inputs}>
       <SelectDate
-        value={valueSelectDate}
-        onChange={onChange}
+        selectDate={selectDate}
+        setSelectDate={setSelectDate}
       />
 
       <MeterInputsList
