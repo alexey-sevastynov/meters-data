@@ -1,4 +1,3 @@
-import React from "react";
 import Styles from "./infoPanelMonth.module.scss";
 import { RiPriceTagFill } from "react-icons/ri";
 import { IoBarChartSharp } from "react-icons/io5";
@@ -9,16 +8,14 @@ import { selectTranslations } from "@/redux/slices/I18next";
 import { SIZE_ICONS } from "@/constants/sizeIcons";
 import { filterItemsByAddress } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { removeFirstAddedMonth } from "@/helpers/removeFirstAddedMonth";
-import { DateRangeSelector } from "../DateRangeSelector/DateRangeSelector";
-import LinkButtonGroup from "../LinkButtonGroup/LinkButtonGroup";
+import { DateRangeSelector } from "@/components/DateRangeSelector/DateRangeSelector";
+import LinkButtonGroup from "@/components/LinkButtonGroup/LinkButtonGroup";
 
 interface InfoPanelMonthProps {
   isWaterBlock?: boolean;
 }
 
-export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
-  isWaterBlock = true,
-}) => {
+export function InfoPanelMonth({ isWaterBlock = true }: InfoPanelMonthProps) {
   const { pathname } = useLocation();
   const currentPage = pathname.slice(1);
 
@@ -46,7 +43,10 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
   };
 
   const lastValue = lastValueMeter(currentPage);
-  const selectedMonth: any = lastValue ? lastValue[0].description : "unknown";
+  const selectedMonth: string = lastValue
+    ? lastValue[0].description
+    : "unknown";
+
   const month = selectedMonth.split(",")[0];
   const year = selectedMonth.split(",")[1];
 
@@ -92,4 +92,4 @@ export const InfoPanelMonth: React.FC<InfoPanelMonthProps> = ({
       </div>
     </section>
   );
-};
+}

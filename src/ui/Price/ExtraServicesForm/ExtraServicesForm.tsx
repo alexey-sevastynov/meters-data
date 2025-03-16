@@ -35,7 +35,9 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
     (item) => item.category === selectedOption
   )?._id;
 
-  const [inputValue, setInputValue] = useState<number>(currentItemValue);
+  const [inputValue, setInputValue] = useState<string>(
+    String(currentItemValue)
+  );
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(event.target.value);
@@ -54,7 +56,7 @@ export const ExtraServicesForm: React.FC<ExtraServicesFormProps> = ({
   };
 
   useEffect(() => {
-    setInputValue(currentItemValue);
+    setInputValue(String(currentItemValue));
   }, [selectedOption]);
 
   return (

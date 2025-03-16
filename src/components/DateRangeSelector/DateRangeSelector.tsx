@@ -13,11 +13,11 @@ import {
   isActive,
 } from "./dateRangeSelector.function";
 
-export const DateRangeSelector: React.FC<DateRangeSelectorProps> = ({
+export function DateRangeSelector({
   data,
   selectedMonth,
   selectedYear,
-}) => {
+}: DateRangeSelectorProps) {
   const dispatch = useAppDispatch();
   const lang = useAppSelector((props) => props.i18n.lang);
   const currentLang =
@@ -103,4 +103,4 @@ export const DateRangeSelector: React.FC<DateRangeSelectorProps> = ({
       )}
     </div>
   );
-};
+}

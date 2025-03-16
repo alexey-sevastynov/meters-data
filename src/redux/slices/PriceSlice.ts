@@ -188,7 +188,7 @@ const PriceSlice = createSlice({
       state,
       action: PayloadAction<{
         title: string;
-        description: string | number;
+        description: string;
         percentDifference: number;
       }>
     ) => {
