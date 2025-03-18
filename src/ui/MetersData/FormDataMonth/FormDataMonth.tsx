@@ -156,7 +156,7 @@ export function FormDataMonth({
 
       if (water && meterDataEdit.water) setWater(meterDataEdit.water);
     }
-  }, [isEdit, meterDataEdit, parsedDate, water]);
+  }, [isEdit]);
 
   useEffect(() => {
     if (sortedAddressMeterData.length > 0) {
