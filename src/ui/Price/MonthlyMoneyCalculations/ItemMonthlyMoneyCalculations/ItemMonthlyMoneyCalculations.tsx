@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useCallback, useState } from "react";
 import Style from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
@@ -6,12 +6,13 @@ import { Button } from "@/ui/Button/Button";
 import { COLORS } from "@/constants";
 import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
 import {
-  deleteMonthMoneyCalculations,
-  fetchAllMonthlyMoneyCalculations,
-  getOneMonthMoneyCalculations,
-} from "@/redux/slices/PriceSlice";
-import { translationDescription, translationTitle } from "./helpers";
-import { smoothScrollOnLoad } from "@/helpers/smoothScrollOnLoad";
+  translationDescription,
+  translationTitle,
+} from "@/ui/Price/MonthlyMoneyCalculations/ItemMonthlyMoneyCalculations/helpers";
+import {
+  deleteItem,
+  editItem,
+} from "@/ui/Price/MonthlyMoneyCalculations/ItemMonthlyMoneyCalculations/ItemMonthlyMoneyCalculations.function";
 
 interface ItemMonthlyMoneyCalculationsProps {
   items: ListInfoDataMonthType[];
@@ -20,9 +21,12 @@ interface ItemMonthlyMoneyCalculationsProps {
   address: string;
 }
 
-export const ItemMonthlyMoneyCalculations: React.FC<
-  ItemMonthlyMoneyCalculationsProps
-> = ({ items, sumMoney, id, address }) => {
+export function ItemMonthlyMoneyCalculations({
+  items,
+  sumMoney,
+  id,
+  address,
+}: ItemMonthlyMoneyCalculationsProps) {
   const dispatch = useAppDispatch();
   const isEdit = useAppSelector(
     (props) => props.prices.itemsMonthlyMoneyCalculations.isEdit
@@ -31,28 +35,13 @@ export const ItemMonthlyMoneyCalculations: React.FC<
   const [language, setLanguage] = useState<"EN" | "UA">("EN");
   const currencyTranslation = language === "EN" ? "uah" : "грн";
 
-  const deleteItem = () => {
-    if (id) {
-      dispatch(deleteMonthMoneyCalculations({ id }))
-        .then((response: any) => {
-          if (response.payload) {
-            dispatch(fetchAllMonthlyMoneyCalculations());
-          }
-        })
-        .catch((error: any) => {
-          console.error("Error adding data:", error);
-        });
-    }
-  };
-  const editItem = () => {
-    if (id) {
-      dispatch(getOneMonthMoneyCalculations({ id })).then((payload) => {
-        if (payload) {
-          smoothScrollOnLoad();
-        }
-      });
-    }
-  };
+  const onDeleteItem = useCallback(() => {
+    deleteItem(id, dispatch);
+  }, [id, dispatch]);
+
+  const onEditItem = useCallback(() => {
+    editItem(id, dispatch);
+  }, [id, dispatch]);
 
   const captureScreen = () => {
     const element = document.getElementById(`${id}`);
@@ -122,14 +111,14 @@ export const ItemMonthlyMoneyCalculations: React.FC<
 
       <div className={Style.btns}>
         <Button
-          onClick={editItem}
+          onClick={onEditItem}
           disabled={isEdit}
         >
           edit
         </Button>
         <Button
           style={isEdit ? {} : { backgroundColor: COLORS.red }}
-          onClick={deleteItem}
+          onClick={onDeleteItem}
           disabled={isEdit}
         >
           delete
@@ -143,4 +132,4 @@ export const ItemMonthlyMoneyCalculations: React.FC<
       </div>
     </li>
   );
-};
+}
