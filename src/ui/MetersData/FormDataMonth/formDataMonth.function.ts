@@ -4,6 +4,15 @@ import { sortItemsByDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
 import { AddressType, MeterDataType } from "@/types/MeterDataType";
 import { DataPickerValue } from "@/types/DataPicker";
+import {
+  editMeterData,
+  fetchAllMetersData,
+  fetchPostMetersData,
+  setNotEdit,
+} from "@/redux/slices/MetersDataSlice";
+import { AppDispatch } from "@/redux/store";
+import { FormMeterDataType } from "@/types/FormMeterData";
+import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
 
 export function getNextMonthDate(items: MeterDataType[]) {
   if (items.length === 0) return new Date();
@@ -37,7 +46,61 @@ export function setDefaultValue(
   return 0;
 }
 
-export function generateMessage(
+export function checkDate(date: DataPickerValue) {
+  if (!date) return new Date();
+
+  return date as Date;
+}
+
+export async function handleEditMeterData(
+  meterDataEdit: MeterDataType,
+  formData: FormMeterDataType,
+  dispatch: AppDispatch
+) {
+  const response = await dispatch(
+    editMeterData({ _id: meterDataEdit?._id, ...formData })
+  );
+
+  if (response.payload) {
+    dispatch(setNotEdit());
+
+    await dispatch(fetchAllMetersData());
+  }
+}
+
+export async function handlePostMeterData(
+  formData: FormMeterDataType,
+  addressPath: AddressType,
+  selectDate: DataPickerValue,
+  light: number,
+  lightDay: number,
+  lightNight: number,
+  gas: number,
+  water: number,
+  dispatch: AppDispatch
+) {
+  const response = await dispatch(fetchPostMetersData(formData));
+
+  if (response.payload) {
+    setTimeout(async () => {
+      await dispatch(fetchAllMetersData());
+
+      const message = generateMessage(
+        addressPath,
+        selectDate,
+        light,
+        lightDay,
+        lightNight,
+        gas,
+        water
+      );
+
+      sendMessageToTelegram(import.meta.env.VITE_CHAD_ID, message);
+    }, 2500);
+  }
+}
+
+function generateMessage(
   currentPage: string,
   selectDate: DataPickerValue,
   light: number,
@@ -63,10 +126,4 @@ export function generateMessage(
   }
 
   return message;
-}
-
-export function checkDate(date: DataPickerValue) {
-  if (!date) return new Date();
-
-  return date as Date;
 }

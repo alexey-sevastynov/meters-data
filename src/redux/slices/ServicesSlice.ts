@@ -1,23 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import { API_URL } from "../../constants";
-import { TypeListUtylityPrices } from "../../types/constants";
+import { API_URL } from "@/constants";
+import { TypeListUtylityPrices } from "@/types/constants";
 import { toast } from "react-toastify";
 
 export const fetchAllServices = createAsyncThunk<
   TypeListUtylityPrices,
   void,
   { rejectValue: AxiosError }
->("services/fetchAllServices", async (_, { rejectWithValue }) => {
-  try {
-    const { data } = await axios.get<TypeListUtylityPrices>(`${API_URL}prices`);
-    return data;
-  } catch (error: any) {
-    if (!error.response) {
-      throw error;
-    }
-    return rejectWithValue(error as AxiosError);
-  }
+>("services/fetchAllServices", async () => {
+  const { data } = await axios.get<TypeListUtylityPrices>(`${API_URL}prices`);
+
+  return data;
 });
 
 export const editServicePrice = createAsyncThunk<

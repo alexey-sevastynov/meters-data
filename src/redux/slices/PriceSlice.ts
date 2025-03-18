@@ -1,38 +1,33 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
-import { ListInfoDataMonthType } from "./MetersDataSlice";
+import axios, { AxiosError } from "axios";
+import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
 import { TypeListUtylityPrices } from "@/types/constants";
 import { MonthlyMoneyCalculationsType } from "@/types/MonthlyMoneyCalculationsType";
-import axios, { AxiosError } from "axios";
 import { API_URL } from "@/constants";
 import { AddressType } from "@/types/MeterDataType";
+import { actionNames } from "@/redux/actionNames";
+import { API_PATH } from "@/constants/apiPath";
+
+const monthlyMoneyCalculationsUrl = API_URL + API_PATH.monthlyMoneyCalculations;
 
 export const fetchAllMonthlyMoneyCalculations = createAsyncThunk<
   MonthlyMoneyCalculationsType[],
   void,
   { rejectValue: AxiosError }
->(
-  "MonthlyMoneyCalculations/fetchAllMonthlyMoneyCalculations",
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get<MonthlyMoneyCalculationsType[]>(
-        `${API_URL}monthlymoneycalculations`
-      );
-      return data;
-    } catch (error: any) {
-      if (!error.response) {
-        throw error;
-      }
-      return rejectWithValue(error as AxiosError);
-    }
-  }
-);
+>(actionNames.price.getAll, async () => {
+  const { data } = await axios.get<MonthlyMoneyCalculationsType[]>(
+    monthlyMoneyCalculationsUrl
+  );
+
+  return data;
+});
 
 export const getOneMonthMoneyCalculations = createAsyncThunk<
   MonthlyMoneyCalculationsType,
   { id: string }
->("MonthlyMoneyCalculations/getOneMonthMoneyCalculations", async ({ id }) => {
-  const { data } = await axios.get(`${API_URL}monthlymoneycalculations/${id}`);
+>(actionNames.price.getOne, async ({ id }) => {
+  const { data } = await axios.get(`${monthlyMoneyCalculationsUrl}/${id}`);
 
   return data;
 });
@@ -40,25 +35,19 @@ export const getOneMonthMoneyCalculations = createAsyncThunk<
 export const fetchPostMonthMoneyCalculations = createAsyncThunk<
   MonthlyMoneyCalculationsType,
   { address: AddressType; data: ListInfoDataMonthType[]; sumMoney: number }
->(
-  "MonthlyMoneyCalculations/fetchPostMonthMoneyCalculations",
-  async (params) => {
-    const { data } = await axios.post(
-      `${API_URL}monthlymoneycalculations`,
-      params
-    );
-    return data;
-  }
-);
+>(actionNames.price.post, async (params) => {
+  const { data } = await axios.post(monthlyMoneyCalculationsUrl, params);
+
+  return data;
+});
 
 export const deleteMonthMoneyCalculations = createAsyncThunk<
   MonthlyMoneyCalculationsType,
   { id: string }
->("MonthlyMoneyCalculations/deleteMonthMoneyCalculations", async (params) => {
+>(actionNames.price.delete, async (params) => {
   const { id } = params;
-  const { data } = await axios.delete(
-    `${API_URL}monthlymoneycalculations/${id}`
-  );
+  const { data } = await axios.delete(`${monthlyMoneyCalculationsUrl}/${id}`);
+
   return data;
 });
 
@@ -69,11 +58,11 @@ export const editMonthMoneyCalculations = createAsyncThunk<
     data: ListInfoDataMonthType[];
     sumMoney: number;
   }
->("MonthlyMoneyCalculations/editMonthMoneyCalculations", async (params) => {
+>(actionNames.price.edit, async (params) => {
   const { _id, data, sumMoney } = params;
 
   const { data: responseData } = await axios.patch(
-    `${API_URL}monthlymoneycalculations/${_id}`,
+    `${monthlyMoneyCalculationsUrl}/${_id}`,
     {
       data,
       sumMoney,
@@ -229,7 +218,7 @@ const PriceSlice = createSlice({
       }
     },
 
-    dissableEdit: (state) => {
+    disableEdit: (state) => {
       state.itemsMonthlyMoneyCalculations.isEdit = false;
       state.itemsMonthlyMoneyCalculations.idEdit = null;
     },
@@ -275,7 +264,7 @@ export const {
   calcPrice,
   addServiceToCurrentItem,
   deleteServiceWithCurrentItem,
-  dissableEdit,
+  disableEdit,
 } = PriceSlice.actions;
 
 export const pricesReducer = PriceSlice.reducer;

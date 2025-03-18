@@ -2,22 +2,17 @@ import React, { useEffect, useState } from "react";
 import { format, parse, startOfDay } from "date-fns";
 import Style from "@/ui/MetersData/FormDataMonth/formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import {
-  editMeterData,
-  fetchAllMetersData,
-  fetchPostMetersData,
-  setNotEdit,
-} from "@/redux/slices/MetersDataSlice";
+import { fetchAllMetersData, setNotEdit } from "@/redux/slices/MetersDataSlice";
 import { AddressType, MeterDataType } from "@/types/MeterDataType";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
 import { updateLocalStorageValues } from "@/ui/MetersData/helpers/updateLocalStorageValue";
 import { selectTranslations } from "@/redux/slices/I18next";
-import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
 import { calculateSum } from "@/helpers/calculateTotal";
 import {
   checkDate,
-  generateMessage,
   getNextMonthDate,
+  handleEditMeterData,
+  handlePostMeterData,
   setDefaultValue,
 } from "@/ui/MetersData/FormDataMonth/formDataMonth.function";
 import { FormActions } from "@/ui/MetersData/FormDataMonth/FormActions/FormActions";
@@ -81,7 +76,7 @@ export function FormDataMonth({
   const parsedDate =
     meterDataEdit && parse(meterDataEdit?.date, "MM.yyyy", new Date());
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = {
@@ -100,16 +95,7 @@ export function FormDataMonth({
     );
 
     if (isEdit === true && meterDataEdit && isUniqueDate) {
-      dispatch(editMeterData({ _id: meterDataEdit?._id, ...formData }))
-        .then((response: any) => {
-          if (response.payload) {
-            dispatch(setNotEdit());
-            dispatch(fetchAllMetersData());
-          }
-        })
-        .catch((error: any) => {
-          console.error("Error adding data:", error);
-        });
+      await handleEditMeterData(meterDataEdit, formData, dispatch);
     }
 
     if (isEdit === false) {
@@ -119,29 +105,17 @@ export function FormDataMonth({
       );
 
       if (!isDateAlreadyExists) {
-        dispatch(fetchPostMetersData(formData))
-          .then((response: any) => {
-            if (response.payload) {
-              setTimeout(() => {
-                dispatch(fetchAllMetersData()).then(() => {
-                  const message = generateMessage(
-                    addressPath,
-                    selectDate,
-                    light,
-                    lightDay,
-                    lightNight,
-                    gas,
-                    water
-                  );
-
-                  sendMessageToTelegram(import.meta.env.VITE_CHAD_ID, message);
-                });
-              }, 2500);
-            }
-          })
-          .catch((error: any) => {
-            console.error("Error adding data:", error);
-          });
+        await handlePostMeterData(
+          formData,
+          addressPath,
+          selectDate,
+          light,
+          lightDay,
+          lightNight,
+          gas,
+          water,
+          dispatch
+        );
       }
     }
 

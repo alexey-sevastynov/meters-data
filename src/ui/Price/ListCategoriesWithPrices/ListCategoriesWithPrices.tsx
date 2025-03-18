@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import Styles from "./listCategoriesWithPrices.module.scss";
 import { useAppSelector } from "@/redux/hook";
 import { useLocation } from "react-router-dom";
@@ -10,14 +10,15 @@ import { AppDispatch } from "@/redux/store";
 import {
   calcPrice,
   deleteServiceWithCurrentItem,
-  dissableEdit,
-  editMonthMoneyCalculations,
-  fetchAllMonthlyMoneyCalculations,
-  fetchPostMonthMoneyCalculations,
+  disableEdit,
 } from "@/redux/slices/PriceSlice";
 import { getIconUrl } from "@/helpers/getIconUrl";
 import { Button } from "@/ui/Button/Button";
 import { COLORS } from "@/constants";
+import {
+  editItem,
+  saveItemDB,
+} from "@/ui/Price/ListCategoriesWithPrices/ListCategoriesWithPrices.function";
 
 interface ListCategoriesWithPricesProps {
   dispatch: AppDispatch;
@@ -71,53 +72,20 @@ export const ListCategoriesWithPrices: React.FC<
     );
   };
 
-  const handleResponse = (response: any) => {
-    if (response.payload) {
-      dispatch(fetchAllMonthlyMoneyCalculations());
-    }
-  };
-
-  const saveItemDB = async () => {
-    if (currentItem && sumMoney && isUniqueObj) {
-      try {
-        const response = await dispatch(
-          fetchPostMonthMoneyCalculations({
-            address: currentPageName,
-            data: currentItem,
-            sumMoney,
-          })
-        );
-        handleResponse(response);
-      } catch (error: any) {
-        console.error("Error adding data:", error);
-      }
-    }
-  };
+  const onSaveItem = useCallback(() => {
+    saveItemDB(currentItem, sumMoney, isUniqueObj, currentPageName, dispatch);
+  }, [currentItem, sumMoney, isUniqueObj, currentPageName, dispatch]);
 
   const removeItem = (title: string, value: string | number) => {
     dispatch(deleteServiceWithCurrentItem({ title, value: Number(value) }));
   };
 
-  const editItem = async () => {
-    if (currentItem && idEdit) {
-      try {
-        const response = await dispatch(
-          editMonthMoneyCalculations({
-            _id: idEdit,
-            data: currentItem,
-            sumMoney,
-          })
-        );
-        handleResponse(response);
-        dispatch(dissableEdit());
-      } catch (error: any) {
-        console.error("Error editing data:", error);
-      }
-    }
-  };
+  const onEditItem = useCallback(() => {
+    editItem(currentItem, sumMoney, idEdit, dispatch);
+  }, [currentItem, sumMoney, idEdit, dispatch]);
 
   const cancel = () => {
-    dispatch(dissableEdit());
+    dispatch(disableEdit());
   };
 
   useEffect(() => {
@@ -172,7 +140,7 @@ export const ListCategoriesWithPrices: React.FC<
             </Button>
             <Button
               type="button"
-              onClick={editItem}
+              onClick={onEditItem}
             >
               Edit
             </Button>
@@ -180,7 +148,7 @@ export const ListCategoriesWithPrices: React.FC<
         ) : (
           <Button
             type="button"
-            onClick={saveItemDB}
+            onClick={onSaveItem}
             disabled={!isUniqueObj}
           >
             Save
