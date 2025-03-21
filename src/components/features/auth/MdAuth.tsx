@@ -1,13 +1,12 @@
 import { useState } from "react";
-import Style from "./login.module.scss";
-
+import Style from "./auth.module.scss";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@/redux/hook";
 import { logIn } from "@/redux/slices/AuthSlice";
-import { MdInputLogin } from "../input-login/MdInputLogin";
-import { MdButtonLogin } from "../button-login/MdButtonLogin";
+import { MdInputLogin } from "@/components/features/auth/input-login/MdInputLogin";
+import { MdButtonLogin } from "@/components/features/auth/button-login/MdButtonLogin";
 
-export function MdLogin() {
+export function MdAuth() {
   const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState("");

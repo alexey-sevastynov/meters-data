@@ -1,4 +1,3 @@
-import React from "react";
 import Styles from "./itemUtilityPrices.module.scss";
 import { CategoryUtilityPrices } from "@/components/features/list-utility-prices/item-utility-prices/category-utility-prices/CategoryUtilityPrices";
 import { ValueUtilityPrices } from "@/components/features/list-utility-prices/item-utility-prices/value-utility-prices/ValueUtilityPrices";
@@ -11,13 +10,13 @@ interface ItemUtilityPricesProps {
   value: number;
 }
 
-export const ItemUtilityPrices: React.FC<ItemUtilityPricesProps> = ({
+export function MdItemUtilityPrices({
   category,
   image,
   valueName,
   value,
   id,
-}) => {
+}: ItemUtilityPricesProps) {
   return (
     <li className={Styles.itemUtilityPrices}>
       <CategoryUtilityPrices
@@ -32,4 +31,4 @@ export const ItemUtilityPrices: React.FC<ItemUtilityPricesProps> = ({
       />
     </li>
   );
-};
+}

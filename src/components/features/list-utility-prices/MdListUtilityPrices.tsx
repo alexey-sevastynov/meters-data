@@ -1,8 +1,8 @@
 import Styles from "./listUtilityPrices.module.scss";
-import { ItemUtilityPrices } from "@/components/features/list-utility-prices/item-utility-prices/ItemUtilityPrices";
+import { MdItemUtilityPrices } from "@/components/features/list-utility-prices/item-utility-prices/MdItemUtilityPrices";
 import useUtilityPrices from "@/hooks/useUtilityPrices";
 
-export function ListUtilityPrices() {
+export function MdListUtilityPrices() {
   const { items, status } = useUtilityPrices();
 
   return (
@@ -12,7 +12,7 @@ export function ListUtilityPrices() {
         <p className={Styles.loading}>{status}</p>
       )}
       {items.map(({ value, valueName, image, category, _id }) => (
-        <ItemUtilityPrices
+        <MdItemUtilityPrices
           key={category}
           id={_id}
           value={value}

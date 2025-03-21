@@ -9,7 +9,7 @@ import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumbItems";
 import { ADDRESS_TYPES } from "@/constants/routes";
 
-export const Graphics = () => {
+export function Graphics() {
   const { address } = useParams();
   const { pathname } = useLocation();
 
@@ -88,4 +88,4 @@ export const Graphics = () => {
       </div>
     </div>
   );
-};
+}

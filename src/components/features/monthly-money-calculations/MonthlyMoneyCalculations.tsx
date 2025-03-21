@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Style from "./monthlyMoneyCalculations.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
-import { ListMonthlyMoneyCalculations } from "./ListMonthlyMoneyCalculations/ListMonthlyMoneyCalculations";
+import { ListMonthlyMoneyCalculations } from "./list-monthly-money-calculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/redux/hook";
 import { AddressType } from "@/types/MeterDataType";
 
-interface MonthlyMoneyCalculationsProps {}
-
-export const MonthlyMoneyCalculations: React.FC<
-  MonthlyMoneyCalculationsProps
-> = () => {
+export function MdMonthlyMoneyCalculations() {
   const { pathname } = useLocation();
 
   const status = useAppSelector(
@@ -52,4 +48,4 @@ export const MonthlyMoneyCalculations: React.FC<
       />
     </section>
   );
-};
+}

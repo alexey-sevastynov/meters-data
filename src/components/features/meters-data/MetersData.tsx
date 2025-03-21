@@ -12,7 +12,7 @@ interface MetersDataProps {
   isWaterBlock?: boolean;
 }
 
-export function MetersData({ isWaterBlock = true }: MetersDataProps) {
+export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
   const { pathname } = useLocation();
   const lang = useAppSelector(selectTranslations);
   const meterReadingsList = useAppSelector(

@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import { createPortal } from "react-dom";
 import routes from "@/routes";
-import { MdLogin } from "@/components/features/auth/login/MdLogin";
+import { MdAuth } from "@/components/features/auth/MdAuth";
 import { useAppSelector } from "@/redux/hook";
 import { MdConfirm } from "@/components/shared/confirm/MdConfirm";
 
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <main>
-      {createPortal(!isAuth && <MdLogin />, mountElement)}
+      {createPortal(!isAuth && <MdAuth />, mountElement)}
 
       {createPortal(
         isOpenPopup && <MdConfirm question={messagePopup} />,

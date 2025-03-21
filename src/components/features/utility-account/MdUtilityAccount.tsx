@@ -1,14 +1,14 @@
 import { useAppSelector } from "@/redux/hook";
+import Styles from "./utilityAccount.module.scss";
 import { BsCopy } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import { AddressType } from "@/types/MeterDataType";
 import { AddressDataType } from "@/types/AddressDataType";
 import { SIZE_ICONS } from "@/constants/sizeIcons";
-import Styles from "./utilityAccount.module.scss";
 import { selectTranslations } from "@/redux/slices/I18next";
 
 // template component UtilityAccount
-export const UtilityAccount = () => {
+export function MdUtilityAccount() {
   const lang = useAppSelector(selectTranslations);
 
   const { pathname } = useLocation();
@@ -90,4 +90,4 @@ export const UtilityAccount = () => {
       </div>
     </div>
   );
-};
+}

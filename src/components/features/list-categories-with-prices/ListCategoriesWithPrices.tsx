@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import Styles from "./listCategoriesWithPrices.module.scss";
 import { useAppSelector } from "@/redux/hook";
 import { useLocation } from "react-router-dom";
@@ -20,9 +20,9 @@ interface ListCategoriesWithPricesProps {
   dispatch: AppDispatch;
 }
 
-export const ListCategoriesWithPrices: React.FC<
-  ListCategoriesWithPricesProps
-> = ({ dispatch }) => {
+export function MdListCategoriesWithPrices({
+  dispatch,
+}: ListCategoriesWithPricesProps) {
   const { pathname } = useLocation();
 
   const currentPageName: AddressType = pathname.replace(
@@ -153,4 +153,4 @@ export const ListCategoriesWithPrices: React.FC<
       </div>
     </ul>
   );
-};
+}
