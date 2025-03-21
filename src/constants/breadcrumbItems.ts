@@ -1,4 +1,4 @@
-import { BreadcrumbItem } from "../components/Breadcrumb/breadcrumb.type";
+import { BreadcrumbItem } from "../components/shared/breadcrumb/breadcrumb.type";
 import { ADDRESS, ADDRESS_NAME } from "./address";
 import { ADDRESS_TYPES, ROUTES } from "./routes";
 

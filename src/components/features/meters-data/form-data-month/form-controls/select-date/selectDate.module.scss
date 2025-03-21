@@ -1,0 +1,38 @@
+@import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
+
+.selectDate {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: bold;
+  }
+
+  .datePicker {
+    :global(.react-date-picker__wrapper) {
+      @include borderInput;
+    }
+
+    background-color: $input-background;
+    margin-top: 10px;
+
+    height: 39px;
+    min-width: 151px;
+
+    input,
+    select {
+      @include noFocusBorder;
+    }
+
+    select {
+      cursor: pointer;
+    }
+  }
+
+  .datePicker.datePickerEdit {
+    background-color: $lightGreen;
+
+    @include noFocusBorder;
+  }
+}

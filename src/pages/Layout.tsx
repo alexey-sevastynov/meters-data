@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Header } from "@/components/Header/Header";
-import { NavMenu } from "@/components/NavMenu/NavMenu";
+import { MdHeader } from "@/components/layout/header/MdHeader";
+import { MdNavMenu } from "@/components/layout/nav-menu/MdNavMenu";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
 import { BREAK_POINTS } from "@/constants";
@@ -28,19 +28,19 @@ const Layout: React.FC<LayoutProps> = () => {
 
   return (
     <>
-      <Header
+      <MdHeader
         isShowMenu={isShowMenu}
         openMenu={openMenu}
         closeMenu={closeMenu}
       />
       {isMobileView && !isOpenPopupWindow && (
-        <NavMenu
+        <MdNavMenu
           closeMenu={closeMenu}
           isShowMenu={isShowMenu}
         />
       )}
       {!isMobileView && (
-        <NavMenu
+        <MdNavMenu
           closeMenu={closeMenu}
           isShowMenu={isShowMenu}
         />
