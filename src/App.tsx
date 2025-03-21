@@ -1,9 +1,9 @@
 import { useRoutes } from "react-router-dom";
 import { createPortal } from "react-dom";
 import routes from "@/routes";
-import { Login } from "@/components/Login/Login";
+import { MdAuth } from "@/components/features/auth/MdAuth";
 import { useAppSelector } from "@/redux/hook";
-import { Confirm } from "@/components/Confirm/Confirm";
+import { MdConfirm } from "@/components/shared/confirm/MdConfirm";
 
 const mountElement = document.getElementById("auth")!;
 const confirmWindowPopup = document.getElementById("popup")!;
@@ -17,10 +17,10 @@ function App() {
 
   return (
     <main>
-      {createPortal(!isAuth && <Login />, mountElement)}
+      {createPortal(!isAuth && <MdAuth />, mountElement)}
 
       {createPortal(
-        isOpenPopup && <Confirm question={messagePopup} />,
+        isOpenPopup && <MdConfirm question={messagePopup} />,
         confirmWindowPopup
       )}
       <div className={isOpenPopup ? "blur active" : ""}>{isAuth && pages}</div>

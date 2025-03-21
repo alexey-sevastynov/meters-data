@@ -1,17 +1,15 @@
 import "@/styles/pages/address003.scss";
-import { InfoPanelMonth } from "@/components/InfoPanelMonth/InfoPanelMonth";
-import { MetersData } from "@/components/MetersData/MetersData";
+import { MdInfoPanelMonth } from "@/components/features/info-panel-month/MdInfoPanelMonth";
+import { MdMetersData } from "@/components/features/meters-data/MetersData";
 import { BREADCRUMB_ITEMS_ADDR_003 } from "@/constants/breadcrumbItems";
-import { Breadcrumb } from "@/components/Breadcrumb/Breadcrumb";
+import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 
-export const Address003 = () => {
+export function Address003() {
   return (
     <section className="address003">
-      <Breadcrumb items={BREADCRUMB_ITEMS_ADDR_003} />
-
-      <InfoPanelMonth isWaterBlock={false} />
-
-      <MetersData isWaterBlock={false} />
+      <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_003} />
+      <MdInfoPanelMonth isWaterBlock={false} />
+      <MdMetersData isWaterBlock={false} />
     </section>
   );
-};
+}

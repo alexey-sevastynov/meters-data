@@ -1,15 +1,15 @@
-import "../styles/pages/graphics.scss";
+import "@/styles/pages/graphics.scss";
 import { useLocation, useParams } from "react-router-dom";
-import { LIST_NAV } from "../constants";
-import { formatDate } from "../helpers/formatDate";
-import { useAppSelector } from "../redux/hook";
-import { filterAndSortItemsByAddressAndDate } from "../helpers/filterAndSortItemsByAddressAndDate";
-import { Chart } from "../components/Chart/Chart";
-import { Breadcrumb } from "@/components/Breadcrumb/Breadcrumb";
+import { LIST_NAV } from "@/constants";
+import { formatDate } from "@/helpers/formatDate";
+import { useAppSelector } from "@/redux/hook";
+import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
+import { MdChart } from "@/components/shared/chart/MdChart";
+import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumbItems";
 import { ADDRESS_TYPES } from "@/constants/routes";
 
-export const Graphics = () => {
+export function Graphics() {
   const { address } = useParams();
   const { pathname } = useLocation();
 
@@ -60,7 +60,7 @@ export const Graphics = () => {
   return (
     <div className="graphics">
       <div className="title">
-        <Breadcrumb
+        <MdBreadcrumb
           items={getBreadcrumbItemsGraphics(
             address!,
             addressItem?.id,
@@ -69,17 +69,17 @@ export const Graphics = () => {
         />
 
         <div className="items">
-          <Chart
+          <MdChart
             data={dataLight}
             label={"Light"}
           />
-          <Chart
+          <MdChart
             data={dataGas}
             label={"Gas"}
           />
 
           {dataWater.every((item) => item.water !== null) && (
-            <Chart
+            <MdChart
               data={dataWater}
               label={"Water"}
             />
@@ -88,4 +88,4 @@ export const Graphics = () => {
       </div>
     </div>
   );
-};
+}

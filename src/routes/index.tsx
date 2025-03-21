@@ -1,13 +1,11 @@
 import { RouteObject } from "react-router-dom";
-import Layout from "@/pages/Layout";
+import { Layout } from "@/pages/Layout";
 import { Home } from "@/pages/Home";
-import {
-  Address001,
-  Address002,
-  Address003,
-  Address004,
-  Address005,
-} from "@/pages";
+import { Address001 } from "@/pages/Address001";
+import { Address002 } from "@/pages/Address002";
+import { Address003 } from "@/pages/Address003";
+import { Address004 } from "@/pages/Address004";
+import { Address005 } from "@/pages/Address005";
 import { Price } from "@/pages/Price";
 import { Graphics } from "@/pages/Graphics";
 import { ROUTES } from "@/constants/routes";
