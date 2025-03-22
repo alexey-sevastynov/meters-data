@@ -2,10 +2,10 @@ import Style from "./meterInputsList.module.scss";
 import { InputField } from "@/components/features/meters-data/form-data-month/form-controls/inputFields";
 import { MeterDataType } from "@/types/MeterDataType";
 import { MdInput } from "@/components/ui/input/MdInput";
-import { COLORS } from "@/constants";
+import { colors } from "@/constants/colors";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.function";
 import { TranslationKeys } from "@/types/I18nextTypes";
-import { MeterInput } from "./MeterInput/MeterInput";
+import { MeterInput } from "@/components/features/meters-data/form-data-month/form-controls/meter-inputs-list/meter-input/MeterInput";
 
 interface MeterInputsListProps {
   items: InputField[];
@@ -50,7 +50,7 @@ export function MeterInputsList({
       {isWaterBlock && (
         <MdInput
           className={Style.input}
-          style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
+          style={isEdit ? { backgroundColor: colors.lightGreen } : {}}
           labelTextBold
           defaultValue={
             isEdit && meterDataEdit

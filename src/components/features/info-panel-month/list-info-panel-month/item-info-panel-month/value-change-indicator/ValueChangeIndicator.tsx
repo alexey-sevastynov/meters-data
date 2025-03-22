@@ -1,6 +1,6 @@
-import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
-import { COLORS } from "@/constants";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
+import { colors } from "@/constants/colors";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
 interface ValueChangeIndicatorProps {
   percentDifference: number;
@@ -9,15 +9,13 @@ interface ValueChangeIndicatorProps {
 export function ValueChangeIndicator({
   percentDifference,
 }: ValueChangeIndicatorProps) {
-  return percentDifference > 0 ? (
-    <FaLongArrowAltUp
-      size={SIZE_ICONS.small}
-      color={COLORS.red}
-    />
-  ) : (
-    <FaLongArrowAltDown
-      size={SIZE_ICONS.small}
-      color={COLORS.green}
+  const isPositive = percentDifference > 0;
+
+  return (
+    <MdIcon
+      name={isPositive ? iconNames.longArrowAltUp : iconNames.longArrowAltDown}
+      size={iconSizes.small}
+      color={isPositive ? colors.red : colors.green}
     />
   );
 }

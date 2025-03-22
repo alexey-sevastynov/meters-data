@@ -1,11 +1,11 @@
 import { MdButton } from "@/components/ui/button/MdButton";
 import Style from "./formActions.module.scss";
 import { setNotEdit } from "@/redux/slices/MetersDataSlice";
-import { COLORS } from "@/constants";
-import { FaEdit, FaPlusCircle } from "react-icons/fa";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
+import { colors } from "@/constants/colors";
 import { AppDispatch } from "@/redux/store";
 import { TranslationKeys } from "@/types/I18nextTypes";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames } from "@/components/ui/icon/icon-constants";
 
 interface FormActionsProps {
   isEdit: boolean;
@@ -19,7 +19,7 @@ export function FormActions({ isEdit, dispatch, lang }: FormActionsProps) {
       {isEdit && (
         <MdButton
           type="button"
-          style={{ backgroundColor: COLORS.red }}
+          style={{ backgroundColor: colors.red }}
           onClick={() => dispatch(setNotEdit())}
         >
           {lang.btn["cancel"]}
@@ -29,14 +29,14 @@ export function FormActions({ isEdit, dispatch, lang }: FormActionsProps) {
       {isEdit ? (
         <MdButton
           type="submit"
-          icon={<FaEdit size={SIZE_ICONS.medium} />}
+          icon={<MdIcon name={iconNames.edit} />}
         >
           {lang.btn["edit"]}
         </MdButton>
       ) : (
         <MdButton
           type="submit"
-          icon={<FaPlusCircle size={SIZE_ICONS.medium} />}
+          icon={<MdIcon name={iconNames.plusCircle} />}
         >
           {lang.btn["add"]}
         </MdButton>

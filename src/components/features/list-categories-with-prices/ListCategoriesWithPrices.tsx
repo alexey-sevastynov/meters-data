@@ -13,7 +13,7 @@ import {
 } from "@/redux/slices/PriceSlice";
 import { getIconUrl } from "@/helpers/getIconUrl";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { COLORS } from "@/constants";
+import { colors } from "@/constants/colors";
 import { editItem, saveItemDB } from "./ListCategoriesWithPrices.function";
 
 interface ListCategoriesWithPricesProps {
@@ -130,7 +130,7 @@ export function MdListCategoriesWithPrices({
             <MdButton
               type="button"
               onClick={cancel}
-              style={{ backgroundColor: COLORS.red }}
+              style={{ backgroundColor: colors.red }}
             >
               Cancel
             </MdButton>

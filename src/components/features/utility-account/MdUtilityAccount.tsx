@@ -1,11 +1,12 @@
 import { useAppSelector } from "@/redux/hook";
 import Styles from "./utilityAccount.module.scss";
-import { BsCopy } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import { AddressType } from "@/types/MeterDataType";
 import { AddressDataType } from "@/types/AddressDataType";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
 import { selectTranslations } from "@/redux/slices/I18next";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { colors } from "@/constants/colors";
 
 // template component UtilityAccount
 export function MdUtilityAccount() {
@@ -40,10 +41,12 @@ export function MdUtilityAccount() {
               <button
                 title={lang.utilityAccount.copy}
                 className={Styles.utilityAccount__items_item_content_copy}
+                onClick={() => navigator.clipboard.writeText(item?.light)}
               >
-                <BsCopy
-                  size={SIZE_ICONS.small}
-                  onClick={() => navigator.clipboard.writeText(item?.light)}
+                <MdIcon
+                  name={iconNames.copy}
+                  size={iconSizes.small}
+                  color={colors.black}
                 />
               </button>
             </div>
@@ -58,11 +61,14 @@ export function MdUtilityAccount() {
                 {item?.water}
               </p>
               <button
+                title={lang.utilityAccount.copy}
                 className={Styles.utilityAccount__items_item_content_copy}
+                onClick={() => navigator.clipboard.writeText(item?.water)}
               >
-                <BsCopy
-                  size={SIZE_ICONS.small}
-                  onClick={() => navigator.clipboard.writeText(item?.water)}
+                <MdIcon
+                  name={iconNames.copy}
+                  size={iconSizes.small}
+                  color={colors.black}
                 />
               </button>
             </div>
@@ -77,11 +83,14 @@ export function MdUtilityAccount() {
                 {item?.gas}
               </p>
               <button
+                title={lang.utilityAccount.copy}
                 className={Styles.utilityAccount__items_item_content_copy}
+                onClick={() => navigator.clipboard.writeText(item?.gas)}
               >
-                <BsCopy
-                  size={SIZE_ICONS.small}
-                  onClick={() => navigator.clipboard.writeText(item?.gas)}
+                <MdIcon
+                  name={iconNames.copy}
+                  size={iconSizes.small}
+                  color={colors.black}
                 />
               </button>
             </div>
