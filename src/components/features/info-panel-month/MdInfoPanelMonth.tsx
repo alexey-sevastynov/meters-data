@@ -1,15 +1,14 @@
 import Styles from "./infoPanelMonth.module.scss";
-import { RiPriceTagFill } from "react-icons/ri";
-import { IoBarChartSharp } from "react-icons/io5";
 import { ListInfoPanelMonth } from "@/components/features/info-panel-month/list-info-panel-month/ListInfoPanelMonth";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/redux/hook";
 import { selectTranslations } from "@/redux/slices/I18next";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
 import { filterItemsByAddress } from "@/helpers/filterAndSortItemsByAddressAndDate";
 import { removeFirstAddedMonth } from "@/helpers/removeFirstAddedMonth";
 import { MdDateRangeSelector } from "@/components/shared/date-range-selector/MdDateRangeSelector";
 import { LinkButtonGroup } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames } from "@/components/ui/icon/icon-constants";
 
 interface MdInfoPanelMonthProps {
   isWaterBlock?: boolean;
@@ -55,12 +54,12 @@ export function MdInfoPanelMonth({
   const linksGroup = [
     {
       path: `${pathname}/price`,
-      icon: <RiPriceTagFill size={SIZE_ICONS.medium} />,
+      icon: <MdIcon name={iconNames.priceTagFill} />,
       label: lang.infoPanel.price,
     },
     {
       path: `${pathname}/graphics`,
-      icon: <IoBarChartSharp size={SIZE_ICONS.medium} />,
+      icon: <MdIcon name={iconNames.barChartSharp} />,
       label: lang.infoPanel.graphics,
     },
   ];

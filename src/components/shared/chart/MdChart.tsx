@@ -12,7 +12,7 @@ import {
   defaults,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { COLORS } from "@/constants";
+import { colors } from "@/constants/colors";
 import { ChartsDataType } from "@/types/ChartsDataType";
 import { useAppSelector } from "@/redux/hook";
 import { selectTranslations } from "@/redux/slices/I18next";
@@ -65,32 +65,32 @@ export function MdChart({ data, label }: MdChartProps) {
             {
               label: "Light",
               data: filteredData.map((data) => data.light),
-              backgroundColor: COLORS.green,
-              borderColor: COLORS.green,
+              backgroundColor: colors.green,
+              borderColor: colors.green,
             },
             {
               label: "Light Night",
               data: filteredData.map((data) => data.lightNight),
-              backgroundColor: COLORS.grey,
-              borderColor: COLORS.grey,
+              backgroundColor: colors.grey,
+              borderColor: colors.grey,
             },
             {
               label: "Light Day",
               data: filteredData.map((data) => data.lightDay),
-              backgroundColor: COLORS.lightGreen,
-              borderColor: COLORS.lightGreen,
+              backgroundColor: colors.lightGreen,
+              borderColor: colors.lightGreen,
             },
             {
               label: "Gas",
               data: filteredData.map((data) => data.gas),
-              backgroundColor: COLORS.red,
-              borderColor: COLORS.red,
+              backgroundColor: colors.red,
+              borderColor: colors.red,
             },
             {
               label: "Water",
               data: filteredData.map((data) => data.water),
-              backgroundColor: COLORS.blue,
-              borderColor: COLORS.blue,
+              backgroundColor: colors.blue,
+              borderColor: colors.blue,
             },
           ].filter((dataset) =>
             label !== "Light"

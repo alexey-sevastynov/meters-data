@@ -9,7 +9,7 @@ import {
 } from "@/redux/slices/ConfirmPopupSlice";
 import { getIconUrl } from "@/helpers/getIconUrl";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { COLORS } from "@/constants";
+import { colors } from "@/constants/colors";
 
 interface MdConfirmProps {
   question: string;
@@ -68,7 +68,7 @@ export function MdConfirm({ question }: MdConfirmProps) {
           <MdButton onClick={cancel}>No</MdButton>
           <MdButton
             onClick={handleYesClick}
-            style={{ backgroundColor: COLORS.red }}
+            style={{ backgroundColor: colors.red }}
           >
             Yes!
           </MdButton>

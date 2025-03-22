@@ -1,5 +1,5 @@
 import { MdInput } from "@/components/ui/input/MdInput";
-import { COLORS } from "@/constants";
+import { colors } from "@/constants/colors";
 import { MeterDataType } from "@/types/MeterDataType";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.function";
 import { KeysItemUtilityPricesType } from "@/types/KeysItemUtilityPricesType";
@@ -30,7 +30,7 @@ export function MeterInput({
   return (
     <MdInput
       className={className}
-      style={isEdit ? { backgroundColor: COLORS.lightGreen } : {}}
+      style={isEdit ? { backgroundColor: colors.lightGreen } : {}}
       labelTextBold
       defaultValue={
         isEdit && meterDataEdit

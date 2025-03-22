@@ -1,11 +1,13 @@
-import { FaCircle } from "react-icons/fa6";
-import { GoHome } from "react-icons/go";
-import { COLORS } from "@/constants";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
-import MdLink from "@/components/ui/link/MdLink";
 import Styles from "./breadcrumb.module.scss";
-import { isHomeRoute, isNotLastItem } from "./breadcrumb.function";
-import { MdBreadcrumbProps } from "./breadcrumb.type";
+import { colors } from "@/constants/colors";
+import MdLink from "@/components/ui/link/MdLink";
+import {
+  isHomeRoute,
+  isNotLastItem,
+} from "@/components/shared/breadcrumb/breadcrumb.function";
+import { MdBreadcrumbProps } from "@/components/shared/breadcrumb/breadcrumb.type";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
 export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
   if (!items) return null;
@@ -15,9 +17,11 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
       {items.map((item, index) => {
         const isLastItem = !isNotLastItem(index, items.length);
         const linkContent = isHomeRoute(item) ? (
-          <GoHome
+          <MdIcon
+            name={iconNames.home}
+            size={iconSizes.medium}
+            color={colors.black}
             className={Styles.homeIcon}
-            size={SIZE_ICONS.medium}
           />
         ) : (
           item.label
@@ -39,10 +43,11 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
               </MdLink>
             )}
             {!isLastItem && (
-              <FaCircle
+              <MdIcon
+                name={iconNames.circle}
+                size={iconSizes.tiny}
+                color={colors.green}
                 className={Styles.separator}
-                color={COLORS.green}
-                size={SIZE_ICONS.tiny}
               />
             )}
           </div>

@@ -3,10 +3,16 @@ import Style from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { COLORS } from "@/constants";
+import { colors } from "@/constants/colors";
 import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
-import { deleteItem, editItem } from "./ItemMonthlyMoneyCalculations.function";
-import { translationDescription, translationTitle } from "./helpers";
+import {
+  deleteItem,
+  editItem,
+} from "@/components/features/monthly-money-calculations/item-monthly-money-calculations/ItemMonthlyMoneyCalculations.function";
+import {
+  translationDescription,
+  translationTitle,
+} from "@/components/features/monthly-money-calculations/item-monthly-money-calculations/helpers";
 
 interface ItemMonthlyMoneyCalculationsProps {
   items: ListInfoDataMonthType[];
@@ -111,7 +117,7 @@ export function ItemMonthlyMoneyCalculations({
           edit
         </MdButton>
         <MdButton
-          style={isEdit ? {} : { backgroundColor: COLORS.red }}
+          style={isEdit ? {} : { backgroundColor: colors.red }}
           onClick={onDeleteItem}
           disabled={isEdit}
         >

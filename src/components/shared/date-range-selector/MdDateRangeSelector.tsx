@@ -1,17 +1,17 @@
 import React, { useState, useRef } from "react";
-import { FaCalendarAlt } from "react-icons/fa";
+import Styles from "./dateRangeSelector.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { COLORS } from "@/constants";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
+import { colors } from "@/constants/colors";
 import { language } from "@/constants/language";
 import { showMeterReadingCalc } from "@/redux/slices/MetersDataSlice";
-import Styles from "./dateRangeSelector.module.scss";
-import { DateRangeSelectorProps } from "./dateRangeSelector.interface";
+import { DateRangeSelectorProps } from "@/components/shared/date-range-selector/dateRangeSelector.interface";
 import {
   formatDateDisplay,
   handleClickOutside,
   isActive,
-} from "./dateRangeSelector.function";
+} from "@/components/shared/date-range-selector/dateRangeSelector.function";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
 export function MdDateRangeSelector({
   data,
@@ -64,9 +64,10 @@ export function MdDateRangeSelector({
         onClick={handleButtonClick}
       >
         <p>{selectedDateDisplay}</p>
-        <FaCalendarAlt
-          color={COLORS.grey}
-          size={SIZE_ICONS.large}
+        <MdIcon
+          name={iconNames.calendar}
+          size={iconSizes.large}
+          color={colors.grey}
         />
       </button>
 

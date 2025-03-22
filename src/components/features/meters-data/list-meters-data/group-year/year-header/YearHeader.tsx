@@ -1,9 +1,9 @@
 import React from "react";
 import Style from "./yearHeader.module.scss";
-import { IoTriangle } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { SIZE_ICONS } from "@/constants/sizeIcons";
-import { COLORS } from "@/constants";
+import { colors } from "@/constants/colors";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
 interface YearHeaderProps {
   year: string;
@@ -23,9 +23,10 @@ const YearHeader: React.FC<YearHeaderProps> = ({ year, isOpen, onToggle }) => {
         animate={{ rotate: isOpen ? 180 : 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <IoTriangle
-          size={SIZE_ICONS.small}
-          color={COLORS.green}
+        <MdIcon
+          name={iconNames.triangle}
+          size={iconSizes.small}
+          color={colors.green}
         />
       </motion.div>
     </button>
