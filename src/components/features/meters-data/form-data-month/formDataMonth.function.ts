@@ -95,7 +95,7 @@ export async function handlePostMeterData(
         water
       );
 
-      sendMessageToTelegram(import.meta.env.VITE_CHAD_ID, message);
+      sendMessageToTelegram(message);
     }, 2500);
   }
 }
