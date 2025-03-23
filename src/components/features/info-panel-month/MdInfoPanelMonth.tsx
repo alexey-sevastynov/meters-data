@@ -9,6 +9,8 @@ import { MdDateRangeSelector } from "@/components/shared/date-range-selector/MdD
 import { LinkButtonGroup } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames } from "@/components/ui/icon/icon-constants";
+import { getStringEnv } from "@/helpers/get-string-env";
+import { envKeys } from "@/enums/env-keys";
 
 interface MdInfoPanelMonthProps {
     isWaterBlock?: boolean;
@@ -23,15 +25,15 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
 
     const lastValueMeter = (address: string) => {
         switch (address) {
-            case import.meta.env.VITE_ADDR_001:
+            case getStringEnv(envKeys.address001):
                 return infoMeterReading.address_001;
-            case import.meta.env.VITE_ADDR_002:
+            case getStringEnv(envKeys.address002):
                 return infoMeterReading.address_002;
-            case import.meta.env.VITE_ADDR_003:
+            case getStringEnv(envKeys.address003):
                 return infoMeterReading.address_003;
-            case import.meta.env.VITE_ADDR_004:
+            case getStringEnv(envKeys.address004):
                 return infoMeterReading.address_004;
-            case import.meta.env.VITE_ADDR_005:
+            case getStringEnv(envKeys.address005):
                 return infoMeterReading.address_005;
             default:
                 return null;

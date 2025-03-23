@@ -1,9 +1,9 @@
-import { errorMessage } from "../constants/errorMessage";
+import { errorMessage } from "@/constants/error-message";
 
 export function capitalizeFirstLetter(word: string) {
-  if (!word || typeof word !== "string") {
-    throw new Error(errorMessage.invalidInput.replace("{0}", word));
-  }
+    if (!word || typeof word !== "string") {
+        throw new Error(errorMessage.invalidInput.replace("{0}", word));
+    }
 
-  return word.charAt(0).toUpperCase() + word.slice(1);
+    return word.charAt(0).toUpperCase() + word.slice(1);
 }

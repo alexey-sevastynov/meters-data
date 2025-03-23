@@ -1,6 +1,6 @@
-import { ADDRESS } from "@/constants/address";
+import { addressLinkNames } from "@/constants/address";
 
-export type AddressType = (typeof ADDRESS)[keyof typeof ADDRESS];
+export type AddressType = (typeof addressLinkNames)[keyof typeof addressLinkNames];
 
 export interface MeterDataType {
     _id: string;

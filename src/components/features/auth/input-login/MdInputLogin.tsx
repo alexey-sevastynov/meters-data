@@ -1,6 +1,7 @@
 import React from "react";
 import Style from "./inputLogin.module.scss";
 import { getIconUrl } from "@/helpers/getIconUrl";
+import { isValidLoginInput } from "./inputLogin.funcs";
 
 interface InputLoginProps {
     labelText: "Email" | "Password";
@@ -10,10 +11,6 @@ interface InputLoginProps {
 }
 
 export function MdInputLogin({ labelText = "Email", value, setValue, isError }: InputLoginProps) {
-    const email = import.meta.env.VITE_EMAIL as string;
-    const password = import.meta.env.VITE_PASSWORD as string;
-    const isAuth = value === email || value === password;
-
     const type = labelText.toLowerCase();
     const errorMessage = `wrong ${type} !`;
     const placeholder = `Input ${type}...`;
@@ -22,7 +19,7 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
         setValue(e.target.value);
     };
 
-    const iconIndicatorInput = isAuth ? (
+    const iconIndicatorInput = isValidLoginInput(value) ? (
         <img src={getIconUrl("ok.png")} alt="ok" width={19.5} height={19.5} />
     ) : (
         <img src={getIconUrl("close.png")} alt="ok" width={19.5} height={19.5} />
@@ -36,7 +33,7 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
             <div className={Style.input}>
                 <input
                     id={labelText}
-                    className={isAuth ? Style.inputTrue : ""}
+                    className={isValidLoginInput(value) ? Style.inputTrue : ""}
                     type={type}
                     placeholder={placeholder}
                     value={value}
@@ -45,7 +42,7 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
                 {showIconIndicatorInput}
             </div>
 
-            {isError && (isAuth || <p className={Style.errorMessage}>{errorMessage}</p>)}
+            {isError && (isValidLoginInput(value) || <p className={Style.errorMessage}>{errorMessage}</p>)}
         </div>
     );
 }

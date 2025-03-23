@@ -1,18 +1,20 @@
 import { AddressType } from "@/types/MeterDataType";
+import { getStringEnv } from "@/helpers/get-string-env";
+import { envKeys } from "@/enums/env-keys";
 
 export function getKeyOnPage(address: AddressType) {
-  switch (address) {
-    case import.meta.env.VITE_ADDR_001:
-      return "address_001";
-    case import.meta.env.VITE_ADDR_003:
-      return "address_003";
-    case import.meta.env.VITE_ADDR_004:
-      return "address_004";
-    case import.meta.env.VITE_ADDR_005:
-      return "address_005";
-    case import.meta.env.VITE_ADDR_002:
-      return "address_002";
-    default:
-      return "";
-  }
+    switch (address) {
+        case getStringEnv(envKeys.address001):
+            return "address_001";
+        case getStringEnv(envKeys.address003):
+            return "address_003";
+        case getStringEnv(envKeys.address004):
+            return "address_004";
+        case getStringEnv(envKeys.address005):
+            return "address_005";
+        case getStringEnv(envKeys.address002):
+            return "address_002";
+        default:
+            return "";
+    }
 }

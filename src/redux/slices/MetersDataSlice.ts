@@ -8,6 +8,8 @@ import { getKeyOnPage } from "@/helpers/getKeyOnPage";
 import { findPreviousDateById } from "@/redux/helpers/findPreviousDateById";
 import { calculateDifference } from "@/redux/helpers/calculateDifference";
 import { findPenultimateDate } from "@/redux/helpers/findPenultimateDate";
+import { getStringEnv } from "@/helpers/get-string-env";
+import { envKeys } from "@/enums/env-keys";
 
 export interface ListInfoDataMonthType {
     id: string;
@@ -194,11 +196,11 @@ const MetersDataSlice = createSlice({
             }
 
             state.infoMeterReading = {
-                address_001: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_001),
-                address_002: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_002),
-                address_003: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_003),
-                address_004: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_004),
-                address_005: setCurrentMetersDataPage(import.meta.env.VITE_ADDR_005),
+                address_001: setCurrentMetersDataPage(getStringEnv(envKeys.address001)),
+                address_002: setCurrentMetersDataPage(getStringEnv(envKeys.address002)),
+                address_003: setCurrentMetersDataPage(getStringEnv(envKeys.address003)),
+                address_004: setCurrentMetersDataPage(getStringEnv(envKeys.address004)),
+                address_005: setCurrentMetersDataPage(getStringEnv(envKeys.address005)),
             };
         });
         builder.addCase(fetchAllMetersData.rejected, (state, action) => {
