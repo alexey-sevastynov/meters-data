@@ -1,50 +1,50 @@
 @import "@/styles/colors.scss";
 
 .listCategoriesWithPrices {
-  min-width: max-content;
-  .itemBlock {
-    position: relative;
+    min-width: max-content;
+    .itemBlock {
+        position: relative;
 
-    &:nth-child(1) {
-      border-bottom: 1px solid $grey;
+        &:nth-child(1) {
+            border-bottom: 1px solid $grey;
+        }
+
+        .btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+    .item {
+        padding-left: 40px;
+        display: flex;
+        gap: 20px;
+
+        p {
+            line-height: 1.8;
+        }
+
+        .title {
+            font-weight: bold;
+        }
     }
 
-    .btn {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-  .item {
-    padding-left: 40px;
-    display: flex;
-    gap: 20px;
+    .itemLast {
+        border-top: 1px solid $grey;
 
-    p {
-      line-height: 1.8;
+        .sumMoney {
+            color: $green;
+        }
     }
 
-    .title {
-      font-weight: bold;
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        .btns {
+            display: flex;
+            gap: 20px;
+        }
     }
-  }
-
-  .itemLast {
-    border-top: 1px solid $grey;
-
-    .sumMoney {
-      color: $green;
-    }
-  }
-
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-
-    .btns {
-      display: flex;
-      gap: 20px;
-    }
-  }
 }

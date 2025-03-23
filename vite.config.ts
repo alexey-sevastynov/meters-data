@@ -5,13 +5,13 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), svgr()], // register the plugin
+    plugins: [react(), svgr()], // register the plugin
 
-  base: "/meters-data/",
+    base: "/meters-data/",
 
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
+        },
     },
-  },
 });

@@ -7,25 +7,25 @@ $gap-line: 3px;
 
 .progressIndicator__left,
 .progressIndicator__right {
-  position: absolute;
-  height: 100%;
-  width: calc(50% - $gap-line / 2);
-
-  &_minus {
     position: absolute;
     height: 100%;
-    background-color: $green;
-    right: 0px;
+    width: calc(50% - $gap-line / 2);
 
-    border-radius: $border-radius 0px 0px $border-radius;
-  }
+    &_minus {
+        position: absolute;
+        height: 100%;
+        background-color: $green;
+        right: 0px;
 
-  &_plus {
-    position: absolute;
-    height: 100%;
-    background-color: $red;
-    left: calc(100% + $gap-line);
+        border-radius: $border-radius 0px 0px $border-radius;
+    }
 
-    border-radius: 0px $border-radius $border-radius 0px;
-  }
+    &_plus {
+        position: absolute;
+        height: 100%;
+        background-color: $red;
+        left: calc(100% + $gap-line);
+
+        border-radius: 0px $border-radius $border-radius 0px;
+    }
 }

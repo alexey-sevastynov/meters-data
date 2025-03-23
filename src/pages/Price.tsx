@@ -14,36 +14,36 @@ import { MdListCategoriesWithPrices } from "@/components/features/list-categorie
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
 
 export function Price() {
-  const { address } = useParams();
-  const dispatch = useAppDispatch();
+    const { address } = useParams();
+    const dispatch = useAppDispatch();
 
-  const addressItem = LIST_NAV.find(({ link }) => link === `/${address}`);
+    const addressItem = LIST_NAV.find(({ link }) => link === `/${address}`);
 
-  useEffect(() => {
-    dispatch(fetchAllServices());
-    dispatch(fetchAllMonthlyMoneyCalculations());
-  }, []);
+    useEffect(() => {
+        dispatch(fetchAllServices());
+        dispatch(fetchAllMonthlyMoneyCalculations());
+    }, []);
 
-  return (
-    <div className="price">
-      <div className="title">
-        <MdBreadcrumb
-          items={getBreadcrumbItemsPrice(
-            address!,
-            addressItem?.id,
-            `/${address}/${ADDRESS_TYPES.PRICE}`
-          )}
-        />
-      </div>
+    return (
+        <div className="price">
+            <div className="title">
+                <MdBreadcrumb
+                    items={getBreadcrumbItemsPrice(
+                        address!,
+                        `/${address}/${ADDRESS_TYPES.PRICE}`,
+                        addressItem?.id
+                    )}
+                />
+            </div>
 
-      <MdUtilityAccount />
+            <MdUtilityAccount />
 
-      <MdExtraServicesForm dispatch={dispatch} />
-      <div className="overflow-auto mt-40">
-        <MdListCategoriesWithPrices dispatch={dispatch} />
-      </div>
+            <MdExtraServicesForm dispatch={dispatch} />
+            <div className="overflow-auto mt-40">
+                <MdListCategoriesWithPrices dispatch={dispatch} />
+            </div>
 
-      <MdMonthlyMoneyCalculations />
-    </div>
-  );
+            <MdMonthlyMoneyCalculations />
+        </div>
+    );
 }
