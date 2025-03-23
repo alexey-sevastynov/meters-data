@@ -1,4 +1,4 @@
-import { errorMessage } from "@/constants/errorMessage";
+import { errorMessage } from "@/constants/error-message";
 import { MeterDataType } from "@/types/MeterDataType";
 
 const parseDate = (dateStr: string) => {

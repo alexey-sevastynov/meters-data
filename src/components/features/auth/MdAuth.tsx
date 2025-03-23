@@ -5,17 +5,16 @@ import { useAppDispatch } from "@/redux/hook";
 import { logIn } from "@/redux/slices/AuthSlice";
 import { MdInputLogin } from "@/components/features/auth/input-login/MdInputLogin";
 import { MdButtonLogin } from "@/components/features/auth/button-login/MdButtonLogin";
+import { isValidCredentials } from "@/components/features/auth/auth.funcs";
 
 export function MdAuth() {
     const dispatch = useAppDispatch();
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const [isError, isSetError] = useState(false);
 
     const tryLogIn = () => {
-        if (email === import.meta.env.VITE_EMAIL && password === import.meta.env.VITE_PASSWORD) {
+        if (isValidCredentials(email, password)) {
             dispatch(logIn());
             isSetError(false);
         } else {

@@ -1,6 +1,8 @@
 import { ROUTES } from "@/constants/routes";
+import { getStringEnv } from "@/helpers/get-string-env";
+import { envKeys } from "@/enums/env-keys";
 
-export const API_URL = import.meta.env.VITE_API_URL as string;
+export const API_URL = getStringEnv(envKeys.apiUrl);
 
 export const BREAK_POINTS = {
     MOBILE_S: 350,
@@ -18,28 +20,28 @@ export const LIST_NAV = [
         imageName: "home.png",
     },
     {
-        link: `/${import.meta.env.VITE_ADDR_003}`,
-        id: import.meta.env.VITE_ADDR_NAME_003 as string,
+        link: `/${getStringEnv(envKeys.address003)}`,
+        id: getStringEnv(envKeys.addressName003),
         imageName: "73-8.svg",
     },
     {
-        link: `/${import.meta.env.VITE_ADDR_004}`,
-        id: import.meta.env.VITE_ADDR_NAME_004 as string,
+        link: `/${getStringEnv(envKeys.address004)}`,
+        id: getStringEnv(envKeys.addressName004),
         imageName: "75-1.svg",
     },
     {
-        link: `/${import.meta.env.VITE_ADDR_005}`,
-        id: import.meta.env.VITE_ADDR_NAME_005 as string,
+        link: `/${getStringEnv(envKeys.address005)}`,
+        id: getStringEnv(envKeys.addressName005),
         imageName: "75-3.svg",
     },
     {
-        link: `/${import.meta.env.VITE_ADDR_002}`,
-        id: import.meta.env.VITE_ADDR_NAME_002 as string,
+        link: `/${getStringEnv(envKeys.address002)}`,
+        id: getStringEnv(envKeys.addressName002),
         imageName: "68a-63.svg",
     },
     {
-        link: `/${import.meta.env.VITE_ADDR_001}`,
-        id: import.meta.env.VITE_ADDR_NAME_001 as string,
+        link: `/${getStringEnv(envKeys.address001)}`,
+        id: getStringEnv(envKeys.addressName001),
         imageName: "1-12.svg",
     },
 ];
@@ -196,6 +198,6 @@ export const WIDTH_COMPONENT_LIST_METERS_DATA_SMALL = 820;
 export const WIDTH_COMPONENT_LIST_METERS_DATA_BIG = 955;
 export const HEIGHT_COMPONENT_HEADER = 80;
 
-export const URL_API_TELEGRAM_SEND_MESSAGE = `https://api.telegram.org/bot${
-    import.meta.env.VITE_TOKEN
-}/sendMessage`;
+export const URL_API_TELEGRAM_SEND_MESSAGE = `https://api.telegram.org/bot${getStringEnv(
+    envKeys.token
+)}/sendMessage`;

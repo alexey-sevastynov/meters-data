@@ -1,6 +1,8 @@
 import axios from "axios";
 import { URL_API_TELEGRAM_SEND_MESSAGE } from "@/constants";
 import { isDev } from "@/lib/environments";
+import { getStringEnv } from "@/helpers/get-string-env";
+import { envKeys } from "@/enums/env-keys";
 
 const parseModes = {
     markdown: "Markdown",
@@ -20,7 +22,7 @@ export async function sendMessageToTelegram(message: string, parseMode: ParseMod
     if (isDev()) return;
 
     const telegramMessage: TelegramMessage = {
-        chat_id: import.meta.env.VITE_CHAD_ID as string,
+        chat_id: getStringEnv(envKeys.chatId),
         parse_mode: parseMode,
         text: message,
     };

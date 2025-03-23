@@ -4,7 +4,7 @@ import { API_URL } from "@/constants";
 import { AddressDataType } from "@/types/AddressDataType";
 import { statusNames, StatusType } from "@/constants/status";
 import { API_PATH } from "@/constants/apiPath";
-import { ERROR_MESSAGE } from "@/constants/errorMessage";
+import { ERROR_MESSAGE } from "@/constants/error-message";
 import { actionNames } from "../actionNames";
 
 export const fetchAllAddressData = createAsyncThunk<AddressDataType[], void, { rejectValue: AxiosError }>(
