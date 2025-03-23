@@ -9,23 +9,19 @@ const mountElement = document.getElementById("auth")!;
 const confirmWindowPopup = document.getElementById("popup")!;
 
 function App() {
-  const pages = useRoutes(routes);
+    const pages = useRoutes(routes);
+    const isAuth = useAppSelector((state) => state.auth.isAuth);
+    const isOpenPopup = useAppSelector((state) => state.confirm.isOpen);
+    const messagePopup = useAppSelector((state) => state.confirm.message);
 
-  const isAuth = useAppSelector((props) => props.auth.isAuth);
-  const isOpenPopup = useAppSelector((props) => props.confirm.isOpen);
-  const messagePopup = useAppSelector((props) => props.confirm.message);
+    return (
+        <main>
+            {createPortal(!isAuth && <MdAuth />, mountElement)}
 
-  return (
-    <main>
-      {createPortal(!isAuth && <MdAuth />, mountElement)}
-
-      {createPortal(
-        isOpenPopup && <MdConfirm question={messagePopup} />,
-        confirmWindowPopup
-      )}
-      <div className={isOpenPopup ? "blur active" : ""}>{isAuth && pages}</div>
-    </main>
-  );
+            {createPortal(isOpenPopup && <MdConfirm question={messagePopup} />, confirmWindowPopup)}
+            <div className={isOpenPopup ? "blur active" : ""}>{isAuth && pages}</div>
+        </main>
+    );
 }
 
 export default App;

@@ -8,42 +8,30 @@ import { BREAK_POINTS } from "@/constants";
 import { fetchAllAddressData } from "@/redux/slices/AddressDataSlice";
 
 export function Layout() {
-  const dispatch = useAppDispatch();
-  const [isShowMenu, setIsShowMenu] = useState<boolean>(false);
-  const isOpenPopupWindow = useAppSelector((props) => props.confirm.isOpen);
-  const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.LAPTOP });
+    const dispatch = useAppDispatch();
+    const [isShowMenu, setIsShowMenu] = useState<boolean>(false);
+    const isOpenPopupWindow = useAppSelector((state) => state.confirm.isOpen);
+    const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.LAPTOP });
 
-  useEffect(() => {
-    dispatch(fetchAllAddressData());
-  }, []);
+    useEffect(() => {
+        dispatch(fetchAllAddressData());
+    }, []);
 
-  const openMenu = () => {
-    setIsShowMenu(true);
-  };
-  const closeMenu = () => {
-    setIsShowMenu(false);
-  };
+    const openMenu = () => {
+        setIsShowMenu(true);
+    };
+    const closeMenu = () => {
+        setIsShowMenu(false);
+    };
 
-  return (
-    <>
-      <MdHeader
-        isShowMenu={isShowMenu}
-        openMenu={openMenu}
-        closeMenu={closeMenu}
-      />
-      {isMobileView && !isOpenPopupWindow && (
-        <MdNavMenu
-          closeMenu={closeMenu}
-          isShowMenu={isShowMenu}
-        />
-      )}
-      {!isMobileView && (
-        <MdNavMenu
-          closeMenu={closeMenu}
-          isShowMenu={isShowMenu}
-        />
-      )}
-      <Outlet />
-    </>
-  );
+    return (
+        <>
+            <MdHeader isShowMenu={isShowMenu} openMenu={openMenu} closeMenu={closeMenu} />
+            {isMobileView && !isOpenPopupWindow && (
+                <MdNavMenu closeMenu={closeMenu} isShowMenu={isShowMenu} />
+            )}
+            {!isMobileView && <MdNavMenu closeMenu={closeMenu} isShowMenu={isShowMenu} />}
+            <Outlet />
+        </>
+    );
 }

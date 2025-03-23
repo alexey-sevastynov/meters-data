@@ -7,34 +7,30 @@ import { useAppSelector } from "@/redux/hook";
 import { selectTranslations } from "@/redux/slices/I18next";
 
 interface SelectDateProps extends DatePickerProps {
-  selectDate: DataPickerValue;
-  setSelectDate: (value: DataPickerValue) => void;
+    selectDate: DataPickerValue;
+    setSelectDate: (value: DataPickerValue) => void;
 }
 
-export function SelectDate({
-  selectDate,
-  setSelectDate,
-  ...props
-}: SelectDateProps) {
-  const isEdit = useAppSelector((props) => props.metersData.isEdit);
-  const language = useAppSelector((props) => props.i18n.lang);
-  const lang = useAppSelector(selectTranslations);
+export function SelectDate({ selectDate, setSelectDate, ...props }: SelectDateProps) {
+    const isEdit = useAppSelector((state) => state.metersData.isEdit);
+    const language = useAppSelector((state) => state.i18n.lang);
+    const lang = useAppSelector(selectTranslations);
 
-  return (
-    <div className={Style.selectDate}>
-      <label>{lang.infoPanel.date}:</label>
-      <DatePicker
-        onChange={setSelectDate}
-        value={selectDate}
-        maxDetail="month"
-        format="MMMM/yyyy"
-        minDetail="year"
-        locale={language === "ua" ? "uk" : "en"}
-        disableCalendar
-        clearIcon={null}
-        className={`${Style.datePicker} ${isEdit ? Style.datePickerEdit : ""}`}
-        {...props}
-      />
-    </div>
-  );
+    return (
+        <div className={Style.selectDate}>
+            <label>{lang.infoPanel.date}:</label>
+            <DatePicker
+                onChange={setSelectDate}
+                value={selectDate}
+                maxDetail="month"
+                format="MMMM/yyyy"
+                minDetail="year"
+                locale={language === "ua" ? "uk" : "en"}
+                disableCalendar
+                clearIcon={null}
+                className={`${Style.datePicker} ${isEdit ? Style.datePickerEdit : ""}`}
+                {...props}
+            />
+        </div>
+    );
 }

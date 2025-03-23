@@ -3,63 +3,53 @@ import Styles from "./input.module.scss";
 import { getIconUrl } from "@/helpers/getIconUrl";
 
 interface MdInputProps extends HTMLAttributes<HTMLInputElement> {
-  defaultValue: number | string;
-  labelText?: string;
-  labelTextBold?: boolean;
-  value: number | string;
-  type?: string;
-  setValue: (value: any) => void;
-  placeholder?: string;
+    value: number;
+    setValue: (value: number) => void;
+    defaultValue?: number;
+    labelText?: string;
+    labelTextBold?: boolean;
+    type?: string;
+    placeholder?: string;
 }
 
 export function MdInput({
-  defaultValue = 0,
-  labelText = "Price",
-  labelTextBold,
-  value,
-  type = "number",
-  setValue,
-  ...props
+    defaultValue = 0,
+    labelText = "Price",
+    labelTextBold,
+    value,
+    type = "number",
+    setValue,
+    ...props
 }: MdInputProps) {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValue(value);
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const targetValue = e.target.value;
 
-  const returnСurrentValues = () => {
-    setValue(defaultValue);
-  };
+        setValue(Number(targetValue));
+    };
 
-  return (
-    <div className={Styles.input}>
-      <label
-        id={labelText}
-        className={labelTextBold ? Styles.labelTextBold : Styles.label}
-      >
-        {labelText}:
-      </label>
-      <input
-        id={labelText}
-        type={type}
-        value={value}
-        onChange={handleChange}
-        step={0.01}
-        min={0}
-        {...props}
-      />
-      {value !== defaultValue && (
-        <button
-          className={Styles.close}
-          onClick={returnСurrentValues}
-        >
-          <img
-            src={getIconUrl("close.png")}
-            alt="close"
-            width={16}
-            height={16}
-          />
-        </button>
-      )}
-    </div>
-  );
+    const returnCurrentValues = () => {
+        setValue(defaultValue);
+    };
+
+    return (
+        <div className={Styles.input}>
+            <label id={labelText} className={labelTextBold ? Styles.labelTextBold : Styles.label}>
+                {labelText}:
+            </label>
+            <input
+                id={labelText}
+                type={type}
+                value={value}
+                onChange={handleChange}
+                step={0.01}
+                min={0}
+                {...props}
+            />
+            {value !== defaultValue && (
+                <button className={Styles.close} onClick={returnCurrentValues}>
+                    <img src={getIconUrl("close.png")} alt="close" width={16} height={16} />
+                </button>
+            )}
+        </div>
+    );
 }

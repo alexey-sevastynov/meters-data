@@ -2,43 +2,43 @@
 @import "@/styles/colors.scss";
 
 .infoPanelMonthSection {
-  display: flex;
-  margin-top: 20px;
-
-  .infoPanelMonth {
     display: flex;
-    flex-direction: column;
+    margin-top: 20px;
 
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    &__btns {
-      display: none;
-      @media (max-width: $mobile-xl) {
-        display: flex;
-      }
-    }
-
-    &__header {
-      display: flex;
-      gap: 10px;
-
-      flex-wrap: wrap;
-
-      &_btns {
-        @media (max-width: $mobile-xl) {
-          display: none;
-        }
-      }
-    }
-  }
-
-  @media (max-width: $mobile-xl) {
     .infoPanelMonth {
-      flex-direction: column;
-      align-items: unset;
-      width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+
+        flex-wrap: wrap;
+
+        &__btns {
+            display: none;
+            @media (max-width: $mobile-xl) {
+                display: flex;
+            }
+        }
+
+        &__header {
+            display: flex;
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            &_btns {
+                @media (max-width: $mobile-xl) {
+                    display: none;
+                }
+            }
+        }
     }
-  }
+
+    @media (max-width: $mobile-xl) {
+        .infoPanelMonth {
+            flex-direction: column;
+            align-items: unset;
+            width: 100%;
+        }
+    }
 }

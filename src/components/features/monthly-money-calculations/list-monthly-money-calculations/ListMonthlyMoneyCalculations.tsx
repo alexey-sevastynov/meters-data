@@ -3,26 +3,24 @@ import { ItemMonthlyMoneyCalculations } from "../item-monthly-money-calculations
 import { MonthlyMoneyCalculationsType } from "@/types/MonthlyMoneyCalculationsType";
 
 interface ListMonthlyMoneyCalculationsProps {
-  items: MonthlyMoneyCalculationsType[] | undefined;
-  status: string;
+    items: MonthlyMoneyCalculationsType[] | undefined;
+    status: string;
 }
 
-export const ListMonthlyMoneyCalculations: React.FC<
-  ListMonthlyMoneyCalculationsProps
-> = ({ items, status }) => {
-  return (
-    <ul className={Style.listMonthlyMoneyCalculations}>
-      {status === "loading" && <p>loading...</p>}
-      {items &&
-        items.map(({ _id, data, sumMoney, address }) => (
-          <ItemMonthlyMoneyCalculations
-            key={_id}
-            id={_id}
-            items={data.map((item) => ({ ...item, id: item._id }))}
-            sumMoney={sumMoney}
-            address={address}
-          />
-        ))}
-    </ul>
-  );
-};
+export function ListMonthlyMoneyCalculations({ items, status }: ListMonthlyMoneyCalculationsProps) {
+    return (
+        <ul className={Style.listMonthlyMoneyCalculations}>
+            {status === "loading" && <p>loading...</p>}
+            {items &&
+                items.map(({ _id, data, sumMoney, address }) => (
+                    <ItemMonthlyMoneyCalculations
+                        key={_id}
+                        id={_id}
+                        items={data.map((item) => ({ ...item, id: item._id }))}
+                        sumMoney={sumMoney}
+                        address={address}
+                    />
+                ))}
+        </ul>
+    );
+}

@@ -1,26 +1,26 @@
 import { useState, useEffect } from "react";
 
-type MediaQueryParams = {
-  maxWidth: number;
-};
+interface MediaQueryParams {
+    maxWidth: number;
+}
 
 const useAdaptiveScreen = ({ maxWidth }: MediaQueryParams) => {
-  const [isScreenAdaptive, setIsScreenAdaptive] = useState(false);
+    const [isScreenAdaptive, setIsScreenAdaptive] = useState(false);
 
-  const checkScreenSize = () => {
-    setIsScreenAdaptive(window.innerWidth <= maxWidth);
-  };
-
-  useEffect(() => {
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-
-    return () => {
-      window.removeEventListener("resize", checkScreenSize);
+    const checkScreenSize = () => {
+        setIsScreenAdaptive(window.innerWidth <= maxWidth);
     };
-  }, [maxWidth]);
 
-  return isScreenAdaptive;
+    useEffect(() => {
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+
+        return () => {
+            window.removeEventListener("resize", checkScreenSize);
+        };
+    }, [maxWidth]);
+
+    return isScreenAdaptive;
 };
 
 export default useAdaptiveScreen;

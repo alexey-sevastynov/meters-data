@@ -7,45 +7,37 @@ import { useAppSelector } from "@/redux/hook";
 import { AddressType } from "@/types/MeterDataType";
 
 export function MdMonthlyMoneyCalculations() {
-  const { pathname } = useLocation();
+    const { pathname } = useLocation();
 
-  const status = useAppSelector(
-    (props) => props.prices.itemsMonthlyMoneyCalculations.status
-  );
-  const allListItems = useAppSelector(
-    (props) => props.prices.itemsMonthlyMoneyCalculations.items
-  );
+    const status = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.status);
+    const allListItems = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.items);
 
-  const [inputValue, setInputValue] = useState<string>("");
+    const [inputValue, setInputValue] = useState<number>(0);
 
-  const currentPageName = pathname.replace(/^\/|\/price$/g, "") as AddressType;
+    const currentPageName = pathname.replace(/^\/|\/price$/g, "") as AddressType;
 
-  const itemsFilter = allListItems?.filter(
-    (item) =>
-      item.address === currentPageName &&
-      item.data[0].description.toLowerCase().includes(inputValue.toLowerCase())
-  );
+    const itemsFilter = allListItems?.filter(
+        (item) =>
+            item.address === currentPageName &&
+            item.data[0].description.toLowerCase().includes(String(inputValue).toLowerCase())
+    );
 
-  return (
-    <section className={Style.monthlyMoneyCalculations}>
-      <h4>Monthly money calculations:</h4>
-      <div className={Style.inputBlock}>
-        <MdInput
-          className={Style.input}
-          value={inputValue}
-          setValue={setInputValue}
-          defaultValue={""}
-          labelTextBold
-          labelText="Choose period"
-          type="text"
-          placeholder="Search..."
-        />
-      </div>
+    return (
+        <section className={Style.monthlyMoneyCalculations}>
+            <h4>Monthly money calculations:</h4>
+            <div className={Style.inputBlock}>
+                <MdInput
+                    value={inputValue}
+                    setValue={setInputValue}
+                    className={Style.input}
+                    labelTextBold
+                    labelText="Choose period"
+                    type="text"
+                    placeholder="Search..."
+                />
+            </div>
 
-      <ListMonthlyMoneyCalculations
-        items={itemsFilter}
-        status={status}
-      />
-    </section>
-  );
+            <ListMonthlyMoneyCalculations items={itemsFilter} status={status} />
+        </section>
+    );
 }

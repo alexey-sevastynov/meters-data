@@ -24,9 +24,9 @@ export default [
             "**/*.svg",
             "**/*.md",
             "node_modules",
-            ".next",
             "dist",
             "build",
+            "vite.config.ts",
         ],
     },
     ...compat
@@ -58,7 +58,7 @@ export default [
         },
         rules: {
             "max-lines": ["error", 400],
-            "max-lines-per-function": ["error", 60],
+            "max-lines-per-function": ["error", 90],
             complexity: ["error", { max: 10 }],
             "no-constant-condition": "error",
             "prefer-regex-literals": "error",
@@ -78,13 +78,15 @@ export default [
             "react/jsx-no-comment-textnodes": "error",
             "react-hooks/exhaustive-deps": "warn",
             "react-compiler/react-compiler": "error",
-            "comma-dangle": ["error", "always-multiline"],
             eqeqeq: ["error", "always"],
             "space-in-parens": ["error", "never"],
             "default-case": "error",
             "max-len": [
                 "error",
-                { code: 120, ignorePattern: '^import\\s.+\\sfrom\\s.+;$|className="[^"]+"' },
+                {
+                    code: 120,
+                    ignorePattern: "^import\\s.+\\sfrom\\s.+;$",
+                },
             ],
             "@typescript-eslint/no-unsafe-return": "error",
             "@typescript-eslint/no-unsafe-assignment": "error",
@@ -117,69 +119,6 @@ export default [
                             "constructor",
                             "public-method",
                         ],
-                    },
-                },
-            ],
-            "@typescript-eslint/naming-convention": [
-                "error",
-                {
-                    selector: "import",
-                    format: ["camelCase", "PascalCase"],
-                },
-                {
-                    selector: "variable",
-                    format: ["camelCase"],
-
-                    filter: {
-                        regex: "^.*\\.ts?$",
-                        match: true,
-                    },
-                },
-                {
-                    selector: "variable",
-                    format: ["PascalCase"],
-
-                    filter: {
-                        regex: "^.*\\.tsx?$",
-                        match: true,
-                    },
-                },
-                {
-                    selector: "typeLike",
-                    format: ["camelCase", "PascalCase"],
-                },
-                {
-                    selector: "enumMember",
-                    format: ["camelCase", "PascalCase"],
-                },
-                {
-                    selector: "class",
-                    format: ["PascalCase"],
-                },
-                {
-                    selector: "interface",
-                    format: ["PascalCase"],
-                },
-                {
-                    selector: "typeProperty",
-                    format: ["camelCase", "snake_case"],
-                },
-                {
-                    selector: "function",
-                    format: ["PascalCase"],
-
-                    filter: {
-                        regex: "^.*\\.tsx?$",
-                        match: true,
-                    },
-                },
-                {
-                    selector: "function",
-                    format: ["camelCase"],
-
-                    filter: {
-                        regex: "^.*\\.ts?$",
-                        match: true,
                     },
                 },
             ],

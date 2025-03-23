@@ -2,16 +2,16 @@
 @import "@/styles/colors.scss";
 
 .listInfoPanelMonth {
-  margin-top: 10px;
+    margin-top: 10px;
 
-  display: flex;
+    display: flex;
 
-  flex-grow: 1;
-  gap: 50px;
+    flex-grow: 1;
+    gap: 50px;
 
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 
-  @media (max-width: $mobile-xl) {
-    justify-content: space-between;
-  }
+    @media (max-width: $mobile-xl) {
+        justify-content: space-between;
+    }
 }

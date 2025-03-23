@@ -1,37 +1,21 @@
-export const translationTitle = (title: string) => {
-  switch (title) {
-    case "Date":
-      return "Дата";
-    case "Light day":
-      return "Світло день";
-    case "Light night":
-      return "Світло нічь";
-    case "Gas General":
-      return "Газ";
-    case "Water general":
-      return "Вода";
-    case "Fixed water":
-      return "Фіксована вода";
-    case "Delivery Gas":
-      return "Доставка газ";
-    case "Delivery Water":
-      return "Доставка вода";
-    case "OSMD":
-      return "ОСББ";
-    case "Trash":
-      return "Сміття";
-    case "Intercom":
-      return "Домофон";
-    case "Heating":
-      return "Тепло";
-    case "Internet Kyivstar":
-      return "Інтернет";
-    case "Internet Soyuz T.":
-      return "Інтернет";
-    case "Internet":
-      return "Інтернет";
+const translations = new Map<string, string>([
+    ["Date", "Дата"],
+    ["Light day", "Світло день"],
+    ["Light night", "Світло ніч"],
+    ["Gas General", "Газ"],
+    ["Water general", "Вода"],
+    ["Fixed water", "Фіксована вода"],
+    ["Delivery Gas", "Доставка газ"],
+    ["Delivery Water", "Доставка вода"],
+    ["OSMD", "ОСББ"],
+    ["Trash", "Сміття"],
+    ["Intercom", "Домофон"],
+    ["Heating", "Тепло"],
+    ["Internet Kyivstar", "Інтернет"],
+    ["Internet Soyuz T.", "Інтернет"],
+    ["Internet", "Інтернет"],
+]);
 
-    default:
-      break;
-  }
-};
+export function translationTitle(title: string) {
+    return translations.get(title) ?? title;
+}

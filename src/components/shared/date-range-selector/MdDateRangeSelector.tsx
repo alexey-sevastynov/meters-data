@@ -6,102 +6,83 @@ import { language } from "@/constants/language";
 import { showMeterReadingCalc } from "@/redux/slices/MetersDataSlice";
 import { DateRangeSelectorProps } from "@/components/shared/date-range-selector/dateRangeSelector.interface";
 import {
-  formatDateDisplay,
-  handleClickOutside,
-  isActive,
+    formatDateDisplay,
+    handleClickOutside,
+    isActive,
 } from "@/components/shared/date-range-selector/dateRangeSelector.function";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
-export function MdDateRangeSelector({
-  data,
-  selectedMonth,
-  selectedYear,
-}: DateRangeSelectorProps) {
-  const dispatch = useAppDispatch();
-  const lang = useAppSelector((props) => props.i18n.lang);
-  const currentLang =
-    lang === language.ua.toLowerCase() ? language.ua : language.en;
+export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateRangeSelectorProps) {
+    const dispatch = useAppDispatch();
+    const lang = useAppSelector((props) => props.i18n.lang);
+    const currentLang = lang === language.ua.toLowerCase() ? language.ua : language.en;
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const selectedDateDisplay = formatDateDisplay(
+        `${selectedMonth},${selectedYear}`,
+        true,
+        true,
+        currentLang
+    );
 
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+    const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const selectedDateDisplay = formatDateDisplay(
-    `${selectedMonth},${selectedYear}`,
-    true,
-    true,
-    currentLang
-  );
-
-  const toggleDropdown = () => setIsOpen((prev) => !prev);
-
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    toggleDropdown();
-  };
-
-  React.useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) =>
-      handleClickOutside(
-        event,
-        dropdownRef,
-        setIsOpen,
-        Styles.dateRangeSelector__btn
-      );
-
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+    const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        toggleDropdown();
     };
-  }, []);
 
-  return (
-    <div className={Styles.dateRangeSelector}>
-      <button
-        className={`${Styles.dateRangeSelector__btn} ${
-          isOpen ? Styles.dateRangeSelector__btn_active : ""
-        }`}
-        onClick={handleButtonClick}
-      >
-        <p>{selectedDateDisplay}</p>
-        <MdIcon
-          name={iconNames.calendar}
-          size={iconSizes.large}
-          color={colors.grey}
-        />
-      </button>
+    React.useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) =>
+            handleClickOutside(event, dropdownRef, setIsOpen, Styles.dateRangeSelector__btn);
 
-      {isOpen && (
-        <div
-          ref={dropdownRef}
-          className={Styles.dateRangeSelector__dropdown}
-        >
-          {data
-            .map((item) => (
-              <button
-                key={item._id}
-                className={`${Styles.dateRangeSelector__dropdown_btn} ${
-                  isActive(selectedDateDisplay, item.date, currentLang)
-                    ? Styles.dateRangeSelector__dropdown_btn_active
-                    : ""
+        document.addEventListener("mousedown", handleOutsideClick);
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, []);
+
+    return (
+        <div className={Styles.dateRangeSelector}>
+            <button
+                className={`${Styles.dateRangeSelector__btn} ${
+                    isOpen ? Styles.dateRangeSelector__btn_active : ""
                 }`}
-                onClick={() => {
-                  dispatch(
-                    showMeterReadingCalc({
-                      id: item._id,
-                      address: item.address,
-                    })
-                  );
-                  setIsOpen(false);
-                }}
-              >
-                <p>{formatDateDisplay(item.date, true, false, currentLang)}</p>
-                <p>{formatDateDisplay(item.date, false, true, currentLang)}</p>
-              </button>
-            ))
-            .reverse()}
+                onClick={handleButtonClick}
+            >
+                <p>{selectedDateDisplay}</p>
+                <MdIcon name={iconNames.calendar} size={iconSizes.large} color={colors.grey} />
+            </button>
+
+            {isOpen && (
+                <div ref={dropdownRef} className={Styles.dateRangeSelector__dropdown}>
+                    {data
+                        .map((item) => (
+                            <button
+                                key={item._id}
+                                className={`${Styles.dateRangeSelector__dropdown_btn} ${
+                                    isActive(selectedDateDisplay, item.date, currentLang)
+                                        ? Styles.dateRangeSelector__dropdown_btn_active
+                                        : ""
+                                }`}
+                                onClick={() => {
+                                    dispatch(
+                                        showMeterReadingCalc({
+                                            id: item._id,
+                                            address: item.address,
+                                        })
+                                    );
+                                    setIsOpen(false);
+                                }}
+                            >
+                                <p>{formatDateDisplay(item.date, true, false, currentLang)}</p>
+                                <p>{formatDateDisplay(item.date, false, true, currentLang)}</p>
+                            </button>
+                        ))
+                        .reverse()}
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 }

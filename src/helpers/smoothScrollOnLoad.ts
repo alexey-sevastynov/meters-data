@@ -1,6 +1,6 @@
-export const smoothScrollOnLoad = (top: number = 0): void => {
-  return window.scrollTo({
-    top: top,
-    behavior: "smooth",
-  });
-};
+export function smoothScrollOnLoad(top = 0) {
+    return window.scrollTo({
+        top: top,
+        behavior: "smooth",
+    });
+}
