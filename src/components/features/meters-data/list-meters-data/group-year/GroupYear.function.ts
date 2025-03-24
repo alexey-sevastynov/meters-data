@@ -1,4 +1,4 @@
-import { GroupedData } from "@/types/meter-data-type";
+import { GroupedData } from "@/types/grouped-data";
 
 export const handleToggle = (
     year: string,

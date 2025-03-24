@@ -1,5 +1,5 @@
 import { MeterData } from "@/store/models/meter-data";
-import { GroupedData } from "@/types/meter-data-type";
+import { GroupedData } from "@/types/grouped-data";
 import { sortByDateAsc, sortByDateDesc } from "@/helpers/compare-dates";
 
 export function groupAndSortItemsByYear(items: MeterData[], address: string) {

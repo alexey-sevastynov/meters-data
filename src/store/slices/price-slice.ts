@@ -3,7 +3,7 @@ import { v4 } from "uuid";
 import axios, { AxiosError } from "axios";
 import { ListInfoDataMonthType } from "@/store/slices/meters-data-slice";
 import { TypeListUtilityPrices } from "@/types/constants";
-import { MonthlyMoneyCalculationsType } from "@/types/monthly-money-calculations-type";
+import { MonthlyMoneyCalculations } from "@/store/models/monthly-money-calculations";
 import { API_URL } from "@/constants";
 import { actionNames } from "@/store/action-names";
 import { API_PATH } from "@/constants/api-path";
@@ -11,19 +11,19 @@ import { API_PATH } from "@/constants/api-path";
 const monthlyMoneyCalculationsUrl = API_URL + API_PATH.monthlyMoneyCalculations;
 
 export const fetchAllMonthlyMoneyCalculations = createAsyncThunk<
-    MonthlyMoneyCalculationsType[],
+    MonthlyMoneyCalculations[],
     void,
     { rejectValue: AxiosError }
 >(actionNames.price.getAll, async () => {
-    const { data } = await axios.get<MonthlyMoneyCalculationsType[]>(monthlyMoneyCalculationsUrl);
+    const { data } = await axios.get<MonthlyMoneyCalculations[]>(monthlyMoneyCalculationsUrl);
 
     return data;
 });
 
-export const getOneMonthMoneyCalculations = createAsyncThunk<MonthlyMoneyCalculationsType, { id: string }>(
+export const getOneMonthMoneyCalculations = createAsyncThunk<MonthlyMoneyCalculations, { id: string }>(
     actionNames.price.getOne,
     async ({ id }) => {
-        const { data }: { data: MonthlyMoneyCalculationsType } = await axios.get(
+        const { data }: { data: MonthlyMoneyCalculations } = await axios.get(
             `${monthlyMoneyCalculationsUrl}/${id}`
         );
 
@@ -32,10 +32,10 @@ export const getOneMonthMoneyCalculations = createAsyncThunk<MonthlyMoneyCalcula
 );
 
 export const fetchPostMonthMoneyCalculations = createAsyncThunk<
-    MonthlyMoneyCalculationsType,
+    MonthlyMoneyCalculations,
     { address: string; data: ListInfoDataMonthType[]; sumMoney: number }
 >(actionNames.price.post, async (params) => {
-    const { data }: { data: MonthlyMoneyCalculationsType } = await axios.post(
+    const { data }: { data: MonthlyMoneyCalculations } = await axios.post(
         monthlyMoneyCalculationsUrl,
         params
     );
@@ -43,11 +43,11 @@ export const fetchPostMonthMoneyCalculations = createAsyncThunk<
     return data;
 });
 
-export const deleteMonthMoneyCalculations = createAsyncThunk<MonthlyMoneyCalculationsType, { id: string }>(
+export const deleteMonthMoneyCalculations = createAsyncThunk<MonthlyMoneyCalculations, { id: string }>(
     actionNames.price.delete,
     async (params) => {
         const { id } = params;
-        const { data }: { data: MonthlyMoneyCalculationsType } = await axios.delete(
+        const { data }: { data: MonthlyMoneyCalculations } = await axios.delete(
             `${monthlyMoneyCalculationsUrl}/${id}`
         );
 
@@ -79,7 +79,7 @@ export const editMonthMoneyCalculations = createAsyncThunk<
 interface IPriceSlice {
     itemsMonthlyMoneyCalculations: {
         status: string;
-        items: MonthlyMoneyCalculationsType[] | null;
+        items: MonthlyMoneyCalculations[] | null;
         isEdit: boolean;
         idEdit: null | string;
     };

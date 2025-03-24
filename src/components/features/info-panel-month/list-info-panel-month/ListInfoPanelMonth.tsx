@@ -1,10 +1,16 @@
 import Style from "./listInfoPanelMonth.module.scss";
-import { ListInfoDataMonthType } from "@/store/slices/meters-data-slice";
 import { ItemInfoPanelMonth } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/ItemInfoPanelMonth";
 
 interface ListInfoPanelMonthProps {
     isWaterBlock: boolean;
-    items: ListInfoDataMonthType[] | null;
+    items:
+        | {
+              id: string;
+              title: string;
+              description: string;
+              percentDifference: number;
+          }[]
+        | null;
 }
 
 export function ListInfoPanelMonth({ isWaterBlock, items }: ListInfoPanelMonthProps) {

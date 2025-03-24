@@ -4,15 +4,15 @@ import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colors } from "@/constants/colors";
-import { ListInfoDataMonthType } from "@/store/slices/meters-data-slice";
 import { deleteItem, editItem } from "./ItemMonthlyMoneyCalculations.funcs";
 import {
     translationDescription,
     translationTitle,
-} from "@/components/features/monthly-money-calculations/item-monthly-money-calculations/helpers";
+} from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/helpers";
+import { CalculationData } from "@/store/models/calculation-data";
 
 interface ItemMonthlyMoneyCalculationsProps {
-    items: ListInfoDataMonthType[];
+    items: CalculationData[];
     sumMoney: number;
     id: string;
     address: string;
