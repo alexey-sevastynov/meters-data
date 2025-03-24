@@ -1,7 +1,7 @@
 import React from "react";
 import Styles from "./headMetersData.module.scss";
 import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/i-18-next";
 
 interface HeadMetersDataProps {
     isWaterBlock: boolean;

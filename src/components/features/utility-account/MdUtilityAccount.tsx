@@ -1,9 +1,9 @@
 import { useAppSelector } from "@/redux/hook";
 import Styles from "./utilityAccount.module.scss";
 import { useLocation } from "react-router-dom";
-import { AddressType } from "@/types/MeterDataType";
-import { AddressDataType } from "@/types/AddressDataType";
-import { selectTranslations } from "@/redux/slices/I18next";
+import { AddressType } from "@/types/meter-data-type";
+import { AddressDataType } from "@/types/address-data-type";
+import { selectTranslations } from "@/redux/slices/i-18-next";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { colors } from "@/constants/colors";

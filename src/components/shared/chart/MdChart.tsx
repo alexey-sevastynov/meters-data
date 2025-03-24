@@ -13,9 +13,9 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { colors } from "@/constants/colors";
-import { ChartsDataType } from "@/types/ChartsDataType";
+import { ChartsDataType } from "@/types/charts-data-type";
 import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/i-18-next";
 
 ChartJS.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 

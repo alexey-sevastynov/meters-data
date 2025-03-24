@@ -2,7 +2,7 @@ import { useState } from "react";
 import Style from "./auth.module.scss";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@/redux/hook";
-import { logIn } from "@/redux/slices/AuthSlice";
+import { logIn } from "@/redux/slices/auth-slice";
 import { MdInputLogin } from "@/components/features/auth/input-login/MdInputLogin";
 import { MdButtonLogin } from "@/components/features/auth/button-login/MdButtonLogin";
 import { isValidCredentials } from "@/components/features/auth/auth.funcs";

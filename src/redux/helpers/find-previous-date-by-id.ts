@@ -1,4 +1,4 @@
-import { MeterDataType } from "@/types/MeterDataType";
+import { MeterDataType } from "@/types/meter-data-type";
 
 export function findPreviousDateById(items: MeterDataType[], id: string) {
     const item = items.find((meterDataItem) => meterDataItem._id === id);

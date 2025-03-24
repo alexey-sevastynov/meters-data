@@ -2,16 +2,16 @@ import Style from "./itemInfoPanelMonth.module.scss";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
 import { BREAK_POINTS } from "@/constants";
 import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/i-18-next";
 import {
     shouldRenderDescriptionTitle,
     showValue,
 } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/itemInfoPanelMonth.function";
-import { titlesForMeterReadings } from "@/constants/titlesForMeterReadings";
+import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
 import { ValueChangeIndicator } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/value-change-indicator/ValueChangeIndicator";
 import { ProgressIndicator } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/progress-indicator/ProgressIndicator";
 import { ItemInfoPanelMonthProps } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/itemInfoPanelMonth.interface";
-import { TitleInfoPanelMonthType } from "@/types/TitleInfoPanelMonthType";
+import { TitleInfoPanelMonthType } from "@/types/title-info-panel-month-type";
 
 export function ItemInfoPanelMonth({
     isWaterBlock,

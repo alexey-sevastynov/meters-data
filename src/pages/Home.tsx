@@ -1,6 +1,6 @@
 import "@/styles/pages/home.scss";
 import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/i-18-next";
 import { MdListUtilityPrices } from "@/components/features/list-utility-prices/MdListUtilityPrices";
 import { MdDateDisplay } from "@/components/shared/date-display/MdDateDisplay";
 import { languages } from "@/components/shared/date-display/constants";

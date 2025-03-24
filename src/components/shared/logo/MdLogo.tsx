@@ -1,25 +1,17 @@
 import Styles from "./logo.module.scss";
-import { selectTranslations } from "@/redux/slices/I18next";
-import { getIconUrl } from "@/helpers/getIconUrl";
+import { selectTranslations } from "@/redux/slices/i-18-next";
+import { getIconUrl } from "@/helpers/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { fetchAllMetersData } from "@/redux/slices/MetersDataSlice";
+import { fetchAllMetersData } from "@/redux/slices/meters-data-slice";
 
 export function MdLogo() {
-  const dispatch = useAppDispatch();
-  const lang = useAppSelector(selectTranslations);
+    const dispatch = useAppDispatch();
+    const lang = useAppSelector(selectTranslations);
 
-  return (
-    <div
-      className={Styles.logo}
-      onClick={() => dispatch(fetchAllMetersData())}
-    >
-      <img
-        src={getIconUrl("logo.png")}
-        alt="logo"
-        width={50}
-        height={50}
-      />
-      <h3 className={Styles.text}>{lang.header.metersData}</h3>
-    </div>
-  );
+    return (
+        <div className={Styles.logo} onClick={() => dispatch(fetchAllMetersData())}>
+            <img src={getIconUrl("logo.png")} alt="logo" width={50} height={50} />
+            <h3 className={Styles.text}>{lang.header.metersData}</h3>
+        </div>
+    );
 }

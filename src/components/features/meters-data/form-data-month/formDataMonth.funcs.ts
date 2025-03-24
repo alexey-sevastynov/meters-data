@@ -1,18 +1,18 @@
 import { addMonths, format, parse } from "date-fns";
 import { LIST_NAV } from "@/constants";
-import { sortItemsByDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
-import { UtilityMeterKey } from "@/types/KeysItemUtilityPricesType";
-import { AddressType, MeterDataType } from "@/types/MeterDataType";
-import { DataPickerValue } from "@/types/DataPicker";
+import { sortItemsByDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
+import { categoryKey } from "@/enums/category-keys";
+import { AddressType, MeterDataType } from "@/types/meter-data-type";
+import { DataPickerValue } from "@/types/data-picker";
 import {
     editMeterData,
     fetchAllMetersData,
     fetchPostMetersData,
     setNotEdit,
-} from "@/redux/slices/MetersDataSlice";
+} from "@/redux/slices/meters-data-slice";
 import { AppDispatch } from "@/redux/store";
-import { FormMeterDataType } from "@/types/FormMeterData";
-import { sendMessageToTelegram } from "@/helpers/sendMessageToTelegram";
+import { FormMeterDataType } from "@/types/form-meter-data";
+import { sendMessageToTelegram } from "@/helpers/send-message-to-telegram";
 import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
 
 export async function submitFormData(
@@ -69,7 +69,7 @@ export function getNextMonthDate(items: MeterDataType[]) {
 }
 
 export function setDefaultValue(
-    key: UtilityMeterKey,
+    key: categoryKey,
     currentPage: AddressType,
     listCurrentPage: MeterDataType[]
 ) {
@@ -88,7 +88,7 @@ export function setDefaultValue(
     return 0;
 }
 
-export function getLastMeterValue(key: UtilityMeterKey, meterReadings: MeterDataType[]) {
+export function getLastMeterValue(key: categoryKey, meterReadings: MeterDataType[]) {
     const lastReading = meterReadings[meterReadings.length - 1];
 
     return lastReading[key] ?? 0;

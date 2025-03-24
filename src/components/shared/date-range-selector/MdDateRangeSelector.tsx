@@ -3,7 +3,7 @@ import Styles from "./dateRangeSelector.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { colors } from "@/constants/colors";
 import { language } from "@/constants/language";
-import { showMeterReadingCalc } from "@/redux/slices/MetersDataSlice";
+import { showMeterReadingCalc } from "@/redux/slices/meters-data-slice";
 import { DateRangeSelectorProps } from "@/components/shared/date-range-selector/dateRangeSelector.interface";
 import {
     formatDateDisplay,

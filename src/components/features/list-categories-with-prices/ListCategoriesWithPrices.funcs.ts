@@ -1,11 +1,11 @@
-import { titlesForMeterReadings } from "@/constants/titlesForMeterReadings";
-import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
+import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
+import { ListInfoDataMonthType } from "@/redux/slices/meters-data-slice";
 import {
     disableEdit,
     editMonthMoneyCalculations,
     fetchAllMonthlyMoneyCalculations,
     fetchPostMonthMoneyCalculations,
-} from "@/redux/slices/PriceSlice";
+} from "@/redux/slices/price-slice";
 import { AppDispatch } from "@/redux/store";
 
 interface ThunkResponse {

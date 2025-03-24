@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import Styles from "./input.module.scss";
-import { getIconUrl } from "@/helpers/getIconUrl";
+import { getIconUrl } from "@/helpers/get-icon-url";
 
 interface MdInputProps extends HTMLAttributes<HTMLInputElement> {
     value: number;

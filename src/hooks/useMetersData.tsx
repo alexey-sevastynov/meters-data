@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MeterDataType } from "@/types/MeterDataType";
+import { MeterDataType } from "@/types/meter-data-type";
 import { AppDispatch, RootState } from "@/redux/store";
-import { fetchAllMetersData } from "@/redux/slices/MetersDataSlice";
+import { fetchAllMetersData } from "@/redux/slices/meters-data-slice";
 
 const useMetersData = () => {
     const dispatch: AppDispatch = useDispatch();

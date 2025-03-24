@@ -2,12 +2,12 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { API_URL } from "@/constants";
-import { AddressType, MeterDataType } from "@/types/MeterDataType";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
-import { getKeyOnPage } from "@/helpers/getKeyOnPage";
-import { findPreviousDateById } from "@/redux/helpers/findPreviousDateById";
-import { calculateDifference } from "@/redux/helpers/calculateDifference";
-import { findPenultimateDate } from "@/redux/helpers/findPenultimateDate";
+import { AddressType, MeterDataType } from "@/types/meter-data-type";
+import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
+import { getKeyOnPage } from "@/helpers/get-key-on-page";
+import { findPreviousDateById } from "@/redux/helpers/find-previous-date-by-id";
+import { calculateDifference } from "@/redux/helpers/calculate-difference";
+import { findPenultimateDate } from "@/redux/helpers/find-penultimate-date";
 import { getStringEnv } from "@/helpers/get-string-env";
 import { envKeys } from "@/enums/env-keys";
 

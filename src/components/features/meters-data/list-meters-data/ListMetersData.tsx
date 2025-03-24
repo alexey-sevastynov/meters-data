@@ -4,9 +4,9 @@ import GroupYear from "./group-year/GroupYear";
 import { useAppSelector } from "@/redux/hook";
 import { useLocation } from "react-router-dom";
 import useMetersData from "@/hooks/useMetersData";
-import { GroupedData } from "@/types/MeterDataType";
-import { isEmptyObject } from "@/helpers/isEmptyObject";
-import { groupAndSortItemsByYear } from "@/helpers/groupAndSortItemsByYear";
+import { GroupedData } from "@/types/meter-data-type";
+import { isEmptyObject } from "@/helpers/is-empty-object";
+import { groupAndSortItemsByYear } from "@/helpers/group-and-sort-items-by-year";
 
 interface ListMetersDataProps {
     isWaterBlock: boolean;

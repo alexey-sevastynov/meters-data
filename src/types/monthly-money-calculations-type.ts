@@ -1,4 +1,4 @@
-import { AddressType } from "./MeterDataType";
+import { AddressType } from "./meter-data-type";
 
 export interface MonthlyMoneyCalculationsType {
     _id: string;
