@@ -1,13 +1,6 @@
 import { EN, language } from "@/constants/language";
-import { ukrainianMonths } from "@/constants/ukrainianMonths";
-import { ukrainianShortMonths } from "@/constants/ukrainianShortMonths";
-
-const toPascalCase = (str: string): string => {
-    return str
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(" ");
-};
+import { ukrainianMonths } from "@/constants/ukrainian-months";
+import { ukrainianShortMonths } from "@/constants/ukrainian-short-months";
 
 export function getDaysInMonths(date: string, showMonth = true, showYear = true, locale = EN) {
     let month: number;
@@ -59,4 +52,11 @@ function formatResult(
     } else {
         return "";
     }
+}
+
+function toPascalCase(str: string) {
+    return str
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ");
 }

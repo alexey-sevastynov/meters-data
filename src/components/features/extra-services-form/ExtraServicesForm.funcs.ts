@@ -1,6 +1,6 @@
-import { addServiceToCurrentItem } from "@/redux/slices/PriceSlice";
+import { addServiceToCurrentItem } from "@/redux/slices/price-slice";
 import { AppDispatch } from "@/redux/store";
-import { categoryNames } from "@/types/category-name";
+import { categoryNames } from "@/enums/category-names";
 import { TypeListUtilityPrices } from "@/types/constants";
 
 export function filterOptions(items: TypeListUtilityPrices) {

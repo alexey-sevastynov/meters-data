@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
-import { fetchAllServices } from "../redux/slices/ServicesSlice";
+import { fetchAllServices } from "../redux/slices/services-slice";
 
 const useUtilityPrices = () => {
     const dispatch: AppDispatch = useDispatch();

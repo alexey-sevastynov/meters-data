@@ -1,31 +1,31 @@
 import React, { useEffect } from "react";
 import Styles from "./itemMetersData.module.scss";
-import { getIconUrl } from "@/helpers/getIconUrl";
-import { AddressType } from "@/types/MeterDataType";
+import { getIconUrl } from "@/helpers/get-icon-url";
+import { AddressType } from "@/types/meter-data-type";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import {
     deleteMeterData,
     fetchAllMetersData,
     setMeterDataEdit,
     showMeterReadingCalc,
-} from "@/redux/slices/MetersDataSlice";
-import { formatDate } from "@/helpers/formatDate";
-import { smoothScrollOnLoad } from "@/helpers/smoothScrollOnLoad";
+} from "@/redux/slices/meters-data-slice";
+import { formatDate } from "@/helpers/format-date";
+import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
 import { ToastContainer } from "react-toastify";
 import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
 import { useLocation } from "react-router-dom";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filterAndSortItemsByAddressAndDate";
+import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import {
     confirmActionExit,
     confirmActionOnDelete,
     openPopup,
     setIdDelete,
     setQuestion,
-} from "@/redux/slices/ConfirmPopupSlice";
-import { selectTranslations } from "@/redux/slices/I18next";
+} from "@/redux/slices/confirm-popup-slice";
+import { selectTranslations } from "@/redux/slices/i-18-next";
 import { formatDateDisplay } from "@/components/shared/date-range-selector/dateRangeSelector.function";
-import { lastValueMeter } from "@/helpers/lastValueMeter";
-import { MonthsType } from "@/types/MonthsType";
+import { lastValueMeter } from "@/helpers/last-value-meter";
+import { MonthsType } from "@/types/months-type";
 
 interface ItemMetersDataProps {
     _id: string;

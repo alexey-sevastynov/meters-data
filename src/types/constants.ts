@@ -1,4 +1,4 @@
-import { CategoryName } from "@/types/category-name";
+import { CategoryName } from "@/enums/category-names";
 
 export type TypeListUtilityPrices = {
     _id: string;

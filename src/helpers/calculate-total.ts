@@ -1,5 +1,5 @@
 import { errorMessage } from "@/constants/error-message";
-import { isNumber } from "./isNumber";
+import { isNumber } from "./is-number";
 
 export const calculateSum = (a: number, b: number) => {
     if (!isNumber(a) || !isNumber(b)) {

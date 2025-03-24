@@ -1,8 +1,8 @@
-import { TranslationKeys } from "@/types/I18nextTypes";
-import { UtilityMeterKey } from "@/types/KeysItemUtilityPricesType";
+import { TranslationKeys } from "@/types/i-18-next-types";
+import { categoryKey } from "@/enums/category-keys";
 
 export interface InputField {
-    key: UtilityMeterKey;
+    key: categoryKey;
     label: string;
     value: number;
     setValue: React.Dispatch<React.SetStateAction<number>>;

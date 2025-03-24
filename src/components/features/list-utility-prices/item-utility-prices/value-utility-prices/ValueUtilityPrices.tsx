@@ -3,10 +3,10 @@ import Styles from "./valueUtilityPrices.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { editServicePrice, fetchAllServices } from "@/redux/slices/ServicesSlice";
+import { editServicePrice, fetchAllServices } from "@/redux/slices/services-slice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { selectTranslations } from "@/redux/slices/I18next";
+import { selectTranslations } from "@/redux/slices/i-18-next";
 
 interface ValueUtilityPricesProps {
     id: string;

@@ -1,5 +1,5 @@
 import Style from "./buttonLogin.module.scss";
-import { getIconUrl } from "@/helpers/getIconUrl";
+import { getIconUrl } from "@/helpers/get-icon-url";
 
 export function MdButtonLogin({ ...props }) {
     return (

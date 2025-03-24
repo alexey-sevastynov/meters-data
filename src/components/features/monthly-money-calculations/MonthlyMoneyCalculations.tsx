@@ -4,7 +4,7 @@ import { MdInput } from "@/components/ui/input/MdInput";
 import { ListMonthlyMoneyCalculations } from "./list-monthly-money-calculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/redux/hook";
-import { AddressType } from "@/types/MeterDataType";
+import { AddressType } from "@/types/meter-data-type";
 
 export function MdMonthlyMoneyCalculations() {
     const { pathname } = useLocation();

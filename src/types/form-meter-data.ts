@@ -1,4 +1,4 @@
-import { AddressType } from "@/types/MeterDataType";
+import { AddressType } from "@/types/meter-data-type";
 
 export interface FormMeterDataType {
     date: string;

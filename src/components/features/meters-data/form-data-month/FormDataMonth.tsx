@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { format, parse, startOfDay } from "date-fns";
 import Style from "./formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { fetchAllMetersData, setNotEdit } from "@/redux/slices/MetersDataSlice";
-import { AddressType, MeterDataType } from "@/types/MeterDataType";
+import { fetchAllMetersData, setNotEdit } from "@/redux/slices/meters-data-slice";
+import { AddressType, MeterDataType } from "@/types/meter-data-type";
 import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
-import { selectTranslations } from "@/redux/slices/I18next";
-import { calculateSum } from "@/helpers/calculateTotal";
+import { selectTranslations } from "@/redux/slices/i-18-next";
+import { calculateSum } from "@/helpers/calculate-total";
 import {
     checkDate,
     getLastMeterValue,
@@ -16,8 +16,8 @@ import {
 } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
 import { FormActions } from "@/components/features/meters-data/form-data-month/form-actions/FormActions";
 import { FormControls } from "@/components/features/meters-data/form-data-month/form-controls/FormControls";
-import { DataPickerValue } from "@/types/DataPicker";
-import { utilityMeterKeys } from "@/types/KeysItemUtilityPricesType";
+import { DataPickerValue } from "@/types/data-picker";
+import { categoryKeys } from "@/enums/category-keys";
 
 interface FormDataMonthProps {
     isWaterBlock: boolean;
@@ -49,19 +49,19 @@ export function FormDataMonth({
     }, [sortedAddressMeterData, isEdit]);
 
     const [light, setLight] = useState<number>(() =>
-        setDefaultValue(utilityMeterKeys.light, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.light, addressPath, sortedAddressMeterData)
     );
     const [lightDay, setLightDay] = useState<number>(() =>
-        setDefaultValue(utilityMeterKeys.lightDay, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.lightDay, addressPath, sortedAddressMeterData)
     );
     const [lightNight, setLightNight] = useState<number>(() =>
-        setDefaultValue(utilityMeterKeys.lightNight, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.lightNight, addressPath, sortedAddressMeterData)
     );
     const [gas, setGas] = useState<number>(() =>
-        setDefaultValue(utilityMeterKeys.gas, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.gas, addressPath, sortedAddressMeterData)
     );
     const [water, setWater] = useState<number>(() =>
-        setDefaultValue(utilityMeterKeys.water, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.water, addressPath, sortedAddressMeterData)
     );
 
     useEffect(() => {
@@ -126,11 +126,11 @@ export function FormDataMonth({
     useEffect(() => {
         if (isEdit || !sortedAddressMeterData.length) return;
 
-        setLight(getLastMeterValue(utilityMeterKeys.light, sortedAddressMeterData));
-        setLightDay(getLastMeterValue(utilityMeterKeys.lightDay, sortedAddressMeterData));
-        setLightNight(getLastMeterValue(utilityMeterKeys.lightNight, sortedAddressMeterData));
-        setGas(getLastMeterValue(utilityMeterKeys.gas, sortedAddressMeterData));
-        setWater(getLastMeterValue(utilityMeterKeys.water, sortedAddressMeterData));
+        setLight(getLastMeterValue(categoryKeys.light, sortedAddressMeterData));
+        setLightDay(getLastMeterValue(categoryKeys.lightDay, sortedAddressMeterData));
+        setLightNight(getLastMeterValue(categoryKeys.lightNight, sortedAddressMeterData));
+        setGas(getLastMeterValue(categoryKeys.gas, sortedAddressMeterData));
+        setWater(getLastMeterValue(categoryKeys.water, sortedAddressMeterData));
         updateLocalStorageValues(
             addressPath,
             sortedAddressMeterData[sortedAddressMeterData.length - 1].light,

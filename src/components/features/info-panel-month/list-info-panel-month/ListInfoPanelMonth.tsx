@@ -1,5 +1,5 @@
 import Style from "./listInfoPanelMonth.module.scss";
-import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
+import { ListInfoDataMonthType } from "@/redux/slices/meters-data-slice";
 import { ItemInfoPanelMonth } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/ItemInfoPanelMonth";
 
 interface ListInfoPanelMonthProps {

@@ -4,7 +4,7 @@ import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colors } from "@/constants/colors";
-import { ListInfoDataMonthType } from "@/redux/slices/MetersDataSlice";
+import { ListInfoDataMonthType } from "@/redux/slices/meters-data-slice";
 import { deleteItem, editItem } from "./ItemMonthlyMoneyCalculations.funcs";
 import {
     translationDescription,

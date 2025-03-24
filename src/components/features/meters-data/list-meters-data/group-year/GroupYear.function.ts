@@ -1,23 +1,23 @@
-import { GroupedData } from "@/types/MeterDataType";
+import { GroupedData } from "@/types/meter-data-type";
 
 export const handleToggle = (
-  year: string,
-  setGroupedData: React.Dispatch<React.SetStateAction<GroupedData>>
+    year: string,
+    setGroupedData: React.Dispatch<React.SetStateAction<GroupedData>>
 ) => {
-  setGroupedData((prev) => ({
-    ...prev,
-    [year]: {
-      ...prev[year],
-      isOpen: !prev[year].isOpen,
-    },
-  }));
+    setGroupedData((prev) => ({
+        ...prev,
+        [year]: {
+            ...prev[year],
+            isOpen: !prev[year].isOpen,
+        },
+    }));
 };
 
 export function getLastYear(groupedData: GroupedData): string | undefined {
-  const years = getYears(groupedData);
-  return years[years.length - 1];
+    const years = getYears(groupedData);
+    return years[years.length - 1];
 }
 
 function getYears(groupedData: GroupedData): string[] {
-  return Object.keys(groupedData).sort();
+    return Object.keys(groupedData).sort();
 }

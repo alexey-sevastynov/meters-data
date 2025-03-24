@@ -1,30 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// A function that tries to get the isAuth value from localStorage
-const loadAuthFromLocalStorage = () => {
-    try {
-        const serializedAuth = localStorage.getItem("isAuth");
-
-        if (serializedAuth === null) return undefined;
-
-        const isAuth = JSON.parse(serializedAuth) as boolean;
-
-        return isAuth;
-    } catch (err) {
-        return undefined;
-    }
-};
-
-// Function that stores the isAuth value in localStorage
-const saveAuthToLocalStorage = (isAuth: boolean) => {
-    try {
-        const serializedAuth = JSON.stringify(isAuth);
-        localStorage.setItem("isAuth", serializedAuth);
-    } catch (err) {
-        // You can add storage error handling to localStorage
-    }
-};
-
 interface IAuthSlice {
     isAuth: boolean;
 }
@@ -54,3 +29,22 @@ const AuthSlice = createSlice({
 export const { logIn, logOut } = AuthSlice.actions;
 
 export const authReducer = AuthSlice.reducer;
+
+function loadAuthFromLocalStorage() {
+    try {
+        const serializedAuth = localStorage.getItem("isAuth");
+
+        if (!serializedAuth) return undefined;
+
+        const isAuth = JSON.parse(serializedAuth) as boolean;
+
+        return isAuth;
+    } catch (err) {
+        return undefined;
+    }
+}
+
+function saveAuthToLocalStorage(isAuth: boolean) {
+    const serializedAuth = JSON.stringify(isAuth);
+    localStorage.setItem("isAuth", serializedAuth);
+}

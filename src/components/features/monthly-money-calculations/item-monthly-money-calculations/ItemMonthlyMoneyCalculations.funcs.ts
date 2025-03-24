@@ -1,9 +1,9 @@
-import { smoothScrollOnLoad } from "@/helpers/smoothScrollOnLoad";
+import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
 import {
     deleteMonthMoneyCalculations,
     fetchAllMonthlyMoneyCalculations,
     getOneMonthMoneyCalculations,
-} from "@/redux/slices/PriceSlice";
+} from "@/redux/slices/price-slice";
 import { AppDispatch } from "@/redux/store";
 
 export async function deleteItem(id: string, dispatch: AppDispatch) {

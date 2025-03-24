@@ -1,4 +1,4 @@
-export const utilityMeterKeys = {
+export const categoryKeys = {
     light: "light",
     lightDay: "lightDay",
     lightNight: "lightNight",
@@ -6,4 +6,4 @@ export const utilityMeterKeys = {
     water: "water",
 } as const;
 
-export type UtilityMeterKey = (typeof utilityMeterKeys)[keyof typeof utilityMeterKeys];
+export type categoryKey = (typeof categoryKeys)[keyof typeof categoryKeys];

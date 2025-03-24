@@ -1,6 +1,6 @@
-import { DataPickerValue } from "@/types/DataPicker";
-import { TranslationKeys } from "@/types/I18nextTypes";
-import { MeterDataType } from "@/types/MeterDataType";
+import { DataPickerValue } from "@/types/data-picker";
+import { TranslationKeys } from "@/types/i-18-next-types";
+import { MeterDataType } from "@/types/meter-data-type";
 
 export interface FormControlsProps {
     isWaterBlock: boolean;
