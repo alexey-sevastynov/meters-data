@@ -1,6 +1,6 @@
 import Styles from "./authPanel.module.scss";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { logOut } from "@/redux/slices/auth-slice";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { logOut } from "@/store/slices/auth-slice";
 import {
     closePopup,
     confirmActionExit,
@@ -8,10 +8,10 @@ import {
     openPopup,
     setIdDelete,
     setQuestion,
-} from "@/redux/slices/confirm-popup-slice";
+} from "@/store/slices/confirm-popup-slice";
 import { useEffect, useRef, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { selectTranslations, setLang } from "@/redux/slices/i-18-next";
+import { selectTranslations, setLang } from "@/store/slices/i-18-next";
 import { currentLanguage } from "@/components/shared/auth-panel/authPanel.funcs";
 
 export function AuthPanel() {

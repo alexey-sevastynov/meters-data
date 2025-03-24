@@ -1,12 +1,11 @@
 import { useCallback, useEffect } from "react";
 import Styles from "./listCategoriesWithPrices.module.scss";
-import { useAppSelector } from "@/redux/hook";
+import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
-import { InfoMeterReadingType } from "@/redux/slices/meters-data-slice";
+import { InfoMeterReadingType } from "@/store/slices/meters-data-slice";
 import { getKeyOnPage } from "@/helpers/get-key-on-page";
-import { AddressType } from "@/types/meter-data-type";
-import { AppDispatch } from "@/redux/store";
-import { calcPrice, deleteServiceWithCurrentItem, disableEdit } from "@/redux/slices/price-slice";
+import { AppDispatch } from "@/store/store";
+import { calcPrice, deleteServiceWithCurrentItem, disableEdit } from "@/store/slices/price-slice";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colors } from "@/constants/colors";
@@ -18,7 +17,7 @@ interface ListCategoriesWithPricesProps {
 
 export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPricesProps) {
     const { pathname } = useLocation();
-    const currentPageName: AddressType = pathname.replace(/^\/|\/price$/g, "") as AddressType;
+    const currentPageName: string = pathname.replace(/^\/|\/price$/g, "");
     const currentItem = useAppSelector((state) => state.prices.currentItem);
     const sumMoney = useAppSelector((state) => state.prices.sumMoney);
     const services = useAppSelector((state) => state.services.services.items);

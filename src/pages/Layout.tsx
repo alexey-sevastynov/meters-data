@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { MdHeader } from "@/components/layout/header/MdHeader";
 import { MdNavMenu } from "@/components/layout/nav-menu/MdNavMenu";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
 import { BREAK_POINTS } from "@/constants";
-import { fetchAllAddressData } from "@/redux/slices/address-data-slice";
+import { fetchAllAddressData } from "@/store/slices/address-data-slice";
 
 export function Layout() {
     const dispatch = useAppDispatch();

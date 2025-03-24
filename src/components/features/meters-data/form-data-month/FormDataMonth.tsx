@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { format, parse, startOfDay } from "date-fns";
 import Style from "./formDataMonth.module.scss";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { fetchAllMetersData, setNotEdit } from "@/redux/slices/meters-data-slice";
-import { AddressType, MeterDataType } from "@/types/meter-data-type";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { fetchAllMetersData, setNotEdit } from "@/store/slices/meters-data-slice";
 import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+import { selectTranslations } from "@/store/slices/i-18-next";
 import { calculateSum } from "@/helpers/calculate-total";
 import {
     checkDate,
@@ -18,12 +17,13 @@ import { FormActions } from "@/components/features/meters-data/form-data-month/f
 import { FormControls } from "@/components/features/meters-data/form-data-month/form-controls/FormControls";
 import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
+import { MeterData } from "@/store/models/meter-data";
 
 interface FormDataMonthProps {
     isWaterBlock: boolean;
-    sortedAddressMeterData: MeterDataType[];
+    sortedAddressMeterData: MeterData[];
     pathname: string;
-    addressPath: AddressType;
+    addressPath: string;
 }
 
 // eslint-disable-next-line max-lines-per-function

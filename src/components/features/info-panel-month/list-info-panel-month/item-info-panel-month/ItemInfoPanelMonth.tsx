@@ -1,8 +1,8 @@
 import Style from "./itemInfoPanelMonth.module.scss";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
 import { BREAK_POINTS } from "@/constants";
-import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 import {
     shouldRenderDescriptionTitle,
     showValue,

@@ -1,18 +1,18 @@
 import { MdInput } from "@/components/ui/input/MdInput";
 import { colors } from "@/constants/colors";
-import { MeterDataType } from "@/types/meter-data-type";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
 import { categoryKey } from "@/enums/category-keys";
+import { MeterData } from "@/store/models/meter-data";
 
 interface MeterInputProps {
     isEdit: boolean;
-    meterDataEdit: MeterDataType | null;
+    meterDataEdit: MeterData | null;
     fieldKey: categoryKey;
     labelText: string;
     value: number;
     setValue: React.Dispatch<React.SetStateAction<number>>;
     currentPage: string;
-    sortedAddressMeterData: MeterDataType[];
+    sortedAddressMeterData: MeterData[];
     className: string;
 }
 

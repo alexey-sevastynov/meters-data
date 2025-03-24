@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MeterDataType } from "@/types/meter-data-type";
-import { AppDispatch, RootState } from "@/redux/store";
-import { fetchAllMetersData } from "@/redux/slices/meters-data-slice";
+import { AppDispatch, RootState } from "@/store/store";
+import { fetchAllMetersData } from "@/store/slices/meters-data-slice";
+import { MeterData } from "@/store/models/meter-data";
 
 const useMetersData = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -15,7 +15,7 @@ const useMetersData = () => {
                 const cachedData = localStorage.getItem("metersData");
 
                 if (cachedData) {
-                    const parsedData = JSON.parse(cachedData) as MeterDataType[];
+                    const parsedData = JSON.parse(cachedData) as MeterData[];
 
                     dispatch({
                         type: "metersData/fetchAllMetersData/fulfilled",

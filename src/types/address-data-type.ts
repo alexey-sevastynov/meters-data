@@ -1,8 +1,6 @@
-import { AddressType } from "./meter-data-type";
-
 export interface AddressDataType {
     _id: string;
-    address: AddressType;
+    address: string;
     light: string;
     gas: string;
     water: string;

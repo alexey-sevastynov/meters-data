@@ -1,5 +1,5 @@
-import { addServiceToCurrentItem } from "@/redux/slices/price-slice";
-import { AppDispatch } from "@/redux/store";
+import { addServiceToCurrentItem } from "@/store/slices/price-slice";
+import { AppDispatch } from "@/store/store";
 import { categoryNames } from "@/enums/category-names";
 import { TypeListUtilityPrices } from "@/types/constants";
 

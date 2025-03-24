@@ -2,14 +2,14 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { API_URL } from "@/constants";
-import { AddressType, MeterDataType } from "@/types/meter-data-type";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import { getKeyOnPage } from "@/helpers/get-key-on-page";
-import { findPreviousDateById } from "@/redux/helpers/find-previous-date-by-id";
-import { calculateDifference } from "@/redux/helpers/calculate-difference";
-import { findPenultimateDate } from "@/redux/helpers/find-penultimate-date";
+import { findPreviousDateById } from "@/store/helpers/find-previous-date-by-id";
+import { calculateDifference } from "@/store/helpers/calculate-difference";
+import { findPenultimateDate } from "@/store/helpers/find-penultimate-date";
 import { getStringEnv } from "@/helpers/get-string-env";
 import { envKeys } from "@/enums/env-keys";
+import { MeterData } from "../models/meter-data";
 
 export interface ListInfoDataMonthType {
     id: string;
@@ -29,7 +29,7 @@ export interface InfoMeterReadingType {
 interface ParamsMeterDataType {
     _id?: string;
     date: string; // "MM.YYYY" /^(0[1-9]|1[0-2])\.(19|20)\d{2}$/
-    address: AddressType;
+    address: string;
     light: number;
     lightDay: number;
     lightNight: number;
@@ -37,11 +37,12 @@ interface ParamsMeterDataType {
     water?: number;
 }
 
-export const fetchAllMetersData = createAsyncThunk<MeterDataType[], void, { rejectValue: AxiosError }>(
+export const fetchAllMetersData = createAsyncThunk<MeterData[], void, { rejectValue: AxiosError }>(
     "metersData/fetchAllMetersData",
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get<MeterDataType[]>(`${API_URL}metersdatas`);
+            const { data } = await axios.get<MeterData[]>(`${API_URL}metersdatas`);
+
             return data;
         } catch (e) {
             if (e instanceof AxiosError && !e.response) {
@@ -53,31 +54,31 @@ export const fetchAllMetersData = createAsyncThunk<MeterDataType[], void, { reje
     }
 );
 
-export const fetchPostMetersData = createAsyncThunk<MeterDataType, ParamsMeterDataType>(
+export const fetchPostMetersData = createAsyncThunk<MeterData, ParamsMeterDataType>(
     "metersData/fetchPostMetersData",
     async (params) => {
-        const { data }: { data: MeterDataType } = await axios.post(`${API_URL}metersdatas`, params);
+        const { data }: { data: MeterData } = await axios.post(`${API_URL}metersdatas`, params);
 
         return data;
     }
 );
 
-export const deleteMeterData = createAsyncThunk<MeterDataType, { id: string }>(
+export const deleteMeterData = createAsyncThunk<MeterData, { id: string }>(
     "metersData/deleteMeterData",
     async (params) => {
         const { id } = params;
-        const { data }: { data: MeterDataType } = await axios.delete(`${API_URL}metersdatas/${id}`);
+        const { data }: { data: MeterData } = await axios.delete(`${API_URL}metersdatas/${id}`);
 
         return data;
     }
 );
 
-export const editMeterData = createAsyncThunk<MeterDataType, ParamsMeterDataType>(
+export const editMeterData = createAsyncThunk<MeterData, ParamsMeterDataType>(
     "metersData/editMeterData",
     async (params) => {
         const { _id, date, address, light, lightDay, lightNight, gas, water } = params;
 
-        const { data }: { data: MeterDataType } = await axios.patch(`${API_URL}metersdatas/${_id}`, {
+        const { data }: { data: MeterData } = await axios.patch(`${API_URL}metersdatas/${_id}`, {
             date,
             address,
             light,
@@ -93,11 +94,11 @@ export const editMeterData = createAsyncThunk<MeterDataType, ParamsMeterDataType
 
 interface IMetersDataSlice {
     metersData: {
-        items: MeterDataType[];
+        items: MeterData[];
         status: string;
     };
 
-    meterDataEdit: MeterDataType | null; // for the form, we will take data from this object for editing
+    meterDataEdit: MeterData | null; // for the form, we will take data from this object for editing
     isEdit: boolean;
 
     infoMeterReading: InfoMeterReadingType;
@@ -124,7 +125,7 @@ const MetersDataSlice = createSlice({
     name: "MetersDataSlice",
     initialState,
     reducers: {
-        setMeterDataEdit: (state, action: PayloadAction<MeterDataType>) => {
+        setMeterDataEdit: (state, action: PayloadAction<MeterData>) => {
             state.meterDataEdit = action.payload;
             state.isEdit = true;
         },
@@ -134,7 +135,7 @@ const MetersDataSlice = createSlice({
             state.isEdit = false;
         },
 
-        showMeterReadingCalc: (state, action: PayloadAction<{ id: string; address: AddressType }>) => {
+        showMeterReadingCalc: (state, action: PayloadAction<{ id: string; address: string }>) => {
             const listItemsAddress = filterAndSortItemsByAddressAndDate(
                 state.metersData.items,
                 action.payload.address
@@ -172,7 +173,7 @@ const MetersDataSlice = createSlice({
             state.metersData.items = action.payload;
             state.metersData.status = "loaded";
 
-            function setCurrentMetersDataPage(address: AddressType): ListInfoDataMonthType[] | null {
+            function setCurrentMetersDataPage(address: string): ListInfoDataMonthType[] | null {
                 const items = filterAndSortItemsByAddressAndDate(action.payload, address);
 
                 if (items.length > 0) {

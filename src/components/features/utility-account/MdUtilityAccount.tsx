@@ -1,9 +1,8 @@
-import { useAppSelector } from "@/redux/hook";
+import { useAppSelector } from "@/store/hook";
 import Styles from "./utilityAccount.module.scss";
 import { useLocation } from "react-router-dom";
-import { AddressType } from "@/types/meter-data-type";
 import { AddressDataType } from "@/types/address-data-type";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+import { selectTranslations } from "@/store/slices/i-18-next";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { colors } from "@/constants/colors";
@@ -13,7 +12,7 @@ export function MdUtilityAccount() {
     const lang = useAppSelector(selectTranslations);
 
     const { pathname } = useLocation();
-    const currentAddressName: AddressType = pathname.slice(1).replace("/price", "") as AddressType;
+    const currentAddressName: string = pathname.slice(1).replace("/price", "");
 
     const items = useAppSelector((state) => state.addressData.items);
 

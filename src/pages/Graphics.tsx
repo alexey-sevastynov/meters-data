@@ -2,7 +2,7 @@ import "@/styles/pages/graphics.scss";
 import { useLocation, useParams } from "react-router-dom";
 import { LIST_NAV } from "@/constants";
 import { formatDate } from "@/helpers/format-date";
-import { useAppSelector } from "@/redux/hook";
+import { useAppSelector } from "@/store/hook";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import { MdChart } from "@/components/shared/chart/MdChart";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";

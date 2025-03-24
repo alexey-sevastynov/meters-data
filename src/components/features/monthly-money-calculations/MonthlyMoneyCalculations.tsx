@@ -3,8 +3,7 @@ import Style from "./monthlyMoneyCalculations.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { ListMonthlyMoneyCalculations } from "./list-monthly-money-calculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
-import { useAppSelector } from "@/redux/hook";
-import { AddressType } from "@/types/meter-data-type";
+import { useAppSelector } from "@/store/hook";
 
 export function MdMonthlyMoneyCalculations() {
     const { pathname } = useLocation();
@@ -14,7 +13,7 @@ export function MdMonthlyMoneyCalculations() {
 
     const [inputValue, setInputValue] = useState<number>(0);
 
-    const currentPageName = pathname.replace(/^\/|\/price$/g, "") as AddressType;
+    const currentPageName: string = pathname.replace(/^\/|\/price$/g, "");
 
     const itemsFilter = allListItems?.filter(
         (item) =>

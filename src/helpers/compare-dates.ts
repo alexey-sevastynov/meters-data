@@ -1,10 +1,10 @@
-import { MeterDataType } from "@/types/meter-data-type";
+import { MeterData } from "@/store/models/meter-data";
 
-export function sortByDateDesc(a: MeterDataType, b: MeterDataType) {
+export function sortByDateDesc(a: MeterData, b: MeterData) {
     return compareDates(b.date, a.date);
 }
 
-export function sortByDateAsc(a: MeterDataType, b: MeterDataType) {
+export function sortByDateAsc(a: MeterData, b: MeterData) {
     return compareDates(a.date, b.date);
 }
 

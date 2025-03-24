@@ -1,9 +1,8 @@
 import { BsCalendar2Plus, BsCalendar3 } from "react-icons/bs";
 import Styles from "./metersData.module.scss";
-import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
-import { AddressType } from "@/types/meter-data-type";
 import { useLocation } from "react-router-dom";
 import { FormDataMonth } from "./form-data-month/FormDataMonth";
 import { ListMetersData } from "@/components/features/meters-data/list-meters-data/ListMetersData";
@@ -17,7 +16,7 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
     const lang = useAppSelector(selectTranslations);
     const meterReadingsList = useAppSelector((state) => state.metersData.metersData.items);
 
-    const addressPath: AddressType = pathname.slice(1);
+    const addressPath: string = pathname.slice(1);
     const sortedAddressMeterData = filterAndSortItemsByAddressAndDate(meterReadingsList, addressPath);
 
     return (

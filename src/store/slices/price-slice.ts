@@ -1,12 +1,11 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
 import axios, { AxiosError } from "axios";
-import { ListInfoDataMonthType } from "@/redux/slices/meters-data-slice";
+import { ListInfoDataMonthType } from "@/store/slices/meters-data-slice";
 import { TypeListUtilityPrices } from "@/types/constants";
 import { MonthlyMoneyCalculationsType } from "@/types/monthly-money-calculations-type";
 import { API_URL } from "@/constants";
-import { AddressType } from "@/types/meter-data-type";
-import { actionNames } from "@/redux/action-names";
+import { actionNames } from "@/store/action-names";
 import { API_PATH } from "@/constants/api-path";
 
 const monthlyMoneyCalculationsUrl = API_URL + API_PATH.monthlyMoneyCalculations;
@@ -34,7 +33,7 @@ export const getOneMonthMoneyCalculations = createAsyncThunk<MonthlyMoneyCalcula
 
 export const fetchPostMonthMoneyCalculations = createAsyncThunk<
     MonthlyMoneyCalculationsType,
-    { address: AddressType; data: ListInfoDataMonthType[]; sumMoney: number }
+    { address: string; data: ListInfoDataMonthType[]; sumMoney: number }
 >(actionNames.price.post, async (params) => {
     const { data }: { data: MonthlyMoneyCalculationsType } = await axios.post(
         monthlyMoneyCalculationsUrl,

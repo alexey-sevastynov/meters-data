@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Style from "./listMetersData.module.scss";
 import GroupYear from "./group-year/GroupYear";
-import { useAppSelector } from "@/redux/hook";
+import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
 import useMetersData from "@/hooks/useMetersData";
 import { GroupedData } from "@/types/meter-data-type";

@@ -1,5 +1,5 @@
-import { supportedLangs } from "@/redux/i18n/config";
-import englishTranslate from "@/redux/i18n/en/translation.json";
+import { supportedLangs } from "@/store/i18n/config";
+import englishTranslate from "@/store/i18n/en/translation.json";
 
 export type SupportedLang = keyof typeof supportedLangs;
 export type TranslationsByLang = Record<SupportedLang, TranslationKeys>;

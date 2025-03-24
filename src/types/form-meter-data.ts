@@ -1,8 +1,6 @@
-import { AddressType } from "@/types/meter-data-type";
-
 export interface FormMeterDataType {
     date: string;
-    address: AddressType;
+    address: string;
     light: number;
     lightDay: number;
     lightNight: number;

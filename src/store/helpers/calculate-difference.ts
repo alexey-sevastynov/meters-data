@@ -1,13 +1,13 @@
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
 import { calculatePercentDifference } from "@/helpers/calculate-percent-difference";
 import { formatDate } from "@/helpers/format-date";
-import { MeterDataType } from "@/types/meter-data-type";
 import { v4 } from "uuid";
+import { MeterData } from "@/store/models/meter-data";
 
 export function calculateDifference(
-    mostRecentItem: MeterDataType,
-    secondMostRecentItem: MeterDataType,
-    thirdMostRecentItem: MeterDataType
+    mostRecentItem: MeterData,
+    secondMostRecentItem: MeterData,
+    thirdMostRecentItem: MeterData
 ) {
     const {
         light: lightFromThirdMostRecent,
@@ -72,7 +72,7 @@ export function calculateDifference(
     ];
 }
 
-function getValuesFromThirdMostRecent(thirdMostRecentItem?: MeterDataType) {
+function getValuesFromThirdMostRecent(thirdMostRecentItem?: MeterData) {
     return {
         light: thirdMostRecentItem ? thirdMostRecentItem.light : 0,
         lightDay: thirdMostRecentItem ? thirdMostRecentItem.lightDay : 0,
