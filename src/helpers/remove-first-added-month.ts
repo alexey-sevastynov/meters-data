@@ -1,7 +1,7 @@
 import { errorMessage } from "@/constants/error-message";
-import { MeterDataType } from "@/types/meter-data-type";
+import { MeterData } from "@/store/models/meter-data";
 
-export const removeFirstAddedMonth = (data: MeterDataType[]) => {
+export const removeFirstAddedMonth = (data: MeterData[]) => {
     try {
         if (!data.length) return [];
 

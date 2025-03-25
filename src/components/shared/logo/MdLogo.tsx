@@ -1,8 +1,8 @@
 import Styles from "./logo.module.scss";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+import { selectTranslations } from "@/store/slices/i-18-next";
 import { getIconUrl } from "@/helpers/get-icon-url";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { fetchAllMetersData } from "@/redux/slices/meters-data-slice";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { fetchAllMetersData } from "@/store/slices/meters-data-slice";
 
 export function MdLogo() {
     const dispatch = useAppDispatch();

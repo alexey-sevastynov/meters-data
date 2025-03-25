@@ -1,18 +1,18 @@
 import { useCallback, useState } from "react";
 import Style from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colors } from "@/constants/colors";
-import { ListInfoDataMonthType } from "@/redux/slices/meters-data-slice";
 import { deleteItem, editItem } from "./ItemMonthlyMoneyCalculations.funcs";
 import {
     translationDescription,
     translationTitle,
-} from "@/components/features/monthly-money-calculations/item-monthly-money-calculations/helpers";
+} from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/helpers";
+import { CalculationData } from "@/types/calculation-data";
 
 interface ItemMonthlyMoneyCalculationsProps {
-    items: ListInfoDataMonthType[];
+    items: CalculationData[];
     sumMoney: number;
     id: string;
     address: string;

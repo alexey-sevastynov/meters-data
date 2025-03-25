@@ -1,0 +1,68 @@
+@import "@/styles/colors.scss";
+@import "@/styles/breakpoints.scss";
+
+.itemMonthlyMoneyCalculations {
+    border: 1px solid $grey;
+    border-radius: 4px;
+    width: max-content;
+
+    ul {
+        padding: 10px;
+        .item {
+            display: flex;
+
+            gap: 20px;
+
+            &:nth-child(1) {
+                border-bottom: 1px solid $grey;
+            }
+
+            p {
+                line-height: 1.8;
+            }
+
+            .title {
+                font-weight: bold;
+            }
+        }
+
+        .itemLast {
+            border-top: 1px solid $grey;
+
+            .sumMoney {
+                color: $green;
+            }
+        }
+    }
+
+    .btns {
+        display: flex;
+        gap: 40px;
+
+        justify-content: space-between;
+
+        padding: 10px;
+
+        .active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+
+    @media (max-width: $mobile-xl) {
+        width: 100%;
+    }
+
+    @media (max-width: $mobile) {
+        ul {
+            .item {
+                flex-direction: column;
+                gap: 0px;
+            }
+        }
+
+        .btns {
+            gap: 10px;
+        }
+    }
+}

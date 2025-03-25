@@ -3,7 +3,7 @@ import Styles from "./extraServicesForm.module.scss";
 import { MdSelect } from "@/components/ui/select/MdSelect";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch } from "@/store/store";
 import useUtilityPrices from "@/hooks/useUtilityPrices";
 import {
     editValueUtilityPrice,

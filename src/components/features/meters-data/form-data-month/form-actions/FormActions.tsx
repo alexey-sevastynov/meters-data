@@ -1,8 +1,8 @@
 import { MdButton } from "@/components/ui/button/MdButton";
 import Style from "./formActions.module.scss";
-import { setNotEdit } from "@/redux/slices/meters-data-slice";
+import { setNotEdit } from "@/store/slices/meters-data-slice";
 import { colors } from "@/constants/colors";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch } from "@/store/store";
 import { TranslationKeys } from "@/types/i-18-next-types";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames } from "@/components/ui/icon/icon-constants";

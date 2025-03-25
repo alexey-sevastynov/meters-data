@@ -1,9 +1,9 @@
 import Style from "./listMonthlyMoneyCalculations.module.scss";
-import { ItemMonthlyMoneyCalculations } from "../item-monthly-money-calculations/ItemMonthlyMoneyCalculations";
-import { MonthlyMoneyCalculationsType } from "@/types/monthly-money-calculations-type";
+import { ItemMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/ItemMonthlyMoneyCalculations";
+import { MonthlyMoneyCalculations } from "@/store/models/monthly-money-calculations";
 
 interface ListMonthlyMoneyCalculationsProps {
-    items: MonthlyMoneyCalculationsType[] | undefined;
+    items?: MonthlyMoneyCalculations[];
     status: string;
 }
 

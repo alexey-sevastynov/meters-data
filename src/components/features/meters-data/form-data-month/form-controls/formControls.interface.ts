@@ -1,6 +1,6 @@
+import { MeterData } from "@/store/models/meter-data";
 import { DataPickerValue } from "@/types/data-picker";
 import { TranslationKeys } from "@/types/i-18-next-types";
-import { MeterDataType } from "@/types/meter-data-type";
 
 export interface FormControlsProps {
     isWaterBlock: boolean;
@@ -17,8 +17,8 @@ export interface FormControlsProps {
     gas: number;
     setGas: React.Dispatch<React.SetStateAction<number>>;
     isEdit: boolean;
-    meterDataEdit: MeterDataType | null;
+    meterDataEdit: MeterData | null;
     currentPage: string;
-    sortedAddressMeterData: MeterDataType[];
+    sortedAddressMeterData: MeterData[];
     lang: TranslationKeys;
 }

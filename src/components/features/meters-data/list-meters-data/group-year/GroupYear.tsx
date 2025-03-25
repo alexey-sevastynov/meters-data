@@ -1,5 +1,5 @@
 import React from "react";
-import { GroupedData } from "@/types/meter-data-type";
+import { GroupedData } from "@/types/grouped-data";
 import { hasOneElement } from "@/helpers/has-one-element";
 import Style from "./groupYear.module.scss";
 import { ItemMetersData } from "./item-meters-data/ItemMetersData";

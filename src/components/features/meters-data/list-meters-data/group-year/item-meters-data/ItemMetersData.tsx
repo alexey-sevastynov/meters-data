@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import Styles from "./itemMetersData.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
-import { AddressType } from "@/types/meter-data-type";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import {
     deleteMeterData,
     fetchAllMetersData,
     setMeterDataEdit,
     showMeterReadingCalc,
-} from "@/redux/slices/meters-data-slice";
+} from "@/store/slices/meters-data-slice";
 import { formatDate } from "@/helpers/format-date";
 import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
 import { ToastContainer } from "react-toastify";
@@ -21,15 +20,15 @@ import {
     openPopup,
     setIdDelete,
     setQuestion,
-} from "@/redux/slices/confirm-popup-slice";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+} from "@/store/slices/confirm-popup-slice";
+import { selectTranslations } from "@/store/slices/i-18-next";
 import { formatDateDisplay } from "@/components/shared/date-range-selector/dateRangeSelector.function";
 import { lastValueMeter } from "@/helpers/last-value-meter";
 import { MonthsType } from "@/types/months-type";
 
 interface ItemMetersDataProps {
     _id: string;
-    address: AddressType;
+    address: string;
     isWaterBlock: boolean;
     date: string;
     light: number;
@@ -37,8 +36,8 @@ interface ItemMetersDataProps {
     lightNight: number;
     gas: number;
     water?: number;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
     isLastItem: boolean;
     isFirstItem: boolean;
 }
@@ -66,7 +65,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     const idDelete = useAppSelector((state) => state.confirm.idDeleteItem);
     const lang = useAppSelector(selectTranslations);
     const items = useAppSelector((state) => state.metersData.metersData.items);
-    const currentPage: AddressType = pathname.slice(1) as AddressType;
+    const currentPage: string = pathname.slice(1);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
     const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
     const selectedMonthId = currentInfoMeterReading?.[0].id;

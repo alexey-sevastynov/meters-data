@@ -3,8 +3,8 @@ import {
     deleteMonthMoneyCalculations,
     fetchAllMonthlyMoneyCalculations,
     getOneMonthMoneyCalculations,
-} from "@/redux/slices/price-slice";
-import { AppDispatch } from "@/redux/store";
+} from "@/store/slices/price-slice";
+import { AppDispatch } from "@/store/store";
 
 export async function deleteItem(id: string, dispatch: AppDispatch) {
     const response = await dispatch(deleteMonthMoneyCalculations({ id }));

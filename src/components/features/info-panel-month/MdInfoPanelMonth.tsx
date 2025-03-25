@@ -1,8 +1,8 @@
 import Styles from "./infoPanelMonth.module.scss";
 import { ListInfoPanelMonth } from "@/components/features/info-panel-month/list-info-panel-month/ListInfoPanelMonth";
 import { useLocation } from "react-router-dom";
-import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 import { filterItemsByAddress } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import { removeFirstAddedMonth } from "@/helpers/remove-first-added-month";
 import { MdDateRangeSelector } from "@/components/shared/date-range-selector/MdDateRangeSelector";

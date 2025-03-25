@@ -1,24 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { API_URL } from "@/constants";
-import { TypeListUtilityPrices } from "@/types/constants";
+import { UtilityPrice } from "@/store/models/utility-price";
 import { toast } from "react-toastify";
 
-export const fetchAllServices = createAsyncThunk<TypeListUtilityPrices, void, { rejectValue: AxiosError }>(
+export const fetchAllServices = createAsyncThunk<UtilityPrice[], void, { rejectValue: AxiosError }>(
     "services/fetchAllServices",
     async () => {
-        const { data } = await axios.get<TypeListUtilityPrices>(`${API_URL}prices`);
+        const { data } = await axios.get<UtilityPrice[]>(`${API_URL}prices`);
 
         return data;
     }
 );
 
-export const editServicePrice = createAsyncThunk<TypeListUtilityPrices, { _id: string; value: number }>(
+export const editServicePrice = createAsyncThunk<UtilityPrice[], { _id: string; value: number }>(
     "editServicePrice/fetchAllServices",
     async (params) => {
         const { _id, value } = params;
 
-        const { data }: { data: TypeListUtilityPrices } = await axios.patch(`${API_URL}prices/${_id}`, {
+        const { data }: { data: UtilityPrice[] } = await axios.patch(`${API_URL}prices/${_id}`, {
             value,
         });
 
@@ -28,7 +28,7 @@ export const editServicePrice = createAsyncThunk<TypeListUtilityPrices, { _id: s
 
 interface IServicesSlice {
     services: {
-        items: TypeListUtilityPrices;
+        items: UtilityPrice[];
         status: string;
     };
 

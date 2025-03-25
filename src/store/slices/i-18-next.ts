@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import englishTranslate from "@/redux/i18n/en/translation.json";
-import ukraineTranslate from "@/redux/i18n/ua/translation.json";
-import { defaultLang, supportedLangs } from "@/redux/i18n/config";
-import { RootState } from "@/redux/store";
+import englishTranslate from "@/store/i18n/en/translation.json";
+import ukraineTranslate from "@/store/i18n/ua/translation.json";
+import { defaultLang, supportedLangs } from "@/store/i18n/config";
+import { RootState } from "@/store/store";
 import { SupportedLang, TranslationsByLang } from "@/types/i-18-next-types";
 import { langKey } from "@/constants/language";
 

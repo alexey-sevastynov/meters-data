@@ -1,8 +1,7 @@
-import { AddressType } from "@/types/meter-data-type";
 import { getStringEnv } from "@/helpers/get-string-env";
 import { envKeys } from "@/enums/env-keys";
 
-export function getKeyOnPage(address: AddressType) {
+export function getKeyOnPage(address: string) {
     switch (address) {
         case getStringEnv(envKeys.address001):
             return "address_001";

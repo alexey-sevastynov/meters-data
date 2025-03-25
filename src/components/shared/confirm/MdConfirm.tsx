@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Styles from "./confirm.module.scss";
-import { useAppDispatch } from "@/redux/hook";
+import { useAppDispatch } from "@/store/hook";
 import {
     closePopup,
     confirmActionExit,
     confirmActionOnDelete,
     setIdDelete,
-} from "@/redux/slices/confirm-popup-slice";
+} from "@/store/slices/confirm-popup-slice";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colors } from "@/constants/colors";

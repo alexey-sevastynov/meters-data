@@ -3,8 +3,8 @@ import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import DatePicker, { DatePickerProps } from "react-date-picker";
 import { DataPickerValue } from "@/types/data-picker";
-import { useAppSelector } from "@/redux/hook";
-import { selectTranslations } from "@/redux/slices/i-18-next";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface SelectDateProps extends DatePickerProps {
     selectDate: DataPickerValue;

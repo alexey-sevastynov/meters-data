@@ -1,18 +1,18 @@
 import Style from "./meterInputsList.module.scss";
 import { InputField } from "@/components/features/meters-data/form-data-month/form-controls/inputFields";
-import { MeterDataType } from "@/types/meter-data-type";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { colors } from "@/constants/colors";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
 import { TranslationKeys } from "@/types/i-18-next-types";
 import { MeterInput } from "@/components/features/meters-data/form-data-month/form-controls/meter-inputs-list/meter-input/MeterInput";
+import { MeterData } from "@/store/models/meter-data";
 
 interface MeterInputsListProps {
     items: InputField[];
     isEdit: boolean;
-    meterDataEdit: MeterDataType | null;
+    meterDataEdit: MeterData | null;
     currentPage: string;
-    sortedAddressMeterData: MeterDataType[];
+    sortedAddressMeterData: MeterData[];
     isWaterBlock: boolean;
     lang: TranslationKeys;
     water: number;

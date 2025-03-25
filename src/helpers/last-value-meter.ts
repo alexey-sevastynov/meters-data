@@ -1,5 +1,5 @@
 import { addressLinkNames } from "@/constants/address";
-import { InfoMeterReadingType } from "@/redux/slices/meters-data-slice";
+import { InfoMeterReadingType } from "@/store/slices/meters-data-slice";
 
 export const lastValueMeter = (infoMeterReading: InfoMeterReadingType, address: string) => {
     switch (address) {
