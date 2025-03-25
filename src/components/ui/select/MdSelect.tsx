@@ -1,10 +1,10 @@
 import React, { HTMLAttributes } from "react";
 import Styles from "./select.module.scss";
-import { TypeListUtilityPrices } from "@/types/constants";
+import { UtilityPrice } from "@/store/models/utility-price";
 
 interface MdSelectProps extends HTMLAttributes<HTMLSelectElement> {
     children?: string;
-    options: TypeListUtilityPrices;
+    options: UtilityPrice[];
     value: string;
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }

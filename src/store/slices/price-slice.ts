@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
 import axios, { AxiosError } from "axios";
 import { ListInfoDataMonthType } from "@/store/slices/meters-data-slice";
-import { TypeListUtilityPrices } from "@/types/constants";
+import { UtilityPrice } from "@/store/models/utility-price";
 import { MonthlyMoneyCalculations } from "@/store/models/monthly-money-calculations";
 import { API_URL } from "@/constants";
 import { actionNames } from "@/store/action-names";
@@ -56,7 +56,7 @@ export const deleteMonthMoneyCalculations = createAsyncThunk<MonthlyMoneyCalcula
 );
 
 export const editMonthMoneyCalculations = createAsyncThunk<
-    TypeListUtilityPrices,
+    UtilityPrice[],
     {
         _id: string;
         data: ListInfoDataMonthType[];
@@ -65,7 +65,7 @@ export const editMonthMoneyCalculations = createAsyncThunk<
 >(actionNames.price.edit, async (params) => {
     const { _id, data, sumMoney } = params;
 
-    const { data: responseData }: { data: TypeListUtilityPrices } = await axios.patch(
+    const { data: responseData }: { data: UtilityPrice[] } = await axios.patch(
         `${monthlyMoneyCalculationsUrl}/${_id}`,
         {
             data,
@@ -106,7 +106,7 @@ const PriceSlice = createSlice({
             state,
             action: PayloadAction<{
                 itemValue: null | ListInfoDataMonthType[];
-                priceServices: TypeListUtilityPrices;
+                priceServices: UtilityPrice[];
             }>
         ) => {
             let sum = 0;

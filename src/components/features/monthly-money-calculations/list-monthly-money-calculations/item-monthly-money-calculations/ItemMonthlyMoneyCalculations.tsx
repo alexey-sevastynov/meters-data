@@ -9,7 +9,7 @@ import {
     translationDescription,
     translationTitle,
 } from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/helpers";
-import { CalculationData } from "@/store/models/calculation-data";
+import { CalculationData } from "@/types/calculation-data";
 
 interface ItemMonthlyMoneyCalculationsProps {
     items: CalculationData[];

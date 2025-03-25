@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { API_URL } from "@/constants";
-import { AddressDataType } from "@/types/address-data-type";
+import { BillingAccount } from "@/store/models/billing-account";
 import { statusNames, StatusType } from "@/constants/status";
 import { API_PATH } from "@/constants/api-path";
 import { ERROR_MESSAGE } from "@/constants/error-message";
 import { actionNames } from "../action-names";
 
-export const fetchAllAddressData = createAsyncThunk<AddressDataType[], void, { rejectValue: AxiosError }>(
+export const fetchAllAddressData = createAsyncThunk<BillingAccount[], void, { rejectValue: AxiosError }>(
     actionNames.addressData.fetchAll,
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get<AddressDataType[]>(`${API_URL}${API_PATH.utilityAccounts}`);
+            const { data } = await axios.get<BillingAccount[]>(`${API_URL}${API_PATH.utilityAccounts}`);
             return data;
         } catch (error: unknown) {
             if (error instanceof AxiosError && !error.response) {
@@ -24,7 +24,7 @@ export const fetchAllAddressData = createAsyncThunk<AddressDataType[], void, { r
 );
 
 interface IAddressDataSlice {
-    items: AddressDataType[];
+    items: BillingAccount[];
     status: StatusType;
     error: string | null;
 }

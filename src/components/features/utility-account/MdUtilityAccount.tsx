@@ -1,13 +1,13 @@
 import { useAppSelector } from "@/store/hook";
 import Styles from "./utilityAccount.module.scss";
 import { useLocation } from "react-router-dom";
-import { AddressDataType } from "@/types/address-data-type";
+import { BillingAccount } from "@/store/models/billing-account";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { colors } from "@/constants/colors";
 
-// template component UtilityAccount
+// TODO: template component UtilityAccount
 export function MdUtilityAccount() {
     const lang = useAppSelector(selectTranslations);
 
@@ -16,7 +16,7 @@ export function MdUtilityAccount() {
 
     const items = useAppSelector((state) => state.addressData.items);
 
-    const item: AddressDataType | undefined = items.find((i) => i.address.includes(currentAddressName));
+    const item: BillingAccount | undefined = items.find((i) => i.address.includes(currentAddressName));
 
     return (
         <div className={Styles.utilityAccount}>

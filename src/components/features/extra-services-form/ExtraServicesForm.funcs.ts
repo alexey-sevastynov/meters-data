@@ -1,10 +1,10 @@
 import { addServiceToCurrentItem } from "@/store/slices/price-slice";
 import { AppDispatch } from "@/store/store";
 import { categoryNames } from "@/enums/category-names";
-import { TypeListUtilityPrices } from "@/types/constants";
+import { UtilityPrice } from "@/store/models/utility-price";
 
-export function filterOptions(items: TypeListUtilityPrices) {
-    const excludedCategories = new Set([
+export function filterOptions(items: UtilityPrice[]) {
+    const excludedCategories: Set<string> = new Set([
         categoryNames.light,
         categoryNames.lightDay,
         categoryNames.lightNight,
