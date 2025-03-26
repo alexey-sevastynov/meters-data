@@ -1,27 +1,27 @@
 @import "./colors.scss";
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 button {
-  border: none;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: unset;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: unset;
 }
 
 li {
-  list-style: none;
+    list-style: none;
 }
 
 input {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 h1,
@@ -33,63 +33,63 @@ p,
 a,
 dd,
 dt {
-  line-height: normal;
-  font-weight: 400;
+    line-height: normal;
+    font-weight: 400;
 }
 
 h3 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 h4 {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 p {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 h5 {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 a {
-  font-style: 16px;
-  text-decoration: none;
-  color: $black;
+    font-style: 16px;
+    text-decoration: none;
+    color: $black;
 }
 
 .overflow-auto {
-  overflow: auto;
+    overflow: auto;
 }
 
 .mt-40 {
-  margin-top: 40px;
+    margin-top: 40px;
 }
 
 .blur {
-  filter: blur(0);
-  transition: filter 0.5s ease-in-out;
+    filter: blur(0);
+    transition: filter 0.5s ease-in-out;
 }
 
 .blur.active {
-  pointer-events: none;
-  filter: blur(10px);
+    pointer-events: none;
+    filter: blur(10px);
 }
 
 input[type="number"] {
-  -moz-appearance: textfield;
-  -webkit-appearance: none;
-  appearance: none;
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
+    -moz-appearance: textfield;
     -webkit-appearance: none;
-    margin: 0;
-  }
+    appearance: none;
 
-  &::-moz-inner-spin-button {
-    -moz-appearance: none;
-    margin: 0;
-  }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &::-moz-inner-spin-button {
+        -moz-appearance: none;
+        margin: 0;
+    }
 }

@@ -36,7 +36,7 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
         <div className={Styles.valueUtilityPrices}>
             <p>1 {lang.value[valueName]} =</p>
 
-            <MdInput value={valueInput} setValue={setValueInput} defaultValue={value} />
+            <MdInput value={valueInput} setValue={setValueInput} defaultValue={value} label="Price" />
 
             <MdButton type="button" disabled={valueInput === value} onClick={editValueUtilityPrice}>
                 {lang.home.publish}

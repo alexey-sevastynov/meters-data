@@ -1,8 +1,8 @@
 import { TranslationKeys } from "@/types/i-18-next-types";
-import { categoryKey } from "@/enums/category-keys";
+import { CategoryKey } from "@/enums/category-keys";
 
 export interface InputField {
-    key: categoryKey;
+    key: CategoryKey;
     label: string;
     value: number;
     setValue: React.Dispatch<React.SetStateAction<number>>;

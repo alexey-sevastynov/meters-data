@@ -1,7 +1,7 @@
 import { addMonths, format, parse } from "date-fns";
 import { LIST_NAV } from "@/constants";
 import { sortItemsByDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
-import { categoryKey } from "@/enums/category-keys";
+import { CategoryKey } from "@/enums/category-keys";
 import { DataPickerValue } from "@/types/data-picker";
 import {
     editMeterData,
@@ -68,7 +68,7 @@ export function getNextMonthDate(items: MeterData[]) {
     return addMonths(lastDate, 1);
 }
 
-export function setDefaultValue(key: categoryKey, currentPage: string, listCurrentPage: MeterData[]) {
+export function setDefaultValue(key: CategoryKey, currentPage: string, listCurrentPage: MeterData[]) {
     const localStorageValue = localStorage.getItem(`metersData_${key}_${currentPage}`);
 
     if (localStorageValue !== null) {
@@ -84,7 +84,7 @@ export function setDefaultValue(key: categoryKey, currentPage: string, listCurre
     return 0;
 }
 
-export function getLastMeterValue(key: categoryKey, meterReadings: MeterData[]) {
+export function getLastMeterValue(key: CategoryKey, meterReadings: MeterData[]) {
     const lastReading = meterReadings[meterReadings.length - 1];
 
     return lastReading[key] ?? 0;

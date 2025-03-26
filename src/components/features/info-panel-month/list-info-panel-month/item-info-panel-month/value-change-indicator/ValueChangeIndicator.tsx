@@ -1,4 +1,4 @@
-import { colors } from "@/constants/colors";
+import { colorNames } from "@/enums/color-names";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
@@ -13,7 +13,7 @@ export function ValueChangeIndicator({ percentDifference }: ValueChangeIndicator
         <MdIcon
             name={isPositive ? iconNames.longArrowAltUp : iconNames.longArrowAltDown}
             size={iconSizes.small}
-            color={isPositive ? colors.red : colors.green}
+            color={isPositive ? colorNames.red : colorNames.green}
         />
     );
 }

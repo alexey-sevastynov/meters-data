@@ -2,37 +2,37 @@
 @import "@/styles/mixins.scss";
 
 .selectDate {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  label {
-    font-weight: bold;
-  }
-
-  .datePicker {
-    :global(.react-date-picker__wrapper) {
-      @include borderInput;
+    label {
+        font-weight: bold;
     }
 
-    background-color: $input-background;
-    margin-top: 10px;
+    .datePicker {
+        :global(.react-date-picker__wrapper) {
+            @include borderInput;
+        }
 
-    height: 39px;
-    min-width: 151px;
+        // background-color: $input-background;
+        margin-top: 10px;
 
-    input,
-    select {
-      @include noFocusBorder;
+        height: 39px;
+        min-width: 151px;
+
+        input,
+        select {
+            @include noFocusBorder;
+        }
+
+        select {
+            cursor: pointer;
+        }
     }
 
-    select {
-      cursor: pointer;
+    .datePicker.datePickerEdit {
+        background-color: $lightGreen;
+
+        @include noFocusBorder;
     }
-  }
-
-  .datePicker.datePickerEdit {
-    background-color: $lightGreen;
-
-    @include noFocusBorder;
-  }
 }

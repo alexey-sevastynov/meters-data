@@ -4,6 +4,7 @@ import { MdInput } from "@/components/ui/input/MdInput";
 import { ListMonthlyMoneyCalculations } from "./list-monthly-money-calculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store/hook";
+import { inputTypes } from "@/components/ui/input/input.type";
 
 export function MdMonthlyMoneyCalculations() {
     const { pathname } = useLocation();
@@ -28,10 +29,8 @@ export function MdMonthlyMoneyCalculations() {
                 <MdInput
                     value={inputValue}
                     setValue={setInputValue}
-                    className={Style.input}
-                    labelTextBold
-                    labelText="Choose period"
-                    type="text"
+                    label="Choose period"
+                    type={inputTypes.text}
                     placeholder="Search..."
                 />
             </div>

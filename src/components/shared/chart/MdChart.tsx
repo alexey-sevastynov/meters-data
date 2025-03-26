@@ -12,7 +12,6 @@ import {
     defaults,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { colors } from "@/constants/colors";
 import { ChartsDataType } from "@/types/charts-data-type";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
@@ -26,6 +25,17 @@ interface MdChartProps {
     data: ChartsDataType[];
     title: string;
 }
+
+const colors = {
+    white: "#f0fff7",
+    black: "#000000",
+    lightGreen: "#c3ff78",
+    green: "#00af85",
+    navLink: "#00c797",
+    red: "#c20000",
+    grey: "#d5d5d5",
+    blue: "#006ed3",
+} as const;
 
 export function MdChart({ data, title }: MdChartProps) {
     const lang = useAppSelector(selectTranslations);

@@ -9,7 +9,7 @@ import {
 } from "@/store/slices/confirm-popup-slice";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { colors } from "@/constants/colors";
+import { colorNames } from "@/enums/color-names";
 
 interface MdConfirmProps {
     question: string;
@@ -53,7 +53,7 @@ export function MdConfirm({ question }: MdConfirmProps) {
 
                 <div className={Styles.btns}>
                     <MdButton onClick={cancel}>No</MdButton>
-                    <MdButton onClick={handleYesClick} style={{ backgroundColor: colors.red }}>
+                    <MdButton onClick={handleYesClick} color={colorNames.red}>
                         Yes!
                     </MdButton>
                 </div>

@@ -5,10 +5,98 @@ $green: #00af85;
 $green-hover: #009875;
 $green-active: #019573;
 $navLink: #00c797;
-$input-background: #f0fff7;
-$input-background-active: #dafbe9;
+$mint: #f0fff7;
+$mint-focus: #dafbe9;
 $red: #c20000;
 $grey: #d5d5d5;
 $blue: #006ed3;
 $blue-active: #005eb6;
 $blue-hover: #0178e8;
+
+$colors: (
+    "white": (
+        base: $white,
+        hover: $white,
+        active: $white,
+        focus: $white,
+    ),
+    "black": (
+        base: $black,
+        hover: $black,
+        active: $black,
+        focus: $black,
+    ),
+    "green": (
+        base: $green,
+        hover: $green-hover,
+        active: $green-active,
+        focus: $green,
+    ),
+    "blue": (
+        base: $blue,
+        hover: $blue-hover,
+        active: $blue-active,
+        focus: $blue,
+    ),
+    "grey": (
+        base: $grey,
+        hover: $grey,
+        active: $grey,
+        focus: $grey,
+    ),
+    "red": (
+        base: $red,
+        hover: $red,
+        active: $red,
+        focus: $red,
+    ),
+    "lightGreen": (
+        base: $lightGreen,
+        hover: $lightGreen,
+        active: $lightGreen,
+        focus: $lightGreen,
+    ),
+    "navLink": (
+        base: $navLink,
+        hover: $navLink,
+        active: $navLink,
+        focus: $navLink,
+    ),
+    "mint": (
+        base: $mint,
+        hover: $mint,
+        active: $mint,
+        focus: $mint-focus,
+    ),
+);
+
+@mixin generate-classes($type, $property) {
+    @each $name, $variants in $colors {
+        $base: map-get($variants, base);
+        $hover: map-get($variants, hover);
+        $active: map-get($variants, active);
+        $focus: map-get($variants, focus);
+
+        .#{$type}-#{$name} {
+            #{$property}: $base;
+        }
+
+        .hover\:#{$type}-#{$name}:hover {
+            #{$property}: $hover;
+        }
+
+        .active\:#{$type}-#{$name}:active {
+            #{$property}: $active;
+        }
+
+        .focus\:#{$type}-#{$name}:focus {
+            #{$property}: $focus;
+        }
+    }
+}
+
+@include generate-classes("bg", "background-color");
+
+@include generate-classes("text", "color");
+
+@include generate-classes("icon", "fill");

@@ -3,7 +3,6 @@
 
 .input {
     position: relative;
-
     display: flex;
     flex-direction: column;
 
@@ -11,24 +10,19 @@
         padding-left: 5px;
     }
 
-    .labelTextBold {
-        font-weight: bold;
-    }
-
     input {
+        margin-top: 10px;
         max-width: 130px;
         height: 39px;
         padding-right: 36px;
         padding-left: 5px;
         @include borderInput;
-        background-color: $input-background;
 
         &::placeholder {
             color: $grey;
         }
 
         &:focus {
-            background-color: $input-background-active;
             outline: none;
         }
     }

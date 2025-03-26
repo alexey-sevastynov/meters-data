@@ -1,27 +1,29 @@
-import React, { HTMLAttributes } from "react";
+import { ChangeEvent } from "react";
 import Styles from "./input.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
+import { InputType, inputTypes } from "./input.type";
 
-interface MdInputProps extends HTMLAttributes<HTMLInputElement> {
+interface MdInputProps {
     value: number;
     setValue: (value: number) => void;
+    type?: InputType;
     defaultValue?: number;
-    labelText?: string;
-    labelTextBold?: boolean;
-    type?: string;
+    label?: string;
     placeholder?: string;
+    isEdit?: boolean;
 }
 
 export function MdInput({
     defaultValue = 0,
-    labelText = "Price",
-    labelTextBold,
+    label,
     value,
-    type = "number",
+    type = inputTypes.number,
     setValue,
-    ...props
+    isEdit,
 }: MdInputProps) {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isModified = value !== defaultValue;
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const targetValue = e.target.value;
 
         setValue(Number(targetValue));
@@ -33,19 +35,15 @@ export function MdInput({
 
     return (
         <div className={Styles.input}>
-            <label id={labelText} className={labelTextBold ? Styles.labelTextBold : Styles.label}>
-                {labelText}:
-            </label>
+            {label && <label>{label}:</label>}
             <input
-                id={labelText}
+                className={`${isEdit ? "bg-lightGreen" : "bg-mint focus:bg-mint"}`}
                 type={type}
                 value={value}
                 onChange={handleChange}
-                step={0.01}
-                min={0}
-                {...props}
+                {...(type === inputTypes.number && { step: 0.01, min: 0 })}
             />
-            {value !== defaultValue && (
+            {isModified && (
                 <button className={Styles.close} onClick={returnCurrentValues}>
                     <img src={getIconUrl("close.png")} alt="close" width={16} height={16} />
                 </button>

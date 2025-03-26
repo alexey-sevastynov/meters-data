@@ -4,58 +4,53 @@ $widthNavigation: 350px;
 $heightHeader: 80px;
 
 @mixin layoutStyle {
-  position: absolute;
-  left: $widthNavigation;
-  top: $heightHeader;
+    position: absolute;
+    left: $widthNavigation;
+    top: $heightHeader;
 
-  padding: 35px 20px;
+    padding: 35px 20px;
 
-  width: calc(100% - $widthNavigation);
+    width: calc(100% - $widthNavigation);
 }
 
 @mixin layoutStyleForMobile {
-  left: 0px;
-  width: 100%;
+    left: 0px;
+    width: 100%;
 }
 
 @mixin titlePage {
-  font-weight: bold;
-  color: $green;
+    font-weight: bold;
+    color: $green;
 }
 
 @mixin noFocusBorder {
-  outline: none;
-  border: none;
-  box-shadow: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 @mixin borderInput {
-  border: 1px solid $green;
+    border: 1px solid $green;
 }
 
-@mixin custom-scroll(
-  $width: 8px,
-  $thumb-color: #888,
-  $thumb-hover-color: #555,
-  $track-color: #f1f1f1
-) {
-  scrollbar-width: thin;
-  scrollbar-color: $thumb-color $track-color;
+@mixin custom-scroll($width: 8px, $thumb-color: #888, $thumb-hover-color: #555, $track-color: #f1f1f1) {
+    scrollbar-width: thin;
+    scrollbar-color: $thumb-color $track-color;
 
-  &::-webkit-scrollbar {
-    width: $width;
-  }
+    &::-webkit-scrollbar {
+        width: $width;
+    }
 
-  &::-webkit-scrollbar-track {
-    background: $track-color;
-  }
+    &::-webkit-scrollbar-track {
+        background: $track-color;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background: $thumb-color;
-    border-radius: 5px;
-  }
+    &::-webkit-scrollbar-thumb {
+        background: $thumb-color;
+        border-radius: 5px;
+    }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background: $thumb-hover-color;
-  }
+    &::-webkit-scrollbar-thumb:hover {
+        background: $thumb-hover-color;
+    }
 }

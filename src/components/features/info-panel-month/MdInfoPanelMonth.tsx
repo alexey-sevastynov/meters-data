@@ -7,10 +7,9 @@ import { filterItemsByAddress } from "@/helpers/filter-and-sort-items-by-address
 import { removeFirstAddedMonth } from "@/helpers/remove-first-added-month";
 import { MdDateRangeSelector } from "@/components/shared/date-range-selector/MdDateRangeSelector";
 import { LinkButtonGroup } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup";
-import { MdIcon } from "@/components/ui/icon/MdIcon";
-import { iconNames } from "@/components/ui/icon/icon-constants";
 import { getStringEnv } from "@/helpers/get-string-env";
 import { envKeys } from "@/enums/env-keys";
+import { getLinkButtons } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup.funcs";
 
 interface MdInfoPanelMonthProps {
     isWaterBlock?: boolean;
@@ -44,18 +43,6 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
     const selectedMonth: string = lastValue ? lastValue[0].description : "unknown";
     const month = selectedMonth.split(",")[0];
     const year = selectedMonth.split(",")[1];
-    const linksGroup = [
-        {
-            path: `${pathname}/price`,
-            icon: <MdIcon name={iconNames.priceTagFill} />,
-            label: lang.infoPanel.price,
-        },
-        {
-            path: `${pathname}/graphics`,
-            icon: <MdIcon name={iconNames.barChartSharp} />,
-            label: lang.infoPanel.graphics,
-        },
-    ];
 
     return (
         <section className={Styles.infoPanelMonthSection}>
@@ -67,11 +54,17 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
                         selectedYear={year}
                     />
 
-                    <LinkButtonGroup linksGroup={linksGroup} className={Styles.infoPanelMonth__header_btns} />
+                    <LinkButtonGroup
+                        linksGroup={getLinkButtons(pathname, lang)}
+                        className={Styles.infoPanelMonth__header_btns}
+                    />
                 </div>
 
                 <ListInfoPanelMonth isWaterBlock={isWaterBlock} items={lastValue} />
-                <LinkButtonGroup linksGroup={linksGroup} className={Styles.infoPanelMonth__btns} />
+                <LinkButtonGroup
+                    linksGroup={getLinkButtons(pathname, lang)}
+                    className={Styles.infoPanelMonth__btns}
+                />
             </div>
         </section>
     );

@@ -1,6 +1,6 @@
 import { IconBaseProps } from "react-icons";
 import { RefAttributes } from "react";
-import { colors } from "@/constants/colors";
+import { ColorName, colorNames } from "@/enums/color-names";
 import { IconName, iconSizes } from "@/components/ui/icon/icon-constants";
 import { RiPriceTagFill } from "react-icons/ri";
 import { IoBarChartSharp, IoTriangle } from "react-icons/io5";
@@ -13,7 +13,7 @@ interface MdIconProps {
     name: IconName;
     id?: string;
     size?: number;
-    color?: string;
+    color?: ColorName;
     className?: string;
 }
 
@@ -31,11 +31,11 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     calendar: FaCalendarAlt,
 };
 
-export function MdIcon({ name, id, color = colors.white, size = iconSizes.medium, className }: MdIconProps) {
+export function MdIcon({ name, id, color = colorNames.white, size = iconSizes.medium }: MdIconProps) {
     if (name in iconMap) {
         const IconComponent = iconMap[name];
 
-        return <IconComponent id={id} className={className} color={color} size={size} />;
+        return <IconComponent id={id} className={`icon-${color}`} size={size} />;
     } else {
         return null;
     }

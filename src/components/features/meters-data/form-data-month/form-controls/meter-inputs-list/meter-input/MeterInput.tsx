@@ -1,13 +1,12 @@
 import { MdInput } from "@/components/ui/input/MdInput";
-import { colors } from "@/constants/colors";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
-import { categoryKey } from "@/enums/category-keys";
+import { CategoryKey } from "@/enums/category-keys";
 import { MeterData } from "@/store/models/meter-data";
 
 interface MeterInputProps {
     isEdit: boolean;
     meterDataEdit: MeterData | null;
-    fieldKey: categoryKey;
+    fieldKey: CategoryKey;
     labelText: string;
     value: number;
     setValue: React.Dispatch<React.SetStateAction<number>>;
@@ -25,21 +24,19 @@ export function MeterInput({
     setValue,
     currentPage,
     sortedAddressMeterData,
-    className,
 }: MeterInputProps) {
+    const isEditingMeterData = isEdit && meterDataEdit;
+    const initialMeterValue = isEditingMeterData
+        ? meterDataEdit?.[fieldKey]
+        : setDefaultValue(fieldKey, currentPage, sortedAddressMeterData);
+
     return (
         <MdInput
-            className={className}
-            style={isEdit ? { backgroundColor: colors.lightGreen } : {}}
-            labelTextBold
-            defaultValue={
-                isEdit && meterDataEdit
-                    ? meterDataEdit?.[fieldKey]
-                    : setDefaultValue(fieldKey, currentPage, sortedAddressMeterData)
-            }
-            labelText={labelText}
+            defaultValue={initialMeterValue}
+            label={labelText}
             value={value}
             setValue={setValue}
+            isEdit={isEdit}
         />
     );
 }
