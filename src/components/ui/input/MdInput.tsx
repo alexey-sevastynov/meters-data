@@ -1,52 +1,42 @@
-import React, { HTMLAttributes } from "react";
+import { ChangeEvent } from "react";
 import Styles from "./input.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
+import { InputType, inputTypes } from "./input.type";
 
-interface MdInputProps extends HTMLAttributes<HTMLInputElement> {
-    value: number;
-    setValue: (value: number) => void;
-    defaultValue?: number;
-    labelText?: string;
-    labelTextBold?: boolean;
-    type?: string;
+interface MdInputProps<T = number | string> {
+    value: T;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onReset?: () => void;
+    type?: InputType;
+    defaultValue?: T;
+    label?: string;
     placeholder?: string;
+    isEdit?: boolean;
 }
 
 export function MdInput({
     defaultValue = 0,
-    labelText = "Price",
-    labelTextBold,
+    label,
     value,
-    type = "number",
-    setValue,
-    ...props
+    onChange,
+    onReset,
+    type = inputTypes.number,
+    isEdit,
 }: MdInputProps) {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const targetValue = e.target.value;
-
-        setValue(Number(targetValue));
-    };
-
-    const returnCurrentValues = () => {
-        setValue(defaultValue);
-    };
+    const isModified = value !== defaultValue;
 
     return (
         <div className={Styles.input}>
-            <label id={labelText} className={labelTextBold ? Styles.labelTextBold : Styles.label}>
-                {labelText}:
-            </label>
+            {label && <label>{label}:</label>}
             <input
-                id={labelText}
+                className={`${isEdit ? "bg-lightGreen" : "bg-mint focus:bg-mint"}`}
                 type={type}
                 value={value}
-                onChange={handleChange}
-                step={0.01}
-                min={0}
-                {...props}
+                onChange={onChange}
+                {...(type === inputTypes.number && { step: 0.01, min: 0 })}
             />
-            {value !== defaultValue && (
-                <button className={Styles.close} onClick={returnCurrentValues}>
+            {isModified && onReset && (
+                <button className={Styles.close} onClick={onReset} type="button">
                     <img src={getIconUrl("close.png")} alt="close" width={16} height={16} />
                 </button>
             )}

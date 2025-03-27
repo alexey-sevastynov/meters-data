@@ -5,7 +5,7 @@ import { BillingAccount } from "@/store/models/billing-account";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
-import { colors } from "@/constants/colors";
+import { colorNames } from "@/enums/color-names";
 
 // TODO: template component UtilityAccount
 export function MdUtilityAccount() {
@@ -34,7 +34,11 @@ export function MdUtilityAccount() {
                                 className={Styles.utilityAccount__items_item_content_copy}
                                 onClick={() => navigator.clipboard.writeText(item?.light)}
                             >
-                                <MdIcon name={iconNames.copy} size={iconSizes.small} color={colors.black} />
+                                <MdIcon
+                                    name={iconNames.copy}
+                                    size={iconSizes.small}
+                                    color={colorNames.black}
+                                />
                             </button>
                         </div>
                     </div>
@@ -50,7 +54,11 @@ export function MdUtilityAccount() {
                                 className={Styles.utilityAccount__items_item_content_copy}
                                 onClick={() => navigator.clipboard.writeText(item?.water)}
                             >
-                                <MdIcon name={iconNames.copy} size={iconSizes.small} color={colors.black} />
+                                <MdIcon
+                                    name={iconNames.copy}
+                                    size={iconSizes.small}
+                                    color={colorNames.black}
+                                />
                             </button>
                         </div>
                     </div>
@@ -66,7 +74,11 @@ export function MdUtilityAccount() {
                                 className={Styles.utilityAccount__items_item_content_copy}
                                 onClick={() => navigator.clipboard.writeText(item?.gas)}
                             >
-                                <MdIcon name={iconNames.copy} size={iconSizes.small} color={colors.black} />
+                                <MdIcon
+                                    name={iconNames.copy}
+                                    size={iconSizes.small}
+                                    color={colorNames.black}
+                                />
                             </button>
                         </div>
                     </div>

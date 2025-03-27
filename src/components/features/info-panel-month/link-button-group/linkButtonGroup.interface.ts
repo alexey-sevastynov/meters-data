@@ -1,6 +1,8 @@
+import { IconName } from "@/components/ui/icon/icon-constants";
+
 export interface LinkButton {
     path: string;
-    icon: React.ReactNode;
+    iconName: IconName;
     label: string;
 }
 

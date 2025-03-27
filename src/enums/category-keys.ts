@@ -6,4 +6,4 @@ export const categoryKeys = {
     water: "water",
 } as const;
 
-export type categoryKey = (typeof categoryKeys)[keyof typeof categoryKeys];
+export type CategoryKey = (typeof categoryKeys)[keyof typeof categoryKeys];

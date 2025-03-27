@@ -5,10 +5,67 @@ $green: #00af85;
 $green-hover: #009875;
 $green-active: #019573;
 $navLink: #00c797;
-$input-background: #f0fff7;
-$input-background-active: #dafbe9;
+$mint: #f0fff7;
+$mint-focus: #dafbe9;
 $red: #c20000;
 $grey: #d5d5d5;
 $blue: #006ed3;
 $blue-active: #005eb6;
 $blue-hover: #0178e8;
+
+$colors: (
+    "white": $white,
+    "black": $black,
+    "lightGreen": $lightGreen,
+    "green": $green,
+    "green-hover": $green-hover,
+    "green-active": $green-active,
+    "navLink": $navLink,
+    "mint": $mint,
+    "mint-focus": $mint-focus,
+    "red": $red,
+    "grey": $grey,
+    "blue": $blue,
+    "blue-active": $blue-active,
+    "blue-hover": $blue-hover,
+);
+
+$color-variants: ();
+@each $name, $base in $colors {
+    $hover: if(map-has-key($colors, #{$name + "-hover"}), map-get($colors, #{$name + "-hover"}), $base);
+    $active: if(map-has-key($colors, #{$name + "-active"}), map-get($colors, #{$name + "-active"}), $base);
+    $focus: if(map-has-key($colors, #{$name + "-focus"}), map-get($colors, #{$name + "-focus"}), $base);
+
+    $color-variants: map-merge(
+        $color-variants,
+        (
+            $name: (
+                base: $base,
+                hover: $hover,
+                active: $active,
+                focus: $focus,
+            ),
+        )
+    );
+}
+
+@mixin generate-classes($type, $property) {
+    @each $name, $variants in $color-variants {
+        .#{$type}-#{$name} {
+            #{$property}: map-get($variants, base);
+        }
+        .hover\:#{$type}-#{$name}:hover {
+            #{$property}: map-get($variants, hover);
+        }
+        .active\:#{$type}-#{$name}:active {
+            #{$property}: map-get($variants, active);
+        }
+        .focus\:#{$type}-#{$name}:focus {
+            #{$property}: map-get($variants, focus);
+        }
+    }
+}
+
+@include generate-classes("bg", "background-color");
+@include generate-classes("text", "color");
+@include generate-classes("icon", "fill");

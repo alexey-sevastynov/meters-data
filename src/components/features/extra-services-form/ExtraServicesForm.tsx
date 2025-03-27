@@ -9,6 +9,7 @@ import {
     editValueUtilityPrice,
     filterOptions,
 } from "@/components/features/extra-services-form/ExtraServicesForm.funcs";
+import { colorNames } from "@/enums/color-names";
 
 const fixedWaterString = "Fixed Water";
 
@@ -25,6 +26,16 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
     const currentId = options.find((item) => item.category === selectedOption)?._id;
 
     const [inputValue, setInputValue] = useState<number>(currentItemValue);
+
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const targetValue = Number(e.target.value);
+
+        setInputValue(targetValue);
+    };
+
+    const returnCurrentValues = () => {
+        setInputValue(currentItemValue);
+    };
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.target.value);
@@ -52,14 +63,14 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
 
                 <MdInput
                     value={inputValue}
-                    setValue={setInputValue}
-                    className={Styles.input}
+                    onChange={onChange}
+                    onReset={returnCurrentValues}
                     defaultValue={currentItemValue}
-                    labelTextBold
+                    label="Price"
                 />
             </div>
             <div className={Styles.btns}>
-                <MdButton type="button" onClick={onEditValueUtilityPrice}>
+                <MdButton type="button" onClick={onEditValueUtilityPrice} color={colorNames.green}>
                     add
                 </MdButton>
             </div>

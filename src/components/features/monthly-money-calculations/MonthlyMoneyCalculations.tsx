@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Style from "./monthlyMoneyCalculations.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { ListMonthlyMoneyCalculations } from "./list-monthly-money-calculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store/hook";
+import { inputTypes } from "@/components/ui/input/input.type";
 
 export function MdMonthlyMoneyCalculations() {
     const { pathname } = useLocation();
@@ -11,14 +12,19 @@ export function MdMonthlyMoneyCalculations() {
     const status = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.status);
     const allListItems = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.items);
 
-    const [inputValue, setInputValue] = useState<number>(0);
+    const [inputValue, setInputValue] = useState<string>("");
+
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const targetValue = e.target.value;
+
+        setInputValue(targetValue);
+    };
 
     const currentPageName: string = pathname.replace(/^\/|\/price$/g, "");
 
     const itemsFilter = allListItems?.filter(
         (item) =>
-            item.address === currentPageName &&
-            item.data[0].description.toLowerCase().includes(String(inputValue).toLowerCase())
+            item.address === currentPageName && item.data[0].description.toLowerCase().includes(inputValue)
     );
 
     return (
@@ -26,12 +32,10 @@ export function MdMonthlyMoneyCalculations() {
             <h4>Monthly money calculations:</h4>
             <div className={Style.inputBlock}>
                 <MdInput
+                    onChange={onChange}
                     value={inputValue}
-                    setValue={setInputValue}
-                    className={Style.input}
-                    labelTextBold
-                    labelText="Choose period"
-                    type="text"
+                    label="Choose period"
+                    type={inputTypes.text}
                     placeholder="Search..."
                 />
             </div>

@@ -3,7 +3,7 @@ import Style from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { colors } from "@/constants/colors";
+import { colorNames } from "@/enums/color-names";
 import { deleteItem, editItem } from "./ItemMonthlyMoneyCalculations.funcs";
 import {
     translationDescription,
@@ -94,11 +94,7 @@ export function ItemMonthlyMoneyCalculations({
                 <MdButton onClick={onEditItem} disabled={isEdit}>
                     edit
                 </MdButton>
-                <MdButton
-                    style={isEdit ? {} : { backgroundColor: colors.red }}
-                    onClick={onDeleteItem}
-                    disabled={isEdit}
-                >
+                <MdButton onClick={onDeleteItem} disabled={isEdit} color={colorNames.red}>
                     delete
                 </MdButton>
                 <MdButton onClick={captureScreen} disabled={isEdit}>

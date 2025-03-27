@@ -1,29 +1,28 @@
 @import "@/styles/colors.scss";
 
 .breadcrumb {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  .breadcrumbItem {
     display: flex;
-    align-items: center;
-    white-space: nowrap;
+    flex-wrap: wrap;
 
-    .homeIcon {
-      display: flex;
-    }
+    .breadcrumbItem {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
 
-    .link {
-      text-decoration: none;
-    }
+        .homeIcon {
+            display: flex;
+        }
 
-    .active {
-      color: $green;
-    }
+        .link {
+            text-decoration: none;
+        }
 
-    .separator {
-      margin: 0 0.5rem;
+        .active {
+            color: $green;
+        }
+
+        .separator {
+            margin: 0 0.5rem;
+        }
     }
-  }
 }

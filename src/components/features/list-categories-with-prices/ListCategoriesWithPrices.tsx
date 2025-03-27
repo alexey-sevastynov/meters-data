@@ -8,8 +8,8 @@ import { AppDispatch } from "@/store/store";
 import { calcPrice, deleteServiceWithCurrentItem, disableEdit } from "@/store/slices/price-slice";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { colors } from "@/constants/colors";
 import { editItem, isShowDeleteButton, saveItemDB } from "./ListCategoriesWithPrices.funcs";
+import { colorNames } from "@/enums/color-names";
 
 interface ListCategoriesWithPricesProps {
     dispatch: AppDispatch;
@@ -84,10 +84,10 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
                 </li>
                 {isEdit ? (
                     <div className={Styles.btns}>
-                        <MdButton type="button" onClick={cancel} style={{ backgroundColor: colors.red }}>
+                        <MdButton type="button" onClick={cancel} color={colorNames.red}>
                             Cancel
                         </MdButton>
-                        <MdButton type="button" onClick={onEditItem}>
+                        <MdButton type="button" onClick={onEditItem} color={colorNames.green}>
                             Edit
                         </MdButton>
                     </div>

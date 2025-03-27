@@ -12,7 +12,6 @@ import {
     defaults,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { colors } from "@/constants/colors";
 import { ChartsDataType } from "@/types/charts-data-type";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
@@ -57,32 +56,32 @@ export function MdChart({ data, title }: MdChartProps) {
                         {
                             label: "Light",
                             data: filteredData.map((obj) => obj.light),
-                            backgroundColor: colors.green,
-                            borderColor: colors.green,
+                            backgroundColor: Styles.green,
+                            borderColor: Styles.green,
                         },
                         {
                             label: "Light Night",
                             data: filteredData.map((obj) => obj.lightNight),
-                            backgroundColor: colors.grey,
-                            borderColor: colors.grey,
+                            backgroundColor: Styles.grey,
+                            borderColor: Styles.grey,
                         },
                         {
                             label: "Light Day",
                             data: filteredData.map((obj) => obj.lightDay),
-                            backgroundColor: colors.lightGreen,
-                            borderColor: colors.lightGreen,
+                            backgroundColor: Styles.lightGreen,
+                            borderColor: Styles.lightGreen,
                         },
                         {
                             label: "Gas",
                             data: filteredData.map((obj) => obj.gas),
-                            backgroundColor: colors.red,
-                            borderColor: colors.red,
+                            backgroundColor: Styles.red,
+                            borderColor: Styles.red,
                         },
                         {
                             label: "Water",
                             data: filteredData.map((obj) => obj.water),
-                            backgroundColor: colors.blue,
-                            borderColor: colors.blue,
+                            backgroundColor: Styles.blue,
+                            borderColor: Styles.blue,
                         },
                     ].filter((dataset) =>
                         title !== "Light"

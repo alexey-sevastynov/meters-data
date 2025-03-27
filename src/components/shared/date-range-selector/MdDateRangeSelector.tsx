@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Styles from "./dateRangeSelector.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { colors } from "@/constants/colors";
+import { colorNames } from "@/enums/color-names";
 import { language } from "@/constants/language";
 import { showMeterReadingCalc } from "@/store/slices/meters-data-slice";
 import { DateRangeSelectorProps } from "@/components/shared/date-range-selector/dateRangeSelector.interface";
@@ -52,7 +52,7 @@ export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateR
                 onClick={handleButtonClick}
             >
                 <p>{selectedDateDisplay}</p>
-                <MdIcon name={iconNames.calendar} size={iconSizes.large} color={colors.grey} />
+                <MdIcon name={iconNames.calendar} size={iconSizes.large} color={colorNames.grey} />
             </button>
 
             {isOpen && (
