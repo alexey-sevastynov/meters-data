@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Styles from "./valueUtilityPrices.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
@@ -18,7 +18,17 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
     const dispatch = useAppDispatch();
     const lang = useAppSelector(selectTranslations);
 
-    const [valueInput, setValueInput] = useState<number>(value);
+    const [valueInput, setInputValue] = useState<number>(value);
+
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const targetValue = Number(e.target.value);
+
+        setInputValue(targetValue);
+    };
+
+    const returnCurrentValues = () => {
+        setInputValue(value);
+    };
 
     const editValueUtilityPrice = () => {
         if (id && valueInput) {
@@ -36,7 +46,13 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
         <div className={Styles.valueUtilityPrices}>
             <p>1 {lang.value[valueName]} =</p>
 
-            <MdInput value={valueInput} setValue={setValueInput} defaultValue={value} label="Price" />
+            <MdInput
+                value={valueInput}
+                onChange={onChange}
+                onReset={returnCurrentValues}
+                defaultValue={value}
+                label="Price"
+            />
 
             <MdButton type="button" disabled={valueInput === value} onClick={editValueUtilityPrice}>
                 {lang.home.publish}

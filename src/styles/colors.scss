@@ -14,89 +14,58 @@ $blue-active: #005eb6;
 $blue-hover: #0178e8;
 
 $colors: (
-    "white": (
-        base: $white,
-        hover: $white,
-        active: $white,
-        focus: $white,
-    ),
-    "black": (
-        base: $black,
-        hover: $black,
-        active: $black,
-        focus: $black,
-    ),
-    "green": (
-        base: $green,
-        hover: $green-hover,
-        active: $green-active,
-        focus: $green,
-    ),
-    "blue": (
-        base: $blue,
-        hover: $blue-hover,
-        active: $blue-active,
-        focus: $blue,
-    ),
-    "grey": (
-        base: $grey,
-        hover: $grey,
-        active: $grey,
-        focus: $grey,
-    ),
-    "red": (
-        base: $red,
-        hover: $red,
-        active: $red,
-        focus: $red,
-    ),
-    "lightGreen": (
-        base: $lightGreen,
-        hover: $lightGreen,
-        active: $lightGreen,
-        focus: $lightGreen,
-    ),
-    "navLink": (
-        base: $navLink,
-        hover: $navLink,
-        active: $navLink,
-        focus: $navLink,
-    ),
-    "mint": (
-        base: $mint,
-        hover: $mint,
-        active: $mint,
-        focus: $mint-focus,
-    ),
+    "white": $white,
+    "black": $black,
+    "lightGreen": $lightGreen,
+    "green": $green,
+    "green-hover": $green-hover,
+    "green-active": $green-active,
+    "navLink": $navLink,
+    "mint": $mint,
+    "mint-focus": $mint-focus,
+    "red": $red,
+    "grey": $grey,
+    "blue": $blue,
+    "blue-active": $blue-active,
+    "blue-hover": $blue-hover,
 );
 
+$color-variants: ();
+@each $name, $base in $colors {
+    $hover: if(map-has-key($colors, #{$name + "-hover"}), map-get($colors, #{$name + "-hover"}), $base);
+    $active: if(map-has-key($colors, #{$name + "-active"}), map-get($colors, #{$name + "-active"}), $base);
+    $focus: if(map-has-key($colors, #{$name + "-focus"}), map-get($colors, #{$name + "-focus"}), $base);
+
+    $color-variants: map-merge(
+        $color-variants,
+        (
+            $name: (
+                base: $base,
+                hover: $hover,
+                active: $active,
+                focus: $focus,
+            ),
+        )
+    );
+}
+
 @mixin generate-classes($type, $property) {
-    @each $name, $variants in $colors {
-        $base: map-get($variants, base);
-        $hover: map-get($variants, hover);
-        $active: map-get($variants, active);
-        $focus: map-get($variants, focus);
-
+    @each $name, $variants in $color-variants {
         .#{$type}-#{$name} {
-            #{$property}: $base;
+            #{$property}: map-get($variants, base);
         }
-
         .hover\:#{$type}-#{$name}:hover {
-            #{$property}: $hover;
+            #{$property}: map-get($variants, hover);
         }
-
         .active\:#{$type}-#{$name}:active {
-            #{$property}: $active;
+            #{$property}: map-get($variants, active);
         }
-
         .focus\:#{$type}-#{$name}:focus {
-            #{$property}: $focus;
+            #{$property}: map-get($variants, focus);
         }
     }
 }
 
 @include generate-classes("bg", "background-color");
-
 @include generate-classes("text", "color");
-
 @include generate-classes("icon", "fill");

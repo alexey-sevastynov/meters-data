@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import Style from "./meterInputsList.module.scss";
 import { InputField } from "@/components/features/meters-data/form-data-month/form-controls/inputFields";
 import { MdInput } from "@/components/ui/input/MdInput";
@@ -36,6 +37,16 @@ export function MeterInputsList({
         ? waterReadingValue
         : setDefaultValue(categoryKeys.water, currentPage, sortedAddressMeterData);
 
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const targetValue = Number(e.target.value);
+
+        setWater(targetValue);
+    };
+
+    const returnCurrentValues = () => {
+        setWater(waterDefaultValue);
+    };
+
     return (
         <>
             {items.map(({ key, label, value, setValue }) => (
@@ -58,7 +69,8 @@ export function MeterInputsList({
                     defaultValue={waterDefaultValue}
                     label={lang.infoPanel["Water general"]}
                     value={water}
-                    setValue={setWater}
+                    onChange={onChange}
+                    onReset={returnCurrentValues}
                     isEdit={isEdit}
                 />
             )}

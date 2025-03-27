@@ -27,6 +27,16 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
 
     const [inputValue, setInputValue] = useState<number>(currentItemValue);
 
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const targetValue = Number(e.target.value);
+
+        setInputValue(targetValue);
+    };
+
+    const returnCurrentValues = () => {
+        setInputValue(currentItemValue);
+    };
+
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.target.value);
     };
@@ -53,7 +63,8 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
 
                 <MdInput
                     value={inputValue}
-                    setValue={setInputValue}
+                    onChange={onChange}
+                    onReset={returnCurrentValues}
                     defaultValue={currentItemValue}
                     label="Price"
                 />

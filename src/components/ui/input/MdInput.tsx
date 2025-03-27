@@ -3,11 +3,12 @@ import Styles from "./input.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { InputType, inputTypes } from "./input.type";
 
-interface MdInputProps {
-    value: number;
-    setValue: (value: number) => void;
+interface MdInputProps<T = number | string> {
+    value: T;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onReset?: () => void;
     type?: InputType;
-    defaultValue?: number;
+    defaultValue?: T;
     label?: string;
     placeholder?: string;
     isEdit?: boolean;
@@ -17,21 +18,12 @@ export function MdInput({
     defaultValue = 0,
     label,
     value,
+    onChange,
+    onReset,
     type = inputTypes.number,
-    setValue,
     isEdit,
 }: MdInputProps) {
     const isModified = value !== defaultValue;
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const targetValue = e.target.value;
-
-        setValue(Number(targetValue));
-    };
-
-    const returnCurrentValues = () => {
-        setValue(defaultValue);
-    };
 
     return (
         <div className={Styles.input}>
@@ -40,11 +32,11 @@ export function MdInput({
                 className={`${isEdit ? "bg-lightGreen" : "bg-mint focus:bg-mint"}`}
                 type={type}
                 value={value}
-                onChange={handleChange}
+                onChange={onChange}
                 {...(type === inputTypes.number && { step: 0.01, min: 0 })}
             />
-            {isModified && (
-                <button className={Styles.close} onClick={returnCurrentValues}>
+            {isModified && onReset && (
+                <button className={Styles.close} onClick={onReset} type="button">
                     <img src={getIconUrl("close.png")} alt="close" width={16} height={16} />
                 </button>
             )}
