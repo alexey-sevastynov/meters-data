@@ -1,4 +1,6 @@
 export const apiEndpointNames = {
+    monthlyMoneyCalculations: "monthlymoneycalculations",
+    billingAccount: "utilityaccounts",
     utilityPrises: "prices",
 } as const;
 

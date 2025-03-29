@@ -1,6 +1,6 @@
 export const actionNames = {
-    addressData: {
-        fetchAll: "addressData/fetchAllAddressData",
+    billingAccount: {
+        getAll: "address-data/fetchAllAddressData",
     },
     price: {
         getAll: "MonthlyMoneyCalculations/fetchAllMonthlyMoneyCalculations",

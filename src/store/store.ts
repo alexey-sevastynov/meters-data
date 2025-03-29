@@ -5,11 +5,11 @@ import { pricesReducer } from "@/store/slices/price-slice";
 import { authReducer } from "@/store/slices/auth-slice";
 import { confirmReducer } from "@/store/slices/confirm-popup-slice";
 import { i18nReducer } from "@/store/slices/i-18-next";
-import { addressDataReducer } from "@/store/slices/address-data-slice";
+import { billingAccountsReducer } from "@/store/slices/billing-account-slice";
 
 const store = configureStore({
     reducer: {
-        addressData: addressDataReducer,
+        billingAccounts: billingAccountsReducer,
         utilityPrices: utilityPricesReducer,
         metersData: metersDataReducer,
         prices: pricesReducer,

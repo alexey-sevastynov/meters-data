@@ -8,15 +8,21 @@ import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { colorNames } from "@/enums/color-names";
 
 // TODO: template component UtilityAccount
-export function MdUtilityAccount() {
+export function MdBillingAccounts() {
     const lang = useAppSelector(selectTranslations);
 
     const { pathname } = useLocation();
     const currentAddressName: string = pathname.slice(1).replace("/price", "");
 
-    const items = useAppSelector((state) => state.addressData.items);
+    const items = useAppSelector((state) => state.billingAccounts.items);
+    const status = useAppSelector((state) => state.billingAccounts.status);
+    const errorMessage = useAppSelector((state) => state.billingAccounts.errorMessage);
 
     const item: BillingAccount | undefined = items.find((i) => i.address.includes(currentAddressName));
+
+    if (status === "loading") return <p>loading...</p>;
+
+    if (status === "error") return <p>error: {errorMessage}</p>;
 
     return (
         <div className={Styles.utilityAccount}>

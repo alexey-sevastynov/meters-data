@@ -31,6 +31,7 @@ interface IUtilityPriceState {
 const initialState: IUtilityPriceState = {
     items: [],
     status: statusNames.inactive,
+    errorMessage: undefined,
 };
 
 const utilityPriceSlice = createSlice({

@@ -6,9 +6,9 @@ import { UtilityPrice } from "@/store/models/utility-price";
 import { MonthlyMoneyCalculations } from "@/store/models/monthly-money-calculations";
 import { apiUrl } from "@/store/crud-service";
 import { actionNames } from "@/store/action-names";
-import { API_PATH } from "@/constants/api-path";
+import { apiEndpointNames } from "@/store/api-endpoint-names";
 
-const monthlyMoneyCalculationsUrl = apiUrl + API_PATH.monthlyMoneyCalculations;
+const monthlyMoneyCalculationsUrl = apiUrl + apiEndpointNames.monthlyMoneyCalculations;
 
 export const fetchAllMonthlyMoneyCalculations = createAsyncThunk<
     MonthlyMoneyCalculations[],

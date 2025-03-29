@@ -8,7 +8,7 @@ import { fetchAllMonthlyMoneyCalculations } from "@/store/slices/price-slice";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsPrice } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
-import { MdUtilityAccount } from "@/components/features/utility-account/MdUtilityAccount";
+import { MdBillingAccounts } from "@/components/features/utility-account/MdUtilityAccount";
 import { MdExtraServicesForm } from "@/components/features/extra-services-form/ExtraServicesForm";
 import { MdListCategoriesWithPrices } from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices";
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
@@ -22,7 +22,7 @@ export function Price() {
     useEffect(() => {
         dispatch(getAllUtilityPrice());
         dispatch(fetchAllMonthlyMoneyCalculations());
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="price">
@@ -36,7 +36,7 @@ export function Price() {
                 />
             </div>
 
-            <MdUtilityAccount />
+            <MdBillingAccounts />
 
             <MdExtraServicesForm dispatch={dispatch} />
             <div className="overflow-auto mt-40">
