@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { API_URL } from "@/constants";
+import { apiUrl } from "@/store/crud-service";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import { getKeyOnPage } from "@/helpers/get-key-on-page";
 import { findPreviousDateById } from "@/store/helpers/find-previous-date-by-id";
@@ -41,7 +41,7 @@ export const fetchAllMetersData = createAsyncThunk<MeterData[], void, { rejectVa
     "metersData/fetchAllMetersData",
     async (_, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get<MeterData[]>(`${API_URL}metersdatas`);
+            const { data } = await axios.get<MeterData[]>(`${apiUrl}metersdatas`);
 
             return data;
         } catch (e) {
@@ -57,7 +57,7 @@ export const fetchAllMetersData = createAsyncThunk<MeterData[], void, { rejectVa
 export const fetchPostMetersData = createAsyncThunk<MeterData, ParamsMeterDataType>(
     "metersData/fetchPostMetersData",
     async (params) => {
-        const { data }: { data: MeterData } = await axios.post(`${API_URL}metersdatas`, params);
+        const { data }: { data: MeterData } = await axios.post(`${apiUrl}metersdatas`, params);
 
         return data;
     }
@@ -67,7 +67,7 @@ export const deleteMeterData = createAsyncThunk<MeterData, { id: string }>(
     "metersData/deleteMeterData",
     async (params) => {
         const { id } = params;
-        const { data }: { data: MeterData } = await axios.delete(`${API_URL}metersdatas/${id}`);
+        const { data }: { data: MeterData } = await axios.delete(`${apiUrl}metersdatas/${id}`);
 
         return data;
     }
@@ -78,7 +78,7 @@ export const editMeterData = createAsyncThunk<MeterData, ParamsMeterDataType>(
     async (params) => {
         const { _id, date, address, light, lightDay, lightNight, gas, water } = params;
 
-        const { data }: { data: MeterData } = await axios.patch(`${API_URL}metersdatas/${_id}`, {
+        const { data }: { data: MeterData } = await axios.patch(`${apiUrl}metersdatas/${_id}`, {
             date,
             address,
             light,

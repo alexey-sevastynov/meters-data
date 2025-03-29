@@ -3,11 +3,11 @@ import "@/styles/pages/price.scss";
 import { useParams } from "react-router-dom";
 import { LIST_NAV } from "@/constants";
 import { useAppDispatch } from "@/store/hook";
-import { fetchAllServices } from "@/store/slices/services-slice";
+import { getAllUtilityPrice } from "@/store/slices/utility-price-slice";
 import { fetchAllMonthlyMoneyCalculations } from "@/store/slices/price-slice";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsPrice } from "@/constants/breadcrumb-items";
-import { ADDRESS_TYPES } from "@/constants/routes";
+import { routeNames } from "@/constants/routes";
 import { MdUtilityAccount } from "@/components/features/utility-account/MdUtilityAccount";
 import { MdExtraServicesForm } from "@/components/features/extra-services-form/ExtraServicesForm";
 import { MdListCategoriesWithPrices } from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices";
@@ -20,7 +20,7 @@ export function Price() {
     const addressItem = LIST_NAV.find(({ link }) => link === `/${address}`);
 
     useEffect(() => {
-        dispatch(fetchAllServices());
+        dispatch(getAllUtilityPrice());
         dispatch(fetchAllMonthlyMoneyCalculations());
     }, []);
 
@@ -30,7 +30,7 @@ export function Price() {
                 <MdBreadcrumb
                     items={getBreadcrumbItemsPrice(
                         address!,
-                        `/${address}/${ADDRESS_TYPES.PRICE}`,
+                        `/${address}/${routeNames.price}`,
                         addressItem?.id
                     )}
                 />

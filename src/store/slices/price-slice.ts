@@ -4,11 +4,11 @@ import axios, { AxiosError } from "axios";
 import { ListInfoDataMonthType } from "@/store/slices/meters-data-slice";
 import { UtilityPrice } from "@/store/models/utility-price";
 import { MonthlyMoneyCalculations } from "@/store/models/monthly-money-calculations";
-import { API_URL } from "@/constants";
+import { apiUrl } from "@/store/crud-service";
 import { actionNames } from "@/store/action-names";
 import { API_PATH } from "@/constants/api-path";
 
-const monthlyMoneyCalculationsUrl = API_URL + API_PATH.monthlyMoneyCalculations;
+const monthlyMoneyCalculationsUrl = apiUrl + API_PATH.monthlyMoneyCalculations;
 
 export const fetchAllMonthlyMoneyCalculations = createAsyncThunk<
     MonthlyMoneyCalculations[],

@@ -4,12 +4,12 @@ import { MdSelect } from "@/components/ui/select/MdSelect";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { AppDispatch } from "@/store/store";
-import useUtilityPrices from "@/hooks/useUtilityPrices";
 import {
     editValueUtilityPrice,
     filterOptions,
 } from "@/components/features/extra-services-form/ExtraServicesForm.funcs";
 import { colorNames } from "@/enums/color-names";
+import { useAppSelector } from "@/store/hook";
 
 const fixedWaterString = "Fixed Water";
 
@@ -18,7 +18,7 @@ interface ExtraServicesFormProps {
 }
 
 export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
-    const { items } = useUtilityPrices();
+    const items = useAppSelector((state) => state.utilityPrices.items);
     const options = filterOptions(items);
 
     const [selectedOption, setSelectedOption] = useState<string>(options[0]?.category || fixedWaterString);

@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { servicesReducer } from "./slices/services-slice";
-import { metersDataReducer } from "./slices/meters-data-slice";
-import { pricesReducer } from "./slices/price-slice";
-import { authReducer } from "./slices/auth-slice";
-import { confirmReducer } from "./slices/confirm-popup-slice";
-import { i18nReducer } from "./slices/i-18-next";
-import { addressDataReducer } from "./slices/address-data-slice";
+import { servicesReducer as utilityPricesReducer } from "@/store/slices/utility-price-slice";
+import { metersDataReducer } from "@/store/slices/meters-data-slice";
+import { pricesReducer } from "@/store/slices/price-slice";
+import { authReducer } from "@/store/slices/auth-slice";
+import { confirmReducer } from "@/store/slices/confirm-popup-slice";
+import { i18nReducer } from "@/store/slices/i-18-next";
+import { addressDataReducer } from "@/store/slices/address-data-slice";
 
 const store = configureStore({
     reducer: {
         addressData: addressDataReducer,
-        services: servicesReducer,
+        utilityPrices: utilityPricesReducer,
         metersData: metersDataReducer,
         prices: pricesReducer,
         auth: authReducer,
