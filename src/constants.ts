@@ -1,8 +1,6 @@
-import { ROUTES } from "@/constants/routes";
+import { appRoutes } from "@/constants/routes";
 import { getStringEnv } from "@/helpers/get-string-env";
 import { envKeys } from "@/enums/env-keys";
-
-export const API_URL = getStringEnv(envKeys.apiUrl);
 
 export const BREAK_POINTS = {
     MOBILE_S: 350,
@@ -15,7 +13,7 @@ export const BREAK_POINTS = {
 
 export const LIST_NAV = [
     {
-        link: ROUTES.HOME,
+        link: appRoutes.home,
         id: "Home",
         imageName: "home.png",
     },

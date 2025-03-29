@@ -20,7 +20,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
     const currentPageName: string = pathname.replace(/^\/|\/price$/g, "");
     const currentItem = useAppSelector((state) => state.prices.currentItem);
     const sumMoney = useAppSelector((state) => state.prices.sumMoney);
-    const services = useAppSelector((state) => state.services.services.items);
+    const services = useAppSelector((state) => state.utilityPrices.items);
     const allListMonthlyMoneyCalculations = useAppSelector(
         (state) => state.prices.itemsMonthlyMoneyCalculations.items
     );

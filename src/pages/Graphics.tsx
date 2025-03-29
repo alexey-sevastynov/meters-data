@@ -7,7 +7,7 @@ import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-it
 import { MdChart } from "@/components/shared/chart/MdChart";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumb-items";
-import { ADDRESS_TYPES } from "@/constants/routes";
+import { routeNames } from "@/constants/routes";
 
 export function Graphics() {
     const { address } = useParams();
@@ -57,7 +57,7 @@ export function Graphics() {
                 <MdBreadcrumb
                     items={getBreadcrumbItemsGraphics(
                         address!,
-                        `/${address}/${ADDRESS_TYPES.GRAPHICS}`,
+                        `/${address}/${routeNames.graphics}`,
                         addressItem?.id
                     )}
                 />

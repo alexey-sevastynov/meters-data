@@ -5,4 +5,4 @@ export const statusNames = {
     error: "error",
 } as const;
 
-export type StatusType = keyof typeof statusNames;
+export type StatusName = keyof typeof statusNames;
