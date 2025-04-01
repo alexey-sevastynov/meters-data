@@ -1,6 +1,6 @@
 import { BreadcrumbItem } from "../components/shared/breadcrumb/breadcrumb.type";
 import { addressLinkNames, addressNames } from "./address";
-import { ADDRESS_TYPES, ROUTES } from "./routes";
+import { routeNames, appRoutes } from "./routes";
 
 const unknownAddressString = "unknown address";
 
@@ -11,28 +11,28 @@ const createAddressItem = (addressId: string, addressName: string, route: string
 });
 
 const createBreadcrumbItems = (additionalItems: BreadcrumbItem[] = []) => [
-    { id: addressLinkNames.home, label: addressNames.home, link: ROUTES.HOME },
+    { id: addressLinkNames.home, label: addressNames.home, link: appRoutes.home },
     ...additionalItems,
 ];
 
 export const BREADCRUMB_ITEMS_ADDR_001 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address001, addressNames.address001, ROUTES.ADDR_001),
+    createAddressItem(addressLinkNames.address001, addressNames.address001, appRoutes.addr001),
 ]);
 
 export const BREADCRUMB_ITEMS_ADDR_002 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address002, addressNames.address002, ROUTES.ADDR_002),
+    createAddressItem(addressLinkNames.address002, addressNames.address002, appRoutes.addr002),
 ]);
 
 export const BREADCRUMB_ITEMS_ADDR_003 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address003, addressNames.address003, ROUTES.ADDR_003),
+    createAddressItem(addressLinkNames.address003, addressNames.address003, appRoutes.addr003),
 ]);
 
 export const BREADCRUMB_ITEMS_ADDR_004 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address004, addressNames.address004, ROUTES.ADDR_004),
+    createAddressItem(addressLinkNames.address004, addressNames.address004, appRoutes.addr004),
 ]);
 
 export const BREADCRUMB_ITEMS_ADDR_005 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address005, addressNames.address005, ROUTES.ADDR_005),
+    createAddressItem(addressLinkNames.address005, addressNames.address005, appRoutes.addr005),
 ]);
 
 export const getBreadcrumbItemsGraphics = (
@@ -42,7 +42,7 @@ export const getBreadcrumbItemsGraphics = (
 ) => {
     return createBreadcrumbItems([
         createAddressItem(address, addressName, address),
-        createAddressItem(ADDRESS_TYPES.GRAPHICS, ADDRESS_TYPES.GRAPHICS, ADDRESS_TYPES.METERS_DATA + route),
+        createAddressItem(routeNames.graphics, routeNames.graphics, routeNames.meterData + route),
     ]);
 };
 
@@ -53,6 +53,6 @@ export const getBreadcrumbItemsPrice = (
 ) => {
     return createBreadcrumbItems([
         createAddressItem(address, addressName, address),
-        createAddressItem(ADDRESS_TYPES.PRICE, ADDRESS_TYPES.PRICE, ADDRESS_TYPES.METERS_DATA + route),
+        createAddressItem(routeNames.price, routeNames.price, routeNames.meterData + route),
     ]);
 };

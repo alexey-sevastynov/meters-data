@@ -1,9 +1,9 @@
 import Style from "./listMonthlyMoneyCalculations.module.scss";
 import { ItemMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/ItemMonthlyMoneyCalculations";
-import { MonthlyMoneyCalculations } from "@/store/models/monthly-money-calculations";
+import { MonthlyMoneyCalculationsWithObjectId } from "@/store/models/monthly-money-calculations";
 
 interface ListMonthlyMoneyCalculationsProps {
-    items?: MonthlyMoneyCalculations[];
+    items?: MonthlyMoneyCalculationsWithObjectId[];
     status: string;
 }
 
@@ -16,7 +16,7 @@ export function ListMonthlyMoneyCalculations({ items, status }: ListMonthlyMoney
                     <ItemMonthlyMoneyCalculations
                         key={_id}
                         id={_id}
-                        items={data.map((item) => ({ ...item, id: item._id }))}
+                        items={data.map((item) => ({ ...item, id: item.id }))}
                         sumMoney={sumMoney}
                         address={address}
                     />

@@ -1,15 +1,16 @@
 import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
 import {
     deleteMonthMoneyCalculations,
-    fetchAllMonthlyMoneyCalculations,
+    getAllMonthlyMoneyCalculations,
     getOneMonthMoneyCalculations,
-} from "@/store/slices/price-slice";
+} from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
+
 import { AppDispatch } from "@/store/store";
 
 export async function deleteItem(id: string, dispatch: AppDispatch) {
     const response = await dispatch(deleteMonthMoneyCalculations({ id }));
 
-    if (response.payload) await dispatch(fetchAllMonthlyMoneyCalculations());
+    if (response.payload) await dispatch(getAllMonthlyMoneyCalculations());
 }
 
 export async function editItem(id: string, dispatch: AppDispatch) {

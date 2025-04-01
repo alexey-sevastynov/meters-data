@@ -1,6 +1,6 @@
-import { MeterData } from "../models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
-export function findPreviousDateById(items: MeterData[], id: string) {
+export function findPreviousDateById(items: MeterDataWithObjectId[], id: string) {
     const item = items.find((meterDataItem) => meterDataItem._id === id);
 
     if (!item) return null;

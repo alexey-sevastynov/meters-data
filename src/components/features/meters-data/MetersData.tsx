@@ -14,7 +14,7 @@ interface MetersDataProps {
 export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
     const { pathname } = useLocation();
     const lang = useAppSelector(selectTranslations);
-    const meterReadingsList = useAppSelector((state) => state.metersData.metersData.items);
+    const meterReadingsList = useAppSelector((state) => state.metersData.items);
 
     const addressPath: string = pathname.slice(1);
     const sortedAddressMeterData = filterAndSortItemsByAddressAndDate(meterReadingsList, addressPath);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { format, parse, startOfDay } from "date-fns";
 import Style from "./formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { fetchAllMetersData, setNotEdit } from "@/store/slices/meters-data-slice";
+import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { calculateSum } from "@/helpers/calculate-total";
@@ -17,11 +17,12 @@ import { FormActions } from "@/components/features/meters-data/form-data-month/f
 import { FormControls } from "@/components/features/meters-data/form-data-month/form-controls/FormControls";
 import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
-import { MeterData } from "@/store/models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
+import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 
 interface FormDataMonthProps {
     isWaterBlock: boolean;
-    sortedAddressMeterData: MeterData[];
+    sortedAddressMeterData: MeterDataWithObjectId[];
     pathname: string;
     addressPath: string;
 }
@@ -102,7 +103,7 @@ export function FormDataMonth({
     };
 
     useEffect(() => {
-        dispatch(fetchAllMetersData());
+        dispatch(getAllMetersData());
 
         if (addressPath && sortedAddressMeterData.length > 0) {
             updateLocalStorageValues(addressPath, light, lightDay, lightNight, gas, water);

@@ -5,7 +5,7 @@ import { MdNavMenu } from "@/components/layout/nav-menu/MdNavMenu";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
 import { BREAK_POINTS } from "@/constants";
-import { fetchAllAddressData } from "@/store/slices/address-data-slice";
+import { getAllBillingAccounts } from "@/store/slices/billing-account-slice";
 
 export function Layout() {
     const dispatch = useAppDispatch();
@@ -14,8 +14,8 @@ export function Layout() {
     const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.LAPTOP });
 
     useEffect(() => {
-        dispatch(fetchAllAddressData());
-    }, []);
+        dispatch(getAllBillingAccounts());
+    }, [dispatch]);
 
     const openMenu = () => {
         setIsShowMenu(true);

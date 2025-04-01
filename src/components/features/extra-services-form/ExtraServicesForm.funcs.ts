@@ -1,4 +1,4 @@
-import { addServiceToCurrentItem } from "@/store/slices/price-slice";
+import { addUtilityItem } from "@/store/slices/monthly-money-calculations/slice";
 import { AppDispatch } from "@/store/store";
 import { categoryNames } from "@/enums/category-names";
 import { UtilityPrice } from "@/store/models/utility-price";
@@ -15,7 +15,7 @@ export function filterOptions(items: UtilityPrice[]) {
     return items.filter(({ category }) => !excludedCategories.has(category));
 }
 
-export function editValueUtilityPrice(
+export function addValueUtilityPrice(
     id: string,
     inputValue: string,
     selectedOption: string,
@@ -24,7 +24,7 @@ export function editValueUtilityPrice(
     if (!id && !inputValue) return;
 
     dispatch(
-        addServiceToCurrentItem({
+        addUtilityItem({
             title: selectedOption,
             description: inputValue,
             percentDifference: 0,

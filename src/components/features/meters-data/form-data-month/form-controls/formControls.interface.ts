@@ -1,4 +1,4 @@
-import { MeterData } from "@/store/models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { DataPickerValue } from "@/types/data-picker";
 import { TranslationKeys } from "@/types/i-18-next-types";
 
@@ -17,8 +17,8 @@ export interface FormControlsProps {
     gas: number;
     setGas: React.Dispatch<React.SetStateAction<number>>;
     isEdit: boolean;
-    meterDataEdit: MeterData | null;
+    meterDataEdit: MeterDataWithObjectId | null;
     currentPage: string;
-    sortedAddressMeterData: MeterData[];
+    sortedAddressMeterData: MeterDataWithObjectId[];
     lang: TranslationKeys;
 }

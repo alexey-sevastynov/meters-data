@@ -9,10 +9,10 @@ import {
     translationDescription,
     translationTitle,
 } from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/helpers";
-import { CalculationData } from "@/types/calculation-data";
+import { CalculationDataWithId } from "@/types/calculation-data-with-id";
 
 interface ItemMonthlyMoneyCalculationsProps {
-    items: CalculationData[];
+    items: CalculationDataWithId[];
     sumMoney: number;
     id: string;
     address: string;
@@ -25,7 +25,7 @@ export function ItemMonthlyMoneyCalculations({
     address,
 }: ItemMonthlyMoneyCalculationsProps) {
     const dispatch = useAppDispatch();
-    const isEdit = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.isEdit);
+    const isEdit = useAppSelector((state) => state.monthlyMoneyCalculations.isEdit);
     const [language, setLanguage] = useState<"EN" | "UA">("EN");
     const currencyTranslation = language === "EN" ? "uah" : "грн";
 

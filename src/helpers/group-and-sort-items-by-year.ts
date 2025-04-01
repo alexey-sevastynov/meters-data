@@ -1,8 +1,8 @@
-import { MeterData } from "@/store/models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { GroupedData } from "@/types/grouped-data";
 import { sortByDateAsc, sortByDateDesc } from "@/helpers/compare-dates";
 
-export function groupAndSortItemsByYear(items: MeterData[], address: string) {
+export function groupAndSortItemsByYear(items: MeterDataWithObjectId[], address: string) {
     const filteredItemsByAddress = getFilteredItemsByAddress(items, address);
     const grouped = groupItemsByYear(filteredItemsByAddress);
 
@@ -12,11 +12,11 @@ export function groupAndSortItemsByYear(items: MeterData[], address: string) {
     return grouped;
 }
 
-function getFilteredItemsByAddress(items: MeterData[], address: string) {
+function getFilteredItemsByAddress(items: MeterDataWithObjectId[], address: string) {
     return items.filter((item) => item.address === address);
 }
 
-function groupItemsByYear(items: MeterData[]) {
+function groupItemsByYear(items: MeterDataWithObjectId[]) {
     return items.reduce((grouped: GroupedData, item) => {
         const yearString = getYearFromDate(item.date);
 
@@ -44,10 +44,10 @@ function setLastYearAsOpen(grouped: GroupedData) {
 
 function getSortOrder(year: string, lastYear: string) {
     if (year === lastYear) {
-        return (a: MeterData, b: MeterData) => sortByDateDesc(a, b);
+        return (a: MeterDataWithObjectId, b: MeterDataWithObjectId) => sortByDateDesc(a, b);
     }
 
-    return (a: MeterData, b: MeterData) => sortByDateAsc(a, b);
+    return (a: MeterDataWithObjectId, b: MeterDataWithObjectId) => sortByDateAsc(a, b);
 }
 
 function sortItemsByDate(grouped: GroupedData) {

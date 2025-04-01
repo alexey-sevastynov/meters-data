@@ -1,16 +1,19 @@
 import { sortByDateAsc } from "@/helpers/compare-dates";
-import { MeterData } from "@/store/models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
-export function filterAndSortItemsByAddressAndDate(items: MeterData[], address: string) {
+export function filterAndSortItemsByAddressAndDate(items: MeterDataWithObjectId[], address: string) {
     const filteredItems = filterItemsByAddress(items, address);
 
     return sortItemsByDate(filteredItems);
 }
 
-export function sortItemsByDate(items: MeterData[]) {
+export function sortItemsByDate(items: MeterDataWithObjectId[]) {
     return items.sort((a, b) => sortByDateAsc(a, b));
 }
 
-export function filterItemsByAddress(items: MeterData[], address: string): MeterData[] {
+export function filterItemsByAddress(
+    items: MeterDataWithObjectId[],
+    address: string
+): MeterDataWithObjectId[] {
     return items.filter((item) => item.address === address);
 }
