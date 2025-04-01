@@ -2,10 +2,13 @@ import { useCallback, useEffect } from "react";
 import Styles from "./listCategoriesWithPrices.module.scss";
 import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
-import { InfoMeterReadingType } from "@/store/slices/meters-data-slice";
 import { getKeyOnPage } from "@/helpers/get-key-on-page";
 import { AppDispatch } from "@/store/store";
-import { calcPrice, deleteServiceWithCurrentItem, disableEdit } from "@/store/slices/price-slice";
+import {
+    calculatePrice,
+    deleteUtilityItem,
+    resetEdit,
+} from "@/store/slices/monthly-money-calculations/slice";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { editItem, isShowDeleteButton, saveItemDB } from "./ListCategoriesWithPrices.funcs";
@@ -18,40 +21,39 @@ interface ListCategoriesWithPricesProps {
 export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPricesProps) {
     const { pathname } = useLocation();
     const currentPageName: string = pathname.replace(/^\/|\/price$/g, "");
-    const currentItem = useAppSelector((state) => state.prices.currentItem);
-    const sumMoney = useAppSelector((state) => state.prices.sumMoney);
-    const services = useAppSelector((state) => state.utilityPrices.items);
-    const allListMonthlyMoneyCalculations = useAppSelector(
-        (state) => state.prices.itemsMonthlyMoneyCalculations.items
-    );
-    const isEdit = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.isEdit);
-    const idEdit = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.idEdit);
+    const currentItem = useAppSelector((state) => state.monthlyMoneyCalculations.utilityCosts);
+    const sumMoney = useAppSelector((state) => state.monthlyMoneyCalculations.sumMoney);
+    const utilityPrices = useAppSelector((state) => state.utilityPrices.items);
+    const allListMonthlyMoneyCalculations = useAppSelector((state) => state.monthlyMoneyCalculations.items);
+    const isEdit = useAppSelector((state) => state.monthlyMoneyCalculations.isEdit);
+    const idEdit = useAppSelector((state) => state.monthlyMoneyCalculations.idEdit);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
-    const items = infoMeterReading[getKeyOnPage(currentPageName) as keyof InfoMeterReadingType];
+    const listInfoDataMonth =
+        infoMeterReading[getKeyOnPage(currentPageName) as keyof typeof infoMeterReading];
     const dateCurrent = currentItem && currentItem.find((item) => item.title === "Date")?.description;
     const isUniqueObj = !allListMonthlyMoneyCalculations?.some(
-        (item) => item.data[0].description === dateCurrent && item.address === currentPageName
+        (item) => item.data[0]?.description === dateCurrent && item.address === currentPageName
     );
 
     const onSaveItem = useCallback(() => {
         saveItemDB(currentItem, sumMoney, isUniqueObj, currentPageName, dispatch);
     }, [currentItem, sumMoney, isUniqueObj, currentPageName, dispatch]);
 
-    const removeItem = (title: string, value: string | number) => {
-        dispatch(deleteServiceWithCurrentItem({ title, value: Number(value) }));
+    const onDeleteItem = (title: string, value: string | number) => {
+        dispatch(deleteUtilityItem({ title, value: Number(value) }));
     };
 
     const onEditItem = useCallback(() => {
         editItem(currentItem, sumMoney, idEdit, dispatch);
     }, [currentItem, sumMoney, idEdit, dispatch]);
 
-    const cancel = () => {
-        dispatch(disableEdit());
+    const onCancel = () => {
+        dispatch(resetEdit());
     };
 
     useEffect(() => {
-        dispatch(calcPrice({ itemValue: items, priceServices: services }));
-    }, []);
+        dispatch(calculatePrice({ listInfoDataMonth, utilityPrices }));
+    }, [dispatch, listInfoDataMonth, utilityPrices]);
 
     return (
         <ul className={Styles.listCategoriesWithPrices}>
@@ -63,7 +65,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
                                 className={Styles.btn}
                                 type="button"
                                 title={`delete data`}
-                                onClick={() => removeItem(title, description)}
+                                onClick={() => onDeleteItem(title, description)}
                             >
                                 <img src={getIconUrl("delete.png")} alt="delete" width={25} height={25} />
                             </button>
@@ -84,7 +86,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
                 </li>
                 {isEdit ? (
                     <div className={Styles.btns}>
-                        <MdButton type="button" onClick={cancel} color={colorNames.red}>
+                        <MdButton type="button" onClick={onCancel} color={colorNames.red}>
                             Cancel
                         </MdButton>
                         <MdButton type="button" onClick={onEditItem} color={colorNames.green}>

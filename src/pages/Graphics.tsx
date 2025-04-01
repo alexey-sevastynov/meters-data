@@ -13,7 +13,7 @@ export function Graphics() {
     const { address } = useParams();
     const { pathname } = useLocation();
 
-    const items = useAppSelector((state) => state.metersData.metersData.items);
+    const items = useAppSelector((state) => state.metersData.items);
     const addressCurrentPage = pathname.slice(1).replace("/graphics", "");
     const listMetersData = filterAndSortItemsByAddressAndDate(items, addressCurrentPage);
 

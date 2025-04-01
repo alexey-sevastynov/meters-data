@@ -3,7 +3,7 @@ import Styles from "./dateRangeSelector.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { colorNames } from "@/enums/color-names";
 import { language } from "@/constants/language";
-import { showMeterReadingCalc } from "@/store/slices/meters-data-slice";
+import { showMeterReadingCalc } from "@/store/slices/meters-data/slice";
 import { DateRangeSelectorProps } from "@/components/shared/date-range-selector/dateRangeSelector.interface";
 import {
     formatDateDisplay,

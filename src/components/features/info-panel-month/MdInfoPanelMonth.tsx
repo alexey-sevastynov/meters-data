@@ -18,22 +18,22 @@ interface MdInfoPanelMonthProps {
 export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps) {
     const { pathname } = useLocation();
     const currentPage = pathname.slice(1);
-    const items = useAppSelector((state) => state.metersData.metersData.items);
+    const items = useAppSelector((state) => state.metersData.items);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
     const lang = useAppSelector(selectTranslations);
 
     const lastValueMeter = (address: string) => {
         switch (address) {
             case getStringEnv(envKeys.address001):
-                return infoMeterReading.address_001;
+                return infoMeterReading.address001;
             case getStringEnv(envKeys.address002):
-                return infoMeterReading.address_002;
+                return infoMeterReading.address002;
             case getStringEnv(envKeys.address003):
-                return infoMeterReading.address_003;
+                return infoMeterReading.address003;
             case getStringEnv(envKeys.address004):
-                return infoMeterReading.address_004;
+                return infoMeterReading.address004;
             case getStringEnv(envKeys.address005):
-                return infoMeterReading.address_005;
+                return infoMeterReading.address005;
             default:
                 return null;
         }

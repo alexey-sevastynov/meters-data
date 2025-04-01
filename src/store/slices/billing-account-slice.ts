@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { getAllResource } from "@/store/crud-service";
+import { getAll } from "@/store/crud-service";
 import { BillingAccount } from "@/store/models/billing-account";
 import { statusNames, StatusName } from "@/constants/status";
 import { actionNames } from "@/store/action-names";
@@ -10,7 +10,7 @@ const sliceName = "billingAccounts";
 
 export const getAllBillingAccounts = createAsyncThunk<BillingAccount[], void, { rejectValue: AxiosError }>(
     actionNames.billingAccount.getAll,
-    async () => getAllResource<BillingAccount>(apiEndpointNames.billingAccount)
+    async () => getAll<BillingAccount>(apiEndpointNames.billingAccount)
 );
 
 interface IBillingAccountSlice {

@@ -9,8 +9,8 @@ import { inputTypes } from "@/components/ui/input/input.type";
 export function MdMonthlyMoneyCalculations() {
     const { pathname } = useLocation();
 
-    const status = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.status);
-    const allListItems = useAppSelector((state) => state.prices.itemsMonthlyMoneyCalculations.items);
+    const status = useAppSelector((state) => state.monthlyMoneyCalculations.status);
+    const allListItems = useAppSelector((state) => state.monthlyMoneyCalculations.items);
 
     const [inputValue, setInputValue] = useState<string>("");
 
@@ -24,7 +24,7 @@ export function MdMonthlyMoneyCalculations() {
 
     const itemsFilter = allListItems?.filter(
         (item) =>
-            item.address === currentPageName && item.data[0].description.toLowerCase().includes(inputValue)
+            item.address === currentPageName && item.data[0]?.description.toLowerCase().includes(inputValue)
     );
 
     return (

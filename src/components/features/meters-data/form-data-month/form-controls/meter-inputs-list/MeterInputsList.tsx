@@ -5,15 +5,15 @@ import { MdInput } from "@/components/ui/input/MdInput";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
 import { TranslationKeys } from "@/types/i-18-next-types";
 import { MeterInput } from "@/components/features/meters-data/form-data-month/form-controls/meter-inputs-list/meter-input/MeterInput";
-import { MeterData } from "@/store/models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { categoryKeys } from "@/enums/category-keys";
 
 interface MeterInputsListProps {
     items: InputField[];
     isEdit: boolean;
-    meterDataEdit: MeterData | null;
+    meterDataEdit: MeterDataWithObjectId | null;
     currentPage: string;
-    sortedAddressMeterData: MeterData[];
+    sortedAddressMeterData: MeterDataWithObjectId[];
     isWaterBlock: boolean;
     lang: TranslationKeys;
     water: number;

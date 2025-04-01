@@ -1,6 +1,4 @@
-import { WithId } from "@/types/with-id";
-
-export interface CalculationData extends WithId {
+export interface CalculationData {
     title: string;
     description: string;
 }

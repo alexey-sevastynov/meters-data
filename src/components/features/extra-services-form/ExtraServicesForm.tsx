@@ -5,7 +5,7 @@ import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { AppDispatch } from "@/store/store";
 import {
-    editValueUtilityPrice,
+    addValueUtilityPrice,
     filterOptions,
 } from "@/components/features/extra-services-form/ExtraServicesForm.funcs";
 import { colorNames } from "@/enums/color-names";
@@ -41,9 +41,9 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
         setSelectedOption(event.target.value);
     };
 
-    const onEditValueUtilityPrice = useCallback(() => {
+    const onAddValueUtilityPrice = useCallback(() => {
         if (currentId && inputValue) {
-            editValueUtilityPrice(currentId, String(inputValue), selectedOption, dispatch);
+            addValueUtilityPrice(currentId, String(inputValue), selectedOption, dispatch);
         }
     }, [currentId, inputValue, selectedOption, dispatch]);
 
@@ -70,7 +70,7 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
                 />
             </div>
             <div className={Styles.btns}>
-                <MdButton type="button" onClick={onEditValueUtilityPrice} color={colorNames.green}>
+                <MdButton type="button" onClick={onAddValueUtilityPrice} color={colorNames.green}>
                     add
                 </MdButton>
             </div>

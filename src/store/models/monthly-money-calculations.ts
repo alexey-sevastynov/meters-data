@@ -1,8 +1,10 @@
-import { WithId } from "@/types/with-id";
-import { CalculationData } from "@/types/calculation-data";
+import { CalculationDataWithId } from "@/types/calculation-data-with-id";
+import { WithObjectId } from "@/types/with-object-id";
 
-export interface MonthlyMoneyCalculations extends WithId {
+export interface MonthlyMoneyCalculationsWithObjectId extends WithObjectId, MonthlyMoneyCalculations {}
+
+export interface MonthlyMoneyCalculations {
     address: string;
-    data: CalculationData[];
+    data: CalculationDataWithId[];
     sumMoney: number;
 }

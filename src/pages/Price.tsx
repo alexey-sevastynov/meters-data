@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { LIST_NAV } from "@/constants";
 import { useAppDispatch } from "@/store/hook";
 import { getAllUtilityPrice } from "@/store/slices/utility-price-slice";
-import { fetchAllMonthlyMoneyCalculations } from "@/store/slices/price-slice";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsPrice } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
@@ -12,6 +11,7 @@ import { MdBillingAccounts } from "@/components/features/utility-account/MdUtili
 import { MdExtraServicesForm } from "@/components/features/extra-services-form/ExtraServicesForm";
 import { MdListCategoriesWithPrices } from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices";
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
+import { getAllMonthlyMoneyCalculations } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
 
 export function Price() {
     const { address } = useParams();
@@ -21,7 +21,7 @@ export function Price() {
 
     useEffect(() => {
         dispatch(getAllUtilityPrice());
-        dispatch(fetchAllMonthlyMoneyCalculations());
+        dispatch(getAllMonthlyMoneyCalculations());
     }, [dispatch]);
 
     return (

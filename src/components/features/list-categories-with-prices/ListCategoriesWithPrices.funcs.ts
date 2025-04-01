@@ -1,51 +1,64 @@
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
-import { ListInfoDataMonthType } from "@/store/slices/meters-data-slice";
+import { UtilityCost } from "@/types/utility-cost";
 import {
-    disableEdit,
-    editMonthMoneyCalculations,
-    fetchAllMonthlyMoneyCalculations,
-    fetchPostMonthMoneyCalculations,
-} from "@/store/slices/price-slice";
+    createMonthMoneyCalculations,
+    getAllMonthlyMoneyCalculations,
+    updateMonthMoneyCalculations,
+} from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
+import { resetEdit } from "@/store/slices/monthly-money-calculations/slice";
 import { AppDispatch } from "@/store/store";
+import { CalculationDataWithId } from "@/types/calculation-data-with-id";
 
 interface ThunkResponse {
     payload?: unknown;
 }
 
 export async function editItem(
-    currentItem: ListInfoDataMonthType[] | null,
+    currentItem: UtilityCost[] | null,
     sumMoney: number,
     idEdit: string | null,
     dispatch: AppDispatch
 ) {
     if (currentItem && idEdit) {
         const response = await dispatch(
-            editMonthMoneyCalculations({
+            updateMonthMoneyCalculations({
                 _id: idEdit,
                 data: currentItem,
                 sumMoney,
             })
         );
 
+        console.log(response);
+
         if (!response) return;
 
         handleResponse(response, dispatch);
-        dispatch(disableEdit());
+        dispatch(resetEdit());
     }
 }
 
 export async function saveItemDB(
-    currentItem: ListInfoDataMonthType[] | null,
+    currentItem: UtilityCost[] | null,
     sumMoney: number,
     isUniqueObj: boolean,
     currentPageName: string,
     dispatch: AppDispatch
 ) {
     if (currentItem && sumMoney && isUniqueObj) {
+        const calculationData: CalculationDataWithId[] = [];
+
+        for (const item of currentItem) {
+            calculationData.push({
+                id: item.id,
+                title: item.title,
+                description: item.description,
+            });
+        }
+
         const response = await dispatch(
-            fetchPostMonthMoneyCalculations({
+            createMonthMoneyCalculations({
                 address: currentPageName,
-                data: currentItem,
+                data: calculationData,
                 sumMoney,
             })
         );
@@ -69,5 +82,5 @@ export function isShowDeleteButton(title: string) {
 }
 
 function handleResponse(response: ThunkResponse, dispatch: AppDispatch) {
-    if (response.payload) dispatch(fetchAllMonthlyMoneyCalculations());
+    if (response.payload) dispatch(getAllMonthlyMoneyCalculations());
 }

@@ -1,7 +1,7 @@
 import { errorMessage } from "@/constants/error-message";
-import { MeterData } from "@/store/models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
-export const removeFirstAddedMonth = (data: MeterData[]) => {
+export const removeFirstAddedMonth = (data: MeterDataWithObjectId[]) => {
     try {
         if (!data.length) return [];
 

@@ -1,7 +1,7 @@
-import { MeterData } from "@/store/models/meter-data";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
 export interface DateRangeSelectorProps {
-    data: MeterData[];
+    data: MeterDataWithObjectId[];
     selectedMonth: string;
     selectedYear: string;
 }

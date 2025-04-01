@@ -1,6 +1,6 @@
-import { WithId } from "@/types/with-id";
+import { WithObjectId } from "@/types/with-object-id";
 
-export interface BillingAccount extends WithId {
+export interface BillingAccount extends WithObjectId {
     address: string;
     light: string;
     gas: string;

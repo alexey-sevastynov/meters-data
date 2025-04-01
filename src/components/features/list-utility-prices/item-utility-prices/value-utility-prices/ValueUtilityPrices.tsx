@@ -4,8 +4,6 @@ import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { updateUtilityPrice, getAllUtilityPrice } from "@/store/slices/utility-price-slice";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface ValueUtilityPricesProps {
@@ -57,19 +55,6 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
             <MdButton type="button" disabled={valueInput === value} onClick={editValueUtilityPrice}>
                 {lang.home.publish}
             </MdButton>
-
-            <ToastContainer
-                position="bottom-left"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeButton={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
         </div>
     );
 }

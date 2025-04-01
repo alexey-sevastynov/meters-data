@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { fetchAllMetersData } from "@/store/slices/meters-data-slice";
-import { MeterData } from "@/store/models/meter-data";
+import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
 const useMetersData = () => {
     const dispatch: AppDispatch = useDispatch();
-    const metersData = useSelector((state: RootState) => state.metersData.metersData);
+    const metersData = useSelector((state: RootState) => state.metersData);
     const [isDataFromLocalStorage, setIsDataFromLocalStorage] = useState(false);
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const useMetersData = () => {
                 const cachedData = localStorage.getItem("metersData");
 
                 if (cachedData) {
-                    const parsedData = JSON.parse(cachedData) as MeterData[];
+                    const parsedData = JSON.parse(cachedData) as MeterDataWithObjectId[];
 
                     dispatch({
                         type: "metersData/fetchAllMetersData/fulfilled",
@@ -24,7 +24,7 @@ const useMetersData = () => {
                     setIsDataFromLocalStorage(true);
                 } else {
                     // Otherwise, we make a request to the server
-                    const response = await dispatch(fetchAllMetersData());
+                    const response = await dispatch(getAllMetersData());
 
                     // We save the received data in localStorage
                     localStorage.setItem("metersData", JSON.stringify(response.payload));

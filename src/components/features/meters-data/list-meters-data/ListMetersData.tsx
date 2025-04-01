@@ -16,8 +16,8 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) 
     const { isDataFromLocalStorage } = useMetersData();
     const { pathname } = useLocation();
 
-    const items = useAppSelector((state) => state.metersData.metersData.items);
-    const status = useAppSelector((state) => state.metersData.metersData.status);
+    const items = useAppSelector((state) => state.metersData.items);
+    const status = useAppSelector((state) => state.metersData.status);
     const addressCurrentPage = pathname.slice(1);
     const [groupedData, setGroupedData] = useState<GroupedData>({});
 

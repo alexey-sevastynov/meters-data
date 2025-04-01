@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { servicesReducer as utilityPricesReducer } from "@/store/slices/utility-price-slice";
-import { metersDataReducer } from "@/store/slices/meters-data-slice";
-import { pricesReducer } from "@/store/slices/price-slice";
+import { utilityPricesReducer } from "@/store/slices/utility-price-slice";
+import { metersDataReducer } from "@/store/slices/meters-data/slice";
+import { monthlyMoneyCalculationsReducer } from "@/store/slices/monthly-money-calculations/slice";
 import { authReducer } from "@/store/slices/auth-slice";
 import { confirmReducer } from "@/store/slices/confirm-popup-slice";
 import { i18nReducer } from "@/store/slices/i-18-next";
@@ -12,7 +12,7 @@ const store = configureStore({
         billingAccounts: billingAccountsReducer,
         utilityPrices: utilityPricesReducer,
         metersData: metersDataReducer,
-        prices: pricesReducer,
+        monthlyMoneyCalculations: monthlyMoneyCalculationsReducer,
         auth: authReducer,
         confirm: confirmReducer,
         i18n: i18nReducer,

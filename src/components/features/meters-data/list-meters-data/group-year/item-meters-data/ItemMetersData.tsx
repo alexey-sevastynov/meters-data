@@ -2,15 +2,9 @@ import React, { useEffect } from "react";
 import Styles from "./itemMetersData.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import {
-    deleteMeterData,
-    fetchAllMetersData,
-    setMeterDataEdit,
-    showMeterReadingCalc,
-} from "@/store/slices/meters-data-slice";
+import { setMeterDataEdit, showMeterReadingCalc } from "@/store/slices/meters-data/slice";
 import { formatDate } from "@/helpers/format-date";
 import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
-import { ToastContainer } from "react-toastify";
 import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
 import { useLocation } from "react-router-dom";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
@@ -25,6 +19,7 @@ import { selectTranslations } from "@/store/slices/i-18-next";
 import { formatDateDisplay } from "@/components/shared/date-range-selector/dateRangeSelector.function";
 import { lastValueMeter } from "@/helpers/last-value-meter";
 import { MonthsType } from "@/types/months-type";
+import { deleteMeterData, getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 
 interface ItemMetersDataProps {
     _id: string;
@@ -64,7 +59,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     const isDelete = useAppSelector((state) => state.confirm.isActionDeleteItem);
     const idDelete = useAppSelector((state) => state.confirm.idDeleteItem);
     const lang = useAppSelector(selectTranslations);
-    const items = useAppSelector((state) => state.metersData.metersData.items);
+    const items = useAppSelector((state) => state.metersData.items);
     const currentPage: string = pathname.slice(1);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
     const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
@@ -102,7 +97,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
             dispatch(deleteMeterData({ id: _id }))
                 .then((response) => {
                     if (response.payload) {
-                        dispatch(fetchAllMetersData());
+                        dispatch(getAllMetersData());
                     }
                 })
                 .catch((error) => {
@@ -170,19 +165,6 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
                     </button>
                 )}
             </div>
-
-            <ToastContainer
-                position="bottom-left"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeButton={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
         </li>
     );
 };

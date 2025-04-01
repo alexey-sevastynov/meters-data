@@ -1,25 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { getAllResource, updateResource } from "@/store/crud-service";
+import { getAll, updateOne } from "@/store/crud-service";
 import { UtilityPrice } from "@/store/models/utility-price";
 import { actionNames } from "@/store/action-names";
 import { apiEndpointNames } from "@/store/api-endpoint-names";
 import { StatusName, statusNames } from "@/constants/status";
-import { toastService } from "@/store/toast-service";
+import { addToastNotifications } from "@/store/toast-service";
 
 const sliceName = "utilityPrices";
 const messageSuccessUpdate = "Price changed, success! 👌";
 
 export const getAllUtilityPrice = createAsyncThunk<UtilityPrice[], void, { rejectValue: AxiosError }>(
     actionNames.utilityPrice.getAll,
-    async () => getAllResource<UtilityPrice>(apiEndpointNames.utilityPrises)
+    async () => getAll<UtilityPrice>(apiEndpointNames.utilityPrises)
 );
 
 export const updateUtilityPrice = createAsyncThunk<UtilityPrice[], { _id: string; value: number }>(
-    actionNames.utilityPrice.update,
-    async ({ _id, value }) => {
-        return updateResource<UtilityPrice>(apiEndpointNames.utilityPrises, _id, { value });
-    }
+    actionNames.utilityPrice.updateOne,
+    async ({ _id, value }) => updateOne<UtilityPrice>(apiEndpointNames.utilityPrises, _id, { value })
 );
 
 interface IUtilityPriceState {
@@ -55,12 +53,8 @@ const utilityPriceSlice = createSlice({
             state.errorMessage = action.error.message;
         });
 
-        builder.addCase(updateUtilityPrice.pending, () => {
-            toastService.loading();
-        });
-        builder.addCase(updateUtilityPrice.fulfilled, () => toastService.success(messageSuccessUpdate));
-        builder.addCase(updateUtilityPrice.rejected, () => toastService.error());
+        addToastNotifications(builder, updateUtilityPrice, { success: messageSuccessUpdate });
     },
 });
 
-export const servicesReducer = utilityPriceSlice.reducer;
+export const utilityPricesReducer = utilityPriceSlice.reducer;

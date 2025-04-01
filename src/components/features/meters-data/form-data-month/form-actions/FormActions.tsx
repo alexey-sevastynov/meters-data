@@ -1,6 +1,6 @@
 import { MdButton } from "@/components/ui/button/MdButton";
 import Style from "./formActions.module.scss";
-import { setNotEdit } from "@/store/slices/meters-data-slice";
+import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { AppDispatch } from "@/store/store";
 import { TranslationKeys } from "@/types/i-18-next-types";
 import { iconNames } from "@/components/ui/icon/icon-constants";
