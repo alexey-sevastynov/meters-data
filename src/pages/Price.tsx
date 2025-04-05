@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "@/styles/pages/price.scss";
 import { useParams } from "react-router-dom";
-import { LIST_NAV } from "@/constants";
+import { navigationItems } from "@/constants/navigation-items";
 import { useAppDispatch } from "@/store/hook";
 import { getAllUtilityPrice } from "@/store/slices/utility-price-slice";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
@@ -17,7 +17,7 @@ export function Price() {
     const { address } = useParams();
     const dispatch = useAppDispatch();
 
-    const addressItem = LIST_NAV.find(({ link }) => link === `/${address}`);
+    const addressItem = navigationItems.find(({ link }) => link === `/${address}`);
 
     useEffect(() => {
         dispatch(getAllUtilityPrice());

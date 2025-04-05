@@ -1,5 +1,5 @@
 import { addMonths, format, parse } from "date-fns";
-import { LIST_NAV } from "@/constants";
+import { navigationItems } from "@/constants/navigation-items";
 import { sortItemsByDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import { CategoryKey } from "@/enums/category-keys";
 import { DataPickerValue } from "@/types/data-picker";
@@ -147,7 +147,7 @@ function generateMessage(
     gas: number,
     water: number
 ) {
-    const pageId = LIST_NAV.find((item) => item.link === `/${currentPage}`)?.id || "Unknown";
+    const pageId = navigationItems.find((item) => item.link === `/${currentPage}`)?.id || "Unknown";
 
     let message = `<b>${pageId}</b>`;
     const ensureDate = checkDate(selectDate);

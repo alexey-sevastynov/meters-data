@@ -1,6 +1,6 @@
 import "@/styles/pages/graphics.scss";
 import { useLocation, useParams } from "react-router-dom";
-import { LIST_NAV } from "@/constants";
+import { navigationItems } from "@/constants/navigation-items";
 import { formatDate } from "@/helpers/format-date";
 import { useAppSelector } from "@/store/hook";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
@@ -17,7 +17,7 @@ export function Graphics() {
     const addressCurrentPage = pathname.slice(1).replace("/graphics", "");
     const listMetersData = filterAndSortItemsByAddressAndDate(items, addressCurrentPage);
 
-    const addressItem = LIST_NAV.find(({ link }) => link === `/${address}`);
+    const addressItem = navigationItems.find(({ link }) => link === `/${address}`);
 
     const dataLight = [];
     const dataGas = [];
