@@ -1,6 +1,6 @@
 import Style from "./itemInfoPanelMonth.module.scss";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
-import { BREAK_POINTS } from "@/constants";
+import { breakPoints } from "@/constants/break-points";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import {
@@ -20,7 +20,7 @@ export function ItemInfoPanelMonth({
     percentDifference,
     index,
 }: ItemInfoPanelMonthProps) {
-    const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.MOBILE_XL });
+    const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.md });
     const lang = useAppSelector(selectTranslations);
 
     const showDescriptionTitle = (

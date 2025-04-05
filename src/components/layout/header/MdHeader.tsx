@@ -1,35 +1,27 @@
 import Styles from "./header.module.scss";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
-import { BREAK_POINTS } from "@/constants";
+import { breakPoints } from "@/constants/break-points";
 import { MdLogo } from "@/components/shared/logo/MdLogo";
 import { ButtonMenu } from "@/components/layout/header/button-menu/ButtonMenu";
 import { AuthPanel } from "@/components/shared/auth-panel/MdAuthPanel";
 
 interface MdHeaderProps {
-  isShowMenu: boolean;
-  openMenu: () => void;
-  closeMenu: () => void;
+    isShowMenu: boolean;
+    openMenu: () => void;
+    closeMenu: () => void;
 }
 
 export function MdHeader({ isShowMenu, openMenu, closeMenu }: MdHeaderProps) {
-  const isMobileView = useAdaptiveScreen({ maxWidth: BREAK_POINTS.LAPTOP });
+    const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.xl });
 
-  return (
-    <header
-      className={`${Styles.header} ${
-        !isShowMenu ? Styles.headerBackground : ""
-      }`}
-    >
-      <MdLogo />
-      {isMobileView ? (
-        <ButtonMenu
-          isShowMenu={isShowMenu}
-          openMenu={openMenu}
-          closeMenu={closeMenu}
-        />
-      ) : (
-        <AuthPanel />
-      )}
-    </header>
-  );
+    return (
+        <header className={`${Styles.header} ${!isShowMenu ? Styles.headerBackground : ""}`}>
+            <MdLogo />
+            {isMobileView ? (
+                <ButtonMenu isShowMenu={isShowMenu} openMenu={openMenu} closeMenu={closeMenu} />
+            ) : (
+                <AuthPanel />
+            )}
+        </header>
+    );
 }
