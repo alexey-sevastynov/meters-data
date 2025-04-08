@@ -19,6 +19,7 @@ export const iconNames = {
     home: "home",
     circle: "circle",
     calendar: "calendar",
+    close: "close",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];

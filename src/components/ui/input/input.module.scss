@@ -2,38 +2,39 @@
 @import "@/styles/mixins.scss";
 
 .input {
-    position: relative;
     display: flex;
     flex-direction: column;
 
     label {
         padding-left: 5px;
+        padding-bottom: 10px;
     }
 
-    input {
-        margin-top: 10px;
-        max-width: 130px;
-        height: 39px;
-        padding-right: 36px;
-        padding-left: 5px;
-        @include borderInput;
+    .inputContainer {
+        position: relative;
 
-        &::placeholder {
-            color: $grey;
+        input {
+            max-width: 130px;
+            height: 39px;
+            padding-right: 36px;
+            padding-left: 5px;
+            @include borderInput;
+
+            &::placeholder {
+                color: $grey;
+            }
+
+            &:focus {
+                outline: none;
+            }
         }
 
-        &:focus {
-            outline: none;
+        .close {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 5px;
+            cursor: pointer;
         }
-    }
-
-    .close {
-        margin: 0;
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        bottom: 11px;
-        right: 12px;
-        cursor: pointer;
     }
 }
