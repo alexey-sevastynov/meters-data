@@ -5,6 +5,7 @@ import { MdButton } from "@/components/ui/button/MdButton";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { updateUtilityPrice, getAllUtilityPrice } from "@/store/slices/utility-price-slice";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { numberToString, stringToNumber } from "@/utils/conversion";
 
 interface ValueUtilityPricesProps {
     id: string;
@@ -16,21 +17,19 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
     const dispatch = useAppDispatch();
     const lang = useAppSelector(selectTranslations);
 
-    const [valueInput, setInputValue] = useState<number>(value);
+    const [valueInput, setInputValue] = useState<string>(numberToString(value));
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const targetValue = Number(e.target.value);
-
-        setInputValue(targetValue);
+        setInputValue(e.target.value);
     };
 
     const returnCurrentValues = () => {
-        setInputValue(value);
+        setInputValue(numberToString(value));
     };
 
     const editValueUtilityPrice = () => {
         if (id && valueInput) {
-            dispatch(updateUtilityPrice({ _id: id, value: valueInput })).then((action) => {
+            dispatch(updateUtilityPrice({ _id: id, value: stringToNumber(valueInput) })).then((action) => {
                 if (action.payload) {
                     setTimeout(() => {
                         dispatch(getAllUtilityPrice());
@@ -48,11 +47,16 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
                 value={valueInput}
                 onChange={onChange}
                 onReset={returnCurrentValues}
-                defaultValue={value}
+                defaultValue={numberToString(value)}
                 label="Price"
+                step={0.01}
             />
 
-            <MdButton type="button" disabled={valueInput === value} onClick={editValueUtilityPrice}>
+            <MdButton
+                type="button"
+                disabled={valueInput === numberToString(value)}
+                onClick={editValueUtilityPrice}
+            >
                 {lang.home.publish}
             </MdButton>
         </div>

@@ -4,27 +4,30 @@ import { InputType, inputTypes } from "@/components/ui/input/input.type";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
-import { getInputFieldClass } from "@/components/ui/input/MdInput.funcs";
+import { getInputFieldClass, getNumberInputProps } from "@/components/ui/input/MdInput.funcs";
+import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 
-interface MdInputProps<T = number | string> {
-    value: T;
+interface MdInputProps {
+    value: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    onReset?: () => void;
+    onReset?: VoidFuncNoParam;
     type?: InputType;
-    defaultValue?: T;
+    defaultValue?: string;
     label?: string;
     placeholder?: string;
     isEdit?: boolean;
+    step?: number;
 }
 
 export function MdInput({
-    defaultValue = 0,
+    defaultValue,
     label,
     value,
     onChange,
     onReset,
     type = inputTypes.number,
     isEdit = false,
+    step,
 }: MdInputProps) {
     const isModified = value !== defaultValue;
 
@@ -38,7 +41,7 @@ export function MdInput({
                     type={type}
                     value={value}
                     onChange={onChange}
-                    {...(type === inputTypes.number && { step: 0.1, min: 0 })}
+                    {...getNumberInputProps(type, step)}
                 />
                 {isModified && onReset && (
                     <button className={Styles.close} onClick={onReset} type="button">

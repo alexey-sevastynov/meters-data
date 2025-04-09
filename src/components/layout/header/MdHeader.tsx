@@ -4,11 +4,12 @@ import { breakPoints } from "@/constants/break-points";
 import { MdLogo } from "@/components/shared/logo/MdLogo";
 import { ButtonMenu } from "@/components/layout/header/button-menu/ButtonMenu";
 import { AuthPanel } from "@/components/shared/auth-panel/MdAuthPanel";
+import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 
 interface MdHeaderProps {
     isShowMenu: boolean;
-    openMenu: () => void;
-    closeMenu: () => void;
+    openMenu: VoidFuncNoParam;
+    closeMenu: VoidFuncNoParam;
 }
 
 export function MdHeader({ isShowMenu, openMenu, closeMenu }: MdHeaderProps) {

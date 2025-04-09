@@ -2,6 +2,7 @@ import { UtilityPrice } from "@/store/models/utility-price";
 import { UtilityCost } from "@/types/utility-cost";
 import { CategoryName, categoryNames } from "@/enums/category-names";
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
+import { stringToNumber } from "@/utils/conversion";
 
 const emptyPrice = "0.00";
 
@@ -12,7 +13,7 @@ export function calculateUtilityData(listInfoDataMonth: UtilityCost[] | null, ut
 
     return {
         updatedItems: updatedItems.length ? updatedItems : null,
-        totalSum: Number(totalSum.toFixed(1)),
+        totalSum: stringToNumber(totalSum.toFixed(1)),
     };
 }
 
@@ -29,8 +30,6 @@ function getUpdatedUtilityItems(listInfoDataMonth: UtilityCost[], utilityPrices:
 
         return acc;
     }, []);
-
-    console.log(updatedItems, totalSum);
 
     return { updatedItems, totalSum };
 }
@@ -54,7 +53,7 @@ function calculateItemPrice(item: UtilityCost, utilityPrices: UtilityPrice[]) {
 
     if (!pricePerUnit || item.description === emptyPrice) return { updatedItem: item, itemSum: 0 };
 
-    const result = Number(item.description) * pricePerUnit;
+    const result = stringToNumber(item.description) * pricePerUnit;
     const textDescription = `${item.description} * ${pricePerUnit} uah = ${result.toFixed(2)}`;
 
     return { updatedItem: { ...item, description: textDescription }, itemSum: result };

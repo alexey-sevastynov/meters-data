@@ -1,23 +1,24 @@
 import { TranslationKeys } from "@/types/i-18-next-types";
 import { CategoryKey } from "@/enums/category-keys";
+import { SetStateFunc } from "@/types/getter-setter-functions";
 
 export interface InputField {
     key: CategoryKey;
     label: string;
-    value: number;
-    setValue: React.Dispatch<React.SetStateAction<number>>;
+    value: string;
+    setValue: SetStateFunc<string>;
 }
 
 interface InputFieldsParams {
     lang: TranslationKeys;
-    light: number;
-    setLight: React.Dispatch<React.SetStateAction<number>>;
-    lightDay: number;
-    setLightDay: React.Dispatch<React.SetStateAction<number>>;
-    lightNight: number;
-    setLightNight: React.Dispatch<React.SetStateAction<number>>;
-    gas: number;
-    setGas: React.Dispatch<React.SetStateAction<number>>;
+    light: string;
+    setLight: SetStateFunc<string>;
+    lightDay: string;
+    setLightDay: SetStateFunc<string>;
+    lightNight: string;
+    setLightNight: SetStateFunc<string>;
+    gas: string;
+    setGas: SetStateFunc<string>;
 }
 
 export function createInputFields({

@@ -1,21 +1,22 @@
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { DataPickerValue } from "@/types/data-picker";
+import { SetStateFunc } from "@/types/getter-setter-functions";
 import { TranslationKeys } from "@/types/i-18-next-types";
 
 export interface FormControlsProps {
     isWaterBlock: boolean;
     selectDate: DataPickerValue;
     setSelectDate: (value: DataPickerValue) => void;
-    light: number;
-    setLight: React.Dispatch<React.SetStateAction<number>>;
-    lightDay: number;
-    setLightDay: React.Dispatch<React.SetStateAction<number>>;
-    lightNight: number;
-    setLightNight: React.Dispatch<React.SetStateAction<number>>;
-    water: number;
-    setWater: React.Dispatch<React.SetStateAction<number>>;
-    gas: number;
-    setGas: React.Dispatch<React.SetStateAction<number>>;
+    light: string;
+    setLight: SetStateFunc<string>;
+    lightDay: string;
+    setLightDay: SetStateFunc<string>;
+    lightNight: string;
+    setLightNight: SetStateFunc<string>;
+    water: string;
+    setWater: SetStateFunc<string>;
+    gas: string;
+    setGas: SetStateFunc<string>;
     isEdit: boolean;
     meterDataEdit: MeterDataWithObjectId | null;
     currentPage: string;

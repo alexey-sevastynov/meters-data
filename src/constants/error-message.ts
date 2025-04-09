@@ -8,4 +8,6 @@ export const errorMessage = {
     removeFirstAddedMonthError: "Error in removeFirstAddedMonth function. Reason: {0}",
     unknownFormatType: "Unknown format type: {0}",
     missingEnvVar: "Environment variable {0} is missing or empty.",
+    invalidNumber: "The value {0} is not a valid number.",
+    invalidNumberString: "The value {0} cannot be converted to a number.",
 } as const;
