@@ -20,6 +20,7 @@ import { formatDateDisplay } from "@/components/shared/date-range-selector/dateR
 import { lastValueMeter } from "@/helpers/last-value-meter";
 import { MonthsType } from "@/types/months-type";
 import { deleteMeterData, getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
+import { numberToString } from "@/utils/conversion";
 
 interface ItemMetersDataProps {
     _id: string;
@@ -104,13 +105,15 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
                     console.error("Error adding data:", error);
                 });
 
+            const secondLastItem = listCurrentPage[listCurrentPage.length - 2];
+
             updateLocalStorageValues(
                 currentPage,
-                listCurrentPage[listCurrentPage.length - 2].light,
-                listCurrentPage[listCurrentPage.length - 2].lightDay,
-                listCurrentPage[listCurrentPage.length - 2].lightNight,
-                listCurrentPage[listCurrentPage.length - 2].gas,
-                listCurrentPage[listCurrentPage.length - 2].water
+                numberToString(secondLastItem.light),
+                numberToString(secondLastItem.lightDay),
+                numberToString(secondLastItem.lightNight),
+                numberToString(secondLastItem.gas),
+                numberToString(secondLastItem.water)
             );
 
             dispatch(confirmActionOnDelete(false));

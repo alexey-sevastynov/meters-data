@@ -3,14 +3,16 @@ import { MdInput } from "@/components/ui/input/MdInput";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
 import { CategoryKey } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
+import { SetStateFunc } from "@/types/getter-setter-functions";
+import { numberToString } from "@/utils/conversion";
 
 interface MeterInputProps {
     isEdit: boolean;
     meterDataEdit: MeterDataWithObjectId | null;
     fieldKey: CategoryKey;
     labelText: string;
-    value: number;
-    setValue: React.Dispatch<React.SetStateAction<number>>;
+    value: string;
+    setValue: SetStateFunc<string>;
     currentPage: string;
     sortedAddressMeterData: MeterDataWithObjectId[];
     className: string;
@@ -27,18 +29,20 @@ export function MeterInput({
     sortedAddressMeterData,
 }: MeterInputProps) {
     const isEditingMeterData = isEdit && meterDataEdit;
-    const initialMeterValue = isEditingMeterData
-        ? meterDataEdit?.[fieldKey]
-        : setDefaultValue(fieldKey, currentPage, sortedAddressMeterData);
+
+    const valueFromEdit = numberToString(meterDataEdit?.[fieldKey]);
+    const defaultValue = setDefaultValue(fieldKey, currentPage, sortedAddressMeterData);
+
+    const initialMeterValue = isEditingMeterData ? valueFromEdit : defaultValue;
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const targetValue = Number(e.target.value);
+        const targetValue = e.target.value;
 
         setValue(targetValue);
     };
 
     const returnCurrentValues = () => {
-        setValue(initialMeterValue ?? 0);
+        setValue(initialMeterValue);
     };
 
     return (

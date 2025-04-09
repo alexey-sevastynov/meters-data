@@ -1,11 +1,12 @@
 import React from "react";
 import Style from "./buttonMenu.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
+import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 
 interface ButtonMenuProps {
     isShowMenu: boolean;
-    openMenu: () => void;
-    closeMenu: () => void;
+    openMenu: VoidFuncNoParam;
+    closeMenu: VoidFuncNoParam;
 }
 
 export const ButtonMenu: React.FC<ButtonMenuProps> = ({ isShowMenu, openMenu, closeMenu }) => {

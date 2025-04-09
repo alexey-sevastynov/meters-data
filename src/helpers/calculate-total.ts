@@ -1,5 +1,6 @@
 import { errorMessage } from "@/constants/error-message";
-import { isNumber } from "./is-number";
+import { isNumber } from "@/utils/guards";
+import { numberToString } from "@/utils/conversion";
 
 export const calculateSum = (a: number, b: number) => {
     if (!isNumber(a) || !isNumber(b)) {
@@ -16,5 +17,5 @@ export const calculateSum = (a: number, b: number) => {
     const formattedSum = sum.toFixed(2);
     const finalResult = parseFloat(formattedSum);
 
-    return finalResult;
+    return numberToString(finalResult);
 };

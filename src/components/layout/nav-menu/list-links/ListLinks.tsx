@@ -1,9 +1,10 @@
 import Styles from "./listLinks.module.scss";
 import { navigationItems } from "@/constants/navigation-items";
 import { ItemLinkPage } from "@/components/layout/nav-menu/list-links/item-link-page/ItemLinkPage";
+import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 
 interface ListLinksProps {
-    closeMenu: () => void;
+    closeMenu: VoidFuncNoParam;
 }
 
 export function ListLinks({ closeMenu }: ListLinksProps) {

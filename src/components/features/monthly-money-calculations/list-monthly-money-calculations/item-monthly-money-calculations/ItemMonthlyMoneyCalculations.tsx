@@ -5,11 +5,9 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colorNames } from "@/enums/color-names";
 import { deleteItem, editItem } from "./ItemMonthlyMoneyCalculations.funcs";
-import {
-    translationDescription,
-    translationTitle,
-} from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/helpers";
 import { CalculationDataWithId } from "@/types/calculation-data-with-id";
+import { translationTitle } from "./helpers/translationTitle";
+import { translationDescription } from "./helpers/translationDescription";
 
 interface ItemMonthlyMoneyCalculationsProps {
     items: CalculationDataWithId[];

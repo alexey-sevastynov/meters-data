@@ -4,6 +4,7 @@ import { UtilityPrice } from "@/store/models/utility-price";
 import { calculateUtilityData } from "@/store/slices/monthly-money-calculations/calculate-utility-data";
 import { UtilityCost } from "@/types/utility-cost";
 import { IMonthlyMoneyCalculationsSlice } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.types";
+import { stringToNumber } from "@/utils/conversion";
 
 export function calculatePrice(
     state: IMonthlyMoneyCalculationsSlice,
@@ -35,7 +36,7 @@ export function addUtilityItem(
             },
         ];
 
-        state.sumMoney = +(state.sumMoney + Number(action.payload.description)).toFixed(1);
+        state.sumMoney = +(state.sumMoney + stringToNumber(action.payload.description)).toFixed(1);
     }
 }
 

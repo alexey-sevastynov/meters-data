@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { colorNames } from "@/enums/color-names";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 
 interface YearHeaderProps {
     year: string;
     isOpen: boolean;
-    onToggle: () => void;
+    onToggle: VoidFuncNoParam;
 }
 
 const YearHeader: React.FC<YearHeaderProps> = ({ year, isOpen, onToggle }) => {

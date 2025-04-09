@@ -13,6 +13,7 @@ import { getIconUrl } from "@/helpers/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { editItem, isShowDeleteButton, saveItemDB } from "./ListCategoriesWithPrices.funcs";
 import { colorNames } from "@/enums/color-names";
+import { stringToNumber } from "@/utils/conversion";
 
 interface ListCategoriesWithPricesProps {
     dispatch: AppDispatch;
@@ -39,8 +40,8 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
         saveItemDB(currentItem, sumMoney, isUniqueObj, currentPageName, dispatch);
     }, [currentItem, sumMoney, isUniqueObj, currentPageName, dispatch]);
 
-    const onDeleteItem = (title: string, value: string | number) => {
-        dispatch(deleteUtilityItem({ title, value: Number(value) }));
+    const onDeleteItem = (title: string, value: string) => {
+        dispatch(deleteUtilityItem({ title, value: stringToNumber(value) }));
     };
 
     const onEditItem = useCallback(() => {

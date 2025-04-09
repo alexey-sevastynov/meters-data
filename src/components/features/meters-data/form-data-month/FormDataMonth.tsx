@@ -19,6 +19,7 @@ import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
+import { numberToString, stringToNumber } from "@/utils/conversion";
 
 interface FormDataMonthProps {
     isWaterBlock: boolean;
@@ -49,24 +50,24 @@ export function FormDataMonth({
         }
     }, [sortedAddressMeterData, isEdit]);
 
-    const [light, setLight] = useState<number>(() =>
+    const [light, setLight] = useState<string>(() =>
         setDefaultValue(categoryKeys.light, addressPath, sortedAddressMeterData)
     );
-    const [lightDay, setLightDay] = useState<number>(() =>
+    const [lightDay, setLightDay] = useState<string>(() =>
         setDefaultValue(categoryKeys.lightDay, addressPath, sortedAddressMeterData)
     );
-    const [lightNight, setLightNight] = useState<number>(() =>
+    const [lightNight, setLightNight] = useState<string>(() =>
         setDefaultValue(categoryKeys.lightNight, addressPath, sortedAddressMeterData)
     );
-    const [gas, setGas] = useState<number>(() =>
+    const [gas, setGas] = useState<string>(() =>
         setDefaultValue(categoryKeys.gas, addressPath, sortedAddressMeterData)
     );
-    const [water, setWater] = useState<number>(() =>
+    const [water, setWater] = useState<string>(() =>
         setDefaultValue(categoryKeys.water, addressPath, sortedAddressMeterData)
     );
 
     useEffect(() => {
-        const totalLight = calculateSum(Number(lightDay), Number(lightNight));
+        const totalLight = calculateSum(stringToNumber(lightDay), stringToNumber(lightNight));
 
         setLight(totalLight);
     }, [lightDay, lightNight]);
@@ -83,7 +84,7 @@ export function FormDataMonth({
             lightDay,
             lightNight,
             gas,
-            water: water || 0,
+            water: water,
         };
 
         await submitFormData(
@@ -115,12 +116,12 @@ export function FormDataMonth({
             const normalizedDate = startOfDay(parsedDate);
 
             setSelectDate(normalizedDate);
-            setLight(meterDataEdit.light);
-            setLightDay(meterDataEdit.lightDay);
-            setLightNight(meterDataEdit.lightNight);
-            setGas(meterDataEdit.gas);
+            setLight(numberToString(meterDataEdit.light));
+            setLightDay(numberToString(meterDataEdit.lightDay));
+            setLightNight(numberToString(meterDataEdit.lightNight));
+            setGas(numberToString(meterDataEdit.gas));
 
-            if (water && meterDataEdit.water) setWater(meterDataEdit.water);
+            if (water && meterDataEdit.water) setWater(numberToString(meterDataEdit.water));
         }
     }, [isEdit]);
 
@@ -132,20 +133,21 @@ export function FormDataMonth({
         setLightNight(getLastMeterValue(categoryKeys.lightNight, sortedAddressMeterData));
         setGas(getLastMeterValue(categoryKeys.gas, sortedAddressMeterData));
         setWater(getLastMeterValue(categoryKeys.water, sortedAddressMeterData));
+
+        const lastReading = sortedAddressMeterData[sortedAddressMeterData.length - 1];
+
         updateLocalStorageValues(
             addressPath,
-            sortedAddressMeterData[sortedAddressMeterData.length - 1].light,
-            sortedAddressMeterData[sortedAddressMeterData.length - 1].lightDay,
-            sortedAddressMeterData[sortedAddressMeterData.length - 1].lightNight,
-            sortedAddressMeterData[sortedAddressMeterData.length - 1].gas,
-            sortedAddressMeterData[sortedAddressMeterData.length - 1].water
+            numberToString(lastReading.light),
+            numberToString(lastReading.lightDay),
+            numberToString(lastReading.lightNight),
+            numberToString(lastReading.gas),
+            numberToString(lastReading.water)
         );
     }, [isEdit, dispatch]);
 
     useEffect(() => {
-        if (isEdit) {
-            dispatch(setNotEdit());
-        }
+        if (isEdit) dispatch(setNotEdit());
     }, [pathname]);
 
     return (

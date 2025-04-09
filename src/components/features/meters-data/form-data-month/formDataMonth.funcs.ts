@@ -14,6 +14,7 @@ import {
     getAllMetersData,
     updateMeterData,
 } from "@/store/slices/meters-data/meters-data.thunks";
+import { numberToString, stringToNumber } from "@/utils/conversion";
 
 export async function submitFormData(
     formData: FormMeterDataType,
@@ -22,11 +23,11 @@ export async function submitFormData(
     isEdit: boolean,
     addressPath: string,
     selectDate: DataPickerValue,
-    light: number,
-    lightDay: number,
-    lightNight: number,
-    gas: number,
-    water: number,
+    light: string,
+    lightDay: string,
+    lightNight: string,
+    gas: string,
+    water: string,
     dispatch: AppDispatch
 ) {
     const isUniqueDate = !sortedAddressMeterData.some(
@@ -46,11 +47,11 @@ export async function submitFormData(
             formData,
             addressPath,
             selectDate,
-            light,
-            lightDay,
-            lightNight,
-            gas,
-            water,
+            stringToNumber(light),
+            stringToNumber(lightDay),
+            stringToNumber(lightNight),
+            stringToNumber(gas),
+            stringToNumber(water),
             dispatch
         );
     }
@@ -69,29 +70,28 @@ export function getNextMonthDate(items: MeterDataWithObjectId[]) {
 }
 
 export function setDefaultValue(
-    key: CategoryKey,
-    currentPage: string,
-    listCurrentPage: MeterDataWithObjectId[]
+    categoryKey: CategoryKey,
+    address: string,
+    meterReadings: MeterDataWithObjectId[]
 ) {
-    const localStorageValue = localStorage.getItem(`metersData_${key}_${currentPage}`);
+    const localStorageReadingValue = localStorage.getItem(`metersData_${categoryKey}_${address}`);
 
-    if (localStorageValue !== null) {
-        return Number(localStorageValue);
+    if (localStorageReadingValue !== null) return localStorageReadingValue;
+
+    if (meterReadings.length > 0) {
+        const latestMeterData = meterReadings[meterReadings.length - 1];
+        const readingValue = latestMeterData?.[categoryKey];
+
+        return numberToString(readingValue);
     }
 
-    if (listCurrentPage.length > 0) {
-        const lastItem = listCurrentPage[listCurrentPage.length - 1]?.[key];
-
-        return typeof lastItem === "number" ? lastItem : 0;
-    }
-
-    return 0;
+    return "";
 }
 
 export function getLastMeterValue(key: CategoryKey, meterReadings: MeterDataWithObjectId[]) {
     const lastReading = meterReadings[meterReadings.length - 1];
 
-    return lastReading[key] ?? 0;
+    return numberToString(lastReading[key]);
 }
 
 export function checkDate(date: DataPickerValue) {
@@ -105,7 +105,18 @@ export async function handleEditMeterData(
     formData: FormMeterDataType,
     dispatch: AppDispatch
 ) {
-    const response = await dispatch(updateMeterData({ _id: meterDataEdit?._id, ...formData }));
+    const response = await dispatch(
+        updateMeterData({
+            _id: meterDataEdit?._id,
+            date: formData.date,
+            address: meterDataEdit?.address,
+            light: stringToNumber(formData.light),
+            lightDay: stringToNumber(formData.lightDay),
+            lightNight: stringToNumber(formData.lightNight),
+            gas: stringToNumber(formData.gas),
+            water: stringToNumber(formData.water),
+        })
+    );
 
     if (response.payload) {
         dispatch(setNotEdit());
@@ -125,7 +136,17 @@ export async function handlePostMeterData(
     water: number,
     dispatch: AppDispatch
 ) {
-    const response = await dispatch(createMetersData(formData));
+    const response = await dispatch(
+        createMetersData({
+            date: formData.date,
+            address: formData.address,
+            light: stringToNumber(formData.light),
+            lightDay: stringToNumber(formData.lightDay),
+            lightNight: stringToNumber(formData.lightNight),
+            gas: stringToNumber(formData.gas),
+            water: stringToNumber(formData.water),
+        })
+    );
 
     if (response.payload) {
         setTimeout(async () => {

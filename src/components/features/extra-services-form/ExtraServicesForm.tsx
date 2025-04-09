@@ -10,6 +10,7 @@ import {
 } from "@/components/features/extra-services-form/ExtraServicesForm.funcs";
 import { colorNames } from "@/enums/color-names";
 import { useAppSelector } from "@/store/hook";
+import { numberToString } from "@/utils/conversion";
 
 const fixedWaterString = "Fixed Water";
 
@@ -22,19 +23,20 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
     const options = filterOptions(items);
 
     const [selectedOption, setSelectedOption] = useState<string>(options[0]?.category || fixedWaterString);
-    const currentItemValue = options.find((item) => item.category === selectedOption)?.value || 0;
+
+    const option = options.find((item) => item.category === selectedOption);
+    const optionValue = numberToString(option?.value);
+
     const currentId = options.find((item) => item.category === selectedOption)?._id;
 
-    const [inputValue, setInputValue] = useState<number>(currentItemValue);
+    const [inputValue, setInputValue] = useState<string>(optionValue);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const targetValue = Number(e.target.value);
-
-        setInputValue(targetValue);
+        setInputValue(e.target.value);
     };
 
     const returnCurrentValues = () => {
-        setInputValue(currentItemValue);
+        setInputValue(optionValue);
     };
 
     const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -43,13 +45,13 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
 
     const onAddValueUtilityPrice = useCallback(() => {
         if (currentId && inputValue) {
-            addValueUtilityPrice(currentId, String(inputValue), selectedOption, dispatch);
+            addValueUtilityPrice(currentId, inputValue, selectedOption, dispatch);
         }
     }, [currentId, inputValue, selectedOption, dispatch]);
 
     useEffect(() => {
-        setInputValue(currentItemValue);
-    }, [selectedOption]);
+        setInputValue(optionValue);
+    }, [selectedOption, optionValue]);
 
     return (
         <form className={Styles.extraServicesForm}>
@@ -65,8 +67,9 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
                     value={inputValue}
                     onChange={onChange}
                     onReset={returnCurrentValues}
-                    defaultValue={currentItemValue}
+                    defaultValue={optionValue}
                     label="Price"
+                    step={0.01}
                 />
             </div>
             <div className={Styles.btns}>

@@ -7,6 +7,8 @@ import { TranslationKeys } from "@/types/i-18-next-types";
 import { MeterInput } from "@/components/features/meters-data/form-data-month/form-controls/meter-inputs-list/meter-input/MeterInput";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { categoryKeys } from "@/enums/category-keys";
+import { SetStateFunc } from "@/types/getter-setter-functions";
+import { numberToString } from "@/utils/conversion";
 
 interface MeterInputsListProps {
     items: InputField[];
@@ -16,8 +18,8 @@ interface MeterInputsListProps {
     sortedAddressMeterData: MeterDataWithObjectId[];
     isWaterBlock: boolean;
     lang: TranslationKeys;
-    water: number;
-    setWater: React.Dispatch<React.SetStateAction<number>>;
+    water: string;
+    setWater: SetStateFunc<string>;
 }
 
 export function MeterInputsList({
@@ -34,11 +36,11 @@ export function MeterInputsList({
     const isEditingMeterData = isEdit && meterDataEdit;
     const waterReadingValue = meterDataEdit?.water ?? 0;
     const waterDefaultValue = isEditingMeterData
-        ? waterReadingValue
+        ? numberToString(waterReadingValue)
         : setDefaultValue(categoryKeys.water, currentPage, sortedAddressMeterData);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const targetValue = Number(e.target.value);
+        const targetValue = e.target.value;
 
         setWater(targetValue);
     };
