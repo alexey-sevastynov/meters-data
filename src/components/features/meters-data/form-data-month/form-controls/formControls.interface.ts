@@ -19,7 +19,6 @@ export interface FormControlsProps {
     setGas: SetStateFunc<string>;
     isEdit: boolean;
     meterDataEdit: MeterDataWithObjectId | null;
-    currentPage: string;
     sortedAddressMeterData: MeterDataWithObjectId[];
     lang: TranslationKeys;
 }

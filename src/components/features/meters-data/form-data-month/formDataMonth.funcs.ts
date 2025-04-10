@@ -7,7 +7,6 @@ import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { AppDispatch } from "@/store/store";
 import { FormMeterDataType } from "@/types/form-meter-data";
 import { sendMessageToTelegram } from "@/helpers/send-message-to-telegram";
-import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import {
     createMetersData,
@@ -55,8 +54,6 @@ export async function submitFormData(
             dispatch
         );
     }
-
-    updateLocalStorageValues(addressPath, light, lightDay, lightNight, gas, water);
 }
 
 export function getNextMonthDate(items: MeterDataWithObjectId[]) {
@@ -69,15 +66,7 @@ export function getNextMonthDate(items: MeterDataWithObjectId[]) {
     return addMonths(lastDate, 1);
 }
 
-export function setDefaultValue(
-    categoryKey: CategoryKey,
-    address: string,
-    meterReadings: MeterDataWithObjectId[]
-) {
-    const localStorageReadingValue = localStorage.getItem(`metersData_${categoryKey}_${address}`);
-
-    if (localStorageReadingValue !== null) return localStorageReadingValue;
-
+export function setDefaultValue(categoryKey: CategoryKey, meterReadings: MeterDataWithObjectId[]) {
     if (meterReadings.length > 0) {
         const latestMeterData = meterReadings[meterReadings.length - 1];
         const readingValue = latestMeterData?.[categoryKey];

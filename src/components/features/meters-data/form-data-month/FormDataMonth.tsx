@@ -3,7 +3,6 @@ import { format, parse, startOfDay } from "date-fns";
 import Style from "./formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setNotEdit } from "@/store/slices/meters-data/slice";
-import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { calculateSum } from "@/helpers/calculate-total";
 import {
@@ -18,7 +17,6 @@ import { FormControls } from "@/components/features/meters-data/form-data-month/
 import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
-import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 import { numberToString, stringToNumber } from "@/utils/conversion";
 
 interface FormDataMonthProps {
@@ -37,9 +35,9 @@ export function FormDataMonth({
 }: FormDataMonthProps) {
     const dispatch = useAppDispatch();
     const [selectDate, setSelectDate] = useState<DataPickerValue>(getNextMonthDate(sortedAddressMeterData));
-
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const meterDataEdit = useAppSelector((state) => state.metersData.meterDataEdit);
+
     const lang = useAppSelector(selectTranslations);
 
     useEffect(() => {
@@ -51,19 +49,17 @@ export function FormDataMonth({
     }, [sortedAddressMeterData, isEdit]);
 
     const [light, setLight] = useState<string>(() =>
-        setDefaultValue(categoryKeys.light, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.light, sortedAddressMeterData)
     );
     const [lightDay, setLightDay] = useState<string>(() =>
-        setDefaultValue(categoryKeys.lightDay, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.lightDay, sortedAddressMeterData)
     );
     const [lightNight, setLightNight] = useState<string>(() =>
-        setDefaultValue(categoryKeys.lightNight, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.lightNight, sortedAddressMeterData)
     );
-    const [gas, setGas] = useState<string>(() =>
-        setDefaultValue(categoryKeys.gas, addressPath, sortedAddressMeterData)
-    );
+    const [gas, setGas] = useState<string>(() => setDefaultValue(categoryKeys.gas, sortedAddressMeterData));
     const [water, setWater] = useState<string>(() =>
-        setDefaultValue(categoryKeys.water, addressPath, sortedAddressMeterData)
+        setDefaultValue(categoryKeys.water, sortedAddressMeterData)
     );
 
     useEffect(() => {
@@ -104,14 +100,6 @@ export function FormDataMonth({
     };
 
     useEffect(() => {
-        dispatch(getAllMetersData());
-
-        if (addressPath && sortedAddressMeterData.length > 0) {
-            updateLocalStorageValues(addressPath, light, lightDay, lightNight, gas, water);
-        }
-    }, []);
-
-    useEffect(() => {
         if (isEdit && meterDataEdit && parsedDate) {
             const normalizedDate = startOfDay(parsedDate);
 
@@ -133,17 +121,6 @@ export function FormDataMonth({
         setLightNight(getLastMeterValue(categoryKeys.lightNight, sortedAddressMeterData));
         setGas(getLastMeterValue(categoryKeys.gas, sortedAddressMeterData));
         setWater(getLastMeterValue(categoryKeys.water, sortedAddressMeterData));
-
-        const lastReading = sortedAddressMeterData[sortedAddressMeterData.length - 1];
-
-        updateLocalStorageValues(
-            addressPath,
-            numberToString(lastReading.light),
-            numberToString(lastReading.lightDay),
-            numberToString(lastReading.lightNight),
-            numberToString(lastReading.gas),
-            numberToString(lastReading.water)
-        );
     }, [isEdit, dispatch]);
 
     useEffect(() => {
@@ -168,7 +145,6 @@ export function FormDataMonth({
                 setGas={setGas}
                 isEdit={isEdit}
                 meterDataEdit={meterDataEdit}
-                currentPage={addressPath}
                 sortedAddressMeterData={sortedAddressMeterData}
                 lang={lang}
             />

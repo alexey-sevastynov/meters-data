@@ -12,8 +12,8 @@ export function MdListUtilityPrices() {
     const errorMessage = useAppSelector((state) => state.utilityPrices.errorMessage);
 
     useEffect(() => {
-        dispatch(getAllUtilityPrice());
-    }, [dispatch]);
+        if (items.length === 0 && status !== statusNames.loading) dispatch(getAllUtilityPrice());
+    }, [dispatch, items, status]);
 
     return (
         <ul className={Styles.listUtilityPrices}>

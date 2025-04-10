@@ -13,7 +13,6 @@ interface MeterInputProps {
     labelText: string;
     value: string;
     setValue: SetStateFunc<string>;
-    currentPage: string;
     sortedAddressMeterData: MeterDataWithObjectId[];
     className: string;
 }
@@ -25,13 +24,12 @@ export function MeterInput({
     labelText,
     value,
     setValue,
-    currentPage,
     sortedAddressMeterData,
 }: MeterInputProps) {
     const isEditingMeterData = isEdit && meterDataEdit;
 
     const valueFromEdit = numberToString(meterDataEdit?.[fieldKey]);
-    const defaultValue = setDefaultValue(fieldKey, currentPage, sortedAddressMeterData);
+    const defaultValue = setDefaultValue(fieldKey, sortedAddressMeterData);
 
     const initialMeterValue = isEditingMeterData ? valueFromEdit : defaultValue;
 

@@ -1,23 +1,31 @@
 import { BsCalendar2Plus, BsCalendar3 } from "react-icons/bs";
 import Styles from "./metersData.module.scss";
-import { useAppSelector } from "@/store/hook";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import { useLocation } from "react-router-dom";
 import { FormDataMonth } from "./form-data-month/FormDataMonth";
 import { ListMetersData } from "@/components/features/meters-data/list-meters-data/ListMetersData";
+import { useEffect } from "react";
+import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
+import { statusNames } from "@/constants/status";
 
 interface MetersDataProps {
     isWaterBlock?: boolean;
 }
 
 export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
-    const { pathname } = useLocation();
+    const dispatch = useAppDispatch();
+    const location = useLocation();
     const lang = useAppSelector(selectTranslations);
     const meterReadingsList = useAppSelector((state) => state.metersData.items);
-
-    const addressPath: string = pathname.slice(1);
+    const status = useAppSelector((state) => state.metersData.status);
+    const addressPath = location.pathname.slice(1);
     const sortedAddressMeterData = filterAndSortItemsByAddressAndDate(meterReadingsList, addressPath);
+
+    useEffect(() => {
+        if (meterReadingsList.length === 0 && status !== statusNames.loading) dispatch(getAllMetersData());
+    }, [dispatch, meterReadingsList, status]);
 
     return (
         <section className={Styles.metersData}>
@@ -30,7 +38,7 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
                 <FormDataMonth
                     isWaterBlock={isWaterBlock}
                     sortedAddressMeterData={sortedAddressMeterData}
-                    pathname={pathname}
+                    pathname={location.pathname}
                     addressPath={addressPath}
                 />
 
