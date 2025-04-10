@@ -20,7 +20,6 @@ export function FormControls({
     setGas,
     isEdit,
     meterDataEdit,
-    currentPage,
     sortedAddressMeterData,
     lang,
 }: FormControlsProps) {
@@ -44,7 +43,6 @@ export function FormControls({
                 items={inputFields}
                 isEdit={isEdit}
                 meterDataEdit={meterDataEdit}
-                currentPage={currentPage}
                 sortedAddressMeterData={sortedAddressMeterData}
                 isWaterBlock={isWaterBlock}
                 lang={lang}

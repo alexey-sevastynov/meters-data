@@ -3,7 +3,6 @@ import Style from "./listMetersData.module.scss";
 import GroupYear from "./group-year/GroupYear";
 import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
-import useMetersData from "@/hooks/useMetersData";
 import { GroupedData } from "@/types/grouped-data";
 import { isEmptyObject } from "@/helpers/is-empty-object";
 import { groupAndSortItemsByYear } from "@/helpers/group-and-sort-items-by-year";
@@ -13,7 +12,6 @@ interface ListMetersDataProps {
 }
 
 export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) => {
-    const { isDataFromLocalStorage } = useMetersData();
     const { pathname } = useLocation();
 
     const items = useAppSelector((state) => state.metersData.items);
@@ -36,7 +34,7 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) 
         <ul ref={listMetersDataRef} className={Style.listMetersData}>
             {status === "loading" && <li>Loading...</li>}
             {isEmptyList ? (
-                <p>{isDataFromLocalStorage ? "No cached items" : "No items"}</p>
+                <li>No data</li>
             ) : (
                 Object.entries(groupedData).map(([year, group], index, array) => (
                     <GroupYear

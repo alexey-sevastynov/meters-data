@@ -14,7 +14,6 @@ interface MeterInputsListProps {
     items: InputField[];
     isEdit: boolean;
     meterDataEdit: MeterDataWithObjectId | null;
-    currentPage: string;
     sortedAddressMeterData: MeterDataWithObjectId[];
     isWaterBlock: boolean;
     lang: TranslationKeys;
@@ -26,7 +25,6 @@ export function MeterInputsList({
     items,
     isEdit,
     meterDataEdit,
-    currentPage,
     sortedAddressMeterData,
     isWaterBlock,
     lang,
@@ -37,7 +35,7 @@ export function MeterInputsList({
     const waterReadingValue = meterDataEdit?.water ?? 0;
     const waterDefaultValue = isEditingMeterData
         ? numberToString(waterReadingValue)
-        : setDefaultValue(categoryKeys.water, currentPage, sortedAddressMeterData);
+        : setDefaultValue(categoryKeys.water, sortedAddressMeterData);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const targetValue = e.target.value;
@@ -60,7 +58,6 @@ export function MeterInputsList({
                     labelText={label}
                     value={value}
                     setValue={setValue}
-                    currentPage={currentPage}
                     sortedAddressMeterData={sortedAddressMeterData}
                     className={Style.input}
                 />

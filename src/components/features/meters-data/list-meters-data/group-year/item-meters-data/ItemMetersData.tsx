@@ -5,9 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setMeterDataEdit, showMeterReadingCalc } from "@/store/slices/meters-data/slice";
 import { formatDate } from "@/helpers/format-date";
 import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
-import { updateLocalStorageValues } from "@/components/features/meters-data/helpers/updateLocalStorageValue";
 import { useLocation } from "react-router-dom";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import {
     confirmActionExit,
     confirmActionOnDelete,
@@ -20,7 +18,6 @@ import { formatDateDisplay } from "@/components/shared/date-range-selector/dateR
 import { lastValueMeter } from "@/helpers/last-value-meter";
 import { MonthsType } from "@/types/months-type";
 import { deleteMeterData, getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
-import { numberToString } from "@/utils/conversion";
 
 interface ItemMetersDataProps {
     _id: string;
@@ -60,7 +57,6 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     const isDelete = useAppSelector((state) => state.confirm.isActionDeleteItem);
     const idDelete = useAppSelector((state) => state.confirm.idDeleteItem);
     const lang = useAppSelector(selectTranslations);
-    const items = useAppSelector((state) => state.metersData.items);
     const currentPage: string = pathname.slice(1);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
     const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
@@ -68,7 +64,6 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     const newDate = formatDate(date);
     const month = newDate.split(",")[0] as MonthsType;
     const year = newDate.split(",")[1];
-    const listCurrentPage = filterAndSortItemsByAddressAndDate(items, currentPage);
     const selectedDateDisplay = formatDateDisplay(`${month},${year}`, true, true);
 
     const editItem = () => {
@@ -104,17 +99,6 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
                 .catch((error) => {
                     console.error("Error adding data:", error);
                 });
-
-            const secondLastItem = listCurrentPage[listCurrentPage.length - 2];
-
-            updateLocalStorageValues(
-                currentPage,
-                numberToString(secondLastItem.light),
-                numberToString(secondLastItem.lightDay),
-                numberToString(secondLastItem.lightNight),
-                numberToString(secondLastItem.gas),
-                numberToString(secondLastItem.water)
-            );
 
             dispatch(confirmActionOnDelete(false));
             dispatch(confirmActionExit(false));
