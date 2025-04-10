@@ -39,7 +39,7 @@ export const navigationItems: NavigationItem[] = [
         link: `/${getStringEnv(envKeys.address002)}`,
         id: v4(),
         text: getStringEnv(envKeys.addressName002),
-        imageName: "68A-63.svg",
+        imageName: "68a-63.svg",
     },
     {
         link: `/${getStringEnv(envKeys.address001)}`,
