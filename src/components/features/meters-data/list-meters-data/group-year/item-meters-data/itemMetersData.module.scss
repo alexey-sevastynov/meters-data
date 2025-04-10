@@ -1,59 +1,59 @@
 @import "@/styles/colors.scss";
 
 .itemMetersData {
-  display: flex;
-  gap: 20px;
-  border-bottom: 1px solid $grey;
-
-  &:nth-child(odd) {
-    background: $white;
-  }
-
-  &.active {
-    background-color: $lightGreen;
-  }
-
-  .data {
     display: flex;
-    padding: 10px;
+    gap: 20px;
+    border-bottom: 1px solid $grey;
 
-    gap: 7px;
-
-    p {
-      line-height: 1.8;
+    &:nth-child(odd) {
+        background: $mint;
     }
 
-    .date {
-      min-width: 151px;
+    &.active {
+        background-color: $lightGreen;
     }
 
-    .light,
-    .lightDay,
-    .lightNight,
-    .gas,
-    .water {
-      min-width: 130px;
+    .data {
+        display: flex;
+        padding: 10px;
 
-      letter-spacing: 0.8px;
+        gap: 7px;
+
+        p {
+            line-height: 1.8;
+        }
+
+        .date {
+            min-width: 151px;
+        }
+
+        .light,
+        .lightDay,
+        .lightNight,
+        .gas,
+        .water {
+            min-width: 130px;
+
+            letter-spacing: 0.8px;
+        }
+
+        .water {
+            color: $blue;
+        }
+
+        .gas {
+            color: $red;
+        }
     }
 
-    .water {
-      color: $blue;
+    .btns {
+        display: flex;
+
+        gap: 10px;
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: no-drop;
+        }
     }
-
-    .gas {
-      color: $red;
-    }
-  }
-
-  .btns {
-    display: flex;
-
-    gap: 10px;
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: no-drop;
-    }
-  }
 }

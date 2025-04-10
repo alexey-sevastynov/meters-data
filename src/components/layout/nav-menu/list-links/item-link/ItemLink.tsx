@@ -8,13 +8,17 @@ interface ItemLinkProps {
     link: string;
     imageName: string;
     text: string;
-    onClick?: VoidFuncNoParam;
+    onClick: VoidFuncNoParam;
 }
 
-export function ItemLink({ link, imageName, text }: ItemLinkProps) {
+export function ItemLink({ link, imageName, text, onClick }: ItemLinkProps) {
     return (
         <li>
-            <NavLink to={link} className={({ isActive }) => (isActive ? Styles.active : Styles.itemLinkPage)}>
+            <NavLink
+                to={link}
+                className={({ isActive }) => (isActive ? Styles.active : Styles.itemLinkPage)}
+                onClick={onClick}
+            >
                 <img
                     src={getIconUrl(imageName)}
                     alt={text}
