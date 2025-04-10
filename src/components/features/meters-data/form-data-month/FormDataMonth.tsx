@@ -17,7 +17,6 @@ import { FormControls } from "@/components/features/meters-data/form-data-month/
 import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
-import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 import { numberToString, stringToNumber } from "@/utils/conversion";
 
 interface FormDataMonthProps {
@@ -36,9 +35,9 @@ export function FormDataMonth({
 }: FormDataMonthProps) {
     const dispatch = useAppDispatch();
     const [selectDate, setSelectDate] = useState<DataPickerValue>(getNextMonthDate(sortedAddressMeterData));
-
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const meterDataEdit = useAppSelector((state) => state.metersData.meterDataEdit);
+
     const lang = useAppSelector(selectTranslations);
 
     useEffect(() => {
@@ -99,10 +98,6 @@ export function FormDataMonth({
             dispatch
         );
     };
-
-    useEffect(() => {
-        dispatch(getAllMetersData());
-    }, [dispatch]);
 
     useEffect(() => {
         if (isEdit && meterDataEdit && parsedDate) {
