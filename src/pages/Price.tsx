@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "@/styles/pages/price.scss";
 import { useParams } from "react-router-dom";
 import { navigationItems } from "@/constants/navigation-items";
-import { useAppDispatch } from "@/store/hook";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { getAllUtilityPrice } from "@/store/slices/utility-price-slice";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsPrice } from "@/constants/breadcrumb-items";
@@ -12,37 +12,48 @@ import { MdExtraServicesForm } from "@/components/features/extra-services-form/E
 import { MdListCategoriesWithPrices } from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices";
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
 import { getAllMonthlyMoneyCalculations } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
+import { statusNames } from "@/constants/status";
 
 export function Price() {
-    const { address } = useParams();
+    const params = useParams();
     const dispatch = useAppDispatch();
-
-    const addressItem = navigationItems.find(({ link }) => link === `/${address}`);
+    const utilityPrices = useAppSelector((state) => state.utilityPrices.items);
+    const utilityPricesStatus = useAppSelector((state) => state.utilityPrices.status);
+    const monthlyMoneyCalculations = useAppSelector((state) => state.monthlyMoneyCalculations.items);
+    const monthlyMoneyCalculationsStatus = useAppSelector((state) => state.monthlyMoneyCalculations.status);
+    const addressItem = navigationItems.find(({ link }) => link === `/${params.address}`);
+    const addressName = addressItem?.text;
+    const route = `/${params.address}/${routeNames.price}`;
 
     useEffect(() => {
-        dispatch(getAllUtilityPrice());
-        dispatch(getAllMonthlyMoneyCalculations());
-    }, [dispatch]);
+        if (utilityPrices.length === 0 && utilityPricesStatus !== statusNames.loading) {
+            dispatch(getAllUtilityPrice());
+        }
+
+        if (
+            monthlyMoneyCalculations?.length === 0 &&
+            monthlyMoneyCalculationsStatus !== statusNames.loading
+        ) {
+            dispatch(getAllMonthlyMoneyCalculations());
+        }
+    }, [
+        dispatch,
+        utilityPrices,
+        utilityPricesStatus,
+        monthlyMoneyCalculations,
+        monthlyMoneyCalculationsStatus,
+    ]);
 
     return (
         <div className="price">
             <div className="title">
-                <MdBreadcrumb
-                    items={getBreadcrumbItemsPrice(
-                        address!,
-                        `/${address}/${routeNames.price}`,
-                        addressItem?.id
-                    )}
-                />
+                <MdBreadcrumb items={getBreadcrumbItemsPrice(params.address!, route, addressName)} />
             </div>
-
             <MdBillingAccounts />
-
             <MdExtraServicesForm dispatch={dispatch} />
             <div className="overflow-auto mt-40">
                 <MdListCategoriesWithPrices dispatch={dispatch} />
             </div>
-
             <MdMonthlyMoneyCalculations />
         </div>
     );

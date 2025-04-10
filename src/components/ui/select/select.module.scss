@@ -1,23 +1,18 @@
 @import "@/styles/colors.scss";
 
 .select {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  select {
-    font-size: 16px;
-    border: 1px solid $green;
-    min-width: 150px;
-    height: 38.99px;
-  }
+    select {
+        border: 1px solid $green;
+        min-width: 150px;
+        height: 38.99px;
+    }
 
-  option {
-    font-size: 16px;
-  }
-
-  label {
-    margin-bottom: 10px;
-    font-weight: bold;
-    padding-left: 5px;
-  }
+    label {
+        margin-bottom: 10px;
+        font-weight: bold;
+        padding-left: 5px;
+    }
 }

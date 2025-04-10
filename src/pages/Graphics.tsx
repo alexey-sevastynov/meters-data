@@ -58,7 +58,7 @@ export function Graphics() {
                     items={getBreadcrumbItemsGraphics(
                         address!,
                         `/${address}/${routeNames.graphics}`,
-                        addressItem?.id
+                        addressItem?.text
                     )}
                 />
 
