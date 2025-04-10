@@ -1,7 +1,9 @@
 .listLinks {
-  position: relative;
-  padding-top: 20px;
+    position: relative;
+    margin: 0.75rem;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
 }

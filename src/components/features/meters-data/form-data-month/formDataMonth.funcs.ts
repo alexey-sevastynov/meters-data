@@ -157,9 +157,7 @@ function generateMessage(
     gas: number,
     water: number
 ) {
-    const pageId = navigationItems.find((item) => item.link === `/${currentPage}`)?.id || "Unknown";
-
-    let message = `<b>${pageId}</b>`;
+    let message = `<b>${getAddressName(currentPage)}</b>`;
     const ensureDate = checkDate(selectDate);
 
     message += ` (${format(ensureDate, "MM.yyyy")})\n`;
@@ -173,4 +171,10 @@ function generateMessage(
     }
 
     return message;
+}
+
+function getAddressName(pageName: string) {
+    const unknownAddressString = "Unknown address";
+
+    return navigationItems.find((item) => item.link === `/${pageName}`)?.text || unknownAddressString;
 }

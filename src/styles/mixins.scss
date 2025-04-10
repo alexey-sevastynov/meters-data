@@ -1,7 +1,5 @@
-@import "../styles/colors.scss";
-
-$widthNavigation: 350px;
-$heightHeader: 80px;
+@import "@/styles/colors.scss";
+@import "@/styles/sizes.scss";
 
 @mixin layoutStyle {
     position: absolute;
@@ -11,6 +9,7 @@ $heightHeader: 80px;
     padding: 35px 20px;
 
     width: calc(100% - $widthNavigation);
+    background-color: $white;
 }
 
 @mixin layoutStyleForMobile {

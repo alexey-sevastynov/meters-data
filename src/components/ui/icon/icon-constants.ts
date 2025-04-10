@@ -2,7 +2,7 @@ export const iconSizes = {
     tiny: 8,
     small: 12,
     medium: 18,
-    large: 25,
+    large: 24,
 } as const;
 
 export type SizeIcon = (typeof iconSizes)[keyof typeof iconSizes];
