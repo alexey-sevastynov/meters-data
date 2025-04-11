@@ -1,0 +1,24 @@
+@import "@/styles/sizes.scss";
+@import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: $heightHeader;
+    background-image: linear-gradient(140deg, $green 0%, $green 60%, $lightGreen 100%);
+
+    .expanded,
+    .collapsed {
+        height: calc(100vh - $heightHeader);
+        @include transition(width);
+    }
+
+    .expanded {
+        width: $widthSidebarExpanded;
+    }
+
+    .collapsed {
+        width: $widthSidebarCollapsed;
+    }
+}

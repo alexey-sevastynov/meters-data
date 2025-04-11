@@ -1,23 +1,25 @@
 @import "@/styles/breakpoints.scss";
+@import "@/styles/mixins.scss";
 
 .yearGroup {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s ease-out;
+    overflow: hidden;
+    max-height: 0;
+
+    @include transition(max-height);
 }
 
 .yearGroup.open {
-  width: 100%;
-  max-height: 600px;
-  transition: max-height 0.3s ease-in;
+    width: 100%;
+    max-height: 600px;
+    @include transition(max-height);
 }
 
 @media (max-width: $desktop) {
-  .yearGroup {
-    transition: max-height 0.1s ease-out;
-  }
-  .yearGroup.yearGroup.open {
-    overflow: visible;
-    transition: max-height 0.1s ease-in;
-  }
+    .yearGroup {
+        @include transition(max-height);
+    }
+    .yearGroup.yearGroup.open {
+        overflow: visible;
+        @include transition(max-height);
+    }
 }

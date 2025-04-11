@@ -1,28 +1,31 @@
-@import "../mixins.scss";
-@import "../breakpoints.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/breakpoints.scss";
+@import "@/styles/sizes.scss";
 
 .price {
-  @include layoutStyle;
-
-  .title {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-
-    .link {
-      color: $green;
-
-      &:hover {
-        text-decoration: underline;
-      }
+    .page-layout--expanded {
+        @include layoutStyle($widthSidebarExpanded);
     }
 
-    p {
-      color: $black;
+    .page-layout--collapsed {
+        @include layoutStyle($widthSidebarCollapsed);
     }
-  }
 
-  @media (max-width: $laptop) {
-    @include layoutStyleForMobile;
-  }
+    .title {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .link {
+            color: $green;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        p {
+            color: $black;
+        }
+    }
 }

@@ -20,6 +20,8 @@ export const iconNames = {
     circle: "circle",
     calendar: "calendar",
     close: "close",
+    caretSquareLeft: "caretSquareLeft",
+    caretSquareRight: "caretSquareRight",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];

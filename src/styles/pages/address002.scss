@@ -1,14 +1,17 @@
 @import "@/styles/mixins.scss";
 @import "@/styles/breakpoints.scss";
+@import "@/styles/sizes.scss";
 
 .address002 {
-  @include layoutStyle;
+    .page-layout--expanded {
+        @include layoutStyle($widthSidebarExpanded);
+    }
 
-  .title {
-    @include titlePage;
-  }
+    .page-layout--collapsed {
+        @include layoutStyle($widthSidebarCollapsed);
+    }
 
-  @media (max-width: $laptop) {
-    @include layoutStyleForMobile;
-  }
+    .title {
+        @include titlePage;
+    }
 }
