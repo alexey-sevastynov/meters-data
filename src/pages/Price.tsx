@@ -13,8 +13,10 @@ import { MdListCategoriesWithPrices } from "@/components/features/list-categorie
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
 import { getAllMonthlyMoneyCalculations } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
 import { statusNames } from "@/constants/status";
+import { useSidebar } from "@/components/context/SidebarProvider";
 
 export function Price() {
+    const sidebarContext = useSidebar();
     const params = useParams();
     const dispatch = useAppDispatch();
     const utilityPrices = useAppSelector((state) => state.utilityPrices.items);
@@ -44,17 +46,23 @@ export function Price() {
         monthlyMoneyCalculationsStatus,
     ]);
 
+    const layoutStyle = sidebarContext.isSidebarCollapsed
+        ? "page-layout--collapsed"
+        : "page-layout--expanded";
+
     return (
         <div className="price">
-            <div className="title">
-                <MdBreadcrumb items={getBreadcrumbItemsPrice(params.address!, route, addressName)} />
+            <div className={layoutStyle}>
+                <div className="title">
+                    <MdBreadcrumb items={getBreadcrumbItemsPrice(params.address!, route, addressName)} />
+                </div>
+                <MdBillingAccounts />
+                <MdExtraServicesForm dispatch={dispatch} />
+                <div className="overflow-auto mt-40">
+                    <MdListCategoriesWithPrices dispatch={dispatch} />
+                </div>
+                <MdMonthlyMoneyCalculations />
             </div>
-            <MdBillingAccounts />
-            <MdExtraServicesForm dispatch={dispatch} />
-            <div className="overflow-auto mt-40">
-                <MdListCategoriesWithPrices dispatch={dispatch} />
-            </div>
-            <MdMonthlyMoneyCalculations />
         </div>
     );
 }

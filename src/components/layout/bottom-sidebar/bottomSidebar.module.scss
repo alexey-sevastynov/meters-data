@@ -1,0 +1,42 @@
+@import "@/styles/sizes.scss";
+@import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
+
+.bottomSidebar {
+    position: fixed;
+    height: $widthSidebarCollapsed;
+    bottom: 0px;
+    left: 0px;
+    background-image: linear-gradient(140deg, $green 0%, $green 60%, $lightGreen 100%);
+    z-index: 10;
+    width: 100%;
+
+    .listLinks {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        padding: 0px 15px;
+
+        .itemLink {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .active,
+        .noActive {
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .active {
+            background-color: $navLink;
+        }
+
+        .noActive {
+            border-radius: 5px;
+        }
+    }
+}

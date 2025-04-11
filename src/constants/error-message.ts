@@ -10,4 +10,5 @@ export const errorMessage = {
     missingEnvVar: "Environment variable {0} is missing or empty.",
     invalidNumber: "The value {0} is not a valid number.",
     invalidNumberString: "The value {0} cannot be converted to a number.",
+    mustBeUsedWithinProvider: "{0} must be used within a {1}.",
 } as const;

@@ -1,20 +1,21 @@
 @import "@/styles/colors.scss";
 @import "@/styles/sizes.scss";
 
-@mixin layoutStyle {
+@mixin layoutStyle($sidebarWidth: $widthSidebarCollapsed) {
     position: absolute;
-    left: $widthNavigation;
+    left: $sidebarWidth;
     top: $heightHeader;
-
     padding: 35px 20px;
-
-    width: calc(100% - $widthNavigation);
+    width: calc(100% - $sidebarWidth);
     background-color: $white;
-}
+    @include transition(left);
 
-@mixin layoutStyleForMobile {
-    left: 0px;
-    width: 100%;
+    @media (max-width: $mobile-xl) {
+        padding: 15px 10px;
+        left: 0;
+        width: 100%;
+        padding-bottom: $widthSidebarCollapsed;
+    }
 }
 
 @mixin titlePage {
@@ -52,4 +53,8 @@
     &::-webkit-scrollbar-thumb:hover {
         background: $thumb-hover-color;
     }
+}
+
+@mixin transition($property, $duration: 0.2s, $timing: ease-in-out) {
+    transition: $property $duration $timing;
 }

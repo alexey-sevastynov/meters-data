@@ -3,13 +3,22 @@ import { MdInfoPanelMonth } from "@/components/features/info-panel-month/MdInfoP
 import { MdMetersData } from "@/components/features/meters-data/MetersData";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { BREADCRUMB_ITEMS_ADDR_004 } from "@/constants/breadcrumb-items";
+import { useSidebar } from "@/components/context/SidebarProvider";
 
 export function Address004() {
+    const sidebarContext = useSidebar();
+
+    const layoutStyle = sidebarContext.isSidebarCollapsed
+        ? "page-layout--collapsed"
+        : "page-layout--expanded";
+
     return (
         <section className="address004">
-            <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_004} />
-            <MdInfoPanelMonth isWaterBlock={false} />
-            <MdMetersData isWaterBlock={false} />
+            <div className={layoutStyle}>
+                <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_004} />
+                <MdInfoPanelMonth isWaterBlock={false} />
+                <MdMetersData isWaterBlock={false} />
+            </div>
         </section>
     );
 }

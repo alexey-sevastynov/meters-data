@@ -5,27 +5,35 @@ import { MdListUtilityPrices } from "@/components/features/list-utility-prices/M
 import { MdDateDisplay } from "@/components/shared/date-display/MdDateDisplay";
 import { languages } from "@/components/shared/date-display/constants";
 import { language } from "@/constants/language";
+import { useSidebar } from "@/components/context/SidebarProvider";
 
 export function Home() {
+    const sidebarContext = useSidebar();
     const lang = useAppSelector(selectTranslations);
     const currentLanguage = useAppSelector((state) => state.i18n.lang);
     const date = new Date();
     const isUkraineLanguage = currentLanguage === language.ua.toLowerCase();
 
+    const layoutStyle = sidebarContext.isSidebarCollapsed
+        ? "page-layout--collapsed"
+        : "page-layout--expanded";
+
     return (
         <section className="home">
-            <div className="title__block">
-                <h3 className="title">{lang.home.home}</h3>
-                <MdDateDisplay
-                    date={date}
-                    subTitle={lang.home.currentDate}
-                    language={isUkraineLanguage ? languages.ua : languages.en}
-                />
+            <div className={layoutStyle}>
+                <div className="title__block">
+                    <h3 className="title">{lang.home.home}</h3>
+                    <MdDateDisplay
+                        date={date}
+                        subTitle={lang.home.currentDate}
+                        language={isUkraineLanguage ? languages.ua : languages.en}
+                    />
+                </div>
+
+                <p className="subtitle">{lang.home.utilityPrices}</p>
+
+                <MdListUtilityPrices />
             </div>
-
-            <p className="subtitle">{lang.home.utilityPrices}</p>
-
-            <MdListUtilityPrices />
         </section>
     );
 }

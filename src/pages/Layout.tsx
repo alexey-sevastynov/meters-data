@@ -1,37 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { MdHeader } from "@/components/layout/header/MdHeader";
-import { MdNavMenu } from "@/components/layout/nav-menu/MdNavMenu";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { MdSidebar } from "@/components/layout/sidebar/MdSidebar";
+import { useAppDispatch } from "@/store/hook";
+import { getAllBillingAccounts } from "@/store/slices/billing-account-slice";
+import { SidebarProvider } from "@/components/context/SidebarProvider";
+import { MdBottomSidebar } from "@/components/layout/bottom-sidebar/BottomSidebar";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
 import { breakPoints } from "@/constants/break-points";
-import { getAllBillingAccounts } from "@/store/slices/billing-account-slice";
 
 export function Layout() {
     const dispatch = useAppDispatch();
-    const [isShowMenu, setIsShowMenu] = useState<boolean>(false);
-    const isOpenPopupWindow = useAppSelector((state) => state.confirm.isOpen);
-    const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.xl });
+    const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.md });
 
     useEffect(() => {
         dispatch(getAllBillingAccounts());
     }, [dispatch]);
 
-    const openMenu = () => {
-        setIsShowMenu(true);
-    };
-    const closeMenu = () => {
-        setIsShowMenu(false);
-    };
-
     return (
-        <>
-            <MdHeader isShowMenu={isShowMenu} openMenu={openMenu} closeMenu={closeMenu} />
-            {isMobileView && !isOpenPopupWindow && (
-                <MdNavMenu closeMenu={closeMenu} isShowMenu={isShowMenu} />
-            )}
-            {!isMobileView && <MdNavMenu closeMenu={closeMenu} isShowMenu={isShowMenu} />}
+        <SidebarProvider>
+            <MdHeader />
+            {isMobileView ? <MdBottomSidebar /> : <MdSidebar />}
             <Outlet />
-        </>
+        </SidebarProvider>
     );
 }

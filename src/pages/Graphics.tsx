@@ -8,8 +8,10 @@ import { MdChart } from "@/components/shared/chart/MdChart";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
+import { useSidebar } from "@/components/context/SidebarProvider";
 
 export function Graphics() {
+    const sidebarContext = useSidebar();
     const { address } = useParams();
     const { pathname } = useLocation();
 
@@ -51,24 +53,30 @@ export function Graphics() {
         dataWater.push({ label, water: waterDiff });
     }
 
+    const layoutStyle = sidebarContext.isSidebarCollapsed
+        ? "page-layout--collapsed"
+        : "page-layout--expanded";
+
     return (
         <div className="graphics">
-            <div className="title">
-                <MdBreadcrumb
-                    items={getBreadcrumbItemsGraphics(
-                        address!,
-                        `/${address}/${routeNames.graphics}`,
-                        addressItem?.text
-                    )}
-                />
+            <div className={layoutStyle}>
+                <div className="title">
+                    <MdBreadcrumb
+                        items={getBreadcrumbItemsGraphics(
+                            address!,
+                            `/${address}/${routeNames.graphics}`,
+                            addressItem?.text
+                        )}
+                    />
 
-                <div className="items">
-                    <MdChart data={dataLight} title={"Light"} />
-                    <MdChart data={dataGas} title={"Gas"} />
+                    <div className="items">
+                        <MdChart data={dataLight} title={"Light"} />
+                        <MdChart data={dataGas} title={"Gas"} />
 
-                    {dataWater.every((item) => item.water !== null) && (
-                        <MdChart data={dataWater} title={"Water"} />
-                    )}
+                        {dataWater.every((item) => item.water !== null) && (
+                            <MdChart data={dataWater} title={"Water"} />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
