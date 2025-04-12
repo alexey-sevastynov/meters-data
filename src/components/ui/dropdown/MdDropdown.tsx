@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useRef, useEffect, ReactNode } from "react";
-import styles from "./dropdown.module.scss";
+import Styles from "./dropdown.module.scss";
 import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 import { dropdownPosition, DropdownPosition } from "@/components/ui/dropdown/dropdown-types";
 import { AnimatePresence, motion } from "framer-motion";
@@ -57,7 +57,7 @@ export function MdDropdown({
         <DropdownContext.Provider
             value={{ isOpen, toggleDropdown, closeDropdown, triggerRef, contentRef, position }}
         >
-            <div className={styles.dropdown + " " + customClass}>{children}</div>
+            <div className={Styles.dropdown + " " + customClass}>{children}</div>
         </DropdownContext.Provider>
     );
 }
@@ -67,7 +67,7 @@ export function MdDropdownTrigger({ children, className }: { children: ReactNode
     const customClass = className ? className : "";
 
     return (
-        <div ref={triggerRef} onClick={toggle} className={styles.trigger + " " + customClass}>
+        <div ref={triggerRef} onClick={toggle} className={Styles.trigger + " " + customClass}>
             {children}
             {isOpen ? <MdIcon name={iconNames.arrowUp} /> : <MdIcon name={iconNames.arrowDown} />}
         </div>
@@ -84,7 +84,7 @@ export function MdDropdownContent({ children, className }: { children: ReactNode
         <AnimatePresence>
             <motion.div
                 ref={contentRef}
-                className={`${styles.content} ${styles[position]} ${customClass}`}
+                className={`${Styles.content} ${Styles[position]} ${customClass}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -100,21 +100,26 @@ export function MdDropdownItem({
     children,
     onSelect,
     className,
+    disabled = false,
 }: {
     children: ReactNode;
     onSelect?: VoidFuncNoParam;
     className?: string;
+    disabled?: boolean;
 }) {
     const { closeDropdown } = useContext(DropdownContext)!;
-    const customClass = className ? className : "";
 
     const handleClick = () => {
+        if (disabled) return;
+
         onSelect?.();
         closeDropdown();
     };
 
+    const classes = [Styles.item, className, disabled ? Styles.disabled : ""].filter(Boolean).join(" ");
+
     return (
-        <div onClick={handleClick} className={styles.item + " " + customClass}>
+        <div onClick={handleClick} className={classes} aria-disabled={disabled}>
             {children}
         </div>
     );
