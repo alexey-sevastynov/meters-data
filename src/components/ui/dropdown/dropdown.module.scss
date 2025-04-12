@@ -1,0 +1,50 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+}
+
+.trigger {
+    cursor: pointer;
+    padding: 8px 16px;
+    color: black;
+}
+
+.content {
+    position: absolute;
+    z-index: 50;
+    min-width: 150px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+}
+
+.item {
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: background-color 0.2s;
+}
+
+.item:hover {
+    background-color: #f1f1f1;
+}
+
+.top {
+    bottom: 100%;
+}
+
+.bottom {
+    top: 100%;
+    right: 0%;
+}
+
+.left {
+    right: 100%;
+    top: 0%;
+}
+
+.right {
+    left: 100%;
+    top: 0%;
+}

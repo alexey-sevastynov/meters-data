@@ -3,7 +3,7 @@ import { RefAttributes } from "react";
 import { ColorName, colorNames } from "@/enums/color-names";
 import { IconName, iconSizes } from "@/components/ui/icon/icon-constants";
 import { RiPriceTagFill } from "react-icons/ri";
-import { IoBarChartSharp, IoTriangle, IoClose } from "react-icons/io5";
+import { IoBarChartSharp, IoTriangle, IoClose, IoLanguage } from "react-icons/io5";
 import { BsCopy } from "react-icons/bs";
 import {
     FaLongArrowAltDown,
@@ -13,9 +13,11 @@ import {
     FaCalendarAlt,
     FaCaretSquareLeft,
     FaCaretSquareRight,
+    FaAngleDown,
+    FaAngleUp,
 } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
-import { FaCircle } from "react-icons/fa6";
+import { FaCircle, FaCheck } from "react-icons/fa6";
 
 interface MdIconProps {
     name: IconName;
@@ -40,6 +42,10 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     close: IoClose,
     caretSquareLeft: FaCaretSquareLeft,
     caretSquareRight: FaCaretSquareRight,
+    check: FaCheck,
+    language: IoLanguage,
+    arrowDown: FaAngleDown,
+    arrowUp: FaAngleUp,
 } as const;
 
 export function MdIcon({ name, id, color = colorNames.white, size = iconSizes.medium }: MdIconProps) {

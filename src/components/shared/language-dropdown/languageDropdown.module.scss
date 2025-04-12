@@ -1,0 +1,18 @@
+@import "@/styles/colors.scss";
+
+.dropdownLanguage {
+    .dropdownTriggerLanguage {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: $white;
+    }
+
+    .dropdownContentLanguage {
+        .dropdownItemLanguage {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+import Styles from "./languageDropdown.module.scss";
+import {
+    MdDropdown,
+    MdDropdownContent,
+    MdDropdownItem,
+    MdDropdownTrigger,
+} from "@/components/ui/dropdown/MdDropdown";
+import { currentLanguage } from "@/components/shared/language-dropdown/languageDropdown.funcs";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { languageKeys } from "@/enums/language-keys";
+import { setLang } from "@/store/slices/i-18-next";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { colorNames } from "@/enums/color-names";
+
+export function MdLanguageDropdown() {
+    const dispatch = useAppDispatch();
+    const lang = useAppSelector((state) => state.i18n.lang);
+
+    const isEnglish = lang === languageKeys.en;
+    const isUkraine = lang === languageKeys.ua;
+    return (
+        <MdDropdown className={Styles.dropdownLanguage}>
+            <MdDropdownTrigger className={Styles.dropdownTriggerLanguage}>
+                <MdIcon name={iconNames.language} />
+                <h5>{currentLanguage(lang)}</h5>
+            </MdDropdownTrigger>
+            <MdDropdownContent className={Styles.dropdownContentLanguage}>
+                <MdDropdownItem
+                    onSelect={() => dispatch(setLang(languageKeys.en))}
+                    className={Styles.dropdownItemLanguage}
+                >
+                    <p>English</p>
+                    {isEnglish && (
+                        <MdIcon name={iconNames.check} color={colorNames.grey} size={iconSizes.small} />
+                    )}
+                </MdDropdownItem>
+                <MdDropdownItem
+                    onSelect={() => dispatch(setLang(languageKeys.ua))}
+                    className={Styles.dropdownItemLanguage}
+                >
+                    <p>Ukraine</p>
+                    {isUkraine && (
+                        <MdIcon name={iconNames.check} color={colorNames.grey} size={iconSizes.small} />
+                    )}
+                </MdDropdownItem>
+            </MdDropdownContent>
+        </MdDropdown>
+    );
+}
