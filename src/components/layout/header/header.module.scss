@@ -1,5 +1,6 @@
 @import "@/styles/colors.scss";
 @import "@/styles/breakpoints.scss";
+@import "@/styles/sizes.scss";
 
 .header {
     left: 0px;
@@ -8,9 +9,9 @@
     padding-right: 15px;
 
     position: fixed;
-    height: 80px;
+    height: $heightHeader;
 
-    background-color: $mint;
+    background-color: $green;
 
     z-index: 1;
 

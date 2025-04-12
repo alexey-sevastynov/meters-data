@@ -22,6 +22,10 @@ export const iconNames = {
     close: "close",
     caretSquareLeft: "caretSquareLeft",
     caretSquareRight: "caretSquareRight",
+    check: "check",
+    language: "language",
+    arrowDown: "arrowDown",
+    arrowUp: "arrowUp",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];
