@@ -26,6 +26,10 @@ export const iconNames = {
     language: "language",
     arrowDown: "arrowDown",
     arrowUp: "arrowUp",
+    expand: "expand",
+    lightMode: "lightMode",
+    gear: "gear",
+    signOut: "signOut",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];

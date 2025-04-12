@@ -1,3 +1,5 @@
+@import "@/styles/colors.scss";
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -14,7 +16,7 @@
     position: absolute;
     z-index: 50;
     min-width: 150px;
-    background-color: white;
+    background-color: $white;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 8px 0;
@@ -27,7 +29,14 @@
 }
 
 .item:hover {
-    background-color: #f1f1f1;
+    background-color: $lightGrey;
+}
+
+.disabled {
+    color: $grey;
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: transparent;
 }
 
 .top {

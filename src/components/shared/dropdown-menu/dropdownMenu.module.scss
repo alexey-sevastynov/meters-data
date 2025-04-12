@@ -1,0 +1,25 @@
+@import "@/styles/colors.scss";
+
+.dropdownMenu {
+    .dropdownTriggerMenu {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: $white;
+    }
+
+    .dropdownContentMenu {
+        .dropdownItemMenu {
+            min-width: 10rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .dropdownItemMenuInner {
+                display: flex;
+                gap: 0.75rem;
+                align-items: center;
+            }
+        }
+    }
+}
