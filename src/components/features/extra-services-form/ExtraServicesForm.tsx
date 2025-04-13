@@ -23,11 +23,14 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
     const items = useAppSelector((state) => state.utilityPrices.items);
     const options = filterOptions(items);
     const translations = useAppSelector(selectTranslations);
-    const option = options.find((item) => item.category === selectedOption);
-    const optionValue = numberToString(option?.value);
-    const currentId = options.find((item) => item.category === selectedOption)?._id;
 
     const [selectedOption, setSelectedOption] = useState<string>(options[0]?.category || fixedWaterString);
+
+    const option = options.find((item) => item.category === selectedOption);
+    const optionValue = numberToString(option?.value);
+
+    const currentId = options.find((item) => item.category === selectedOption)?._id;
+
     const [inputValue, setInputValue] = useState<string>(optionValue);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
