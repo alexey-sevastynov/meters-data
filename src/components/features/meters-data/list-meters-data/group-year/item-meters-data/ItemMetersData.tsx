@@ -56,7 +56,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const isDelete = useAppSelector((state) => state.confirm.isActionDeleteItem);
     const idDelete = useAppSelector((state) => state.confirm.idDeleteItem);
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
     const currentPage: string = pathname.slice(1);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
     const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
@@ -114,7 +114,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
         <li className={`${Styles.itemMetersData} ${selectedMonthId === _id ? Styles.active : ""}`}>
             <div className={`${Styles.data} `}>
                 <p className={Styles.date} title={selectedDateDisplay}>
-                    {lang.months[month]}
+                    {translations.months[month]}
                 </p>
                 <p className={Styles.light}>{light}</p>
                 <p className={Styles.lightDay}>{lightDay}</p>

@@ -11,10 +11,10 @@ interface CategoryUtilityPricesProps {
 }
 
 export const CategoryUtilityPrices: React.FC<CategoryUtilityPricesProps> = ({ category, image }) => {
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
     return (
         <div className={Styles.categoryUtilityPrices}>
-            <p>{lang.home[category as CategoryName]},</p>
+            <p>{translations.home[category as CategoryName]},</p>
             <div className={Styles.images}>
                 {image.map((name) => (
                     <img key={name} src={getIconUrl(name)} alt={category} width={29} height={29} />

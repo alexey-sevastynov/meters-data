@@ -15,7 +15,7 @@ interface ValueUtilityPricesProps {
 
 export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesProps) {
     const dispatch = useAppDispatch();
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
 
     const [valueInput, setInputValue] = useState<string>(numberToString(value));
 
@@ -41,14 +41,14 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
 
     return (
         <div className={Styles.valueUtilityPrices}>
-            <p>1 {lang.value[valueName]} =</p>
+            <p>1 {translations.value[valueName]} =</p>
 
             <MdInput
                 value={valueInput}
                 onChange={onChange}
                 onReset={returnCurrentValues}
                 defaultValue={numberToString(value)}
-                label="Price"
+                label={translations.home.price}
                 step={0.01}
             />
 
@@ -57,7 +57,7 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
                 disabled={valueInput === numberToString(value)}
                 onClick={editValueUtilityPrice}
             >
-                {lang.home.publish}
+                {translations.btn.save}
             </MdButton>
         </div>
     );

@@ -9,7 +9,7 @@ import { useSidebar } from "@/components/context/SidebarProvider";
 
 export function Home() {
     const sidebarContext = useSidebar();
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
     const currentLanguage = useAppSelector((state) => state.i18n.lang);
     const date = new Date();
     const isUkraineLanguage = currentLanguage === language.ua.toLowerCase();
@@ -22,15 +22,15 @@ export function Home() {
         <section className="home">
             <div className={layoutStyle}>
                 <div className="title__block">
-                    <h3 className="title">{lang.home.home}</h3>
+                    <h3 className="title">{translations.home.home}</h3>
                     <MdDateDisplay
                         date={date}
-                        subTitle={lang.home.currentDate}
+                        subTitle={translations.home.currentDate}
                         language={isUkraineLanguage ? languages.ua : languages.en}
                     />
                 </div>
 
-                <p className="subtitle">{lang.home.utilityPrices}</p>
+                <p className="subtitle">{translations.home.utilityPrices}</p>
 
                 <MdListUtilityPrices />
             </div>

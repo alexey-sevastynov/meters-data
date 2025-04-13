@@ -17,7 +17,7 @@ interface MetersDataProps {
 export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
     const meterReadingsList = useAppSelector((state) => state.metersData.items);
     const status = useAppSelector((state) => state.metersData.status);
     const addressPath = location.pathname.slice(1);
@@ -32,7 +32,7 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
             <div className="overflow-auto">
                 <h4 className={Styles.title}>
                     <BsCalendar2Plus style={{ marginRight: "10px" }} />
-                    {lang.metersData["Meter Reading Submission Form for the end of the month"]}:
+                    {translations.metersData["Meter Reading Submission Form for the end of the month"]}:
                 </h4>
 
                 <FormDataMonth
@@ -44,7 +44,7 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
 
                 <h4 className={Styles.title}>
                     <BsCalendar3 style={{ marginRight: "10px" }} />
-                    {lang.metersData["Meter Reading Data Table by Months"]}:
+                    {translations.metersData["Meter Reading Data Table by Months"]}:
                 </h4>
                 <ListMetersData isWaterBlock={isWaterBlock} />
             </div>

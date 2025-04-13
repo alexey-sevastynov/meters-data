@@ -20,7 +20,7 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
     const currentPage = pathname.slice(1);
     const items = useAppSelector((state) => state.metersData.items);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
 
     const lastValueMeter = (address: string) => {
         switch (address) {
@@ -55,14 +55,14 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
                     />
 
                     <LinkButtonGroup
-                        linksGroup={getLinkButtons(pathname, lang)}
+                        linksGroup={getLinkButtons(pathname, translations)}
                         className={Styles.infoPanelMonth__header_btns}
                     />
                 </div>
 
                 <ListInfoPanelMonth isWaterBlock={isWaterBlock} items={lastValue} />
                 <LinkButtonGroup
-                    linksGroup={getLinkButtons(pathname, lang)}
+                    linksGroup={getLinkButtons(pathname, translations)}
                     className={Styles.infoPanelMonth__btns}
                 />
             </div>

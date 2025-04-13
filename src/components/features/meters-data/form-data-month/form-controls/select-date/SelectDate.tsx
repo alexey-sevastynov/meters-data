@@ -14,11 +14,11 @@ interface SelectDateProps extends DatePickerProps {
 export function SelectDate({ selectDate, setSelectDate, ...props }: SelectDateProps) {
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const language = useAppSelector((state) => state.i18n.lang);
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
 
     return (
         <div className={Style.selectDate}>
-            <label>{lang.infoPanel.date}:</label>
+            <label>{translations.infoPanel.date}:</label>
             <DatePicker
                 onChange={setSelectDate}
                 value={selectDate}

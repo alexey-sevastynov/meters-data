@@ -14,9 +14,9 @@ export const valueByTitle: Record<string, string> = {
     [titlesForMeterReadings.water]: "m³",
 };
 
-export const showValue = (title: string, lang: Lang) => {
+export const showValue = (title: string, translations: Lang) => {
     const unitOfChange = valueByTitle[title];
-    return lang.value[unitOfChange] || "";
+    return translations.value[unitOfChange] || "";
 };
 
 export const shouldRenderDescriptionTitle = (isMobileView: boolean, title: string) => {

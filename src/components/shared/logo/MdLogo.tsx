@@ -8,13 +8,13 @@ import { breakPoints } from "@/constants/break-points";
 
 export function MdLogo() {
     const dispatch = useAppDispatch();
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
     const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.xl });
 
     return (
         <div className={Styles.logo} onClick={() => dispatch(getAllMetersData())}>
             <img src={getIconUrl("logo.png")} alt="logo" width={40} height={40} />
-            {!isMobileView && <h3 className={Styles.text}>{lang.header.metersData}</h3>}
+            {!isMobileView && <h3 className={Styles.text}>{translations.header.metersData}</h3>}
         </div>
     );
 }

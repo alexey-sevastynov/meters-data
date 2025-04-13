@@ -27,7 +27,7 @@ interface MdChartProps {
 }
 
 export function MdChart({ data, title }: MdChartProps) {
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
     const filteredData = data.map((obj: ChartsDataType) => {
         const { label, light, lightDay, lightNight, gas, water } = obj;
 
@@ -47,7 +47,7 @@ export function MdChart({ data, title }: MdChartProps) {
     return (
         <div className={Styles.chart}>
             <h4>
-                {title} {lang.graphics["graphic"]}:
+                {title} {translations.graphics["graphic"]}:
             </h4>
             <Line
                 data={{
