@@ -15,6 +15,7 @@ export function MdBottomSidebar() {
                             className={({ isActive }) => (isActive ? Styles.active : Styles.noActive)}
                         >
                             <img
+                                className={Styles.itemLinkIcon}
                                 src={getIconUrl(item.imageName)}
                                 alt={item.text}
                                 width={iconSizes.large}
