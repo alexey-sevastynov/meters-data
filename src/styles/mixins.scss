@@ -7,14 +7,18 @@
     top: $heightHeader;
     padding: 35px 20px;
     width: calc(100% - $sidebarWidth);
+    min-height: calc(100vh - $heightHeader);
     background-color: $white;
+    border-top-left-radius: 0.5rem;
     @include transition(left);
 
     @media (max-width: $mobile-xl) {
         padding: 15px 10px;
         left: 0;
         width: 100%;
+        min-height: calc(100vh - $heightHeader - $widthSidebarCollapsed);
         padding-bottom: $widthSidebarCollapsed;
+        border-top-left-radius: 0rem;
     }
 }
 

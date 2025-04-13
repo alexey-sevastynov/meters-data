@@ -1,13 +1,15 @@
 $white: #ffffff;
 $black: #000000;
 $lightGreen: #c3ff78;
-$green: #00af85;
-$green-hover: #009875;
-$green-active: #019573;
-$navLink: #00c797;
+$green: #2f6346;
+$green-hover: #3e7859;
+$green-active: #4c8f6a;
+$navLink: #3a7552;
 $mint: #f0fff7;
 $mint-focus: #dafbe9;
 $red: #c20000;
+$red-hover: #d11a1a;
+$red-active: #e03333;
 $grey: #d5d5d5;
 $lightGrey: #efefef;
 $blue: #006ed3;
@@ -25,6 +27,8 @@ $colors: (
     "mint": $mint,
     "mint-focus": $mint-focus,
     "red": $red,
+    "red-hover": $red-hover,
+    "red-active": $red-active,
     "grey": $grey,
     "blue": $blue,
     "blue-active": $blue-active,
