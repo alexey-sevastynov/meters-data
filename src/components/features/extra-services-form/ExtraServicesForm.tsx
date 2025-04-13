@@ -11,6 +11,7 @@ import {
 import { colorNames } from "@/enums/color-names";
 import { useAppSelector } from "@/store/hook";
 import { numberToString } from "@/utils/conversion";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 const fixedWaterString = "Fixed Water";
 
@@ -21,14 +22,12 @@ interface ExtraServicesFormProps {
 export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
     const items = useAppSelector((state) => state.utilityPrices.items);
     const options = filterOptions(items);
-
-    const [selectedOption, setSelectedOption] = useState<string>(options[0]?.category || fixedWaterString);
-
+    const translations = useAppSelector(selectTranslations);
     const option = options.find((item) => item.category === selectedOption);
     const optionValue = numberToString(option?.value);
-
     const currentId = options.find((item) => item.category === selectedOption)?._id;
 
+    const [selectedOption, setSelectedOption] = useState<string>(options[0]?.category || fixedWaterString);
     const [inputValue, setInputValue] = useState<string>(optionValue);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +60,7 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
                     options={options}
                     value={selectedOption}
                     onChange={handleSelectChange}
+                    labelText={translations.price.addCategory}
                 />
 
                 <MdInput
@@ -68,13 +68,13 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
                     onChange={onChange}
                     onReset={returnCurrentValues}
                     defaultValue={optionValue}
-                    label="Price"
+                    label={translations.price.price}
                     step={0.01}
                 />
             </div>
             <div className={Styles.btns}>
                 <MdButton type="button" onClick={onAddValueUtilityPrice} color={colorNames.green}>
-                    add
+                    {translations.btn.add}
                 </MdButton>
             </div>
         </form>

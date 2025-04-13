@@ -38,7 +38,7 @@ export function FormDataMonth({
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const meterDataEdit = useAppSelector((state) => state.metersData.meterDataEdit);
 
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
 
     useEffect(() => {
         if (!isEdit) {
@@ -146,10 +146,10 @@ export function FormDataMonth({
                 isEdit={isEdit}
                 meterDataEdit={meterDataEdit}
                 sortedAddressMeterData={sortedAddressMeterData}
-                lang={lang}
+                translations={translations}
             />
 
-            <FormActions isEdit={isEdit} dispatch={dispatch} lang={lang} />
+            <FormActions isEdit={isEdit} dispatch={dispatch} lang={translations} />
         </form>
     );
 }

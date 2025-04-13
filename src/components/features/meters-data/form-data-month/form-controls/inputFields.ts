@@ -10,7 +10,7 @@ export interface InputField {
 }
 
 interface InputFieldsParams {
-    lang: TranslationKeys;
+    translations: TranslationKeys;
     light: string;
     setLight: SetStateFunc<string>;
     lightDay: string;
@@ -22,7 +22,7 @@ interface InputFieldsParams {
 }
 
 export function createInputFields({
-    lang,
+    translations: lang,
     light,
     setLight,
     lightDay,

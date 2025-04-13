@@ -9,15 +9,12 @@ import { colorNames } from "@/enums/color-names";
 
 // TODO: template component UtilityAccount
 export function MdBillingAccounts() {
-    const lang = useAppSelector(selectTranslations);
-
+    const translations = useAppSelector(selectTranslations);
     const { pathname } = useLocation();
     const currentAddressName: string = pathname.slice(1).replace("/price", "");
-
     const items = useAppSelector((state) => state.billingAccounts.items);
     const status = useAppSelector((state) => state.billingAccounts.status);
     const errorMessage = useAppSelector((state) => state.billingAccounts.errorMessage);
-
     const item: BillingAccount | undefined = items.find((i) => i.address.includes(currentAddressName));
 
     if (status === "loading") return <p>loading...</p>;
@@ -26,17 +23,17 @@ export function MdBillingAccounts() {
 
     return (
         <div className={Styles.utilityAccount}>
-            <h2 className={Styles.utilityAccount__title}>{lang.utilityAccount.title}</h2>
+            <h2 className={Styles.utilityAccount__title}>{translations.utilityAccount.title}</h2>
 
             {/* todo: add items & item component later */}
             <div className={Styles.utilityAccount__items}>
                 {item?.light && (
                     <div className={Styles.utilityAccount__items_item}>
-                        <p>{lang.utilityAccount.light}:</p>
+                        <p>{translations.utilityAccount.light}:</p>
                         <div className={Styles.utilityAccount__items_item_content}>
                             <p className={Styles.utilityAccount__items_item_content_value}>{item?.light}</p>
                             <button
-                                title={lang.utilityAccount.copy}
+                                title={translations.utilityAccount.copy}
                                 className={Styles.utilityAccount__items_item_content_copy}
                                 onClick={() => navigator.clipboard.writeText(item?.light)}
                             >
@@ -52,11 +49,11 @@ export function MdBillingAccounts() {
 
                 {item?.water && (
                     <div className={Styles.utilityAccount__items_item}>
-                        <p>{lang.utilityAccount.water}:</p>
+                        <p>{translations.utilityAccount.water}:</p>
                         <div className={Styles.utilityAccount__items_item_content}>
                             <p className={Styles.utilityAccount__items_item_content_value}>{item?.water}</p>
                             <button
-                                title={lang.utilityAccount.copy}
+                                title={translations.utilityAccount.copy}
                                 className={Styles.utilityAccount__items_item_content_copy}
                                 onClick={() => navigator.clipboard.writeText(item?.water)}
                             >
@@ -72,11 +69,11 @@ export function MdBillingAccounts() {
 
                 {item?.gas && (
                     <div className={Styles.utilityAccount__items_item}>
-                        <p>{lang.utilityAccount.gas}:</p>
+                        <p>{translations.utilityAccount.gas}:</p>
                         <div className={Styles.utilityAccount__items_item_content}>
                             <p className={Styles.utilityAccount__items_item_content_value}>{item?.gas}</p>
                             <button
-                                title={lang.utilityAccount.copy}
+                                title={translations.utilityAccount.copy}
                                 className={Styles.utilityAccount__items_item_content_copy}
                                 onClick={() => navigator.clipboard.writeText(item?.gas)}
                             >

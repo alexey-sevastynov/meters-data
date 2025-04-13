@@ -21,10 +21,10 @@ export function FormControls({
     isEdit,
     meterDataEdit,
     sortedAddressMeterData,
-    lang,
+    translations,
 }: FormControlsProps) {
     const inputFields = createInputFields({
-        lang,
+        translations,
         light,
         setLight,
         lightDay,
@@ -45,7 +45,7 @@ export function FormControls({
                 meterDataEdit={meterDataEdit}
                 sortedAddressMeterData={sortedAddressMeterData}
                 isWaterBlock={isWaterBlock}
-                lang={lang}
+                translations={translations}
                 water={water}
                 setWater={setWater}
             />

@@ -8,6 +8,7 @@ import { deleteItem, editItem } from "./ItemMonthlyMoneyCalculations.funcs";
 import { CalculationDataWithId } from "@/types/calculation-data-with-id";
 import { translationTitle } from "./helpers/translationTitle";
 import { translationDescription } from "./helpers/translationDescription";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface ItemMonthlyMoneyCalculationsProps {
     items: CalculationDataWithId[];
@@ -23,9 +24,11 @@ export function ItemMonthlyMoneyCalculations({
     address,
 }: ItemMonthlyMoneyCalculationsProps) {
     const dispatch = useAppDispatch();
+    const translations = useAppSelector(selectTranslations);
     const isEdit = useAppSelector((state) => state.monthlyMoneyCalculations.isEdit);
-    const [language, setLanguage] = useState<"EN" | "UA">("EN");
-    const currencyTranslation = language === "EN" ? "uah" : "грн";
+    const currentLanguage = useAppSelector((state) => state.i18n.lang);
+    const [language, setLanguage] = useState<"en" | "ua">(currentLanguage);
+    const currencyTranslation = language === "en" ? "uah" : "грн";
 
     const onDeleteItem = useCallback(() => {
         deleteItem(id, dispatch);
@@ -57,10 +60,10 @@ export function ItemMonthlyMoneyCalculations({
     return (
         <li className={Style.itemMonthlyMoneyCalculations}>
             <div className={Style.btns}>
-                <button onClick={() => setLanguage("EN")} className={language === "EN" ? Style.active : ""}>
+                <button onClick={() => setLanguage("en")} className={language === "en" ? Style.active : ""}>
                     EN
                 </button>
-                <button onClick={() => setLanguage("UA")} className={language === "UA" ? Style.active : ""}>
+                <button onClick={() => setLanguage("ua")} className={language === "ua" ? Style.active : ""}>
                     UA
                 </button>
             </div>
@@ -71,10 +74,10 @@ export function ItemMonthlyMoneyCalculations({
                         return (
                             <li key={title} className={Style.item}>
                                 <p className={Style.title}>
-                                    {language === "EN" ? title : translationTitle(title)}:
+                                    {language === "en" ? title : translationTitle(title)}:
                                 </p>
                                 <p>
-                                    {language === "EN" ? description : translationDescription(description)}{" "}
+                                    {language === "en" ? description : translationDescription(description)}{" "}
                                     {title === "Date" ? "" : currencyTranslation}
                                 </p>
                             </li>
@@ -82,7 +85,7 @@ export function ItemMonthlyMoneyCalculations({
                     })}
                 <li className={`${Style.item} ${Style.itemLast}`}>
                     <p className={Style.title}>
-                        {language === "EN" ? "Amount of money:" : "Кількість грошей:"}
+                        {language === "en" ? "Amount of money:" : "Кількість грошей:"}
                     </p>
                     <p className={Style.sumMoney}>{`${sumMoney} ${currencyTranslation}`}</p>
                 </li>
@@ -90,13 +93,13 @@ export function ItemMonthlyMoneyCalculations({
 
             <div className={Style.btns}>
                 <MdButton onClick={onEditItem} disabled={isEdit}>
-                    edit
+                    {translations.btn.edit}
                 </MdButton>
                 <MdButton onClick={onDeleteItem} disabled={isEdit} color={colorNames.red}>
-                    delete
+                    {translations.btn.delete}
                 </MdButton>
                 <MdButton onClick={captureScreen} disabled={isEdit}>
-                    capture
+                    {translations.btn.capture}
                 </MdButton>
             </div>
         </li>

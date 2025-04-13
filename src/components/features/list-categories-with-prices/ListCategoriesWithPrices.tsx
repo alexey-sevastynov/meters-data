@@ -14,6 +14,7 @@ import { MdButton } from "@/components/ui/button/MdButton";
 import { editItem, isShowDeleteButton, saveItemDB } from "./ListCategoriesWithPrices.funcs";
 import { colorNames } from "@/enums/color-names";
 import { stringToNumber } from "@/utils/conversion";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface ListCategoriesWithPricesProps {
     dispatch: AppDispatch;
@@ -21,6 +22,7 @@ interface ListCategoriesWithPricesProps {
 
 export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPricesProps) {
     const { pathname } = useLocation();
+    const translations = useAppSelector(selectTranslations);
     const currentPageName: string = pathname.replace(/^\/|\/price$/g, "");
     const currentItem = useAppSelector((state) => state.monthlyMoneyCalculations.utilityCosts);
     const sumMoney = useAppSelector((state) => state.monthlyMoneyCalculations.sumMoney);
@@ -58,32 +60,33 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
 
     return (
         <ul className={Styles.listCategoriesWithPrices}>
-            {currentItem &&
-                currentItem.map(({ title, description }) => (
-                    <div key={title} className={Styles.itemBlock}>
-                        {isShowDeleteButton(title) && (
-                            <button
-                                className={Styles.btn}
-                                type="button"
-                                title={`delete data`}
-                                onClick={() => onDeleteItem(title, description)}
-                            >
-                                <img src={getIconUrl("delete.png")} alt="delete" width={25} height={25} />
-                            </button>
-                        )}
-                        <li className={Styles.item}>
-                            <p className={Styles.title}>{title}:</p>
-                            <p>
-                                {description} {title === "Date" ? "" : "uah"}
-                            </p>
-                        </li>
-                    </div>
-                ))}
+            {currentItem?.map(({ title, description }) => (
+                <div key={title} className={Styles.itemBlock}>
+                    {isShowDeleteButton(title) && (
+                        <button
+                            className={Styles.btn}
+                            type="button"
+                            title={`delete data`}
+                            onClick={() => onDeleteItem(title, description)}
+                        >
+                            <img src={getIconUrl("delete.png")} alt="delete" width={25} height={25} />
+                        </button>
+                    )}
+                    <li className={Styles.item}>
+                        <p className={Styles.title}>{title}:</p>
+                        <p>
+                            {description} {title === "Date" ? "" : translations.value.uah}
+                        </p>
+                    </li>
+                </div>
+            ))}
 
             <div className={Styles.footer}>
                 <li className={`${Styles.item} ${Styles.itemLast}`}>
-                    <p className={Styles.title}>Amount of money:</p>
-                    <p className={Styles.sumMoney}>{sumMoney} uah</p>
+                    <p className={Styles.title}>{translations.price.amount}:</p>
+                    <p className={Styles.sumMoney}>
+                        {sumMoney} {translations.value.uah}
+                    </p>
                 </li>
                 {isEdit ? (
                     <div className={Styles.btns}>

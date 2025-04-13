@@ -8,13 +8,14 @@ import {
 import { currentLanguage } from "@/components/shared/language-dropdown/languageDropdown.funcs";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { languageKeys } from "@/enums/language-keys";
-import { setLang } from "@/store/slices/i-18-next";
+import { selectTranslations, setLang } from "@/store/slices/i-18-next";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { colorNames } from "@/enums/color-names";
 
 export function MdLanguageDropdown() {
     const dispatch = useAppDispatch();
+    const translations = useAppSelector(selectTranslations);
     const lang = useAppSelector((state) => state.i18n.lang);
 
     const isEnglish = lang === languageKeys.en;
@@ -30,7 +31,7 @@ export function MdLanguageDropdown() {
                     onSelect={() => dispatch(setLang(languageKeys.en))}
                     className={Styles.dropdownItemLanguage}
                 >
-                    <p>English</p>
+                    <p>{translations.dropdownLanguage.english}</p>
                     {isEnglish && (
                         <MdIcon name={iconNames.check} color={colorNames.grey} size={iconSizes.small} />
                     )}
@@ -39,7 +40,7 @@ export function MdLanguageDropdown() {
                     onSelect={() => dispatch(setLang(languageKeys.ua))}
                     className={Styles.dropdownItemLanguage}
                 >
-                    <p>Ukraine</p>
+                    <p>{translations.dropdownLanguage.ukraine}</p>
                     {isUkraine && (
                         <MdIcon name={iconNames.check} color={colorNames.grey} size={iconSizes.small} />
                     )}

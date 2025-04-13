@@ -29,7 +29,8 @@
     "value": {
         "kW": "kW",
         "m³": "m³",
-        "piece": "piece"
+        "piece": "piece",
+        "uah": "uah"
     },
     "infoPanel": {
         "title": "Consumption of Utilities for",
@@ -62,7 +63,8 @@
         "edit": "Edit",
         "cancel": "Cancel",
         "save": "Save",
-        "delete": "Delete"
+        "delete": "Delete",
+        "capture": "Capture"
     },
     "graphics": {
         "graphics": "graphics",
@@ -83,5 +85,23 @@
         "light": "Light",
         "gas": "Gas",
         "water": "Water"
+    },
+    "dropdownMenu": {
+        "lightMode": "Light mode",
+        "darkMode": "Dark mode",
+        "settings": "Settings",
+        "signOut": "Sign out"
+    },
+    "dropdownLanguage": {
+        "english": "English",
+        "ukraine": "Ukraine"
+    },
+    "price": {
+        "price": "Price",
+        "addCategory": "Add category",
+        "amount": "Amount",
+        "date": "Date",
+        "monthlyMoneyCalculations": "Monthly Money Calculations",
+        "choosePeriod": "Choose period"
     }
 }

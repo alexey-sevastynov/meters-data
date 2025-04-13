@@ -21,10 +21,10 @@ export function ItemInfoPanelMonth({
     index,
 }: ItemInfoPanelMonthProps) {
     const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.md });
-    const lang = useAppSelector(selectTranslations);
+    const translations = useAppSelector(selectTranslations);
 
     const showDescriptionTitle = (
-        <dt className={Style.title}>{lang.infoPanel[title as TitleInfoPanelMonthType]}</dt>
+        <dt className={Style.title}>{translations.infoPanel[title as TitleInfoPanelMonthType]}</dt>
     );
     const hideBlockWater = !isWaterBlock && title === titlesForMeterReadings.water;
 
@@ -40,7 +40,7 @@ export function ItemInfoPanelMonth({
         <div className={Style.itemInfoPanelMonth}>
             <dd className={Style.itemInfoPanelMonth__header}>
                 <p>
-                    {description} {showValue(title, lang)}
+                    {description} {showValue(title, translations)}
                 </p>
                 <div className={Style.itemInfoPanelMonth__header_value_percent}>
                     <ValueChangeIndicator percentDifference={percentDifference} />

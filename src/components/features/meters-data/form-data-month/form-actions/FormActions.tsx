@@ -27,7 +27,7 @@ export function FormActions({ isEdit, dispatch, lang }: FormActionsProps) {
                 </MdButton>
             ) : (
                 <MdButton type="submit" iconName={iconNames.plusCircle}>
-                    {lang.btn.save}
+                    {lang.btn.add}
                 </MdButton>
             )}
         </div>

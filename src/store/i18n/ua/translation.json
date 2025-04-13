@@ -29,7 +29,8 @@
     "value": {
         "kW": "кВт",
         "m³": "м³",
-        "piece": "шт."
+        "piece": "шт.",
+        "uah": "грн"
     },
     "infoPanel": {
         "title": "Споживання комунальних послуг за",
@@ -62,7 +63,8 @@
         "edit": "Редагувати",
         "cancel": "Відміна",
         "save": "Зберегти",
-        "delete": "Видалити"
+        "delete": "Видалити",
+        "capture": "Знімок"
     },
     "graphics": {
         "graphics": "графіки",
@@ -83,5 +85,23 @@
         "light": "Світло",
         "gas": "Газ",
         "water": "Вода"
+    },
+    "dropdownMenu": {
+        "lightMode": "Світлий режим",
+        "darkMode": "Темний режим",
+        "settings": "Налаштування",
+        "signOut": "Вихід"
+    },
+    "dropdownLanguage": {
+        "english": "Англійська",
+        "ukraine": "Українська"
+    },
+    "price": {
+        "price": "Ціна",
+        "addCategory": "Додати категорію",
+        "amount": "Кількість",
+        "date": "Дата",
+        "monthlyMoneyCalculations": "Місячні рахунки",
+        "choosePeriod": "Виберіть період"
     }
 }

@@ -20,5 +20,5 @@ export interface FormControlsProps {
     isEdit: boolean;
     meterDataEdit: MeterDataWithObjectId | null;
     sortedAddressMeterData: MeterDataWithObjectId[];
-    lang: TranslationKeys;
+    translations: TranslationKeys;
 }

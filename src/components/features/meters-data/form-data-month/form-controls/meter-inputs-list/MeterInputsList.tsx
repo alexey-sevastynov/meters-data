@@ -16,7 +16,7 @@ interface MeterInputsListProps {
     meterDataEdit: MeterDataWithObjectId | null;
     sortedAddressMeterData: MeterDataWithObjectId[];
     isWaterBlock: boolean;
-    lang: TranslationKeys;
+    translations: TranslationKeys;
     water: string;
     setWater: SetStateFunc<string>;
 }
@@ -27,7 +27,7 @@ export function MeterInputsList({
     meterDataEdit,
     sortedAddressMeterData,
     isWaterBlock,
-    lang,
+    translations,
     water,
     setWater,
 }: MeterInputsListProps) {
@@ -66,7 +66,7 @@ export function MeterInputsList({
             {isWaterBlock && (
                 <MdInput
                     defaultValue={waterDefaultValue}
-                    label={lang.infoPanel["Water general"]}
+                    label={translations.infoPanel["Water general"]}
                     value={water}
                     onChange={onChange}
                     onReset={returnCurrentValues}
