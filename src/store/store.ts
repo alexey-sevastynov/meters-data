@@ -8,10 +8,19 @@ import { authReducer } from "@/store/slices/auth-slice";
 import { confirmReducer } from "@/store/slices/confirm-popup-slice";
 import { i18nReducer } from "@/store/slices/i-18-next";
 import { billingAccountsReducer } from "@/store/slices/billing-account-slice";
+import { sliceNames } from "@/store/slice-names";
 
 const persistConfig = {
     key: "root",
     storage,
+    whitelist: [
+        sliceNames.billingAccounts,
+        sliceNames.utilityPrices,
+        sliceNames.metersData,
+        sliceNames.monthlyMoneyCalculations,
+        sliceNames.auth,
+        sliceNames.confirm,
+    ],
 };
 
 const reducer = combineReducers({

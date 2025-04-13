@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sliceNames } from "@/store/slice-names";
 
 interface IAuthSlice {
     isAuth: boolean;
@@ -9,7 +10,7 @@ const initialState: IAuthSlice = {
 };
 
 const AuthSlice = createSlice({
-    name: "AuthSlice",
+    name: sliceNames.auth,
     initialState,
     reducers: {
         logIn: (state) => {

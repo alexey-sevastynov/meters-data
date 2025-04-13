@@ -1,85 +1,87 @@
 {
-  "header": {
-    "metersData": "Лічильники",
-    "mail": "Привіт, alexseva94@gmail.com",
-    "signOut": "Вийти"
-  },
-  "home": {
-    "home": "Сюрпризові Відомості",
-    "utilityPrices": "Ціни на комунальні послуги:",
-    "Light general": "Світло",
-    "Light day": "Світло день",
-    "Light night": "Світло ніч",
-    "Gas": "Газ",
-    "Water": "Вода",
-    "Fixed water": "Фіксована вода",
-    "Delivery Gas": "Доставка газу",
-    "Delivery Water": "Доставка води",
-    "OSMD": "ОСББ",
-    "Trash": "Сміття",
-    "Intercom": "Домофон",
-    "Internet Kyivstar": "Kyivstar",
-    "Internet Soyuz T.": "Soyuz T.",
-    "Internet": "Інтернет",
-    "Heating": "Опалення",
-    "publish": "змінити",
-    "price": "ціна",
-    "currentDate": "Поточна дата"
-  },
-  "value": {
-    "kW": "кВт",
-    "m³": "м³",
-    "piece": "шт."
-  },
-  "infoPanel": {
-    "title": "Споживання комунальних послуг за",
-    "price": "Ціни",
-    "graphics": "Графіки",
-    "Light general": "Світло",
-    "Light day": "Світло день",
-    "Light night": "Світло ніч",
-    "Gas General": "Газ",
-    "Water general": "Вода",
-    "date": "Дата",
-    "month": "Місяць"
-  },
-  "months": {
-    "January": "Січень",
-    "February": "Лютий",
-    "March": "Березень",
-    "April": "Квітень",
-    "May": "Травень",
-    "June": "Червень",
-    "July": "Липень",
-    "August": "Серпень",
-    "September": "Вересень",
-    "October": "Жовтень",
-    "November": "Листопад",
-    "December": "Грудень"
-  },
-  "btn": {
-    "add": "Додати",
-    "edit": "Редагувати",
-    "cancel": "Відміна"
-  },
-  "graphics": {
-    "graphics": "графіки",
-    "graphic": "графік",
-    "Light": "Світло",
-    "Light day": "Світло День",
-    "Light night": "Світло Ніч",
-    "Gas": "Газ",
-    "Water": "Вода"
-  },
-  "metersData": {
-    "Meter Reading Submission Form for the end of the month": "Форма для заповнення показників лічильника на кінець місяця",
-    "Meter Reading Data Table by Months": "Таблиця показників лічильника за місяцями"
-  },
-  "utilityAccount": {
-    "title": "Особисті рахунки",
-    "copy": "Копіювати",
-    "light": "Світло",
-    "gas": "Газ",
-    "water": "Вода"
-  }
+    "header": {
+        "metersData": "Лічильники",
+        "mail": "Привіт, alexseva94@gmail.com",
+        "signOut": "Вийти"
+    },
+    "home": {
+        "home": "Сюрпризові Відомості",
+        "utilityPrices": "Ціни на комунальні послуги:",
+        "Light general": "Світло",
+        "Light day": "Світло день",
+        "Light night": "Світло ніч",
+        "Gas": "Газ",
+        "Water": "Вода",
+        "Fixed water": "Фіксована вода",
+        "Delivery Gas": "Доставка газу",
+        "Delivery Water": "Доставка води",
+        "OSMD": "ОСББ",
+        "Trash": "Сміття",
+        "Intercom": "Домофон",
+        "Internet Kyivstar": "Kyivstar",
+        "Internet Soyuz T.": "Soyuz T.",
+        "Internet": "Інтернет",
+        "Heating": "Опалення",
+        "publish": "змінити",
+        "price": "ціна",
+        "currentDate": "Поточна дата"
+    },
+    "value": {
+        "kW": "кВт",
+        "m³": "м³",
+        "piece": "шт."
+    },
+    "infoPanel": {
+        "title": "Споживання комунальних послуг за",
+        "price": "Ціни",
+        "graphics": "Графіки",
+        "Light general": "Світло",
+        "Light day": "Світло день",
+        "Light night": "Світло ніч",
+        "Gas General": "Газ",
+        "Water general": "Вода",
+        "date": "Дата",
+        "month": "Місяць"
+    },
+    "months": {
+        "January": "Січень",
+        "February": "Лютий",
+        "March": "Березень",
+        "April": "Квітень",
+        "May": "Травень",
+        "June": "Червень",
+        "July": "Липень",
+        "August": "Серпень",
+        "September": "Вересень",
+        "October": "Жовтень",
+        "November": "Листопад",
+        "December": "Грудень"
+    },
+    "btn": {
+        "add": "Додати",
+        "edit": "Редагувати",
+        "cancel": "Відміна",
+        "save": "Зберегти",
+        "delete": "Видалити"
+    },
+    "graphics": {
+        "graphics": "графіки",
+        "graphic": "графік",
+        "Light": "Світло",
+        "Light day": "Світло День",
+        "Light night": "Світло Ніч",
+        "Gas": "Газ",
+        "Water": "Вода"
+    },
+    "metersData": {
+        "Meter Reading Submission Form for the end of the month": "Форма для заповнення показників лічильника на кінець місяця",
+        "Meter Reading Data Table by Months": "Таблиця показників лічильника за місяцями"
+    },
+    "utilityAccount": {
+        "title": "Особисті рахунки",
+        "copy": "Копіювати",
+        "light": "Світло",
+        "gas": "Газ",
+        "water": "Вода"
+    }
 }

@@ -6,8 +6,8 @@ import { actionNames } from "@/store/action-names";
 import { apiEndpointNames } from "@/store/api-endpoint-names";
 import { StatusName, statusNames } from "@/constants/status";
 import { addToastNotifications } from "@/store/toast-service";
+import { sliceNames } from "@/store/slice-names";
 
-const sliceName = "utilityPrices";
 const messageSuccessUpdate = "Price changed, success! 👌";
 
 export const getAllUtilityPrice = createAsyncThunk<UtilityPrice[], void, { rejectValue: AxiosError }>(
@@ -33,7 +33,7 @@ const initialState: IUtilityPriceState = {
 };
 
 const utilityPriceSlice = createSlice({
-    name: sliceName,
+    name: sliceNames.utilityPrices,
     initialState,
     reducers: {},
     extraReducers: (builder) => {
