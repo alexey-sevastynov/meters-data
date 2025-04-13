@@ -2,11 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.types";
 import { extraReducers } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.builders";
 import * as reducers from "@/store/slices/monthly-money-calculations/monthly-money-calculations.reducers";
-
-export const sliceName = "monthlyMoneyCalculations";
+import { sliceNames } from "@/store/slice-names";
 
 const monthlyMoneyCalculationsSlice = createSlice({
-    name: sliceName,
+    name: sliceNames.monthlyMoneyCalculations,
     initialState,
     reducers,
     extraReducers,

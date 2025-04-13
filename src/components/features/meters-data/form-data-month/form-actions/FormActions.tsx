@@ -17,17 +17,17 @@ export function FormActions({ isEdit, dispatch, lang }: FormActionsProps) {
         <div className={Style.btns}>
             {isEdit && (
                 <MdButton type="button" onClick={() => dispatch(setNotEdit())} color={colorNames.red}>
-                    {lang.btn["cancel"]}
+                    {lang.btn.cancel}
                 </MdButton>
             )}
 
             {isEdit ? (
                 <MdButton type="submit" iconName={iconNames.edit}>
-                    {lang.btn["edit"]}
+                    {lang.btn.save}
                 </MdButton>
             ) : (
                 <MdButton type="submit" iconName={iconNames.plusCircle}>
-                    {lang.btn["add"]}
+                    {lang.btn.save}
                 </MdButton>
             )}
         </div>

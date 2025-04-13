@@ -4,6 +4,7 @@ import ukraineTranslate from "@/store/i18n/ua/translation.json";
 import { defaultLang, supportedLangs } from "@/store/i18n/config";
 import { RootState } from "@/store/store";
 import { SupportedLang, TranslationsByLang } from "@/types/i-18-next-types";
+import { sliceNames } from "@/store/slice-names";
 
 interface I18nState {
     lang: SupportedLang;
@@ -21,7 +22,7 @@ const initialState: I18nState = {
 };
 
 const i18nSlice = createSlice({
-    name: "i18n",
+    name: sliceNames.i18n,
     initialState,
     reducers: {
         setLang: (state, action: PayloadAction<SupportedLang>) => {

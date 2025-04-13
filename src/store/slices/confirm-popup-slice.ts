@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { sliceNames } from "@/store/slice-names";
 
 interface IConfirmPopup {
     isOpen: boolean;
@@ -17,7 +18,7 @@ const initialState: IConfirmPopup = {
 };
 
 const ConfirmPopup = createSlice({
-    name: "ConfirmPopup",
+    name: sliceNames.confirm,
     initialState,
     reducers: {
         openPopup: (state) => {

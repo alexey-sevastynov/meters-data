@@ -1,85 +1,87 @@
 {
-  "header": {
-    "metersData": "MetersData",
-    "mail": "Hello, alexseva94@gmail.com",
-    "signOut": "Sign out"
-  },
-  "home": {
-    "home": "Home",
-    "utilityPrices": "Utility prices:",
-    "Light general": "Light general",
-    "Light day": "Light day",
-    "Light night": "Light night",
-    "Gas": "Gas",
-    "Water": "Water",
-    "Fixed water": "Fixed water",
-    "Delivery Gas": "Delivery Gas",
-    "Delivery Water": "Delivery Water",
-    "OSMD": "OSMD",
-    "Trash": "Trash",
-    "Intercom": "Intercom",
-    "Internet Kyivstar": "Internet Kyivstar",
-    "Internet Soyuz T.": "Internet Soyuz T.",
-    "Internet": "Internet",
-    "Heating": "Heating",
-    "publish": "publish",
-    "price": "price",
-    "currentDate": "Current date"
-  },
-  "value": {
-    "kW": "kW",
-    "m³": "m³",
-    "piece": "piece"
-  },
-  "infoPanel": {
-    "title": "Consumption of Utilities for",
-    "price": "Price",
-    "graphics": "Graphics",
-    "Light general": "Light",
-    "Light day": "Light day",
-    "Light night": "Light night",
-    "Gas General": "Gas",
-    "Water general": "Water",
-    "date": "Date",
-    "month": "Month"
-  },
-  "months": {
-    "January": "January",
-    "February": "February",
-    "March": "March",
-    "April": "April",
-    "May": "May",
-    "June": "June",
-    "July": "July",
-    "August": "August",
-    "September": "September",
-    "October": "October",
-    "November": "November",
-    "December": "December"
-  },
-  "btn": {
-    "add": "Add",
-    "edit": "Edit",
-    "cancel": "Cancel"
-  },
-  "graphics": {
-    "graphics": "graphics",
-    "graphic": "graphic",
-    "Light": "Light",
-    "Light day": "Light Day",
-    "Light night": "Light Night",
-    "Gas": "Gas",
-    "Water": "Water"
-  },
-  "metersData": {
-    "Meter Reading Submission Form for the end of the month": "Meter Reading Submission Form for the end of the month",
-    "Meter Reading Data Table by Months": "Meter Reading Data Table by Months"
-  },
-  "utilityAccount": {
-    "title": "Personal accounts",
-    "copy": "Copy",
-    "light": "Light",
-    "gas": "Gas",
-    "water": "Water"
-  }
+    "header": {
+        "metersData": "MetersData",
+        "mail": "Hello, alexseva94@gmail.com",
+        "signOut": "Sign out"
+    },
+    "home": {
+        "home": "Home",
+        "utilityPrices": "Utility prices:",
+        "Light general": "Light general",
+        "Light day": "Light day",
+        "Light night": "Light night",
+        "Gas": "Gas",
+        "Water": "Water",
+        "Fixed water": "Fixed water",
+        "Delivery Gas": "Delivery Gas",
+        "Delivery Water": "Delivery Water",
+        "OSMD": "OSMD",
+        "Trash": "Trash",
+        "Intercom": "Intercom",
+        "Internet Kyivstar": "Internet Kyivstar",
+        "Internet Soyuz T.": "Internet Soyuz T.",
+        "Internet": "Internet",
+        "Heating": "Heating",
+        "publish": "publish",
+        "price": "price",
+        "currentDate": "Current date"
+    },
+    "value": {
+        "kW": "kW",
+        "m³": "m³",
+        "piece": "piece"
+    },
+    "infoPanel": {
+        "title": "Consumption of Utilities for",
+        "price": "Price",
+        "graphics": "Graphics",
+        "Light general": "Light",
+        "Light day": "Light day",
+        "Light night": "Light night",
+        "Gas General": "Gas",
+        "Water general": "Water",
+        "date": "Date",
+        "month": "Month"
+    },
+    "months": {
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December"
+    },
+    "btn": {
+        "add": "Add",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete"
+    },
+    "graphics": {
+        "graphics": "graphics",
+        "graphic": "graphic",
+        "Light": "Light",
+        "Light day": "Light Day",
+        "Light night": "Light Night",
+        "Gas": "Gas",
+        "Water": "Water"
+    },
+    "metersData": {
+        "Meter Reading Submission Form for the end of the month": "Meter Reading Submission Form for the end of the month",
+        "Meter Reading Data Table by Months": "Meter Reading Data Table by Months"
+    },
+    "utilityAccount": {
+        "title": "Personal accounts",
+        "copy": "Copy",
+        "light": "Light",
+        "gas": "Gas",
+        "water": "Water"
+    }
 }

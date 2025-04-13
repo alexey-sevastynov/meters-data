@@ -5,8 +5,7 @@ import { BillingAccount } from "@/store/models/billing-account";
 import { statusNames, StatusName } from "@/constants/status";
 import { actionNames } from "@/store/action-names";
 import { apiEndpointNames } from "@/store/api-endpoint-names";
-
-const sliceName = "billingAccounts";
+import { sliceNames } from "@/store/slice-names";
 
 export const getAllBillingAccounts = createAsyncThunk<BillingAccount[], void, { rejectValue: AxiosError }>(
     actionNames.billingAccount.getAll,
@@ -26,7 +25,7 @@ const initialState: IBillingAccountSlice = {
 };
 
 const billingAccountSlice = createSlice({
-    name: sliceName,
+    name: sliceNames.billingAccounts,
     initialState,
     reducers: {},
     extraReducers: (builder) => {
