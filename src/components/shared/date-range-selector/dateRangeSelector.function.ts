@@ -6,11 +6,11 @@ export const isActive = (selectedDateDisplay: string, itemDate: string, currentL
 
 export const formatDateDisplay = (
     itemDate: string,
-    isDayView: boolean,
-    isMonthView: boolean,
+    isMonthRangeLabel: boolean,
+    isYearLabel: boolean,
     currentLang?: string
 ) => {
-    return getDaysInMonths(itemDate, isDayView, isMonthView, currentLang);
+    return getDaysInMonths(itemDate, isMonthRangeLabel, isYearLabel, currentLang);
 };
 
 export const handleClickOutside = (
