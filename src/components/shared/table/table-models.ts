@@ -1,3 +1,5 @@
+import { IconName } from "@/components/ui/icon/icon-constants";
+
 export interface TableColumn<K = string, L = string> {
     key: K;
     label: L;
@@ -9,6 +11,14 @@ export interface TableColumn<K = string, L = string> {
 export interface TableRow {
     [key: string]: unknown;
     isLatestData?: boolean;
+    actions?: TableAction[];
+}
+
+export interface TableAction {
+    icon: IconName;
+    onClick: (row: TableRow) => void;
+    label: string;
+    visible?: boolean;
 }
 
 export const tableColumnTypes = {

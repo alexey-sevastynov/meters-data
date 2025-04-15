@@ -1,17 +1,26 @@
-import { TableColumn, tableColumnTypes } from "@/components/shared/table/table-models";
+import { TableAction, TableColumn, tableColumnTypes, TableRow } from "@/components/shared/table/table-models";
 import { getFormatDate } from "@/components/shared/table/body-cell/MdTableBodyCell.funcs";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { colorNames } from "@/enums/color-names";
+import { useLocation } from "react-router-dom";
 
 interface MdTableBodyCellProps {
+    id: unknown;
     column: TableColumn;
     value: unknown;
     isReadOnly: boolean;
-    isLatestData?: boolean;
+    isHiddenCell: boolean;
+    row: TableRow;
+    actions?: TableAction[];
 }
 
-export function MdTableBodyCell({ column, value, isLatestData, isReadOnly }: MdTableBodyCellProps) {
+export function MdTableBodyCell({ id, column, value, isHiddenCell, actions, row }: MdTableBodyCellProps) {
+    const { pathname } = useLocation();
+    const address = pathname.slice(1);
+
+    if (isHiddenCell) return;
+
     switch (column.type) {
         case tableColumnTypes.string:
             return <td>{value as string}</td>;
@@ -23,22 +32,36 @@ export function MdTableBodyCell({ column, value, isLatestData, isReadOnly }: MdT
             return <td>{getFormatDate(value as string)}</td>;
         case tableColumnTypes.actions:
             return (
-                <td>
-                    <button type="button">
-                        <MdIcon name={iconNames.view} color={colorNames.black} />
-                    </button>
-                    {!isReadOnly && (
-                        <button type="button">
-                            <MdIcon name={iconNames.edit} color={colorNames.black} />
-                        </button>
+                <th>
+                    {actions?.map(
+                        (action) =>
+                            action.visible && (
+                                <button
+                                    key={action.icon}
+                                    onClick={() =>
+                                        action.onClick({
+                                            id: String(id),
+                                            address,
+                                            date: row.date,
+                                            light: row.light,
+                                            lightDay: row.lightDay,
+                                            lightNight: row.lightNight,
+                                            gas: row.gas,
+                                            water: row.water,
+                                            createdAt: row.createdAt,
+                                            updatedAt: row.updatedAt,
+                                        })
+                                    }
+                                    title={action.label}
+                                    type="button"
+                                >
+                                    <MdIcon name={iconNames[action.icon]} color={colorNames.black} />
+                                </button>
+                            )
                     )}
-                    {!isReadOnly && isLatestData && (
-                        <button type="button">
-                            <MdIcon name={iconNames.delete} color={colorNames.black} />
-                        </button>
-                    )}
-                </td>
+                </th>
             );
+
         default:
             return <td>{value as string}</td>;
     }

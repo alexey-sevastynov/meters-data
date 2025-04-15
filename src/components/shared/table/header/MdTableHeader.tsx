@@ -1,17 +1,29 @@
-import { TableColumn } from "@/components/shared/table/table-models";
+import { TableAction, TableColumn } from "@/components/shared/table/table-models";
 import { MdTableHeaderCell } from "@/components/shared/table/header-cell/MdTableHeaderCell";
 
-interface Props {
+interface MdTableHeaderProps {
     columns: TableColumn[];
     isReadOnly: boolean;
+    listHiddenColumns: string[];
+    tableAction?: TableAction;
 }
 
-export function MdTableHeader({ columns, isReadOnly }: Props) {
+export function MdTableHeader({ columns, isReadOnly, listHiddenColumns, tableAction }: MdTableHeaderProps) {
     return (
         <thead style={{ backgroundColor: "lightgrey" }}>
-            {columns.map((col) => (
-                <MdTableHeaderCell key={col.key} column={col} isReadOnly={isReadOnly} />
-            ))}
+            {columns.map((col) => {
+                const isHiddenCell = !listHiddenColumns || listHiddenColumns.includes(col.key);
+
+                return (
+                    <MdTableHeaderCell
+                        key={col.key}
+                        column={col}
+                        isReadOnly={isReadOnly}
+                        isHiddenCell={isHiddenCell}
+                        tableAction={tableAction}
+                    />
+                );
+            })}
         </thead>
     );
 }

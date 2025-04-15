@@ -5,14 +5,24 @@ interface MdTableBodyProps {
     rows: TableRow[];
     columns: TableColumn[];
     isReadOnly: boolean;
+    listHiddenColumns: string[];
 }
 
-export function MdTableBody({ rows, columns, isReadOnly }: MdTableBodyProps) {
+export function MdTableBody({ rows, columns, isReadOnly, listHiddenColumns }: MdTableBodyProps) {
     return (
         <tbody>
-            {rows.map((row, index) => (
-                <MdTableBodyRow key={index} row={row} columns={columns} isReadOnly={isReadOnly} />
-            ))}
+            {rows.map((row, index) => {
+                return (
+                    <MdTableBodyRow
+                        key={index}
+                        row={row}
+                        columns={columns}
+                        isReadOnly={isReadOnly}
+                        listHiddenColumns={listHiddenColumns}
+                        actions={row.actions}
+                    />
+                );
+            })}
         </tbody>
     );
 }
