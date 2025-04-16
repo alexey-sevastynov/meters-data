@@ -4,6 +4,7 @@ import {
     tableColumnTypes,
     TableRow,
 } from "@/components/shared/table/table-models";
+import { iconNames } from "@/components/ui/icon/icon-constants";
 import { UtilityPrice } from "@/store/models/utility-price";
 
 export function getTableUtilityPriceColumns() {
@@ -73,13 +74,13 @@ export function getTableUtilityPriceRows(data: UtilityPrice[]) {
             image: item.image,
             actions: [
                 {
-                    icon: "view",
+                    icon: iconNames.view,
                     onClick: () => {},
                     label: "Переглянути",
                     visible: true,
                 },
                 {
-                    icon: "edit",
+                    icon: iconNames.edit,
                     onClick: () => {},
                     visible: true,
                     label: "Редагувати",

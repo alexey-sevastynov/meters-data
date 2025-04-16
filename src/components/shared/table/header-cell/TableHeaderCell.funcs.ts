@@ -5,7 +5,11 @@ export function isActionColumnDisabledForReadOnly(
     isReadOnly: boolean,
     tableAction?: TableAction
 ) {
-    return (!tableAction && isColumnAction(column)) || (isColumnAction(column) && isReadOnly);
+    return isColumnAction(column) && !tableAction && isReadOnly;
+}
+
+export function isActionColumnVisible(column: TableColumn, isReadOnly: boolean, tableAction?: TableAction) {
+    return isColumnAction(column) && !isReadOnly && tableAction?.visible;
 }
 
 export function isColumnAction(column: TableColumn) {
