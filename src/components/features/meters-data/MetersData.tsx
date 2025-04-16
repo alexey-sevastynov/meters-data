@@ -9,12 +9,12 @@ import { FormDataMonth } from "@/components/features/meters-data/form-data-month
 import { ListMetersData } from "@/components/features/meters-data/list-meters-data/ListMetersData";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 import { statusNames } from "@/constants/status";
-import { MdTable } from "@/components/shared/table/MdTable";
-import {
-    initialTableMeterDataConfig,
-    initialUtilityPriceTableConfig,
-} from "@/components/features/meters-data/metersData.funcs";
-import { tableMeterDataColumnKeys } from "@/components/features/meters-data/table-config/table-columns";
+// import { MdTable } from "@/components/shared/table/MdTable";
+// import {
+//     initialTableMeterDataConfig,
+//     initialUtilityPriceTableConfig,
+// } from "@/components/features/meters-data/metersData.funcs";
+// import { tableMeterDataColumnKeys } from "@/components/features/meters-data/table-config/table-columns";
 
 interface MetersDataProps {
     isWaterBlock?: boolean;
@@ -25,13 +25,13 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
     const location = useLocation();
     const translations = useAppSelector(selectTranslations);
     const meterReadingsList = useAppSelector((state) => state.metersData.items);
-    const utilityPricesList = useAppSelector((state) => state.utilityPrices.items);
+    // const utilityPricesList = useAppSelector((state) => state.utilityPrices.items);
     const status = useAppSelector((state) => state.metersData.status);
     const addressPath = location.pathname.slice(1);
     const sortedAddressMeterData = filterAndSortItemsByAddressAndDate(meterReadingsList, addressPath);
 
-    const tableMeterDataConfig = initialTableMeterDataConfig(sortedAddressMeterData, isWaterBlock, dispatch);
-    const tableUtilityPricesConfig = initialUtilityPriceTableConfig(utilityPricesList);
+    // const tableMeterDataConfig = initialTableMeterDataConfig(sortedAddressMeterData, isWaterBlock, dispatch);
+    // const tableUtilityPricesConfig = initialUtilityPriceTableConfig(utilityPricesList);
 
     useEffect(() => {
         if (meterReadingsList.length === 0 && status !== statusNames.loading) dispatch(getAllMetersData());
@@ -57,12 +57,12 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
                     {translations.metersData["Meter Reading Data Table by Months"]}:
                 </h4>
                 <ListMetersData isWaterBlock={isWaterBlock} />
-                <MdTable
+                {/* <MdTable
                     tableConfig={tableMeterDataConfig}
                     listHiddenColumns={[tableMeterDataColumnKeys.id]}
                 />
 
-                <MdTable tableConfig={tableUtilityPricesConfig} />
+                <MdTable tableConfig={tableUtilityPricesConfig} /> */}
             </div>
         </section>
     );
