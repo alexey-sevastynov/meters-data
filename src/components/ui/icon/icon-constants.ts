@@ -30,6 +30,9 @@ export const iconNames = {
     lightMode: "lightMode",
     gear: "gear",
     signOut: "signOut",
+    plus: "plus",
+    view: "view",
+    delete: "delete",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];

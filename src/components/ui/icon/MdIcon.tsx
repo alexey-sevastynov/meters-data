@@ -17,9 +17,11 @@ import {
     FaAngleUp,
     FaExpandAlt,
     FaSignOutAlt,
+    FaPlus,
 } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { FaCircle, FaCheck, FaGear } from "react-icons/fa6";
+import { MdOutlineViewInAr, MdDelete } from "react-icons/md";
 
 interface MdIconProps {
     name: IconName;
@@ -52,6 +54,9 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     lightMode: IoSunny,
     gear: FaGear,
     signOut: FaSignOutAlt,
+    plus: FaPlus,
+    view: MdOutlineViewInAr,
+    delete: MdDelete,
 } as const;
 
 export function MdIcon({ name, id, color = colorNames.white, size = iconSizes.medium }: MdIconProps) {
