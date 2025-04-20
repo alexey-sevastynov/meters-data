@@ -1,0 +1,5 @@
+@import "@/styles/mixins.scss";
+
+.tableBodyCell {
+    @include text-ellipsis;
+}

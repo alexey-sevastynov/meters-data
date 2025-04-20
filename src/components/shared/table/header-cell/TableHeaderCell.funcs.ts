@@ -15,3 +15,12 @@ export function isActionColumnVisible(column: TableColumn, isReadOnly: boolean, 
 export function isColumnAction(column: TableColumn) {
     return column.type === tableColumnTypes.actions;
 }
+
+export function calculateMinColumnWidth(element: HTMLElement | null) {
+    if (!element) return 0;
+
+    const extraWidthPadding = 20;
+    const contentWidth = element.scrollWidth;
+
+    return contentWidth + extraWidthPadding;
+}
