@@ -1,0 +1,19 @@
+@import "@/styles/colors.scss";
+
+.react-resizable-handle {
+    all: unset;
+    width: 4px;
+    cursor: col-resize;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+}
+
+.react-resizable-handle::after {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 100%;
+    margin: auto;
+}

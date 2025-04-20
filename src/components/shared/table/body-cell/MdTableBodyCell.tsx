@@ -1,3 +1,4 @@
+import Styles from "./tableBodyCell.module.scss";
 import { TableAction, TableColumn, tableColumnTypes, TableRow } from "@/components/shared/table/table-models";
 import { getFormatDate } from "@/components/shared/table/body-cell/MdTableBodyCell.funcs";
 import { useLocation } from "react-router-dom";
@@ -27,17 +28,22 @@ export function MdTableBodyCell({
 
     if (isHiddenCell) return;
 
-    if (isReadOnly && isColumnAction(column)) return <td style={{ minWidth: "2rem" }}></td>;
+    if (isReadOnly && isColumnAction(column))
+        return <td className={Styles.tableBodyCell} style={{ minWidth: "2rem" }}></td>;
 
     switch (column.type) {
         case tableColumnTypes.string:
-            return <td>{value as string}</td>;
+            return <td className={Styles.tableBodyCell}>{value as string}</td>;
         case tableColumnTypes.number:
-            return <td style={{ textAlign: "right" }}>{value as number}</td>;
+            return (
+                <td className={Styles.tableBodyCell} style={{ textAlign: "right" }}>
+                    {value as number}
+                </td>
+            );
         case tableColumnTypes.boolean:
-            return <td>{value as boolean}</td>;
+            return <td className={Styles.tableBodyCell}>{value as boolean}</td>;
         case tableColumnTypes.date:
-            return <td>{getFormatDate(value as string)}</td>;
+            return <td className={Styles.tableBodyCell}>{getFormatDate(value as string)}</td>;
         case tableColumnTypes.actions:
             return (
                 <MdTableActionsCell
@@ -49,6 +55,6 @@ export function MdTableBodyCell({
             );
 
         default:
-            return <td>{value as string}</td>;
+            return <td className={Styles.tableBodyCell}>{value as string}</td>;
     }
 }

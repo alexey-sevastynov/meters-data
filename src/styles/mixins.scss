@@ -62,3 +62,9 @@
 @mixin transition($property, $duration: 0.2s, $timing: ease-in-out) {
     transition: $property $duration $timing;
 }
+
+@mixin text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

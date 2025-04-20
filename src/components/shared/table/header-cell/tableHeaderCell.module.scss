@@ -1,0 +1,44 @@
+@import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
+
+.tableHeaderCell {
+    line-height: 32px;
+
+    @include text-ellipsis;
+
+    :global(.react-resizable-handle::after) {
+        opacity: 0;
+
+        @include transition(opacity);
+    }
+
+    &:hover :global(.react-resizable-handle::after) {
+        opacity: 1;
+        background-color: $grey;
+    }
+
+    &:hover.leftResizableHandle {
+        box-shadow: inset 2px 0 0 0 $grey;
+    }
+}
+
+.leftResizableHandle {
+    @include transition(box-shadow);
+}
+
+.tableHeaderCellAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 5rem;
+    height: 2rem;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+
+    @include transition(border-color);
+
+    &:hover {
+        border-left-color: $grey;
+        border-right-color: $grey;
+    }
+}

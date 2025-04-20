@@ -10,7 +10,7 @@ interface MdTableHeaderProps {
 
 export function MdTableHeader({ columns, isReadOnly, listHiddenColumns, tableAction }: MdTableHeaderProps) {
     return (
-        <thead style={{ backgroundColor: "lightgrey" }}>
+        <thead>
             {columns.map((col) => {
                 const isHiddenCell = !listHiddenColumns || listHiddenColumns.includes(col.key);
 
