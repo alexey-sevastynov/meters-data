@@ -1,3 +1,4 @@
+import Styles from "./table.module.scss";
 import { TableConfig } from "@/components/shared/table/table-config";
 import { MdTableHeader } from "@/components/shared/table/header/MdTableHeader";
 import { MdTableBody } from "@/components/shared/table/body/MdTableBody";
@@ -10,7 +11,7 @@ interface TableMetresDataProps {
 
 export function MdTable({ tableConfig, isReadOnly = false, listHiddenColumns = [] }: TableMetresDataProps) {
     return (
-        <table>
+        <table className={Styles.table}>
             <MdTableHeader
                 columns={tableConfig.columns}
                 isReadOnly={isReadOnly}

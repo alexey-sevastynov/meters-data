@@ -1,6 +1,8 @@
 @import "@/styles/colors.scss";
 @import "@/styles/sizes.scss";
 
+$border: 1px solid $grey;
+
 @mixin layoutStyle($sidebarWidth: $widthSidebarCollapsed) {
     position: absolute;
     left: $sidebarWidth;
@@ -67,4 +69,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@mixin border {
+    border: 1px solid $grey;
 }

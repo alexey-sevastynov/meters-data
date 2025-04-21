@@ -1,0 +1,25 @@
+@import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
+
+.tableActionsCell {
+    border-bottom: $border;
+    min-width: 5rem;
+    height: $heightRowTable;
+
+    .tableActionsCellButtons {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+
+        button {
+            display: flex;
+
+            svg {
+                &:hover {
+                    fill: $green-hover;
+                }
+            }
+        }
+    }
+}

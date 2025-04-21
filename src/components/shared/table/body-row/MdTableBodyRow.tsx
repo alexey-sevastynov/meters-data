@@ -1,3 +1,4 @@
+import Styles from "./tableBodyRow.module.scss";
 import { MdTableBodyCell } from "@/components/shared/table/body-cell/MdTableBodyCell";
 import { TableAction, TableColumn, TableRow } from "@/components/shared/table/table-models";
 
@@ -17,7 +18,7 @@ export function MdTableBodyRow({
     actions,
 }: MdTableBodyRowProps) {
     return (
-        <tr>
+        <tr className={Styles.tableBodyRow}>
             {columns.map((col) => {
                 const isHiddenCell = listHiddenColumns.includes(col.key);
 

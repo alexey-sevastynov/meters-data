@@ -1,0 +1,8 @@
+@import "@/styles/sizes.scss";
+@import "@/styles/mixins.scss";
+
+.tableHeader {
+    height: $heightRowTable;
+    border-bottom: $border;
+    border-top: $border;
+}

@@ -1,3 +1,4 @@
+import Styles from "./tableHeader.module.scss";
 import { TableAction, TableColumn } from "@/components/shared/table/table-models";
 import { MdTableHeaderCell } from "@/components/shared/table/header-cell/MdTableHeaderCell";
 
@@ -10,7 +11,7 @@ interface MdTableHeaderProps {
 
 export function MdTableHeader({ columns, isReadOnly, listHiddenColumns, tableAction }: MdTableHeaderProps) {
     return (
-        <thead>
+        <thead className={Styles.tableHeader}>
             {columns.map((col) => {
                 const isHiddenCell = !listHiddenColumns || listHiddenColumns.includes(col.key);
 
