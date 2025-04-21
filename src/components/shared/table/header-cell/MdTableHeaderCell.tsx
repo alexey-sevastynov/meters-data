@@ -10,6 +10,7 @@ import {
 } from "./TableHeaderCell.funcs";
 import { useState, useRef, useEffect } from "react";
 import { MdResizableBox } from "@/components/ui/resizable-box/MdResizableBox";
+import { colorNames } from "@/enums/color-names";
 
 interface MdTableHeaderCellProps {
     column: TableColumn;
@@ -44,7 +45,7 @@ export function MdTableHeaderCell({ column, isReadOnly, isHiddenCell, tableActio
                     title={tableAction.label}
                     type="button"
                 >
-                    <MdIcon name={iconNames[tableAction.icon]} />
+                    <MdIcon name={iconNames[tableAction.icon]} color={colorNames.green} />
                 </button>
             </th>
         );
@@ -57,10 +58,10 @@ export function MdTableHeaderCell({ column, isReadOnly, isHiddenCell, tableActio
     return (
         <th
             ref={cellRef}
-            className={`${Styles.tableHeaderCell} ${Styles.leftResizableHandle}`}
+            className={`${Styles.tableHeaderCell} ${Styles.leftResizableHandle} `}
             style={{ display: isHiddenCell ? "none" : "table-cell" }}
         >
-            <MdResizableBox minWidth={minWidth} maxWidth={maxWidth}>
+            <MdResizableBox width={minWidth + 20} minWidth={minWidth} maxWidth={maxWidth}>
                 {column.label}
             </MdResizableBox>
         </th>

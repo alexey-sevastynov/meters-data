@@ -1,5 +1,23 @@
 @import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
 
 .tableBodyCell {
+    padding-left: $paddingLeftCellTable;
+    padding-right: $paddingRightCellTable;
+    border-bottom: $border;
+
     @include text-ellipsis;
+}
+
+.tableBodyCellNumber {
+    text-align: right;
+    letter-spacing: 0.08rem;
+}
+
+.tableBodyCellWater {
+    color: $blue;
+}
+
+.tableBodyCellGas {
+    color: $red;
 }

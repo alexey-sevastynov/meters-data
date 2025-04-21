@@ -108,8 +108,8 @@ const tableMeterDataColumnLabels = {
     light: "Світло, кВт",
     lightDay: "Світло день, кВт",
     lightNight: "Світло ніч, кВт",
-    gas: "Газ",
-    water: "Вода",
+    gas: "Газ, м³",
+    water: "Вода, м³",
     createdAt: "Створено",
     updatedAt: "Оновлено",
 } as const;

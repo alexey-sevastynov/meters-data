@@ -1,0 +1,10 @@
+@import "@/styles/sizes.scss";
+@import "@/styles/colors.scss";
+
+.tableBodyRow {
+    height: $heightRowTable;
+
+    &:hover {
+        background-color: $mint;
+    }
+}

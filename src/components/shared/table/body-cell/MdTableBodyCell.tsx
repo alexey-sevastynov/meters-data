@@ -1,7 +1,11 @@
 import Styles from "./tableBodyCell.module.scss";
 import { TableAction, TableColumn, tableColumnTypes, TableRow } from "@/components/shared/table/table-models";
-import { getFormatDate } from "@/components/shared/table/body-cell/MdTableBodyCell.funcs";
-import { useLocation } from "react-router-dom";
+import {
+    getFormatDate,
+    isGasColumn,
+    isWaterColumn,
+} from "@/components/shared/table/body-cell/MdTableBodyCell.funcs";
+import { useLocation, Location } from "react-router-dom";
 import { isColumnAction } from "@/components/shared/table/header-cell/TableHeaderCell.funcs";
 import { MdTableActionsCell } from "@/components/shared/table/body-cell/table-actions-cell/MdTableActionsCell";
 
@@ -23,23 +27,32 @@ export function MdTableBodyCell({
     actions,
     row,
 }: MdTableBodyCellProps) {
-    const { pathname } = useLocation();
-    const address = pathname.slice(1);
+    const location = useLocation();
 
     if (isHiddenCell) return;
 
-    if (isReadOnly && isColumnAction(column))
-        return <td className={Styles.tableBodyCell} style={{ minWidth: "2rem" }}></td>;
+    if (isReadOnly && isColumnAction(column)) return <td className={Styles.tableBodyCell}></td>;
+
+    return renderCellByType(column, value, actions, row, location);
+}
+
+function renderCellByType(
+    column: TableColumn,
+    value: unknown,
+    actions: unknown,
+    row: TableRow,
+    location: Location
+) {
+    const address = location.pathname.slice(1);
+    const numberCellClassName = `${Styles.tableBodyCell} ${Styles.tableBodyCellNumber} 
+    ${isWaterColumn(column.key) && Styles.tableBodyCellWater} 
+    ${isGasColumn(column.key) && Styles.tableBodyCellGas}`;
 
     switch (column.type) {
         case tableColumnTypes.string:
             return <td className={Styles.tableBodyCell}>{value as string}</td>;
         case tableColumnTypes.number:
-            return (
-                <td className={Styles.tableBodyCell} style={{ textAlign: "right" }}>
-                    {value as number}
-                </td>
-            );
+            return <td className={numberCellClassName}>{value as number}</td>;
         case tableColumnTypes.boolean:
             return <td className={Styles.tableBodyCell}>{value as boolean}</td>;
         case tableColumnTypes.date:

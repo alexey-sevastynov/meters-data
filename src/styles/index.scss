@@ -29,7 +29,10 @@ li {
 input,
 select,
 option,
-textarea {
+textarea,
+table,
+th,
+td {
     font-size: $font-size-base;
 }
 
