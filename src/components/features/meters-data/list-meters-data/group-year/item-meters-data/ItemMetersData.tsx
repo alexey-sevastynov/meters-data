@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { cn } from "@/lib/cn";
 import Styles from "./itemMetersData.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -111,7 +112,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     }, [isEdit]);
 
     return (
-        <li className={`${Styles.itemMetersData} ${selectedMonthId === _id ? Styles.active : ""}`}>
+        <li className={cn(Styles.itemMetersData, selectedMonthId === _id && Styles.active)}>
             <div className={`${Styles.data} `}>
                 <p className={Styles.date} title={selectedDateDisplay}>
                     {translations.months[month]}

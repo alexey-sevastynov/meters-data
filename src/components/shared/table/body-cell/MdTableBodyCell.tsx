@@ -1,4 +1,5 @@
 import Styles from "./tableBodyCell.module.scss";
+import { cn } from "@/lib/cn";
 import { TableAction, TableColumn, tableColumnTypes, TableRow } from "@/components/shared/table/table-models";
 import {
     getFormatDate,
@@ -44,9 +45,12 @@ function renderCellByType(
     location: Location
 ) {
     const address = location.pathname.slice(1);
-    const numberCellClassName = `${Styles.tableBodyCell} ${Styles.tableBodyCellNumber} 
-    ${isWaterColumn(column.key) && Styles.tableBodyCellWater} 
-    ${isGasColumn(column.key) && Styles.tableBodyCellGas}`;
+    const numberCellClassName = cn(
+        Styles.tableBodyCell,
+        Styles.tableBodyCellNumber,
+        isWaterColumn(column.key) && Styles.tableBodyCellWater,
+        isGasColumn(column.key) && Styles.tableBodyCellGas
+    );
 
     switch (column.type) {
         case tableColumnTypes.string:

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useRef, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useRef, useEffect, ReactNode, RefObject } from "react";
+import { cn } from "@/lib/cn";
 import Styles from "./dropdown.module.scss";
 import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 import { dropdownPosition, DropdownPosition } from "@/components/ui/dropdown/dropdown-types";
@@ -10,8 +11,8 @@ interface DropdownContextConfig {
     isOpen: boolean;
     toggleDropdown: VoidFuncNoParam;
     closeDropdown: VoidFuncNoParam;
-    triggerRef: React.RefObject<HTMLDivElement>;
-    contentRef: React.RefObject<HTMLDivElement>;
+    triggerRef: RefObject<HTMLDivElement>;
+    contentRef: RefObject<HTMLDivElement>;
     position: DropdownPosition;
 }
 
@@ -29,7 +30,6 @@ export function MdDropdown({
     const [isOpen, setIsOpen] = useState(false);
     const triggerRef = useRef<HTMLDivElement | null>(null);
     const contentRef = useRef<HTMLDivElement | null>(null);
-    const customClass = className ? className : "";
 
     const toggleDropdown = () => setIsOpen((prev) => !prev);
     const closeDropdown = () => setIsOpen(false);
@@ -57,17 +57,16 @@ export function MdDropdown({
         <DropdownContext.Provider
             value={{ isOpen, toggleDropdown, closeDropdown, triggerRef, contentRef, position }}
         >
-            <div className={Styles.dropdown + " " + customClass}>{children}</div>
+            <div className={cn(Styles.dropdown, className)}>{children}</div>
         </DropdownContext.Provider>
     );
 }
 
 export function MdDropdownTrigger({ children, className }: { children: ReactNode; className?: string }) {
     const { isOpen, toggleDropdown: toggle, triggerRef } = useContext(DropdownContext)!;
-    const customClass = className ? className : "";
 
     return (
-        <div ref={triggerRef} onClick={toggle} className={Styles.trigger + " " + customClass}>
+        <div ref={triggerRef} onClick={toggle} className={cn(Styles.trigger, className)}>
             {children}
             {isOpen ? <MdIcon name={iconNames.arrowUp} /> : <MdIcon name={iconNames.arrowDown} />}
         </div>
@@ -76,7 +75,6 @@ export function MdDropdownTrigger({ children, className }: { children: ReactNode
 
 export function MdDropdownContent({ children, className }: { children: ReactNode; className?: string }) {
     const { isOpen, contentRef, position } = useContext(DropdownContext)!;
-    const customClass = className ? className : "";
 
     if (!isOpen) return null;
 
@@ -84,7 +82,7 @@ export function MdDropdownContent({ children, className }: { children: ReactNode
         <AnimatePresence>
             <motion.div
                 ref={contentRef}
-                className={`${Styles.content} ${Styles[position]} ${customClass}`}
+                className={cn(Styles.content, Styles[position], className)}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}

@@ -1,4 +1,5 @@
 import Styles from "./tableHeaderCell.module.scss";
+import { cn } from "@/lib/cn";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { TableAction, TableColumn } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
@@ -58,7 +59,7 @@ export function MdTableHeaderCell({ column, isReadOnly, isHiddenCell, tableActio
     return (
         <th
             ref={cellRef}
-            className={`${Styles.tableHeaderCell} ${Styles.leftResizableHandle} `}
+            className={cn(Styles.tableHeaderCell, Styles.leftResizableHandle)}
             style={{ display: isHiddenCell ? "none" : "table-cell" }}
         >
             <MdResizableBox width={minWidth + 20} minWidth={minWidth} maxWidth={maxWidth}>

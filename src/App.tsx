@@ -1,5 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import { createPortal } from "react-dom";
+import { cn } from "@/lib/cn";
 import routes from "@/routes";
 import { MdAuth } from "@/components/features/auth/MdAuth";
 import { useAppSelector } from "@/store/hook";
@@ -21,7 +22,7 @@ function App() {
             {createPortal(!isAuth && <MdAuth />, mountElement)}
 
             {createPortal(isOpenPopup && <MdConfirm question={messagePopup} />, confirmWindowPopup)}
-            <div className={isOpenPopup ? "blur active" : ""}>{isAuth && pages}</div>
+            <div className={cn(isOpenPopup && "blur active")}>{isAuth && pages}</div>
 
             <ToastContainer
                 position="bottom-left"
