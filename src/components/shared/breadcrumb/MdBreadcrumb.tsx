@@ -1,4 +1,5 @@
 import Styles from "./breadcrumb.module.scss";
+import { cn } from "@/lib/cn";
 import { colorNames } from "@/enums/color-names";
 import { MdLink } from "@/components/ui/link/MdLink";
 import { isHomeRoute, isNotLastItem } from "@/components/shared/breadcrumb/breadcrumb.function";
@@ -24,7 +25,7 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
                 return (
                     <div key={item.id} className={Styles.breadcrumbItem}>
                         {isLastItem ? (
-                            <p className={`${Styles.link} ${Styles.active}`}>{linkContent}</p>
+                            <p className={cn(Styles.link, Styles.active)}>{linkContent}</p>
                         ) : (
                             <MdLink to={item.link} className={Styles.link}>
                                 {linkContent}

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { cn } from "@/lib/cn";
 import Styles from "./dateRangeSelector.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { colorNames } from "@/enums/color-names";
@@ -46,9 +47,7 @@ export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateR
     return (
         <div className={Styles.dateRangeSelector}>
             <button
-                className={`${Styles.dateRangeSelector__btn} ${
-                    isOpen ? Styles.dateRangeSelector__btn_active : ""
-                }`}
+                className={cn(Styles.dateRangeSelector__btn, isOpen && Styles.dateRangeSelector__btn_active)}
                 onClick={handleButtonClick}
             >
                 <p>{selectedDateDisplay}</p>
@@ -61,11 +60,11 @@ export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateR
                         .map((item) => (
                             <button
                                 key={item._id}
-                                className={`${Styles.dateRangeSelector__dropdown_btn} ${
-                                    isActive(selectedDateDisplay, item.date, currentLang)
-                                        ? Styles.dateRangeSelector__dropdown_btn_active
-                                        : ""
-                                }`}
+                                className={cn(
+                                    Styles.dateRangeSelector__dropdown_btn,
+                                    isActive(selectedDateDisplay, item.date, currentLang) &&
+                                        Styles.dateRangeSelector__dropdown_btn_active
+                                )}
                                 onClick={() => {
                                     dispatch(
                                         showMeterReadingCalc({

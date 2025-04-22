@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { cn } from "@/lib/cn";
 import Styles from "./listCategoriesWithPrices.module.scss";
 import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
@@ -82,7 +83,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
             ))}
 
             <div className={Styles.footer}>
-                <li className={`${Styles.item} ${Styles.itemLast}`}>
+                <li className={cn(Styles.item, Styles.itemLast)}>
                     <p className={Styles.title}>{translations.price.amount}:</p>
                     <p className={Styles.sumMoney}>
                         {sumMoney} {translations.value.uah}

@@ -1,4 +1,5 @@
 import Style from "./selectDate.module.scss";
+import { cn } from "@/lib/cn";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import DatePicker, { DatePickerProps } from "react-date-picker";
@@ -28,7 +29,7 @@ export function SelectDate({ selectDate, setSelectDate, ...props }: SelectDatePr
                 locale={language === "ua" ? "uk" : "en"}
                 disableCalendar
                 clearIcon={null}
-                className={`${Style.datePicker} ${isEdit ? Style.datePickerEdit : ""}`}
+                className={cn(Style.datePicker, isEdit && Style.datePickerEdit)}
                 {...props}
             />
         </div>

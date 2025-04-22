@@ -1,3 +1,4 @@
+import { cn } from "@/lib/cn";
 import Style from "./buttonLogin.module.scss";
 import { getIconUrl } from "@/helpers/get-icon-url";
 
@@ -5,7 +6,7 @@ export function MdButtonLogin({ ...props }) {
     return (
         <button
             type="button"
-            className={`${Style.buttonLogin} text-white hover:bg-blue active:bg-blue`}
+            className={cn("text-white hover:bg-blue active:bg-blue", Style.buttonLogin)}
             {...props}
         >
             Log in

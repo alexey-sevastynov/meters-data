@@ -1,4 +1,5 @@
 import React from "react";
+import { cn } from "@/lib/cn";
 import { GroupedData } from "@/types/grouped-data";
 import { hasOneElement } from "@/helpers/has-one-element";
 import Style from "./groupYear.module.scss";
@@ -40,7 +41,7 @@ const GroupYear: React.FC<GroupYearProps> = ({
             )}
 
             <HeadMetersData isWaterBlock={isWaterBlock} isOpen={group.isOpen} />
-            <div className={`${Style.yearGroup} ${group.isOpen ? Style.open : ""}`}>
+            <div className={cn(Style.yearGroup, group.isOpen && Style.open)}>
                 {group.items.map((item, index) => {
                     const isOnlyOneYear = !hasMultipleYears;
                     const isFirstIndex = index === 0;
