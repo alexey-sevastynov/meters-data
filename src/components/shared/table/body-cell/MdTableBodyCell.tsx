@@ -1,6 +1,6 @@
 import Styles from "./tableBodyCell.module.scss";
 import { cn } from "@/lib/cn";
-import { TableAction, TableColumn, tableColumnTypes, TableRow } from "@/components/shared/table/table-models";
+import { TableAction, TableColumn, TableRow } from "@/components/shared/table/table-models";
 import {
     getFormatDate,
     isGasColumn,
@@ -9,6 +9,7 @@ import {
 import { useLocation, Location } from "react-router-dom";
 import { isColumnAction } from "@/components/shared/table/header-cell/TableHeaderCell.funcs";
 import { MdTableActionsCell } from "@/components/shared/table/body-cell/table-actions-cell/MdTableActionsCell";
+import { tableColumnTypes } from "@/components/shared/table/table-enums";
 
 interface MdTableBodyCellProps {
     id: unknown;

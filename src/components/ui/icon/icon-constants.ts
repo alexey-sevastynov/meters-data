@@ -33,6 +33,7 @@ export const iconNames = {
     plus: "plus",
     view: "view",
     delete: "delete",
+    sort: "sort",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];

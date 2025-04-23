@@ -1,4 +1,9 @@
 import { IconName } from "@/components/ui/icon/icon-constants";
+import {
+    TableColumnAlign,
+    TableColumnTypes,
+    TableSortDirection,
+} from "@/components/shared/table/table-enums";
 
 export interface TableColumn<K = string, L = string> {
     key: K;
@@ -6,6 +11,7 @@ export interface TableColumn<K = string, L = string> {
     type?: TableColumnTypes;
     align?: TableColumnAlign;
     isDisplayable?: boolean;
+    sort?: TableColumnSort;
 }
 
 export interface TableRow {
@@ -21,20 +27,8 @@ export interface TableAction {
     visible?: boolean;
 }
 
-export const tableColumnTypes = {
-    string: 0,
-    number: 1,
-    boolean: 2,
-    date: 3,
-    actions: 4,
-} as const;
-
-export type TableColumnTypes = (typeof tableColumnTypes)[keyof typeof tableColumnTypes];
-
-export const tableColumnAligns = {
-    left: 0,
-    right: 1,
-    center: 2,
-} as const;
-
-export type TableColumnAlign = (typeof tableColumnAligns)[keyof typeof tableColumnAligns];
+export interface TableColumnSort<T = unknown> {
+    sortByAsc: (a: T, b: T) => number;
+    sortByDesc: (a: T, b: T) => number;
+    defaultDirection: TableSortDirection;
+}

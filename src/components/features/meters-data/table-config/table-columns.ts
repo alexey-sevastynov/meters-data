@@ -1,5 +1,12 @@
-import { TableColumn, tableColumnAligns, tableColumnTypes } from "@/components/shared/table/table-models";
+import {
+    tableColumnAligns,
+    tableColumnTypes,
+    tableSortDirection,
+} from "@/components/shared/table/table-enums";
+import { TableColumn } from "@/components/shared/table/table-models";
 import { categoryKeys } from "@/enums/category-keys";
+import { sortByDateAsc, sortByDateDesc } from "@/helpers/compare-dates";
+import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
 export function getTableMeterDataColumns(isVisibleWaterColumn: boolean) {
     const idColumn: TableColumn<TableMeterDataColumnKey, TableMeterDataColumnLabel> = {
@@ -21,6 +28,11 @@ export function getTableMeterDataColumns(isVisibleWaterColumn: boolean) {
         label: tableMeterDataColumnLabels.date,
         type: tableColumnTypes.string,
         align: tableColumnAligns.left,
+        sort: {
+            sortByAsc: (a, b) => sortByDateAsc(a as MeterDataWithObjectId, b as MeterDataWithObjectId),
+            sortByDesc: (a, b) => sortByDateDesc(a as MeterDataWithObjectId, b as MeterDataWithObjectId),
+            defaultDirection: tableSortDirection.desc,
+        },
     };
 
     const lightColumns: TableColumn<TableMeterDataColumnKey, TableMeterDataColumnLabel>[] = [

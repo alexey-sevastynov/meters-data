@@ -3,9 +3,9 @@
 @import "@/styles/sizes.scss";
 
 .tableHeaderCell {
-    line-height: $heightRowTable;
     text-align: left;
     padding-left: $paddingLeftCellTable;
+    user-select: none;
 
     @include text-ellipsis;
 
@@ -22,6 +22,28 @@
 
     &:hover.leftResizableHandle {
         box-shadow: inset 1px 0 0 0 $grey;
+    }
+
+    .tableHeaderCellButton {
+        width: 100%;
+        height: $heightRowTable;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: $paddingRightCellTable;
+        cursor: pointer;
+
+        svg {
+            opacity: 0;
+
+            @include transition(opacity);
+        }
+
+        &:hover {
+            svg {
+                opacity: 1;
+            }
+        }
     }
 }
 

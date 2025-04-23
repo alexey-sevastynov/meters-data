@@ -1,30 +1,41 @@
 import Styles from "./tableHeader.module.scss";
 import { TableAction, TableColumn } from "@/components/shared/table/table-models";
 import { MdTableHeaderCell } from "@/components/shared/table/header-cell/MdTableHeaderCell";
+import { VoidFunc } from "@/types/getter-setter-functions";
 
 interface MdTableHeaderProps {
     columns: TableColumn[];
     isReadOnly: boolean;
     listHiddenColumns: string[];
     tableAction?: TableAction;
+    onSort?: VoidFunc<string>;
 }
 
-export function MdTableHeader({ columns, isReadOnly, listHiddenColumns, tableAction }: MdTableHeaderProps) {
+export function MdTableHeader({
+    columns,
+    isReadOnly,
+    listHiddenColumns,
+    tableAction,
+    onSort,
+}: MdTableHeaderProps) {
     return (
         <thead className={Styles.tableHeader}>
-            {columns.map((col) => {
-                const isHiddenCell = !listHiddenColumns || listHiddenColumns.includes(col.key);
+            <tr>
+                {columns.map((col) => {
+                    const isHiddenCell = !listHiddenColumns || listHiddenColumns.includes(col.key);
 
-                return (
-                    <MdTableHeaderCell
-                        key={col.key}
-                        column={col}
-                        isReadOnly={isReadOnly}
-                        isHiddenCell={isHiddenCell}
-                        tableAction={tableAction}
-                    />
-                );
-            })}
+                    return (
+                        <MdTableHeaderCell
+                            key={col.key}
+                            column={col}
+                            isReadOnly={isReadOnly}
+                            isHiddenCell={isHiddenCell}
+                            tableAction={tableAction}
+                            onSort={onSort}
+                        />
+                    );
+                })}
+            </tr>
         </thead>
     );
 }
