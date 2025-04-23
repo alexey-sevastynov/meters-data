@@ -1,4 +1,5 @@
-import { TableAction, TableColumn, tableColumnTypes } from "@/components/shared/table/table-models";
+import { TableAction, TableColumn } from "@/components/shared/table/table-models";
+import { tableColumnTypes } from "@/components/shared/table/table-enums";
 
 export function isActionColumnDisabledForReadOnly(
     column: TableColumn,

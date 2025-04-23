@@ -1,5 +1,5 @@
-import { MdTableBodyRow } from "../body-row/MdTableBodyRow";
-import { TableColumn, TableRow } from "../table-models";
+import { MdTableBodyRow } from "@/components/shared/table/body-row/MdTableBodyRow";
+import { TableColumn, TableRow } from "@/components/shared/table/table-models";
 
 interface MdTableBodyProps {
     rows: TableRow[];
@@ -11,18 +11,16 @@ interface MdTableBodyProps {
 export function MdTableBody({ rows, columns, isReadOnly, listHiddenColumns }: MdTableBodyProps) {
     return (
         <tbody>
-            {rows.map((row, index) => {
-                return (
-                    <MdTableBodyRow
-                        key={index}
-                        row={row}
-                        columns={columns}
-                        isReadOnly={isReadOnly}
-                        listHiddenColumns={listHiddenColumns}
-                        actions={row.actions}
-                    />
-                );
-            })}
+            {rows.map((row, index) => (
+                <MdTableBodyRow
+                    key={index}
+                    row={row}
+                    columns={columns}
+                    isReadOnly={isReadOnly}
+                    listHiddenColumns={listHiddenColumns}
+                    actions={row.actions}
+                />
+            ))}
         </tbody>
     );
 }

@@ -2,7 +2,7 @@ import Styles from "./tableHeaderCell.module.scss";
 import { cn } from "@/lib/cn";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { TableAction, TableColumn } from "@/components/shared/table/table-models";
-import { iconNames } from "@/components/ui/icon/icon-constants";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import {
     calculateMinColumnWidth,
     isActionColumnDisabledForReadOnly,
@@ -12,15 +12,23 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { MdResizableBox } from "@/components/ui/resizable-box/MdResizableBox";
 import { colorNames } from "@/enums/color-names";
+import { VoidFunc } from "@/types/getter-setter-functions";
 
 interface MdTableHeaderCellProps {
     column: TableColumn;
     isReadOnly: boolean;
     isHiddenCell: boolean;
     tableAction?: TableAction;
+    onSort?: VoidFunc<string>;
 }
 
-export function MdTableHeaderCell({ column, isReadOnly, isHiddenCell, tableAction }: MdTableHeaderCellProps) {
+export function MdTableHeaderCell({
+    column,
+    isReadOnly,
+    isHiddenCell,
+    tableAction,
+    onSort,
+}: MdTableHeaderCellProps) {
     const cellRef = useRef<HTMLTableCellElement>(null);
     const [minWidth, setMinWidth] = useState<number>(0);
     const maxWidth = 300;
@@ -63,7 +71,16 @@ export function MdTableHeaderCell({ column, isReadOnly, isHiddenCell, tableActio
             style={{ display: isHiddenCell ? "none" : "table-cell" }}
         >
             <MdResizableBox width={minWidth + 20} minWidth={minWidth} maxWidth={maxWidth}>
-                {column.label}
+                <button
+                    className={Styles.tableHeaderCellButton}
+                    onClick={() => onSort?.(column.key)}
+                    type="button"
+                >
+                    <p>{column.label}</p>
+                    {column.sort && (
+                        <MdIcon name={iconNames.sort} color={colorNames.green} size={iconSizes.small} />
+                    )}
+                </button>
             </MdResizableBox>
         </th>
     );

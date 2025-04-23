@@ -1,11 +1,7 @@
-import {
-    TableColumn,
-    tableColumnAligns,
-    tableColumnTypes,
-    TableRow,
-} from "@/components/shared/table/table-models";
+import { TableColumn, TableRow } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { UtilityPrice } from "@/store/models/utility-price";
+import { tableColumnAligns, tableColumnTypes } from "@/components/shared/table/table-enums";
 
 export function getTableUtilityPriceColumns() {
     const idColumn: TableColumn<TableUtilityPriceColumnKey, TableUtilityPriceColumnLabel> = {
