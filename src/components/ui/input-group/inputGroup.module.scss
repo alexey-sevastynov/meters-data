@@ -1,0 +1,80 @@
+@import "@/styles/colors.scss";
+
+$multi-value-border-radius: 4px;
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.control {
+    height: 40px;
+    display: flex;
+    border: 1px solid $grey;
+    border-radius: 4px;
+
+    &.focused {
+        border-color: $green;
+    }
+}
+
+.clearIndicator {
+    padding: 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+        svg {
+            fill: $black;
+        }
+    }
+}
+
+.indicatorsContainer {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    cursor: pointer;
+}
+
+.multiValueRemove {
+    background-color: $lightGrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 5px;
+    border-bottom-right-radius: $multi-value-border-radius;
+    border-top-right-radius: $multi-value-border-radius;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $grey;
+    }
+}
+
+.multiValueLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $lightGrey;
+    color: $black;
+    border-bottom-left-radius: $multi-value-border-radius;
+    border-top-left-radius: $multi-value-border-radius;
+    min-height: 22px;
+    font-size: 14px;
+    padding: 0px 5px;
+}
+
+.option {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+        background-color: $lightGrey;
+        color: $black;
+    }
+}

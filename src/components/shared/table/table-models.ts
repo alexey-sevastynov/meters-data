@@ -12,6 +12,7 @@ export interface TableColumn<K = string, L = string> {
     align?: TableColumnAlign;
     isDisplayable?: boolean;
     sort?: TableColumnSort;
+    minWidth?: number;
 }
 
 export interface TableRow {
