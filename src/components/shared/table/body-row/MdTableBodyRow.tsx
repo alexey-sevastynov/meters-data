@@ -1,6 +1,10 @@
 import Styles from "./tableBodyRow.module.scss";
+import { useLocation } from "react-router-dom";
 import { MdTableBodyCell } from "@/components/shared/table/body-cell/MdTableBodyCell";
 import { TableAction, TableColumn, TableRow } from "@/components/shared/table/table-models";
+import { lastValueMeter } from "@/helpers/last-value-meter";
+import { cn } from "@/lib/cn";
+import { useAppSelector } from "@/store/hook";
 
 interface MdTableBodyRowProps {
     row: TableRow;
@@ -17,8 +21,16 @@ export function MdTableBodyRow({
     listHiddenColumns,
     actions,
 }: MdTableBodyRowProps) {
+    // <Temporary solution, to be removed in the future>
+    const { pathname } = useLocation();
+    const currentPage: string = pathname.slice(1);
+    const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
+    const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
+    const selectedMonthId = currentInfoMeterReading?.[0].id;
+    // </Temporary solution, to be removed in the future>
+
     return (
-        <tr className={Styles.tableBodyRow}>
+        <tr className={cn(Styles.tableBodyRow, row.id === selectedMonthId && Styles.active)}>
             {columns.map((col) => {
                 const isHiddenCell = listHiddenColumns.includes(col.key);
 

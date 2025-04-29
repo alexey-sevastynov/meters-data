@@ -18,7 +18,7 @@ import { statusNames } from "@/constants/status";
 // import { Option } from "@/components/ui/input-group/input-group-models";
 // import { TableFilters } from "@/components/features/meters-data/table-filters/TableFilters";
 // import {
-//     tableMeterDataColumnIdOption,
+//     tableMeterDataColumnCreatedAtOption,
 //     tableMeterDataColumnVisibilityOptions,
 // } from "@/components/features/meters-data/table-config/table-column-visibility-options";
 import { ListMetersData } from "@/components/features/meters-data/list-meters-data/ListMetersData";
@@ -37,7 +37,7 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
     const addressPath = location.pathname.slice(1);
     const sortedAddressMeterData = filterAndSortItemsByAddressAndDate(meterReadingsList, addressPath);
     // const [selectedYears, setSelectedYears] = useState<Option[]>([]);
-    // const [visibleColumns, setVisibleColumns] = useState<Option[]>([tableMeterDataColumnIdOption]);
+    // const [visibleColumns, setVisibleColumns] = useState<Option[]>([tableMeterDataColumnCreatedAtOption]);
 
     // const filteredByYear = useMemo(
     //     () => filterBySelectedYears(sortedAddressMeterData, selectedYears),
