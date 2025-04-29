@@ -12,6 +12,7 @@ import {
 } from "@/components/shared/table/table-enums";
 import { sortByDateAsc, sortByDateDesc } from "@/helpers/compare-dates";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
+import { minWidthDateColumn } from "@/components/shared/table/table-constants";
 
 export const dateColumn: TableColumn<TableMeterDataColumnKey, TableMeterDataColumnLabel> = {
     key: tableMeterDataColumnKeys.date,
@@ -23,4 +24,5 @@ export const dateColumn: TableColumn<TableMeterDataColumnKey, TableMeterDataColu
         sortByDesc: (a, b) => sortByDateDesc(a as MeterDataWithObjectId, b as MeterDataWithObjectId),
         defaultDirection: tableSortDirection.desc,
     },
+    minWidth: minWidthDateColumn,
 };

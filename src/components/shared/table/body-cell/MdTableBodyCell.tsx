@@ -3,6 +3,7 @@ import { cn } from "@/lib/cn";
 import { TableAction, TableColumn, TableRow } from "@/components/shared/table/table-models";
 import {
     getFormatDate,
+    isDateColumn,
     isGasColumn,
     isWaterColumn,
 } from "@/components/shared/table/body-cell/MdTableBodyCell.funcs";
@@ -10,6 +11,9 @@ import { useLocation, Location } from "react-router-dom";
 import { isColumnAction } from "@/components/shared/table/header-cell/TableHeaderCell.funcs";
 import { MdTableActionsCell } from "@/components/shared/table/body-cell/table-actions-cell/MdTableActionsCell";
 import { tableColumnTypes } from "@/components/shared/table/table-enums";
+import { getDaysInMonths } from "@/helpers/get-days-in-months";
+import { useAppSelector } from "@/store/hook";
+import { getCurrentLanguage } from "@/helpers/get-current-language";
 
 interface MdTableBodyCellProps {
     id: unknown;
@@ -30,12 +34,13 @@ export function MdTableBodyCell({
     row,
 }: MdTableBodyCellProps) {
     const location = useLocation();
+    const lang = useAppSelector((state) => state.i18n.lang);
 
     if (isHiddenCell) return;
 
     if (isReadOnly && isColumnAction(column)) return <td className={Styles.tableBodyCell}></td>;
 
-    return renderCellByType(column, value, actions, row, location);
+    return renderCellByType(column, value, actions, row, location, lang);
 }
 
 function renderCellByType(
@@ -43,7 +48,8 @@ function renderCellByType(
     value: unknown,
     actions: unknown,
     row: TableRow,
-    location: Location
+    location: Location,
+    lang: string
 ) {
     const address = location.pathname.slice(1);
     const numberCellClassName = cn(
@@ -54,8 +60,14 @@ function renderCellByType(
     );
 
     switch (column.type) {
-        case tableColumnTypes.string:
-            return <td className={Styles.tableBodyCell}>{value as string}</td>;
+        case tableColumnTypes.string: {
+            const currentLang = getCurrentLanguage(lang);
+            const displayValue = isDateColumn(column.key)
+                ? getDaysInMonths(value as string, true, true, currentLang)
+                : (value as string);
+
+            return <td className={Styles.tableBodyCell}>{displayValue}</td>;
+        }
         case tableColumnTypes.number:
             return <td className={numberCellClassName}>{value as number}</td>;
         case tableColumnTypes.boolean:

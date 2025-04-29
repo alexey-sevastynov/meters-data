@@ -41,9 +41,7 @@ function getLastDayOfMonth(year: number, month: number) {
     return lastDay.getDate();
 }
 
-function getLocalizedMonthName(month: number, year: number, locale: string) {
-    const shortNames = true;
-
+function getLocalizedMonthName(month: number, year: number, locale: string, shortNames = true) {
     if (locale === language.ua) return shortNames ? ukrainianShortMonths[month] : ukrainianMonths[month];
 
     const date = new Date(year, month, 1);
