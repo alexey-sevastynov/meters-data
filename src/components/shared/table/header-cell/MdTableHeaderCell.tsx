@@ -5,6 +5,7 @@ import { TableAction, TableColumn } from "@/components/shared/table/table-models
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import {
     calculateMinColumnWidth,
+    getTableCellDisplay,
     isActionColumnDisabledForReadOnly,
     isActionColumnVisible,
     isColumnAction,
@@ -13,6 +14,7 @@ import { useState, useRef, useEffect } from "react";
 import { MdResizableBox } from "@/components/ui/resizable-box/MdResizableBox";
 import { colorNames } from "@/enums/color-names";
 import { VoidFunc } from "@/types/getter-setter-functions";
+import { maxWidthColumn } from "@/components/shared/table/table-constants";
 
 interface MdTableHeaderCellProps {
     column: TableColumn;
@@ -30,8 +32,7 @@ export function MdTableHeaderCell({
     onSort,
 }: MdTableHeaderCellProps) {
     const cellRef = useRef<HTMLTableCellElement>(null);
-    const [minWidth, setMinWidth] = useState<number>(0);
-    const maxWidth = 300;
+    const [minWidth, setMinWidth] = useState<number>(column.minWidth || 0);
 
     useEffect(() => {
         if (minWidth === 0 && cellRef.current) {
@@ -42,14 +43,14 @@ export function MdTableHeaderCell({
     }, [minWidth]);
 
     if (isActionColumnDisabledForReadOnly(column, isReadOnly, tableAction))
-        return <th style={{ minWidth: "2rem" }} />;
+        return <th className={Styles.tableHeaderCellActionForReadOnly} />;
 
     if (isActionColumnVisible(column, isReadOnly, tableAction) && tableAction) {
         return (
             <th className={Styles.tableHeaderCellAction}>
                 <button
                     style={{
-                        display: isHiddenCell ? "none" : "table-cell",
+                        display: getTableCellDisplay(isHiddenCell),
                     }}
                     title={tableAction.label}
                     type="button"
@@ -61,16 +62,16 @@ export function MdTableHeaderCell({
     }
 
     if (isColumnAction(column) && isReadOnly) {
-        return <th style={{ display: isHiddenCell ? "none" : "table-cell", minWidth: "5rem" }} />;
+        return <th style={{ display: getTableCellDisplay(isHiddenCell), minWidth: "5rem" }} />;
     }
 
     return (
         <th
             ref={cellRef}
             className={cn(Styles.tableHeaderCell, Styles.leftResizableHandle)}
-            style={{ display: isHiddenCell ? "none" : "table-cell" }}
+            style={{ display: getTableCellDisplay(isHiddenCell) }}
         >
-            <MdResizableBox width={minWidth + 20} minWidth={minWidth} maxWidth={maxWidth}>
+            <MdResizableBox width={minWidth + 20} minWidth={minWidth} maxWidth={maxWidthColumn}>
                 <button
                     className={Styles.tableHeaderCellButton}
                     onClick={() => onSort?.(column.key)}

@@ -25,3 +25,7 @@ export function calculateMinColumnWidth(element: HTMLElement | null) {
 
     return contentWidth + extraWidthPadding;
 }
+
+export function getTableCellDisplay(isHidden: boolean) {
+    return isHidden ? "none" : "table-cell";
+}

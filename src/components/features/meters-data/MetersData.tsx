@@ -6,15 +6,22 @@ import { selectTranslations } from "@/store/slices/i-18-next";
 import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
 import { useLocation } from "react-router-dom";
 import { FormDataMonth } from "@/components/features/meters-data/form-data-month/FormDataMonth";
-import { ListMetersData } from "@/components/features/meters-data/list-meters-data/ListMetersData";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 import { statusNames } from "@/constants/status";
 // import { MdTable } from "@/components/shared/table/MdTable";
 // import {
+//     filterBySelectedYears,
+//     getHiddenColumnListKeys,
 //     initialTableMeterDataConfig,
-//     initialUtilityPriceTableConfig,
+//     // initialUtilityPriceTableConfig,
 // } from "@/components/features/meters-data/metersData.funcs";
-// import { tableMeterDataColumnKeys } from "@/components/features/meters-data/table-config/table-columns";
+// import { Option } from "@/components/ui/input-group/input-group-models";
+// import { TableFilters } from "@/components/features/meters-data/table-filters/TableFilters";
+// import {
+//     tableMeterDataColumnIdOption,
+//     tableMeterDataColumnVisibilityOptions,
+// } from "@/components/features/meters-data/table-config/table-column-visibility-options";
+import { ListMetersData } from "@/components/features/meters-data/list-meters-data/ListMetersData";
 
 interface MetersDataProps {
     isWaterBlock?: boolean;
@@ -29,12 +36,25 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
     const status = useAppSelector((state) => state.metersData.status);
     const addressPath = location.pathname.slice(1);
     const sortedAddressMeterData = filterAndSortItemsByAddressAndDate(meterReadingsList, addressPath);
+    // const [selectedYears, setSelectedYears] = useState<Option[]>([]);
+    // const [visibleColumns, setVisibleColumns] = useState<Option[]>([tableMeterDataColumnIdOption]);
 
-    // const tableMeterDataConfig = initialTableMeterDataConfig(sortedAddressMeterData, isWaterBlock, dispatch);
-    // const tableUtilityPricesConfig = initialUtilityPriceTableConfig(utilityPricesList);
+    // const filteredByYear = useMemo(
+    //     () => filterBySelectedYears(sortedAddressMeterData, selectedYears),
+    //     [sortedAddressMeterData, selectedYears]
+    // );
+
+    // const tableMeterDataConfig = initialTableMeterDataConfig(
+    //     sortedAddressMeterData,
+    //     filteredByYear,
+    //     isWaterBlock,
+    //     dispatch
+    // );
 
     useEffect(() => {
-        if (meterReadingsList.length === 0 && status !== statusNames.loading) dispatch(getAllMetersData());
+        if (meterReadingsList.length === 0 && status !== statusNames.loading) {
+            dispatch(getAllMetersData());
+        }
     }, [dispatch, meterReadingsList, status]);
 
     return (
@@ -57,12 +77,22 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
                     {translations.metersData["Meter Reading Data Table by Months"]}:
                 </h4>
                 <ListMetersData isWaterBlock={isWaterBlock} />
-                {/* <MdTable
-                    tableConfig={tableMeterDataConfig}
-                    listHiddenColumns={[tableMeterDataColumnKeys.id]}
-                />
 
-                <MdTable tableConfig={tableUtilityPricesConfig} /> */}
+                {/* <TableFilters
+                    columnVisibilityOptions={tableMeterDataColumnVisibilityOptions}
+                    sortedAddressMeterData={sortedAddressMeterData}
+                    visibleColumns={visibleColumns}
+                    selectedYears={selectedYears}
+                    setSelectedYears={setSelectedYears}
+                    setVisibleColumns={setVisibleColumns}
+                />
+                <MdTable
+                    tableConfig={tableMeterDataConfig}
+                    listHiddenColumns={[
+                        ...getHiddenColumnListKeys(tableMeterDataColumnVisibilityOptions, visibleColumns),
+                    ]}
+                /> */}
+                {/* <MdTable tableConfig={tableUtilityPricesConfig} /> */}
             </div>
         </section>
     );

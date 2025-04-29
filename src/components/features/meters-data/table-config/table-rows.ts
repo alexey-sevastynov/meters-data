@@ -5,13 +5,14 @@ import { getActionsTableRow } from "@/components/features/meters-data/table-conf
 
 export function getTableMeterDataRows(
     data: MeterDataWithObjectId[],
+    filteredData: MeterDataWithObjectId[],
     isVisibleWaterColumn: boolean,
     dispatch: AppDispatch
 ): TableRow[] {
     const firstDate = getFirstDate(data);
     const latestDate = getLatestDate(data);
 
-    return data.map((item) => {
+    return filteredData.map((item) => {
         const row: TableRow = {
             id: item._id,
             date: item.date,
