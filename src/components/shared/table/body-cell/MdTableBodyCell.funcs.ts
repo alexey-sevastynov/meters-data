@@ -15,3 +15,7 @@ export function isWaterColumn(columnKey: string) {
 export function isGasColumn(columnKey: string) {
     return columnKey === tableMeterDataColumnKeys.gas;
 }
+
+export function isDateColumn(columnKey: string) {
+    return columnKey === tableMeterDataColumnKeys.date;
+}

@@ -3,7 +3,6 @@ import { cn } from "@/lib/cn";
 import Styles from "./dateRangeSelector.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { colorNames } from "@/enums/color-names";
-import { language } from "@/constants/language";
 import { showMeterReadingCalc } from "@/store/slices/meters-data/slice";
 import { DateRangeSelectorProps } from "@/components/shared/date-range-selector/dateRangeSelector.interface";
 import {
@@ -13,11 +12,12 @@ import {
 } from "@/components/shared/date-range-selector/dateRangeSelector.function";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { getCurrentLanguage } from "@/helpers/get-current-language";
 
 export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateRangeSelectorProps) {
     const dispatch = useAppDispatch();
-    const lang = useAppSelector((props) => props.i18n.lang);
-    const currentLang = lang === language.ua.toLowerCase() ? language.ua : language.en;
+    const lang = useAppSelector((state) => state.i18n.lang);
+    const currentLang = getCurrentLanguage(lang);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const selectedDateDisplay = formatDateDisplay(
