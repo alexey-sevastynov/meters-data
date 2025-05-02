@@ -52,15 +52,17 @@ export function MdTableHeaderCell({
     if (isActionColumnVisible(column, isReadOnly, tableAction) && tableAction) {
         return (
             <th className={Styles.tableHeaderCellAction}>
-                <button
-                    style={{
-                        display: getTableCellDisplay(isHiddenCell),
-                    }}
-                    title={translations.table[tableAction.label as keyof typeof translations.table]}
-                    type="button"
-                >
-                    <MdIcon name={iconNames[tableAction.icon]} color={colorNames.green} />
-                </button>
+                {column.isDisplayable && (
+                    <button
+                        style={{
+                            display: getTableCellDisplay(isHiddenCell),
+                        }}
+                        title={translations.table[tableAction.label as keyof typeof translations.table]}
+                        type="button"
+                    >
+                        <MdIcon name={iconNames[tableAction.icon]} color={colorNames.green} />
+                    </button>
+                )}
             </th>
         );
     }
