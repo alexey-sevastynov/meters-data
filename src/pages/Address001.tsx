@@ -4,6 +4,7 @@ import { MdMetersData } from "@/components/features/meters-data/MetersData";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { BREADCRUMB_ITEMS_ADDR_001 } from "@/constants/breadcrumb-items";
 import { useSidebar } from "@/components/context/SidebarProvider";
+import { MdMetersManager } from "@/components/features/meters-manager/MdMetersManager";
 
 export function Address001() {
     const sidebarContext = useSidebar();
@@ -17,7 +18,8 @@ export function Address001() {
             <div className={layoutStyle}>
                 <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_001} />
                 <MdInfoPanelMonth />
-                <MdMetersData />
+                <MdMetersData isTableVisible={false} />
+                <MdMetersManager />
             </div>
         </section>
     );

@@ -7,18 +7,12 @@ import { setMeterDataEdit, showMeterReadingCalc } from "@/store/slices/meters-da
 import { formatDate } from "@/helpers/format-date";
 import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
 import { useLocation } from "react-router-dom";
-import {
-    confirmActionExit,
-    confirmActionOnDelete,
-    openPopup,
-    setIdDelete,
-    setQuestion,
-} from "@/store/slices/confirm-popup-slice";
+import { openPopup, setIdDelete, setQuestion } from "@/store/slices/confirm-popup-slice";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { formatDateDisplay } from "@/components/shared/date-range-selector/dateRangeSelector.function";
 import { lastValueMeter } from "@/helpers/last-value-meter";
 import { MonthsType } from "@/types/months-type";
-import { deleteMeterData, getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
+import { deleteItemMeterData } from "@/components/features/meters-data/list-meters-data/group-year/item-meters-data/itemMetersData.funcs";
 
 interface ItemMetersDataProps {
     _id: string;
@@ -90,21 +84,9 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     };
 
     useEffect(() => {
-        if (isDelete && idDelete === _id) {
-            dispatch(deleteMeterData({ id: _id }))
-                .then((response) => {
-                    if (response.payload) {
-                        dispatch(getAllMetersData());
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error adding data:", error);
-                });
-
-            dispatch(confirmActionOnDelete(false));
-            dispatch(confirmActionExit(false));
-            dispatch(setIdDelete(null));
-        }
+        if (isDelete && idDelete === _id) deleteItemMeterData(_id, dispatch);
+        // Approve
+        // eslint-disable-next-line
     }, [isDelete]);
 
     useEffect(() => {

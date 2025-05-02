@@ -13,4 +13,5 @@ export const actionColumn: TableColumn<TableMeterDataColumnKey, TableMeterDataCo
     label: tableMeterDataColumnLabels.actions,
     type: tableColumnTypes.actions,
     align: tableColumnAligns.center,
+    isDisplayable: false,
 };

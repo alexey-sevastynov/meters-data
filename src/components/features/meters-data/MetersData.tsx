@@ -12,9 +12,10 @@ import { ListMetersData } from "@/components/features/meters-data/list-meters-da
 
 interface MetersDataProps {
     isWaterBlock?: boolean;
+    isTableVisible?: boolean;
 }
 
-export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
+export function MdMetersData({ isWaterBlock = true, isTableVisible = true }: MetersDataProps) {
     const dispatch = useAppDispatch();
     const location = useLocation();
     const translations = useAppSelector(selectTranslations);
@@ -44,11 +45,15 @@ export function MdMetersData({ isWaterBlock = true }: MetersDataProps) {
                     addressPath={addressPath}
                 />
 
-                <h4 className={Styles.title}>
-                    <BsCalendar3 style={{ marginRight: "10px" }} />
-                    {translations.metersData["Meter Reading Data Table by Months"]}:
-                </h4>
-                <ListMetersData isWaterBlock={isWaterBlock} />
+                {isTableVisible && (
+                    <>
+                        <h4 className={Styles.title}>
+                            <BsCalendar3 style={{ marginRight: "10px" }} />
+                            {translations.metersData["Meter Reading Data Table by Months"]}:
+                        </h4>
+                        <ListMetersData isWaterBlock={isWaterBlock} />
+                    </>
+                )}
             </div>
         </section>
     );
