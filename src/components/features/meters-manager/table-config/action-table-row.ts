@@ -1,5 +1,6 @@
 import { TableAction } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
+import { crudActionNames } from "@/constants/crud-action-names";
 import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { openPopup, setIdDelete, setQuestion } from "@/store/slices/confirm-popup-slice";
@@ -24,7 +25,7 @@ export function getActionsTableRow(
 function getViewAction(item: MeterDataWithObjectId, firstDate: string, dispatch: AppDispatch) {
     const viewAction: TableAction = {
         icon: iconNames.view,
-        label: "Переглянути",
+        label: crudActionNames.view,
         visible: item.date !== firstDate,
         onClick: (action) => {
             dispatch(showMeterReadingCalc({ id: String(action.id), address: String(action.address) }));
@@ -38,7 +39,7 @@ function getViewAction(item: MeterDataWithObjectId, firstDate: string, dispatch:
 function getEditAction(dispatch: AppDispatch) {
     const editAction: TableAction = {
         icon: iconNames.edit,
-        label: "Редагувати",
+        label: crudActionNames.edit,
         visible: true,
         onClick: (action) => {
             dispatch(
@@ -64,7 +65,7 @@ function getEditAction(dispatch: AppDispatch) {
 function getDeleteAction(item: MeterDataWithObjectId, latestDate: string, dispatch: AppDispatch) {
     const deleteAction: TableAction = {
         icon: iconNames.delete,
-        label: "Видалити",
+        label: crudActionNames.delete,
         visible: item.date === latestDate,
         onClick: (action) => {
             dispatch(openPopup());

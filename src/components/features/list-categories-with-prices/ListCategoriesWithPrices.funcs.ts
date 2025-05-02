@@ -28,8 +28,6 @@ export async function editItem(
             })
         );
 
-        console.log(response);
-
         if (!response) return;
 
         handleResponse(response, dispatch);

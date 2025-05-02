@@ -5,9 +5,9 @@ import {
     TableSortDirection,
 } from "@/components/shared/table/table-enums";
 
-export interface TableColumn<K = string, L = string> {
-    key: K;
-    label: L;
+export interface TableColumn<ColumnKey = string, ColumnLabel = string> {
+    key: ColumnKey;
+    label: ColumnLabel;
     type?: TableColumnTypes;
     align?: TableColumnAlign;
     isDisplayable?: boolean;

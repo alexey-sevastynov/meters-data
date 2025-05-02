@@ -1,4 +1,4 @@
-import { tableMeterDataColumnKeys } from "@/components/features/meters-data/table-config/table-columns/table-columns-enums";
+import { tableMeterDataColumnKeys } from "@/components/shared/table/table-enums";
 import { format } from "date-fns";
 import { uk } from "date-fns/locale";
 

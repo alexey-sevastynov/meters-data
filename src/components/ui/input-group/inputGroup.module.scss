@@ -9,10 +9,17 @@ $multi-value-border-radius: 4px;
 }
 
 .control {
-    height: 40px;
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 12.2rem;
+    max-width: 16.5rem;
+    min-height: 38px;
     border: 1px solid $grey;
     border-radius: 4px;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    cursor: text;
 
     &.focused {
         border-color: $green;

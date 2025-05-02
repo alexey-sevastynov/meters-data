@@ -13,6 +13,8 @@ import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { colorNames } from "@/enums/color-names";
 import { cn } from "@/lib/cn";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface MdInputGroupProps {
     options: Option[];
@@ -22,10 +24,13 @@ interface MdInputGroupProps {
 }
 
 export function MdInputGroup({ options, defaultValue, label, onChange }: MdInputGroupProps) {
+    const translations = useAppSelector(selectTranslations);
+
     return (
         <div className={Style.inputGroup}>
             {label && <label className={Style.label}>{label}</label>}
             <Select
+                key={translations.inputGroup.select}
                 components={{
                     Control,
                     ClearIndicator,
@@ -40,6 +45,8 @@ export function MdInputGroup({ options, defaultValue, label, onChange }: MdInput
                 options={options}
                 isMulti
                 onChange={(value) => onChange?.(value as Option[])}
+                noOptionsMessage={() => <p>{translations.inputGroup.noOptions}</p>}
+                placeholder={translations.inputGroup.select as string}
             />
         </div>
     );

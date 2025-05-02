@@ -103,5 +103,27 @@
         "date": "Date",
         "monthlyMoneyCalculations": "Monthly Money Calculations",
         "choosePeriod": "Choose period"
+    },
+    "inputGroup": {
+        "noOptions": "No options",
+        "select": "Select",
+        "selectYears": "Select years",
+        "selectColumns": "Select columns"
+    },
+    "table": {
+        "noData": "No data",
+        "id": "ID",
+        "date": "Date",
+        "light": "Light, kW",
+        "lightDay": "Light day, kW",
+        "lightNight": "Light night, kW",
+        "gas": "Gas, m³",
+        "water": "Water, m³",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "create": "Add",
+        "edit": "Edit",
+        "delete": "Delete",
+        "view": "View"
     }
 }

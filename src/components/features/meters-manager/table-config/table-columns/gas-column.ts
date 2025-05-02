@@ -4,12 +4,15 @@ import {
     tableMeterDataColumnKeys,
     TableMeterDataColumnLabel,
     tableMeterDataColumnLabels,
-} from "@/components/features/meters-data/table-config/table-columns/table-columns-enums";
-import { tableColumnAligns, tableColumnTypes } from "@/components/shared/table/table-enums";
+    tableColumnAligns,
+    tableColumnTypes,
+} from "@/components/shared/table/table-enums";
+import { minWidthGasColumn } from "@/components/shared/table/table-constants";
 
 export const gasColumn: TableColumn<TableMeterDataColumnKey, TableMeterDataColumnLabel> = {
     key: tableMeterDataColumnKeys.gas,
     label: tableMeterDataColumnLabels.gas,
     type: tableColumnTypes.number,
     align: tableColumnAligns.right,
+    minWidth: minWidthGasColumn,
 };
