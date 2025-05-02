@@ -3,7 +3,6 @@
 @import "@/styles/sizes.scss";
 
 .tableHeaderCell {
-    text-align: left;
     padding-left: $paddingLeftCellTable;
     user-select: none;
 
@@ -44,6 +43,14 @@
                 opacity: 1;
             }
         }
+
+        &.tableHeaderCellNumber {
+            justify-content: end;
+        }
+    }
+
+    .tableHeaderCellLabel {
+        color: $green;
     }
 }
 

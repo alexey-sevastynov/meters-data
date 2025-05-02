@@ -20,7 +20,6 @@ export function showMeterReadingCalc(
     state: IMetersDataSlice,
     action: PayloadAction<{ id: string; address: string }>
 ) {
-    console.log(action);
     const listItemsAddress = filterAndSortItemsByAddressAndDate(state.items, action.payload.address);
 
     const currentItem = listItemsAddress.find((item) => item._id === action.payload.id);

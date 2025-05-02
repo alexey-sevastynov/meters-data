@@ -4,8 +4,9 @@ import {
     tableMeterDataColumnKeys,
     TableMeterDataColumnLabel,
     tableMeterDataColumnLabels,
-} from "@/components/features/meters-data/table-config/table-columns/table-columns-enums";
-import { tableColumnAligns, tableColumnTypes } from "@/components/shared/table/table-enums";
+    tableColumnAligns,
+    tableColumnTypes,
+} from "@/components/shared/table/table-enums";
 
 export const actionColumn: TableColumn<TableMeterDataColumnKey, TableMeterDataColumnLabel> = {
     key: tableMeterDataColumnKeys.actions,

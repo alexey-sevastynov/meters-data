@@ -3,6 +3,8 @@ import { TableAction, TableRow } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface MdTableActionsCellProps {
     id: string;
@@ -12,6 +14,8 @@ interface MdTableActionsCellProps {
 }
 
 export function MdTableActionsCell({ id, actions, row, address }: MdTableActionsCellProps) {
+    const translations = useAppSelector(selectTranslations);
+
     return (
         <td className={Styles.tableActionsCell}>
             <div className={Styles.tableActionsCellButtons}>
@@ -34,7 +38,7 @@ export function MdTableActionsCell({ id, actions, row, address }: MdTableActions
                                     updatedAt: row.updatedAt,
                                 })
                             }
-                            title={action.label}
+                            title={translations.table[action.label as keyof typeof translations.table]}
                             type="button"
                         >
                             <MdIcon name={iconNames[action.icon]} color={colorNames.green} />

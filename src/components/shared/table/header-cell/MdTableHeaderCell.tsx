@@ -15,6 +15,9 @@ import { MdResizableBox } from "@/components/ui/resizable-box/MdResizableBox";
 import { colorNames } from "@/enums/color-names";
 import { VoidFunc } from "@/types/getter-setter-functions";
 import { maxWidthColumn } from "@/components/shared/table/table-constants";
+import { tableColumnTypes } from "@/components/shared/table/table-enums";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface MdTableHeaderCellProps {
     column: TableColumn;
@@ -31,6 +34,7 @@ export function MdTableHeaderCell({
     tableAction,
     onSort,
 }: MdTableHeaderCellProps) {
+    const translations = useAppSelector(selectTranslations);
     const cellRef = useRef<HTMLTableCellElement>(null);
     const [minWidth, setMinWidth] = useState<number>(column.minWidth || 0);
 
@@ -52,7 +56,7 @@ export function MdTableHeaderCell({
                     style={{
                         display: getTableCellDisplay(isHiddenCell),
                     }}
-                    title={tableAction.label}
+                    title={translations.table[tableAction.label as keyof typeof translations.table]}
                     type="button"
                 >
                     <MdIcon name={iconNames[tableAction.icon]} color={colorNames.green} />
@@ -73,11 +77,16 @@ export function MdTableHeaderCell({
         >
             <MdResizableBox width={minWidth + 20} minWidth={minWidth} maxWidth={maxWidthColumn}>
                 <button
-                    className={Styles.tableHeaderCellButton}
+                    className={cn(
+                        Styles.tableHeaderCellButton,
+                        column.type === tableColumnTypes.number && Styles.tableHeaderCellNumber
+                    )}
                     onClick={() => onSort?.(column.key)}
                     type="button"
                 >
-                    <p>{column.label}</p>
+                    <p className={Styles.tableHeaderCellLabel}>
+                        {translations.table[column.key as keyof typeof translations.table]}
+                    </p>
                     {column.sort && (
                         <MdIcon name={iconNames.sort} color={colorNames.green} size={iconSizes.small} />
                     )}

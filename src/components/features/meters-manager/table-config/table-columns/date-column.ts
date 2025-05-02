@@ -4,8 +4,6 @@ import {
     tableMeterDataColumnKeys,
     TableMeterDataColumnLabel,
     tableMeterDataColumnLabels,
-} from "@/components/features/meters-data/table-config/table-columns/table-columns-enums";
-import {
     tableColumnAligns,
     tableColumnTypes,
     tableSortDirection,

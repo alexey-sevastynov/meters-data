@@ -103,5 +103,27 @@
         "date": "Дата",
         "monthlyMoneyCalculations": "Місячні рахунки",
         "choosePeriod": "Виберіть період"
+    },
+    "inputGroup": {
+        "noOptions": "Немає опцій",
+        "select": "Вибрати",
+        "selectYears": "Вибрати роки",
+        "selectColumns": "Вибрати стовпці"
+    },
+    "table": {
+        "noData": "Немає даних",
+        "id": "ID",
+        "date": "Дата",
+        "light": "Світло, кВт",
+        "lightDay": "Світло день, кВт",
+        "lightNight": "Світло ніч, кВт",
+        "gas": "Газ, м³",
+        "water": "Вода, м³",
+        "createdAt": "Створено",
+        "updatedAt": "Оновлено",
+        "create": "Додати",
+        "edit": "Редагувати",
+        "delete": "Видалити",
+        "view": "Переглянути"
     }
 }
