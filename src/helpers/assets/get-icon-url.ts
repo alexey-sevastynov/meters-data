@@ -1,5 +1,5 @@
-const iconsBasePath = "../../assets/icon/";
+const iconsBasePath = "assets/icon/";
 
 export function getIconUrl(fileName: string) {
-    return new URL(iconsBasePath + fileName, import.meta.url).href;
+    return iconsBasePath + fileName;
 }
