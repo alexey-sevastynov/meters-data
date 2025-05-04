@@ -5,7 +5,7 @@ import { TableConfig } from "@/components/shared/table/table-config";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { TableAction } from "@/components/shared/table/table-models";
 import { AppDispatch } from "@/store/store";
-import { getYearFromDate } from "@/helpers/dates/get-date";
+import { getYearFromDate } from "@/helpers/meters-data/dates/get-date";
 import { Option } from "@/components/ui/input-group/input-group-models";
 import { crudActionNames } from "@/constants/crud-action-names";
 

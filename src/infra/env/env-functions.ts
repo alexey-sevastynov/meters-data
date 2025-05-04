@@ -1,5 +1,5 @@
 import { errorMessage } from "@/constants/error-message";
-import { EnvKey } from "@/enums/env-keys";
+import { EnvKey } from "@/infra/env/env-keys";
 
 export function getStringEnv(key: EnvKey) {
     const value = import.meta.env[key] as string | undefined;

@@ -1,5 +1,5 @@
 import { Option } from "@/components/ui/input-group/input-group-models";
-import { getYearFromDate } from "@/helpers/dates/get-date";
+import { getYearFromDate } from "@/helpers/meters-data/dates/get-date";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
 export function getAllYears(sortedAddressMeterData: MeterDataWithObjectId[]) {

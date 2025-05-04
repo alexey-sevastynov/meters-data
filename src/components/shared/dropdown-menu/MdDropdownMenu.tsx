@@ -9,7 +9,7 @@ import {
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { logOut } from "@/store/slices/auth-slice";
 import { closePopup, confirmActionExit, confirmActionOnDelete } from "@/store/slices/confirm-popup-slice";

@@ -2,7 +2,7 @@ import Styles from "./tableBodyRow.module.scss";
 import { useLocation } from "react-router-dom";
 import { MdTableBodyCell } from "@/components/shared/table/body-cell/MdTableBodyCell";
 import { TableAction, TableColumn, TableRow } from "@/components/shared/table/table-models";
-import { lastValueMeter } from "@/helpers/last-value-meter";
+import { getUtilityCostByAddress } from "@/helpers/meters-data/get-utility-cost-by-address";
 import { cn } from "@/lib/cn";
 import { useAppSelector } from "@/store/hook";
 
@@ -25,7 +25,7 @@ export function MdTableBodyRow({
     const { pathname } = useLocation();
     const currentPage: string = pathname.slice(1);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
-    const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
+    const currentInfoMeterReading = getUtilityCostByAddress(infoMeterReading, currentPage);
     const selectedMonthId = currentInfoMeterReading?.[0].id;
     // </Temporary solution, to be removed in the future>
 

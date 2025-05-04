@@ -7,7 +7,7 @@ import {
     confirmActionOnDelete,
     setIdDelete,
 } from "@/store/slices/confirm-popup-slice";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colorNames } from "@/enums/color-names";
 

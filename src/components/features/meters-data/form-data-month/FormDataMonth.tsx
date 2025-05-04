@@ -4,8 +4,8 @@ import Style from "./formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { calculateSum } from "@/helpers/calculate-total";
 import {
+    calculateSum,
     checkDate,
     getLastMeterValue,
     getNextMonthDate,

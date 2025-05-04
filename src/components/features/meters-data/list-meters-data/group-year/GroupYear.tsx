@@ -1,12 +1,15 @@
 import React from "react";
+import Style from "./groupYear.module.scss";
 import { cn } from "@/lib/cn";
 import { GroupedData } from "@/types/grouped-data";
-import { hasOneElement } from "@/helpers/has-one-element";
-import Style from "./groupYear.module.scss";
-import { ItemMetersData } from "./item-meters-data/ItemMetersData";
-import { getLastYear, handleToggle } from "./GroupYear.function";
-import YearHeader from "./year-header/YearHeader";
-import { HeadMetersData } from "./head-meter-data/HeadMetersData";
+import { ItemMetersData } from "@/components/features/meters-data/list-meters-data/group-year/item-meters-data/ItemMetersData";
+import {
+    getLastYear,
+    handleToggle,
+    hasOneElement,
+} from "@/components/features/meters-data/list-meters-data/group-year/GroupYear.function";
+import YearHeader from "@/components/features/meters-data/list-meters-data/group-year/year-header/YearHeader";
+import { HeadMetersData } from "@/components/features/meters-data/list-meters-data/group-year/head-meter-data/HeadMetersData";
 
 interface GroupYearProps {
     year: string;

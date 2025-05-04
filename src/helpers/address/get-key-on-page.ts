@@ -1,5 +1,5 @@
-import { getStringEnv } from "@/helpers/get-string-env";
-import { envKeys } from "@/enums/env-keys";
+import { getStringEnv } from "@/infra/env/env-functions";
+import { envKeys } from "@/infra/env/env-keys";
 
 export function getKeyOnPage(address: string) {
     switch (address) {

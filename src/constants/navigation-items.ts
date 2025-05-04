@@ -1,6 +1,6 @@
-import { getStringEnv } from "@/helpers/get-string-env";
+import { getStringEnv } from "@/infra/env/env-functions";
 import { appRoutes } from "@/constants/routes";
-import { envKeys } from "@/enums/env-keys";
+import { envKeys } from "@/infra/env/env-keys";
 import { v4 } from "uuid";
 
 export interface NavigationItem {

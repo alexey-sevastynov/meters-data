@@ -1,5 +1,5 @@
 import { errorMessage } from "@/constants/error-message";
-import { isValidDateFormat } from "@/helpers/dates/date-validation";
+import { isValidDateFormat } from "@/helpers/meters-data/dates/date-validation";
 
 export function getYearFromDate(date: string) {
     if (isValidDateFormat(date)) return date.split(".")[1];

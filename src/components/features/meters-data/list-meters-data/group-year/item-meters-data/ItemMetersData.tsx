@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { cn } from "@/lib/cn";
 import Styles from "./itemMetersData.module.scss";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setMeterDataEdit, showMeterReadingCalc } from "@/store/slices/meters-data/slice";
-import { formatDate } from "@/helpers/format-date";
-import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
+import { formatDate } from "@/helpers/meters-data/dates/format-date";
+import { smoothScrollTo } from "@/utils/scroll";
 import { useLocation } from "react-router-dom";
 import { openPopup, setIdDelete, setQuestion } from "@/store/slices/confirm-popup-slice";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { formatDateDisplay } from "@/components/shared/date-range-selector/dateRangeSelector.function";
-import { lastValueMeter } from "@/helpers/last-value-meter";
+import { getUtilityCostByAddress } from "@/helpers/meters-data/get-utility-cost-by-address";
 import { MonthsType } from "@/types/months-type";
 import { deleteItemMeterData } from "@/components/features/meters-data/list-meters-data/group-year/item-meters-data/itemMetersData.funcs";
 
@@ -54,7 +54,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     const translations = useAppSelector(selectTranslations);
     const currentPage: string = pathname.slice(1);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
-    const currentInfoMeterReading = lastValueMeter(infoMeterReading, currentPage);
+    const currentInfoMeterReading = getUtilityCostByAddress(infoMeterReading, currentPage);
     const selectedMonthId = currentInfoMeterReading?.[0].id;
     const newDate = formatDate(date);
     const month = newDate.split(",")[0] as MonthsType;
@@ -90,7 +90,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
     }, [isDelete]);
 
     useEffect(() => {
-        if (isEdit) smoothScrollOnLoad(0);
+        if (isEdit) smoothScrollTo(0);
     }, [isEdit]);
 
     return (
@@ -114,7 +114,7 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
                         title={`Сalculation of meter readings for ${date}`}
                         onClick={() => {
                             dispatch(showMeterReadingCalc({ id: _id, address }));
-                            smoothScrollOnLoad();
+                            smoothScrollTo();
                         }}
                     >
                         <img

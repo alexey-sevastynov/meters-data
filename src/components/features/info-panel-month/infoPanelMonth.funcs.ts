@@ -1,7 +1,7 @@
 import { errorMessage } from "@/constants/error-message";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 
-export const removeFirstAddedMonth = (data: MeterDataWithObjectId[]) => {
+export function removeFirstAddedMonth(data: MeterDataWithObjectId[]) {
     try {
         if (!data.length) return [];
 
@@ -16,7 +16,7 @@ export const removeFirstAddedMonth = (data: MeterDataWithObjectId[]) => {
 
         return data;
     }
-};
+}
 
 function parseDate(dateStr: string) {
     const [month, year] = dateStr.split(".").map(Number);

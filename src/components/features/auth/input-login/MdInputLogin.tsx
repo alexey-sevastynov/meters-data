@@ -1,6 +1,6 @@
 import React from "react";
 import Style from "./inputLogin.module.scss";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { isValidLoginInput } from "./inputLogin.funcs";
 
 interface InputLoginProps {

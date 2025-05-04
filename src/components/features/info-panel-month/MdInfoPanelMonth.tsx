@@ -3,13 +3,13 @@ import { ListInfoPanelMonth } from "@/components/features/info-panel-month/list-
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { filterItemsByAddress } from "@/helpers/filter-and-sort-items-by-address-and-date";
-import { removeFirstAddedMonth } from "@/helpers/remove-first-added-month";
+import { filterMeterDataByAddress } from "@/helpers/meters-data/filters";
 import { MdDateRangeSelector } from "@/components/shared/date-range-selector/MdDateRangeSelector";
 import { LinkButtonGroup } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup";
-import { getStringEnv } from "@/helpers/get-string-env";
-import { envKeys } from "@/enums/env-keys";
+import { getStringEnv } from "@/infra/env/env-functions";
+import { envKeys } from "@/infra/env/env-keys";
 import { getLinkButtons } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup.funcs";
+import { removeFirstAddedMonth } from "@/components/features/info-panel-month/infoPanelMonth.funcs";
 
 interface MdInfoPanelMonthProps {
     isWaterBlock?: boolean;
@@ -49,7 +49,7 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
             <div className={Styles.infoPanelMonth}>
                 <div className={Styles.infoPanelMonth__header}>
                     <MdDateRangeSelector
-                        data={removeFirstAddedMonth(filterItemsByAddress(items, currentPage))}
+                        data={removeFirstAddedMonth(filterMeterDataByAddress(items, currentPage))}
                         selectedMonth={month}
                         selectedYear={year}
                     />

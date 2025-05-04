@@ -1,16 +1,7 @@
 import { addressLinkNames } from "@/constants/address";
-import { UtilityCost } from "@/types/utility-cost";
+import { InfoMeterReading } from "@/store/slices/meters-data/meters-data.types";
 
-export const lastValueMeter = (
-    infoMeterReading: {
-        address001: UtilityCost[] | null;
-        address002: UtilityCost[] | null;
-        address003: UtilityCost[] | null;
-        address004: UtilityCost[] | null;
-        address005: UtilityCost[] | null;
-    },
-    address: string
-) => {
+export function getUtilityCostByAddress(infoMeterReading: InfoMeterReading, address: string) {
     switch (address) {
         case addressLinkNames.address001:
             return infoMeterReading.address001;
@@ -25,4 +16,4 @@ export const lastValueMeter = (
         default:
             return null;
     }
-};
+}

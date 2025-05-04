@@ -1,8 +1,8 @@
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
-import { calculatePercentDifference } from "@/helpers/calculate-percent-difference";
-import { formatDate } from "@/helpers/format-date";
+import { formatDate } from "@/helpers/meters-data/dates/format-date";
 import { v4 } from "uuid";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
+import { stringToNumber } from "@/utils/conversion";
 
 export function calculateDifference(
     mostRecentItem: MeterDataWithObjectId,
@@ -80,4 +80,15 @@ function getValuesFromThirdMostRecent(thirdMostRecentItem?: MeterDataWithObjectI
         gas: thirdMostRecentItem ? thirdMostRecentItem.gas : 0,
         water: thirdMostRecentItem ? thirdMostRecentItem.water || 0 : 0,
     };
+}
+
+function calculatePercentDifference(newValue: number, oldValue: number) {
+    if (oldValue === 0) return 0;
+
+    const maxValuePercent = 100;
+    const difference = newValue - oldValue;
+    const percentDifference = (difference / oldValue) * 100;
+    const boundedPercentDifference = Math.max(-maxValuePercent, Math.min(percentDifference, maxValuePercent));
+
+    return stringToNumber(boundedPercentDifference.toFixed(1));
 }

@@ -3,14 +3,14 @@ import { cn } from "@/lib/cn";
 import Styles from "./listCategoriesWithPrices.module.scss";
 import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
-import { getKeyOnPage } from "@/helpers/get-key-on-page";
+import { getKeyOnPage } from "@/helpers/address/get-key-on-page";
 import { AppDispatch } from "@/store/store";
 import {
     calculatePrice,
     deleteUtilityItem,
     resetEdit,
 } from "@/store/slices/monthly-money-calculations/slice";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { editItem, isShowDeleteButton, saveItemDB } from "./ListCategoriesWithPrices.funcs";
 import { colorNames } from "@/enums/color-names";

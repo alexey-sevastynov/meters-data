@@ -1,12 +1,12 @@
 import { addMonths, format, parse } from "date-fns";
 import { navigationItems } from "@/constants/navigation-items";
-import { sortItemsByDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
+import { sortMeterDataListByDateAsc } from "@/helpers/meters-data/sort";
 import { CategoryKey } from "@/enums/category-keys";
 import { DataPickerValue } from "@/types/data-picker";
 import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { AppDispatch } from "@/store/store";
 import { FormMeterDataType } from "@/types/form-meter-data";
-import { sendMessageToTelegram } from "@/helpers/send-message-to-telegram";
+import { sendMessageToTelegram } from "@/infra/telegram/send-message";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import {
     createMetersData,
@@ -14,6 +14,26 @@ import {
     updateMeterData,
 } from "@/store/slices/meters-data/meters-data.thunks";
 import { numberToString, stringToNumber } from "@/utils/conversion";
+import { isNumber } from "@/utils/guards";
+import { errorMessage } from "@/constants/error-message";
+
+export function calculateSum(a: number, b: number) {
+    if (!isNumber(a) || !isNumber(b)) {
+        throw new Error(
+            errorMessage.invalidParameters
+                .replace("{0}", a.toString())
+                .replace("{1}", typeof a)
+                .replace("{2}", b.toString())
+                .replace("{3}", typeof b)
+        );
+    }
+
+    const sum = a + b;
+    const formattedSum = sum.toFixed(2);
+    const finalResult = parseFloat(formattedSum);
+
+    return numberToString(finalResult);
+}
 
 export async function submitFormData(
     formData: FormMeterDataType,
@@ -59,7 +79,7 @@ export async function submitFormData(
 export function getNextMonthDate(items: MeterDataWithObjectId[]) {
     if (items.length === 0) return new Date();
 
-    const sorted = sortItemsByDate(items);
+    const sorted = sortMeterDataListByDateAsc(items);
     const lastItem = sorted[sorted.length - 1];
     const lastDate = parse(lastItem.date, "MM.yyyy", new Date());
 

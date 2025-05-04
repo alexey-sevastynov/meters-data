@@ -1,6 +1,6 @@
 import Styles from "./logo.module.scss";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
