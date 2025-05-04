@@ -12,7 +12,7 @@ import {
 } from "@/components/shared/date-range-selector/dateRangeSelector.function";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
-import { getCurrentLanguage } from "@/helpers/get-current-language";
+import { getCurrentLanguage } from "@/helpers/language/get-current-language";
 
 export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateRangeSelectorProps) {
     const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 import Style from "./buttonLogin.module.scss";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 
 export function MdButtonLogin({ ...props }) {
     return (

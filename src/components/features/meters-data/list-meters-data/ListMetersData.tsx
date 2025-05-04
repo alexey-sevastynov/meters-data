@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import Style from "./listMetersData.module.scss";
-import GroupYear from "./group-year/GroupYear";
+import GroupYear from "@/components/features/meters-data/list-meters-data/group-year/GroupYear";
 import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
 import { GroupedData } from "@/types/grouped-data";
-import { isEmptyObject } from "@/helpers/is-empty-object";
-import { groupAndSortItemsByYear } from "@/helpers/group-and-sort-items-by-year";
+import { statusNames } from "@/constants/status";
+import {
+    groupAndSortItemsByYear,
+    isEmptyList,
+} from "@/components/features/meters-data/list-meters-data/listMetersData.function";
 
 interface ListMetersDataProps {
     isWaterBlock: boolean;
@@ -13,12 +16,10 @@ interface ListMetersDataProps {
 
 export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) => {
     const { pathname } = useLocation();
-
     const items = useAppSelector((state) => state.metersData.items);
     const status = useAppSelector((state) => state.metersData.status);
     const addressCurrentPage = pathname.slice(1);
     const [groupedData, setGroupedData] = useState<GroupedData>({});
-
     const listMetersDataRef = useRef<HTMLUListElement>(null);
 
     useEffect(() => {
@@ -28,12 +29,10 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) 
         }
     }, [items, addressCurrentPage]);
 
-    const isEmptyList = isEmptyObject(groupedData) && status === "loaded";
-
     return (
         <ul ref={listMetersDataRef} className={Style.listMetersData}>
-            {status === "loading" && <li>Loading...</li>}
-            {isEmptyList ? (
+            {status === statusNames.loading && <li>Loading...</li>}
+            {isEmptyList(groupedData, status) ? (
                 <li>No data</li>
             ) : (
                 Object.entries(groupedData).map(([year, group], index, array) => (

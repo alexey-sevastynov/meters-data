@@ -1,7 +1,6 @@
 import Styles from "./itemLink.module.scss";
 import { NavLink } from "react-router-dom";
-import { getIconUrl } from "@/helpers/get-icon-url";
-
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { iconSizes } from "@/components/ui/icon/icon-constants";
 
 interface ItemLinkProps {

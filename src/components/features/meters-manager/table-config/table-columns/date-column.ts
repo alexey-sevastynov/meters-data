@@ -8,7 +8,7 @@ import {
     tableColumnTypes,
     tableSortDirection,
 } from "@/components/shared/table/table-enums";
-import { sortByDateAsc, sortByDateDesc } from "@/helpers/compare-dates";
+import { sortMeterDataByDateAsc, sortMeterDataByDateDesc } from "@/helpers/meters-data/sort";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { minWidthDateColumn } from "@/components/shared/table/table-constants";
 
@@ -18,8 +18,8 @@ export const dateColumn: TableColumn<TableMeterDataColumnKey, TableMeterDataColu
     type: tableColumnTypes.string,
     align: tableColumnAligns.left,
     sort: {
-        sortByAsc: (a, b) => sortByDateAsc(a as MeterDataWithObjectId, b as MeterDataWithObjectId),
-        sortByDesc: (a, b) => sortByDateDesc(a as MeterDataWithObjectId, b as MeterDataWithObjectId),
+        sortByAsc: (a, b) => sortMeterDataByDateAsc(a as MeterDataWithObjectId, b as MeterDataWithObjectId),
+        sortByDesc: (a, b) => sortMeterDataByDateDesc(a as MeterDataWithObjectId, b as MeterDataWithObjectId),
         defaultDirection: tableSortDirection.desc,
     },
     minWidth: minWidthDateColumn,

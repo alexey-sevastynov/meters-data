@@ -7,11 +7,11 @@ import {
     getAllMetersData,
     updateMeterData,
 } from "@/store/slices/meters-data/meters-data.thunks";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
+import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
 import { findPenultimateDate } from "@/store/helpers/find-penultimate-date";
 import { calculateDifference } from "@/store/helpers/calculate-difference";
-import { getStringEnv } from "@/helpers/get-string-env";
-import { envKeys } from "@/enums/env-keys";
+import { getStringEnv } from "@/infra/env/env-functions";
+import { envKeys } from "@/infra/env/env-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { addToastNotifications } from "@/store/toast-service";
 
@@ -46,7 +46,7 @@ export function extraReducers(builder: ActionReducerMapBuilder<IMetersDataSlice>
 }
 
 function setCurrentMetersDataPage(action: PayloadAction<MeterDataWithObjectId[]>, address: string) {
-    const items = filterAndSortItemsByAddressAndDate(action.payload, address);
+    const items = filterMeterDataByAddressAndSortByDate(action.payload, address);
 
     if (items.length > 0) {
         const latestItem = items[items.length - 1];

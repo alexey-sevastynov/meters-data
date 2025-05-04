@@ -1,9 +1,9 @@
 import "@/styles/pages/graphics.scss";
 import { useLocation, useParams } from "react-router-dom";
 import { navigationItems } from "@/constants/navigation-items";
-import { formatDate } from "@/helpers/format-date";
+import { formatDate } from "@/helpers/meters-data/dates/format-date";
 import { useAppSelector } from "@/store/hook";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
+import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
 import { MdChart } from "@/components/shared/chart/MdChart";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumb-items";
@@ -17,7 +17,7 @@ export function Graphics() {
 
     const items = useAppSelector((state) => state.metersData.items);
     const addressCurrentPage = pathname.slice(1).replace("/graphics", "");
-    const listMetersData = filterAndSortItemsByAddressAndDate(items, addressCurrentPage);
+    const listMetersData = filterMeterDataByAddressAndSortByDate(items, addressCurrentPage);
 
     const addressItem = navigationItems.find(({ link }) => link === `/${address}`);
 

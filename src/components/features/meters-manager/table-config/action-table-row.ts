@@ -1,7 +1,7 @@
 import { TableAction } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { crudActionNames } from "@/constants/crud-action-names";
-import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
+import { smoothScrollTo } from "@/utils/scroll";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { openPopup, setIdDelete, setQuestion } from "@/store/slices/confirm-popup-slice";
 import { setMeterDataEdit, showMeterReadingCalc } from "@/store/slices/meters-data/slice";
@@ -29,7 +29,7 @@ function getViewAction(item: MeterDataWithObjectId, firstDate: string, dispatch:
         visible: item.date !== firstDate,
         onClick: (action) => {
             dispatch(showMeterReadingCalc({ id: String(action.id), address: String(action.address) }));
-            smoothScrollOnLoad();
+            smoothScrollTo();
         },
     };
 

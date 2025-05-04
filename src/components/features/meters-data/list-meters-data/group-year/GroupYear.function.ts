@@ -1,9 +1,13 @@
 import { GroupedData } from "@/types/grouped-data";
 
-export const handleToggle = (
+export function hasOneElement(obj: object) {
+    return Object.keys(obj).length === 1;
+}
+
+export function handleToggle(
     year: string,
     setGroupedData: React.Dispatch<React.SetStateAction<GroupedData>>
-) => {
+) {
     setGroupedData((prev) => ({
         ...prev,
         [year]: {
@@ -11,7 +15,7 @@ export const handleToggle = (
             isOpen: !prev[year].isOpen,
         },
     }));
-};
+}
 
 export function getLastYear(groupedData: GroupedData): string | undefined {
     const years = getYears(groupedData);

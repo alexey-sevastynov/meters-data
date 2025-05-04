@@ -1,4 +1,4 @@
-import { getDaysInMonths } from "@/helpers/get-days-in-months";
+import { getDaysInMonths } from "@/helpers/meters-data/dates/get-days-in-months";
 
 export const isActive = (selectedDateDisplay: string, itemDate: string, currentLang: string) => {
     return selectedDateDisplay === getDaysInMonths(itemDate, true, true, currentLang);

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Styles from "./bottomSidebar.module.scss";
 import { navigationItems } from "@/constants/navigation-items";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { iconSizes } from "@/components/ui/icon/icon-constants";
 
 export function MdBottomSidebar() {

@@ -1,4 +1,4 @@
-import { smoothScrollOnLoad } from "@/helpers/smooth-scroll-on-load";
+import { smoothScrollTo } from "@/utils/scroll";
 import {
     deleteMonthMoneyCalculations,
     getAllMonthlyMoneyCalculations,
@@ -16,5 +16,5 @@ export async function deleteItem(id: string, dispatch: AppDispatch) {
 export async function editItem(id: string, dispatch: AppDispatch) {
     const response = await dispatch(getOneMonthMoneyCalculations({ id }));
 
-    if (response.payload) smoothScrollOnLoad();
+    if (response.payload) smoothScrollTo();
 }

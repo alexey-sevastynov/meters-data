@@ -1,9 +1,9 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { IMetersDataSlice } from "@/store/slices/meters-data/meters-data.types";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
-import { filterAndSortItemsByAddressAndDate } from "@/helpers/filter-and-sort-items-by-address-and-date";
+import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
 import { findPreviousDateById } from "@/store/helpers/find-previous-date-by-id";
-import { getKeyOnPage } from "@/helpers/get-key-on-page";
+import { getKeyOnPage } from "@/helpers/address/get-key-on-page";
 import { calculateDifference } from "@/store/helpers/calculate-difference";
 
 export function setMeterDataEdit(state: IMetersDataSlice, action: PayloadAction<MeterDataWithObjectId>) {
@@ -20,7 +20,7 @@ export function showMeterReadingCalc(
     state: IMetersDataSlice,
     action: PayloadAction<{ id: string; address: string }>
 ) {
-    const listItemsAddress = filterAndSortItemsByAddressAndDate(state.items, action.payload.address);
+    const listItemsAddress = filterMeterDataByAddressAndSortByDate(state.items, action.payload.address);
 
     const currentItem = listItemsAddress.find((item) => item._id === action.payload.id);
 

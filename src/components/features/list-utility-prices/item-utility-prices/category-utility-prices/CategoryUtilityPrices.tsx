@@ -1,6 +1,6 @@
 import React from "react";
 import Styles from "./categoryUtilityPrices.module.scss";
-import { getIconUrl } from "@/helpers/get-icon-url";
+import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { CategoryName } from "@/enums/category-names";

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { envKeys } from "@/enums/env-keys";
-import { getStringEnv } from "@/helpers/get-string-env";
+import { envKeys } from "@/infra/env/env-keys";
+import { getStringEnv } from "@/infra/env/env-functions";
 import { ApiEndpointName } from "@/store/api-endpoint-names";
 
 export const apiUrl = getStringEnv(envKeys.apiUrl);
