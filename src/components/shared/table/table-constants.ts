@@ -1,9 +1,9 @@
-export const minWidthIdColumn = 218;
-export const minWidthMetaColumn = 120;
-export const minWidthDateColumn = 170;
-export const minWidthLightColumn = 100;
-export const minWidthGasColumn = 100;
-export const minWidthWaterColumn = 100;
+export const minWidthIdColumn = 190;
+export const minWidthMetaColumn = 100;
+export const minWidthDateColumn = 158;
+export const minWidthLightColumn = 90;
+export const minWidthGasColumn = 70;
+export const minWidthWaterColumn = 70;
 
 export const maxWidthColumn = 400;
 
