@@ -5,7 +5,7 @@ export const iconSizes = {
     large: 24,
 } as const;
 
-export type SizeIcon = (typeof iconSizes)[keyof typeof iconSizes];
+export type IconSize = (typeof iconSizes)[keyof typeof iconSizes];
 
 export const iconNames = {
     priceTagFill: "priceTagFill",
@@ -26,6 +26,7 @@ export const iconNames = {
     language: "language",
     arrowDown: "arrowDown",
     arrowUp: "arrowUp",
+    arrowRight: "arrowRight",
     expand: "expand",
     lightMode: "lightMode",
     gear: "gear",

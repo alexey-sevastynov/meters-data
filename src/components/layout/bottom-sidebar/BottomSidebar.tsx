@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import Styles from "./bottomSidebar.module.scss";
 import { navigationItems } from "@/constants/navigation-items";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { iconSizes } from "@/components/ui/icon/icon-constants";
+import { MdImage } from "@/components/ui/image/MdImage";
 
 export function MdBottomSidebar() {
     return (
@@ -14,9 +14,9 @@ export function MdBottomSidebar() {
                             to={item.link}
                             className={({ isActive }) => (isActive ? Styles.active : Styles.noActive)}
                         >
-                            <img
+                            <MdImage
                                 className={Styles.itemLinkIcon}
-                                src={getIconUrl(item.imageName)}
+                                fileName={item.imageName}
                                 alt={item.text}
                                 width={iconSizes.large}
                                 height={iconSizes.large}

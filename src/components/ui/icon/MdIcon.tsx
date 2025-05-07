@@ -1,7 +1,7 @@
 import { IconBaseProps } from "react-icons";
 import { RefAttributes } from "react";
 import { ColorName, colorNames } from "@/enums/color-names";
-import { IconName, iconSizes } from "@/components/ui/icon/icon-constants";
+import { IconName, IconSize, iconSizes } from "@/components/ui/icon/icon-constants";
 import { RiPriceTagFill } from "react-icons/ri";
 import { IoBarChartSharp, IoTriangle, IoClose, IoLanguage, IoSunny } from "react-icons/io5";
 import { BsCopy } from "react-icons/bs";
@@ -21,13 +21,13 @@ import {
     FaSort,
 } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
-import { FaCircle, FaCheck, FaGear } from "react-icons/fa6";
+import { FaCircle, FaCheck, FaGear, FaArrowRight } from "react-icons/fa6";
 import { MdOutlineViewInAr, MdDelete } from "react-icons/md";
 
 interface MdIconProps {
     name: IconName;
     id?: string;
-    size?: number;
+    size?: IconSize;
     color?: ColorName;
     className?: string;
 }
@@ -51,6 +51,7 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     language: IoLanguage,
     arrowDown: FaAngleDown,
     arrowUp: FaAngleUp,
+    arrowRight: FaArrowRight,
     expand: FaExpandAlt,
     lightMode: IoSunny,
     gear: FaGear,

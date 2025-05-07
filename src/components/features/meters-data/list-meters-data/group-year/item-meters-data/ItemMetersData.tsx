@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { cn } from "@/lib/cn";
 import Styles from "./itemMetersData.module.scss";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setMeterDataEdit, showMeterReadingCalc } from "@/store/slices/meters-data/slice";
 import { formatDate } from "@/helpers/meters-data/dates/format-date";
@@ -13,6 +12,9 @@ import { formatDateDisplay } from "@/components/shared/date-range-selector/dateR
 import { getUtilityCostByAddress } from "@/helpers/meters-data/get-utility-cost-by-address";
 import { MonthsType } from "@/types/months-type";
 import { deleteItemMeterData } from "@/components/features/meters-data/list-meters-data/group-year/item-meters-data/itemMetersData.funcs";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames } from "@/components/ui/icon/icon-constants";
+import { colorNames } from "@/enums/color-names";
 
 interface ItemMetersDataProps {
     _id: string;
@@ -117,21 +119,16 @@ export const ItemMetersData: React.FC<ItemMetersDataProps> = ({
                             smoothScrollTo();
                         }}
                     >
-                        <img
-                            src={getIconUrl(selectedMonthId === _id ? "show-active.png" : "show.png")}
-                            alt="show"
-                            width={25}
-                            height={25}
-                        />
+                        <MdIcon name={iconNames.view} color={colorNames.green} />
                     </button>
                 )}
                 <button type="button" disabled={isEdit} title={`edit meter readings `} onClick={editItem}>
-                    <img src={getIconUrl("edit.png")} alt="edit" width={25} height={25} />
+                    <MdIcon name={iconNames.edit} color={colorNames.green} />
                 </button>
 
                 {isLastItem && (
                     <button type="button" disabled={isEdit} title={`delete data`} onClick={removeItem}>
-                        <img src={getIconUrl("delete.png")} alt="delete" width={25} height={25} />
+                        <MdIcon name={iconNames.delete} color={colorNames.green} />
                     </button>
                 )}
             </div>

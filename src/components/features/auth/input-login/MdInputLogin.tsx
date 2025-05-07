@@ -1,7 +1,9 @@
 import React from "react";
 import Style from "./inputLogin.module.scss";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { isValidLoginInput } from "./inputLogin.funcs";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { colorNames } from "@/enums/color-names";
 
 interface InputLoginProps {
     labelText: "Email" | "Password";
@@ -20,9 +22,9 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
     };
 
     const iconIndicatorInput = isValidLoginInput(value) ? (
-        <img src={getIconUrl("ok.png")} alt="ok" width={19.5} height={19.5} />
+        <MdIcon name={iconNames.check} size={iconSizes.medium} color={colorNames.green} />
     ) : (
-        <img src={getIconUrl("close.png")} alt="ok" width={19.5} height={19.5} />
+        <MdIcon name={iconNames.close} size={iconSizes.medium} color={colorNames.red} />
     );
 
     const showIconIndicatorInput = value.length > 0 && iconIndicatorInput;
