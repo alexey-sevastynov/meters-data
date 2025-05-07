@@ -9,12 +9,12 @@ import {
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { logOut } from "@/store/slices/auth-slice";
 import { closePopup, confirmActionExit, confirmActionOnDelete } from "@/store/slices/confirm-popup-slice";
 import { exitAccount } from "./dropdownMenu.funcs";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { MdImage } from "@/components/ui/image/MdImage";
 
 export function MdDropdownMenu() {
     const dispatch = useAppDispatch();
@@ -38,7 +38,7 @@ export function MdDropdownMenu() {
     return (
         <MdDropdown className={Styles.dropdownMenu}>
             <MdDropdownTrigger className={Styles.dropdownTriggerMenu}>
-                <img src={getIconUrl("avatar.svg")} alt="avatar" width={30} height={30} />
+                <MdImage fileName={"avatar.svg"} alt="avatar" width={30} height={30} />
                 <h5>Lesha Sev</h5>
             </MdDropdownTrigger>
             <MdDropdownContent className={Styles.dropdownContentMenu}>

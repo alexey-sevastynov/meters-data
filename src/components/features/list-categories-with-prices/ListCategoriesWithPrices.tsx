@@ -10,12 +10,13 @@ import {
     deleteUtilityItem,
     resetEdit,
 } from "@/store/slices/monthly-money-calculations/slice";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { editItem, isShowDeleteButton, saveItemDB } from "./ListCategoriesWithPrices.funcs";
 import { colorNames } from "@/enums/color-names";
 import { stringToNumber } from "@/utils/conversion";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
 interface ListCategoriesWithPricesProps {
     dispatch: AppDispatch;
@@ -70,7 +71,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
                             title={`delete data`}
                             onClick={() => onDeleteItem(title, description)}
                         >
-                            <img src={getIconUrl("delete.png")} alt="delete" width={25} height={25} />
+                            <MdIcon name={iconNames.close} size={iconSizes.large} color={colorNames.red} />
                         </button>
                     )}
                     <li className={Styles.item}>

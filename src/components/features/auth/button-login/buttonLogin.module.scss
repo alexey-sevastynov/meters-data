@@ -15,19 +15,19 @@
 
     @include transition(background-color);
 
-    img {
+    svg {
         transform: translateX(0%);
         @include transition(transform);
     }
 
     &:hover {
-        img {
+        svg {
             transform: translateX(30%);
         }
     }
 
     &:active {
-        img {
+        svg {
             transform: translateX(100%);
         }
     }

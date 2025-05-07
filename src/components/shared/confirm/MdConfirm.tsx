@@ -7,9 +7,11 @@ import {
     confirmActionOnDelete,
     setIdDelete,
 } from "@/store/slices/confirm-popup-slice";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { colorNames } from "@/enums/color-names";
+import { MdImage } from "@/components/ui/image/MdImage";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 
 interface MdConfirmProps {
     question: string;
@@ -44,9 +46,9 @@ export function MdConfirm({ question }: MdConfirmProps) {
         <section className={Styles.confirmPage}>
             <h2 className={Styles.hidden}>confirm</h2>
             <div className={`${Styles.confirm} ${isOpen ? Styles.active : ""}`}>
-                <img className={Styles.image} src={getIconUrl("cat.png")} alt="cat-eyes" width={300} />
+                <MdImage className={Styles.image} fileName={"cat.png"} alt="cat-eyes" width={300} />
                 <button type="button" className={Styles.close} onClick={cancel}>
-                    <img src={getIconUrl("cross.png")} alt="exit" width={30} />
+                    <MdIcon name={iconNames.close} size={iconSizes.large} />
                 </button>
 
                 <p className={Styles.text}>{question}</p>

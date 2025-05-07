@@ -1,6 +1,7 @@
 import { cn } from "@/lib/cn";
 import Style from "./buttonLogin.module.scss";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
+import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
 
 export function MdButtonLogin({ ...props }) {
     return (
@@ -10,7 +11,7 @@ export function MdButtonLogin({ ...props }) {
             {...props}
         >
             Log in
-            <img src={getIconUrl("right-arrow.png")} alt="up" width={20} height={20} />
+            <MdIcon name={iconNames.arrowRight} size={iconSizes.medium} />
         </button>
     );
 }

@@ -1,7 +1,7 @@
 import Styles from "./itemLink.module.scss";
 import { NavLink } from "react-router-dom";
-import { getIconUrl } from "@/helpers/assets/get-icon-url";
 import { iconSizes } from "@/components/ui/icon/icon-constants";
+import { MdImage } from "@/components/ui/image/MdImage";
 
 interface ItemLinkProps {
     link: string;
@@ -14,12 +14,7 @@ export function ItemLink({ link, imageName, text, isSidebarCollapsed }: ItemLink
     return (
         <li>
             <NavLink to={link} className={({ isActive }) => (isActive ? Styles.active : Styles.itemLinkPage)}>
-                <img
-                    src={getIconUrl(imageName)}
-                    alt={text}
-                    width={iconSizes.large}
-                    height={iconSizes.large}
-                />
+                <MdImage fileName={imageName} alt={text} width={iconSizes.large} height={iconSizes.large} />
                 {!isSidebarCollapsed && <p className={Styles.text}>{text}</p>}
             </NavLink>
         </li>
