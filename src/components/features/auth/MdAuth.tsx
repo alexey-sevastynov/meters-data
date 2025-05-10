@@ -6,6 +6,7 @@ import { logIn } from "@/store/slices/auth-slice";
 import { MdInputLogin } from "@/components/features/auth/input-login/MdInputLogin";
 import { MdButtonLogin } from "@/components/features/auth/button-login/MdButtonLogin";
 import { isValidCredentials } from "@/components/features/auth/auth.funcs";
+import { getImageUrl } from "@/helpers/assets/get-image-url";
 
 export function MdAuth() {
     const dispatch = useAppDispatch();
@@ -23,7 +24,10 @@ export function MdAuth() {
     };
 
     return (
-        <section className={Style.loginPage}>
+        <section
+            className={Style.loginPage}
+            style={{ backgroundImage: `url(${getImageUrl("background-main.png")})` }}
+        >
             <div className={Style.login}>
                 <h3>Sign in to your account</h3>
                 <MdInputLogin labelText="Email" value={email} setValue={setEmail} isError={isError} />

@@ -1,4 +1,4 @@
-const iconsBasePath = "assets/images/";
+import { getImageUrl } from "@/helpers/assets/get-image-url";
 
 interface MdImageProps {
     fileName: string;
@@ -19,8 +19,4 @@ export function MdImage({ fileName, alt, className, width, height }: MdImageProp
             loading="lazy"
         />
     );
-}
-
-function getImageUrl(fileName: string) {
-    return import.meta.env.BASE_URL + iconsBasePath + fileName;
 }
