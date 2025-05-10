@@ -32,10 +32,7 @@ export function Price() {
             dispatch(getAllUtilityPrice());
         }
 
-        if (
-            monthlyMoneyCalculations?.length === 0 &&
-            monthlyMoneyCalculationsStatus !== statusNames.loading
-        ) {
+        if (!monthlyMoneyCalculations && monthlyMoneyCalculationsStatus !== statusNames.loading) {
             dispatch(getAllMonthlyMoneyCalculations());
         }
     }, [
