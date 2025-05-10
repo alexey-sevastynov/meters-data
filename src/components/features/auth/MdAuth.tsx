@@ -25,7 +25,7 @@ export function MdAuth() {
     return (
         <section className={Style.loginPage}>
             <div className={Style.login}>
-                <h3>Log in</h3>
+                <h3>Sign in to your account</h3>
                 <MdInputLogin labelText="Email" value={email} setValue={setEmail} isError={isError} />
                 <MdInputLogin
                     labelText="Password"
@@ -36,7 +36,7 @@ export function MdAuth() {
 
                 <MdButtonLogin onClick={tryLogIn} />
                 <footer>
-                    <p>contact with the developer ?</p>
+                    <p>Need help? Contact the developer:</p>
                     <Link to={"mailto:mail@alexeseva94@gmail.com"} className={Style.link}>
                         alexeseva94@gmail.com
                     </Link>

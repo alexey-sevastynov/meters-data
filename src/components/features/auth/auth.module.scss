@@ -7,7 +7,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $mint;
+    background-image: url("assets/images/background-main.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     h3 {
         margin-bottom: 22px;
