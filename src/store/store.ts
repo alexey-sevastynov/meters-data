@@ -9,6 +9,7 @@ import { confirmReducer } from "@/store/slices/confirm-popup-slice";
 import { i18nReducer } from "@/store/slices/i-18-next";
 import { billingAccountsReducer } from "@/store/slices/billing-account-slice";
 import { sliceNames } from "@/store/slice-names";
+import { i18nPersistConfig } from "@/store/i18n/i-18-n-persist-config";
 
 const persistConfig = {
     key: "root",
@@ -30,7 +31,7 @@ const reducer = combineReducers({
     monthlyMoneyCalculations: monthlyMoneyCalculationsReducer,
     auth: authReducer,
     confirm: confirmReducer,
-    i18n: i18nReducer,
+    i18n: persistReducer(i18nPersistConfig, i18nReducer),
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

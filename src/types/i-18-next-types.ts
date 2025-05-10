@@ -1,4 +1,4 @@
-import { supportedLangs } from "@/store/i18n/config";
+import { supportedLangs } from "@/constants/language";
 import englishTranslate from "@/store/i18n/en/translation.json";
 
 export type SupportedLang = keyof typeof supportedLangs;
