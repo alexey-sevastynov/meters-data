@@ -7,3 +7,10 @@ export enum language {
 }
 
 export const langKey = "lang" as const;
+
+export const defaultLang = "ua";
+
+export const supportedLangs = {
+    en: "English",
+    ua: "Ukraine",
+};
