@@ -7,10 +7,10 @@ export function MdButtonLogin({ ...props }) {
     return (
         <button
             type="button"
-            className={cn("text-white hover:bg-blue active:bg-blue", Style.buttonLogin)}
+            className={cn("text-white hover:bg-green active:bg-green", Style.buttonLogin)}
             {...props}
         >
-            Log in
+            Sign in
             <MdIcon name={iconNames.arrowRight} size={iconSizes.medium} />
         </button>
     );
