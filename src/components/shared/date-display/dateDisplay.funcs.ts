@@ -1,5 +1,5 @@
 import { format, Locale } from "date-fns";
-import { DateFormatKey, dateFormats } from "./constants";
+import { DateFormatKey, dateFormats } from "@/components/shared/date-display/constants";
 import { errorMessage } from "@/constants/error-message";
 
 export function getFormattedDate(date: Date, formatType: DateFormatKey, locale: Locale) {

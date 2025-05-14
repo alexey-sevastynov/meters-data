@@ -1,7 +1,7 @@
 import Styles from "./metersManager.module.scss";
 import { useMemo, useState } from "react";
 import { MdTable } from "@/components/shared/table/MdTable";
-import { TableFilters } from "./table-filters/TableFilters";
+import { TableFilters } from "@/components/features/meters-manager/table-filters/TableFilters";
 import {
     filterBySelectedYears,
     getHiddenColumnListKeys,

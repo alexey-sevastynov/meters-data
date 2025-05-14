@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import Style from "./monthlyMoneyCalculations.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
-import { ListMonthlyMoneyCalculations } from "./list-monthly-money-calculations/ListMonthlyMoneyCalculations";
+import { ListMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store/hook";
 import { inputTypes } from "@/components/ui/input/input.type";

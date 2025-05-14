@@ -12,7 +12,7 @@ import { colorNames } from "@/enums/color-names";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { logOut } from "@/store/slices/auth-slice";
 import { closePopup, confirmActionExit, confirmActionOnDelete } from "@/store/slices/confirm-popup-slice";
-import { exitAccount } from "./dropdownMenu.funcs";
+import { exitAccount } from "@/components/shared/dropdown-menu/dropdownMenu.funcs";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { MdImage } from "@/components/ui/image/MdImage";
 

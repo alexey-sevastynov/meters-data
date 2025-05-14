@@ -1,8 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Style from "./progresIndicator.module.scss";
-import { ProgressIndicatorProps } from "./progressIndicator.interface";
-import { calculateBorderRadius, calculateWidth } from "./progressIndicator.function";
+import Style from "./progressIndicator.module.scss";
+import { ProgressIndicatorProps } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/progress-indicator/progressIndicator.interface";
+import {
+    calculateBorderRadius,
+    calculateWidth,
+} from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/progress-indicator/progressIndicator.function";
 
 export function ProgressIndicator({ index, percentDifference, isMinus }: ProgressIndicatorProps) {
     const [animate, setAnimate] = React.useState(false);

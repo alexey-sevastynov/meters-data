@@ -1,6 +1,6 @@
 import { ColorName } from "@/enums/color-names";
 import { ButtonHTMLAttributes } from "react";
-import { IconName } from "../icon/icon-constants";
+import { IconName } from "@/components/ui/icon/icon-constants";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: string;

@@ -1,5 +1,5 @@
 import { categoryKeys } from "@/enums/category-keys";
-import { technicalColumnKeys } from "./table-constants";
+import { technicalColumnKeys } from "@/components/shared/table/table-constants";
 
 export const tableColumnTypes = {
     string: 0,

@@ -11,7 +11,11 @@ import {
     resetEdit,
 } from "@/store/slices/monthly-money-calculations/slice";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { editItem, isShowDeleteButton, saveItemDB } from "./ListCategoriesWithPrices.funcs";
+import {
+    editItem,
+    isShowDeleteButton,
+    saveItemDB,
+} from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices.funcs";
 import { colorNames } from "@/enums/color-names";
 import { stringToNumber } from "@/utils/conversion";
 import { selectTranslations } from "@/store/slices/i-18-next";

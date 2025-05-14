@@ -1,6 +1,6 @@
 import React from "react";
 import Style from "./inputLogin.module.scss";
-import { isValidLoginInput } from "./inputLogin.funcs";
+import { isValidLoginInput } from "@/components/features/auth/input-login/inputLogin.funcs";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";

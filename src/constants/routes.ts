@@ -1,4 +1,4 @@
-import { addressLinkNames } from "./address";
+import { addressLinkNames } from "@/constants/address";
 
 export const routeNames = {
     price: "price",

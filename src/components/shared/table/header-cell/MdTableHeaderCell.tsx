@@ -9,7 +9,7 @@ import {
     isActionColumnDisabledForReadOnly,
     isActionColumnVisible,
     isColumnAction,
-} from "./TableHeaderCell.funcs";
+} from "@/components/shared/table/header-cell/TableHeaderCell.funcs";
 import { useState, useRef, useEffect } from "react";
 import { MdResizableBox } from "@/components/ui/resizable-box/MdResizableBox";
 import { colorNames } from "@/enums/color-names";

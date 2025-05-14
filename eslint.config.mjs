@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import importPlugin from "eslint-plugin-import";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -48,6 +49,7 @@ export default [
             "react-compiler": reactCompiler,
             react: react,
             "react-refresh": reactRefresh,
+            import: importPlugin,
         },
         languageOptions: {
             ecmaVersion: "latest",
@@ -57,6 +59,9 @@ export default [
             },
         },
         rules: {
+            "import/no-relative-parent-imports": "error",
+            "import/no-unresolved": ["error", { ignore: ["^@/"] }],
+            "import/no-absolute-path": "error",
             "max-lines": ["error", 400],
             "max-lines-per-function": ["error", 90],
             complexity: ["error", { max: 10 }],
@@ -84,7 +89,7 @@ export default [
             "max-len": [
                 "error",
                 {
-                    code: 150,
+                    code: 160,
                     ignorePattern: "^import\\s.+\\sfrom\\s.+;$",
                 },
             ],

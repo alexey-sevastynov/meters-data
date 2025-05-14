@@ -1,6 +1,6 @@
-import { BreadcrumbItem } from "../components/shared/breadcrumb/breadcrumb.type";
-import { addressLinkNames, addressNames } from "./address";
-import { routeNames, appRoutes } from "./routes";
+import { BreadcrumbItem } from "@/components/shared/breadcrumb/breadcrumb.type";
+import { addressLinkNames, addressNames } from "@/constants/address";
+import { routeNames, appRoutes } from "@/constants/routes";
 
 const unknownAddressString = "unknown address";
 
