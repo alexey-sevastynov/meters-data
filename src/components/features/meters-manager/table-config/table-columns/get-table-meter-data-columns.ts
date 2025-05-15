@@ -12,13 +12,13 @@ export function getTableMeterDataColumns(isVisibleWaterColumn: boolean) {
     const waterColumns = isVisibleWaterColumn ? [waterColumn] : [];
 
     const columns: TableColumn<TableMeterDataColumnKey, TableMeterDataColumnLabel>[] = [
+        actionColumn,
         idColumn,
         dateColumn,
         ...lightColumns,
         gasColumn,
         ...waterColumns,
         ...metaColumns,
-        actionColumn,
     ];
 
     return columns;

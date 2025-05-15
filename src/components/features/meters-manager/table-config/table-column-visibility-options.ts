@@ -37,3 +37,12 @@ export function getTableMeterDataColumnVisibilityOptions(translations: Translati
 
     return options;
 }
+
+export function getTableMeterDataMetaColumnVisibilityOptions(translations: TranslationKeys) {
+    const options: Option[] = [
+        getTableMeterDataColumnCreatedAtOption(translations),
+        getTableMeterDataColumnUpdatedAtOption(translations),
+    ];
+
+    return options;
+}

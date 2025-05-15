@@ -50,6 +50,7 @@
     }
 
     .tableHeaderCellLabel {
+        font-weight: 600;
         color: $green;
     }
 }
@@ -62,7 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 5rem;
+    min-width: $widthHeaderCellActionTable;
     height: $heightRowTable;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
