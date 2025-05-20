@@ -2,6 +2,40 @@
 
 $font-size-base: 14px;
 
+:root {
+    --color-bg: #{$white};
+    --color-bg-red: #{$red};
+    --color-bg-green: #{$green};
+    --color-text-primary: #{$black};
+    --color-text-secondary: #{$darkGrey};
+    --color-text-muted: #{$grey};
+    --color-text-disabled: #{$grey};
+    --color-text-link: #{$green};
+    --color-text-red: #{$red};
+    --color-text-blue: #{$blue};
+    --color-bg-hover-item: #{$lightGrey};
+    --color-border: #{$grey};
+    --color-default-icon: #{$green};
+    --color-default-icon-hover: #{$green-hover};
+}
+
+html.dark {
+    --color-bg: #{$darkGreen};
+    --color-bg-red: #{$lightRed};
+    --color-bg-green: #{$lightGreen};
+    --color-text-primary: #{$white};
+    --color-text-secondary: #{$grey};
+    --color-text-muted: #{$darkGrey};
+    --color-text-disabled: #{$darkGrey};
+    --color-text-link: #{$green};
+    --color-text-red: #{$lightRed};
+    --color-text-blue: #{$lightBlue};
+    --color-bg-hover-item: #{$green-hover};
+    --color-border: #{$darkGrey};
+    --color-default-icon: #{$white};
+    --color-default-icon-hover: #{$lightGrey};
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +60,10 @@ li {
     list-style: none;
 }
 
+select {
+    background-color: var(--color-bg);
+}
+
 input,
 label,
 select,
@@ -35,6 +73,7 @@ table,
 th,
 td {
     font-size: $font-size-base;
+    color: var(--color-text-primary);
 }
 
 h1,
@@ -42,12 +81,18 @@ h2,
 h3,
 h4,
 h5,
+a {
+    line-height: normal;
+    font-weight: 400;
+    color: var(--color-text-primary);
+}
+
 p,
-a,
 dd,
 dt {
     line-height: normal;
     font-weight: 400;
+    color: var(--color-text-secondary);
 }
 
 h3 {
@@ -68,7 +113,6 @@ h5 {
 
 a {
     text-decoration: none;
-    color: $black;
     font-size: $font-size-base;
 }
 

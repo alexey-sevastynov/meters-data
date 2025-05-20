@@ -1,0 +1,29 @@
+@import "@/styles/mixins.scss";
+
+.itemBlock {
+    position: relative;
+
+    &:nth-child(1) {
+        border-bottom: $border;
+    }
+
+    .btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .item {
+        padding-left: 40px;
+        display: flex;
+        gap: 20px;
+
+        p {
+            line-height: 1.8;
+        }
+
+        .title {
+            font-weight: bold;
+        }
+    }
+}

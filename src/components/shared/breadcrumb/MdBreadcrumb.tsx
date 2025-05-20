@@ -1,13 +1,17 @@
 import Styles from "./breadcrumb.module.scss";
 import { cn } from "@/lib/cn";
-import { colorNames } from "@/enums/color-names";
 import { MdLink } from "@/components/ui/link/MdLink";
 import { isHomeRoute, isNotLastItem } from "@/components/shared/breadcrumb/breadcrumb.function";
 import { MdBreadcrumbProps } from "@/components/shared/breadcrumb/breadcrumb.type";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 
 export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
+    const theme = useTheme();
+    const iconColor = getBaseIconColor(theme.themeMode);
+
     if (!items) return null;
 
     return (
@@ -16,7 +20,7 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
                 const isLastItem = !isNotLastItem(index, items.length);
                 const linkContent = isHomeRoute(item) ? (
                     <div className={Styles.homeIcon}>
-                        <MdIcon name={iconNames.home} size={iconSizes.medium} color={colorNames.black} />
+                        <MdIcon name={iconNames.home} size={iconSizes.medium} color={iconColor} />
                     </div>
                 ) : (
                     item.label
@@ -33,11 +37,7 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
                         )}
                         {!isLastItem && (
                             <div className={Styles.separator}>
-                                <MdIcon
-                                    name={iconNames.circle}
-                                    size={iconSizes.tiny}
-                                    color={colorNames.green}
-                                />
+                                <MdIcon name={iconNames.circle} size={iconSizes.tiny} color={iconColor} />
                             </div>
                         )}
                     </div>

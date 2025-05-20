@@ -6,6 +6,10 @@
         align-items: center;
         gap: 7px;
         color: $white;
+
+        .dropdownTriggerLanguageText {
+            color: $white;
+        }
     }
 
     .dropdownContentLanguage {

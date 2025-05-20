@@ -7,18 +7,22 @@ import { useAppSelector } from "@/store/hook";
 import { MdConfirm } from "@/components/shared/confirm/MdConfirm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "@/styles/lib/toast-custom.scss";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { themeModes } from "@/components/context/theme-provider/theme-provider-types";
 
 const mountElement = document.getElementById("auth")!;
 const confirmWindowPopup = document.getElementById("popup")!;
 
 function App() {
+    const theme = useTheme();
     const pages = useRoutes(routes);
     const isAuth = useAppSelector((state) => state.auth.isAuth);
     const isOpenPopup = useAppSelector((state) => state.confirm.isOpen);
     const messagePopup = useAppSelector((state) => state.confirm.message);
 
     return (
-        <main>
+        <main className={cn(theme.isDarkMode && themeModes.dark)}>
             {createPortal(!isAuth && <MdAuth />, mountElement)}
 
             {createPortal(isOpenPopup && <MdConfirm question={messagePopup} />, confirmWindowPopup)}
@@ -34,7 +38,7 @@ function App() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                theme="light"
+                theme={theme.themeMode}
             />
         </main>
     );

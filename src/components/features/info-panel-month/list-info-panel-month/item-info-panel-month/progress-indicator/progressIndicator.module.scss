@@ -14,7 +14,7 @@ $gap-line: 3px;
     &_minus {
         position: absolute;
         height: 100%;
-        background-color: $green;
+        background-color: var(--color-bg-green);
         right: 0px;
 
         border-radius: $border-radius 0px 0px $border-radius;
@@ -23,7 +23,7 @@ $gap-line: 3px;
     &_plus {
         position: absolute;
         height: 100%;
-        background-color: $red;
+        background-color: var(--color-bg-red);
         left: calc(100% + $gap-line);
 
         border-radius: 0px $border-radius $border-radius 0px;

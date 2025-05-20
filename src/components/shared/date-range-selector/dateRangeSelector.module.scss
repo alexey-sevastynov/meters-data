@@ -7,67 +7,71 @@ $border-radius: 5px;
 $padding-window: 5px 10px;
 
 .dateRangeSelector {
-  position: relative;
-  &__btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: $padding-window;
-    border: 1px solid $grey;
-    border-radius: $border-radius;
-    height: 39px;
-    width: $width;
+    position: relative;
 
-    &_active {
-      border-color: $green;
-    }
-  }
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: $padding-window;
+        border: $border;
+        border-radius: $border-radius;
+        height: 39px;
+        width: $width;
 
-  &__dropdown {
-    position: absolute;
-    top: 49px;
-    display: flex;
-    flex-direction: column;
-
-    background-color: white;
-    z-index: 2;
-    border-radius: $border-radius;
-
-    border: 1px solid $grey;
-    width: $width;
-
-    height: 30px * 6;
-
-    overflow-y: scroll;
-
-    @include custom-scroll;
-    &_btn {
-      padding: $padding-window;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      &_active {
-        background-color: $green;
-        color: white;
-
-        &:hover {
-          background-color: $green !important;
+        &_date {
+            color: var(--color-text-primary);
         }
-      }
 
-      &:hover {
-        background-color: $grey;
-      }
+        &_active {
+            border-color: $green-active;
+        }
     }
-  }
 
-  @media (max-width: $mobile-xl) {
-    width: 100%;
-    &__btn,
     &__dropdown {
-      width: 100%;
+        position: absolute;
+        top: 49px;
+        display: flex;
+        flex-direction: column;
+
+        background-color: var(--color-bg);
+        z-index: 2;
+        border-radius: $border-radius;
+
+        border: $border;
+        width: $width;
+
+        height: 30px * 6;
+
+        overflow-y: scroll;
+
+        @include custom-scroll;
+        &_btn {
+            padding: $padding-window;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &_active {
+                background-color: var(--color-bg-hover-item);
+
+                &:hover {
+                    background-color: var(--color-bg-hover-item) !important;
+                }
+            }
+
+            &:hover {
+                background-color: var(--color-bg-hover-item);
+            }
+        }
     }
-  }
+
+    @media (max-width: $mobile-xl) {
+        width: 100%;
+        &__btn,
+        &__dropdown {
+            width: 100%;
+        }
+    }
 }

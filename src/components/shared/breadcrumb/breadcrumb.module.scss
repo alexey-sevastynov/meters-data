@@ -14,11 +14,12 @@
         }
 
         .link {
+            color: var(--color-text-primary);
             text-decoration: none;
         }
 
         .active {
-            color: $green;
+            text-decoration: underline;
         }
 
         .separator {

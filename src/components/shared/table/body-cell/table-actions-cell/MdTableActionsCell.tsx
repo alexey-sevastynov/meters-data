@@ -3,10 +3,11 @@ import Styles from "./tableActionsCell.module.scss";
 import { TableAction, TableRow } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
-import { colorNames } from "@/enums/color-names";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { deleteItemMeterData } from "@/components/shared/table/body-cell/table-actions-cell/tableActionsCell.funcs";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 
 interface MdTableActionsCellProps {
     id: string;
@@ -16,6 +17,7 @@ interface MdTableActionsCellProps {
 }
 
 export function MdTableActionsCell({ id, actions, row, address }: MdTableActionsCellProps) {
+    const theme = useTheme();
     const dispatch = useAppDispatch();
     const translations = useAppSelector(selectTranslations);
     const isDelete = useAppSelector((state) => state.confirm.isActionDeleteItem);
@@ -52,7 +54,7 @@ export function MdTableActionsCell({ id, actions, row, address }: MdTableActions
                             title={translations.table[action.label as keyof typeof translations.table]}
                             type="button"
                         >
-                            <MdIcon name={iconNames[action.icon]} color={colorNames.green} />
+                            <MdIcon name={iconNames[action.icon]} color={getBaseIconColor(theme.themeMode)} />
                         </button>
                     ))}
             </div>

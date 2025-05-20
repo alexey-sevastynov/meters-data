@@ -31,9 +31,9 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) 
 
     return (
         <ul ref={listMetersDataRef} className={Style.listMetersData}>
-            {status === statusNames.loading && <li>Loading...</li>}
+            {status === statusNames.loading && <p>Loading...</p>}
             {isEmptyList(groupedData, status) ? (
-                <li>No data</li>
+                <p>No data</p>
             ) : (
                 Object.entries(groupedData).map(([year, group], index, array) => (
                     <GroupYear

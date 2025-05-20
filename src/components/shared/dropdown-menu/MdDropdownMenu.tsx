@@ -15,6 +15,7 @@ import { closePopup, confirmActionExit, confirmActionOnDelete } from "@/store/sl
 import { exitAccount } from "@/components/shared/dropdown-menu/dropdownMenu.funcs";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { MdImage } from "@/components/ui/image/MdImage";
+import { DropdownThemeMode } from "@/components/shared/dropdown-menu/dropdown-theme-mode/DropdownThemeMode";
 
 export function MdDropdownMenu() {
     const dispatch = useAppDispatch();
@@ -39,16 +40,10 @@ export function MdDropdownMenu() {
         <MdDropdown className={Styles.dropdownMenu}>
             <MdDropdownTrigger className={Styles.dropdownTriggerMenu}>
                 <MdImage fileName={"avatar.svg"} alt="avatar" width={30} height={30} />
-                <h5>Lesha Sev</h5>
+                <h5 className={Styles.dropdownTriggerMenuText}>Lesha Sev</h5>
             </MdDropdownTrigger>
             <MdDropdownContent className={Styles.dropdownContentMenu}>
-                <MdDropdownItem className={Styles.dropdownItemMenu} disabled>
-                    <div className={Styles.dropdownItemMenuInner}>
-                        <MdIcon name={iconNames.lightMode} color={colorNames.grey} size={iconSizes.small} />
-                        <p>{translations.dropdownMenu.lightMode}</p>
-                    </div>
-                    <MdIcon name={iconNames.expand} color={colorNames.grey} size={iconSizes.small} />
-                </MdDropdownItem>
+                <DropdownThemeMode />
                 <MdDropdownItem className={Styles.dropdownItemMenu} disabled>
                     <div className={Styles.dropdownItemMenuInner}>
                         <MdIcon name={iconNames.gear} color={colorNames.grey} size={iconSizes.small} />

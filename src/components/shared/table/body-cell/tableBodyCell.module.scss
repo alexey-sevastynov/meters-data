@@ -15,9 +15,9 @@
 }
 
 .tableBodyCellWater {
-    color: $blue;
+    color: var(--color-text-blue);
 }
 
 .tableBodyCellGas {
-    color: $red;
+    color: var(--color-text-red);
 }

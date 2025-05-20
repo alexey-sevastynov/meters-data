@@ -18,6 +18,8 @@ import { maxWidthColumn } from "@/components/shared/table/table-constants";
 import { tableColumnTypes } from "@/components/shared/table/table-enums";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 
 interface MdTableHeaderCellProps {
     column: TableColumn;
@@ -34,6 +36,7 @@ export function MdTableHeaderCell({
     tableAction,
     onSort,
 }: MdTableHeaderCellProps) {
+    const theme = useTheme();
     const translations = useAppSelector(selectTranslations);
     const cellRef = useRef<HTMLTableCellElement>(null);
     const [minWidth, setMinWidth] = useState<number>(column.minWidth || 0);
@@ -60,7 +63,7 @@ export function MdTableHeaderCell({
                         title={translations.table[tableAction.label as keyof typeof translations.table]}
                         type="button"
                     >
-                        <MdIcon name={iconNames[tableAction.icon]} color={colorNames.green} />
+                        <MdIcon name={iconNames[tableAction.icon]} color={colorNames.grey} />
                     </button>
                 )}
             </th>
@@ -90,7 +93,11 @@ export function MdTableHeaderCell({
                         {translations.table[column.key as keyof typeof translations.table]}
                     </p>
                     {column.sort && (
-                        <MdIcon name={iconNames.sort} color={colorNames.green} size={iconSizes.small} />
+                        <MdIcon
+                            name={iconNames.sort}
+                            color={getBaseIconColor(theme.themeMode)}
+                            size={iconSizes.small}
+                        />
                     )}
                 </button>
             </MdResizableBox>

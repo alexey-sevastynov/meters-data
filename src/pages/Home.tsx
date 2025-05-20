@@ -30,7 +30,7 @@ export function Home() {
                     />
                 </div>
 
-                <p className="subtitle">{translations.home.utilityPrices}</p>
+                <h5 className="subtitle">{translations.home.utilityPrices}</h5>
 
                 <MdListUtilityPrices />
             </div>
