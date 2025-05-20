@@ -1,17 +1,25 @@
 $white: #ffffff;
-$black: #000000;
-$lightGreen: #c3ff78;
+$black: #1a1a1a;
+$lightGreen: #73b37c;
+$darkGreen: #101f1b;
 $green: #2f6346;
 $green-hover: #3e7859;
 $green-active: #4c8f6a;
 $navLink: #3a7552;
 $mint: #f0fff7;
 $mint-focus: #dafbe9;
+$lightRed: #ff6b6b;
+$lightRed-hover: #ff8080;
+$lightRed-active: #ff8b8b;
 $red: #c20000;
 $red-hover: #d11a1a;
 $red-active: #e03333;
 $grey: #d5d5d5;
+$darkGrey: #2b3935;
 $lightGrey: #efefef;
+$lightBlue: #319cff;
+$lightBlue-hover: #4da6ff;
+$lightBlue-active: #6bb8ff;
 $blue: #006ed3;
 $blue-active: #005eb6;
 $blue-hover: #0178e8;
@@ -20,16 +28,19 @@ $colors: (
     "white": $white,
     "black": $black,
     "lightGreen": $lightGreen,
+    "darkGreen": $darkGreen,
     "green": $green,
     "green-hover": $green-hover,
     "green-active": $green-active,
     "navLink": $navLink,
     "mint": $mint,
     "mint-focus": $mint-focus,
+    "lightRed": $lightRed,
     "red": $red,
     "red-hover": $red-hover,
     "red-active": $red-active,
     "grey": $grey,
+    "darkGrey": $darkGrey,
     "lightGrey": $lightGrey,
     "blue": $blue,
     "blue-active": $blue-active,

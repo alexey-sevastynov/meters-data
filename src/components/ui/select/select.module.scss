@@ -1,11 +1,12 @@
 @import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
 
 .select {
     display: flex;
     flex-direction: column;
 
     select {
-        border: 1px solid $green;
+        border: $border;
         min-width: 150px;
         height: 38.99px;
     }

@@ -1,33 +1,30 @@
 @import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
 
 .inputLogin {
     height: 80px;
     display: flex;
     flex-direction: column;
+
     label {
         margin-bottom: 5px;
     }
     .input {
         position: relative;
 
-        .inputTrue {
-            background-color: $mint;
-        }
-
         input {
             padding-left: 12px;
             padding-right: 38px;
-
             min-width: 260px;
             min-height: 39px;
-
-            border: 1px solid $grey;
+            border: $border;
             border-radius: 4px;
 
             &::placeholder {
-                color: $grey;
+                color: var(--color-text-muted);
             }
         }
+
         svg {
             position: absolute;
             top: 50%;
@@ -37,8 +34,9 @@
     }
 
     .errorMessage {
-        color: $red;
-        font-size: 12px;
-        font-weight: bold;
+        padding-left: 12px;
+        margin: 0.2rem 0rem;
+        color: var(--color-text-red);
+        font-size: 11px;
     }
 }

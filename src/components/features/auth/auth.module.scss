@@ -1,4 +1,5 @@
 @import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
 
 .loginPage {
     height: 100svh;
@@ -14,21 +15,21 @@
     h3 {
         margin-bottom: 22px;
     }
+
     .login {
         padding: 25px 20px 45px;
         display: flex;
         flex-direction: column;
-        background-color: white;
-
-        border: 1px solid $grey;
+        background-color: var(--color-bg);
+        border: $border;
         border-radius: 7px;
-
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     footer {
         margin-top: 10px;
         text-align: center;
+
         p,
         .link {
             font-size: 12px;

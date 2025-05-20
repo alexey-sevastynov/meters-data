@@ -15,6 +15,8 @@ import { Line } from "react-chartjs-2";
 import { ChartsDataType } from "@/types/charts-data-type";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { getChartOptions } from "@/components/shared/chart/chart-constants";
 
 ChartJS.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -27,6 +29,7 @@ interface MdChartProps {
 }
 
 export function MdChart({ data, title }: MdChartProps) {
+    const theme = useTheme();
     const translations = useAppSelector(selectTranslations);
     const filteredData = data.map((obj: ChartsDataType) => {
         const { label, light, lightDay, lightNight, gas, water } = obj;
@@ -91,18 +94,7 @@ export function MdChart({ data, title }: MdChartProps) {
                               dataset.label === "Light Night"
                     ),
                 }}
-                options={{
-                    elements: {
-                        line: {
-                            tension: 0.4,
-                        },
-                    },
-                    plugins: {
-                        title: {
-                            text: "Charts line",
-                        },
-                    },
-                }}
+                options={getChartOptions(theme.themeMode)}
             />
         </div>
     );

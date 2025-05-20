@@ -4,8 +4,11 @@ import { InputType, inputTypes } from "@/components/ui/input/input.type";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
-import { getInputFieldClass, getNumberInputProps } from "@/components/ui/input/MdInput.funcs";
+import { getNumberInputProps } from "@/components/ui/input/MdInput.funcs";
 import { VoidFuncNoParam } from "@/types/getter-setter-functions";
+import { cn } from "@/lib/cn";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { getIconColorByTheme } from "@/helpers/theme/get-icon-color";
 
 interface MdInputProps {
     value: string;
@@ -29,6 +32,7 @@ export function MdInput({
     isEdit = false,
     step,
 }: MdInputProps) {
+    const theme = useTheme();
     const isModified = value !== defaultValue;
 
     return (
@@ -37,7 +41,7 @@ export function MdInput({
 
             <div className={Styles.inputContainer}>
                 <input
-                    className={getInputFieldClass(isEdit)}
+                    className={cn(isEdit && Styles.inputEdit)}
                     type={type}
                     value={value}
                     onChange={onChange}
@@ -45,7 +49,11 @@ export function MdInput({
                 />
                 {isModified && onReset && (
                     <button className={Styles.close} onClick={onReset} type="button">
-                        <MdIcon name={iconNames.close} color={colorNames.red} size={iconSizes.medium} />
+                        <MdIcon
+                            name={iconNames.close}
+                            color={getIconColorByTheme(colorNames.lightRed, colorNames.red, theme.themeMode)}
+                            size={iconSizes.medium}
+                        />
                     </button>
                 )}
             </div>

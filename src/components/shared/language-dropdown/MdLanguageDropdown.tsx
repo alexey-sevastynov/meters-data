@@ -24,7 +24,7 @@ export function MdLanguageDropdown() {
         <MdDropdown className={Styles.dropdownLanguage}>
             <MdDropdownTrigger className={Styles.dropdownTriggerLanguage}>
                 <MdIcon name={iconNames.language} />
-                <h5>{currentLanguage(lang)}</h5>
+                <h5 className={Styles.dropdownTriggerLanguageText}>{currentLanguage(lang)}</h5>
             </MdDropdownTrigger>
             <MdDropdownContent className={Styles.dropdownContentLanguage}>
                 <MdDropdownItem

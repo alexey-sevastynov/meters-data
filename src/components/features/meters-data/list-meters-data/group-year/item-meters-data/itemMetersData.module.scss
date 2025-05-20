@@ -1,22 +1,18 @@
 @import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
 
 .itemMetersData {
     display: flex;
     gap: 20px;
-    border-bottom: 1px solid $grey;
-
-    &:nth-child(odd) {
-        background: $mint;
-    }
+    border-bottom: $border;
 
     &.active {
-        background-color: $lightGreen;
+        background-color: var(--color-bg-hover-item);
     }
 
     .data {
         display: flex;
         padding: 10px;
-
         gap: 7px;
 
         p {
@@ -33,23 +29,29 @@
         .gas,
         .water {
             min-width: 130px;
-
             letter-spacing: 0.8px;
         }
 
         .water {
-            color: $blue;
+            color: var(--color-text-blue);
         }
 
         .gas {
-            color: $red;
+            color: var(--color-text-red);
         }
     }
 
     .btns {
         display: flex;
 
-        gap: 10px;
+        gap: 0.7rem;
+        padding-right: 1rem;
+
+        button:hover {
+            svg {
+                fill: var(--color-default-icon-hover);
+            }
+        }
 
         button:disabled {
             opacity: 0.6;

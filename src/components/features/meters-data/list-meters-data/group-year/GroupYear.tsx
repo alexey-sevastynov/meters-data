@@ -49,7 +49,6 @@ const GroupYear: React.FC<GroupYearProps> = ({
                     const isOnlyOneYear = !hasMultipleYears;
                     const isFirstIndex = index === 0;
                     const isLastIndex = index === group.items.length - 1;
-
                     const isFirstItem = isFirstGroup && (isOnlyOneYear ? isLastIndex : isFirstIndex);
                     const isLastItem = isLastGroup && index === 0;
 
@@ -59,7 +58,18 @@ const GroupYear: React.FC<GroupYearProps> = ({
                             isFirstItem={isFirstItem}
                             isLastItem={isLastItem}
                             isWaterBlock={isWaterBlock}
-                            {...item}
+                            meterData={{
+                                _id: item._id,
+                                date: item.date,
+                                address: item.address,
+                                light: item.light,
+                                lightDay: item.lightDay,
+                                lightNight: item.lightNight,
+                                gas: item.gas,
+                                water: item.water,
+                                createdAt: item.createdAt,
+                                updatedAt: item.updatedAt,
+                            }}
                         />
                     );
                 })}

@@ -7,6 +7,7 @@ import Select, {
     OptionProps,
     ControlProps,
     IndicatorsContainerProps,
+    MenuProps,
 } from "react-select";
 import { Option } from "@/components/ui/input-group/input-group-models";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
@@ -15,6 +16,8 @@ import { colorNames } from "@/enums/color-names";
 import { cn } from "@/lib/cn";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 
 interface MdInputGroupProps {
     options: Option[];
@@ -38,6 +41,7 @@ export function MdInputGroup({ options, defaultValue, label, onChange }: MdInput
                     MultiValueLabel,
                     Option: CustomOption,
                     IndicatorsContainer,
+                    Menu,
                 }}
                 defaultValue={defaultValue}
                 closeMenuOnSelect={true}
@@ -73,9 +77,11 @@ function ClearIndicator(props: ClearIndicatorProps<Option>) {
 }
 
 function IndicatorsContainer(props: IndicatorsContainerProps<Option, true, GroupBase<Option>>) {
+    const theme = useTheme();
+
     return (
         <div {...props.innerProps} className={Style.indicatorsContainer}>
-            <MdIcon name={iconNames.arrowDown} color={colorNames.black} />
+            <MdIcon name={iconNames.arrowDown} color={getBaseIconColor(theme.themeMode)} />
         </div>
     );
 }
@@ -96,6 +102,14 @@ function CustomOption(props: OptionProps<Option, true>) {
     return (
         <div className={Style.option} ref={props.innerRef} {...props.innerProps}>
             {props.data.label}
+        </div>
+    );
+}
+
+function Menu(props: MenuProps<Option, true>) {
+    return (
+        <div className={Style.menu} ref={props.innerRef} {...props.innerProps}>
+            {props.children}
         </div>
     );
 }

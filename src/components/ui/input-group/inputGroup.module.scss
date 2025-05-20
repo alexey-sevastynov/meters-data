@@ -1,4 +1,5 @@
 @import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
 
 $multi-value-border-radius: 4px;
 
@@ -15,14 +16,14 @@ $multi-value-border-radius: 4px;
     min-width: 12.2rem;
     max-width: 22rem;
     min-height: 38px;
-    border: 1px solid $grey;
+    border: $border;
     border-radius: 4px;
     box-shadow: none;
     transition: all 0.2s ease;
     cursor: text;
 
     &.focused {
-        border-color: $green;
+        border-color: var(--color-border);
     }
 }
 
@@ -79,9 +80,29 @@ $multi-value-border-radius: 4px;
     padding: 10px 12px;
     cursor: pointer;
     font-size: 14px;
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg);
 
     &:hover {
-        background-color: $lightGrey;
-        color: $black;
+        background-color: var(--color-bg-hover-item);
+        color: var(--color-text-primary);
     }
+}
+
+.menu {
+    position: absolute;
+    top: calc(100% + 0.1rem);
+    left: 0;
+    width: 100%;
+
+    background-color: var(--color-bg);
+    border: $border;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    margin-top: 6px;
+    z-index: 100;
+    padding: 4px 0;
+    max-height: 250px;
+    overflow-y: auto;
+    transition: all 0.2s ease-in-out;
 }

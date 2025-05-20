@@ -1,27 +1,28 @@
 @import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
 
 .headMetersData {
-  display: flex;
-  padding: 10px;
+    display: flex;
+    padding: 10px;
 
-  gap: 7px;
-  border-bottom: 1px solid $grey;
-  border-top: 1px solid $grey;
+    gap: 7px;
+    border-bottom: $border;
+    border-top: $border;
 
-  p {
-    line-height: 1.8;
-    font-weight: 700;
-  }
+    p {
+        line-height: 1.8;
+        font-weight: 700;
+    }
 
-  &__date {
-    min-width: 151px;
-  }
+    &__date {
+        min-width: 151px;
+    }
 
-  &__light,
-  &__lightDay,
-  &__lightNight,
-  &__gas,
-  &__water {
-    min-width: 130px;
-  }
+    &__light,
+    &__lightDay,
+    &__lightNight,
+    &__gas,
+    &__water {
+        min-width: 130px;
+    }
 }

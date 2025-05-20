@@ -1,8 +1,9 @@
 @import "@/styles/colors.scss";
 @import "@/styles/breakpoints.scss";
+@import "@/styles/mixins.scss";
 
 .itemMonthlyMoneyCalculations {
-    border: 1px solid $grey;
+    border: $border;
     border-radius: 4px;
     width: max-content;
 
@@ -14,7 +15,7 @@
             gap: 20px;
 
             &:nth-child(1) {
-                border-bottom: 1px solid $grey;
+                border-bottom: $border;
             }
 
             p {
@@ -27,15 +28,18 @@
         }
 
         .itemLast {
-            border-top: 1px solid $grey;
-
-            .sumMoney {
-                color: $green;
-            }
+            border-top: $border;
         }
     }
 
-    .btns {
+    .btnsLanguage {
+        button {
+            color: var(--color-text-primary);
+        }
+    }
+
+    .btns,
+    .btnsLanguage {
         display: flex;
         gap: 40px;
 

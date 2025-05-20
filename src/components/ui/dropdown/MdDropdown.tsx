@@ -2,10 +2,10 @@ import { createContext, useContext, useState, useRef, useEffect, ReactNode, RefO
 import { cn } from "@/lib/cn";
 import Styles from "./dropdown.module.scss";
 import { VoidFuncNoParam } from "@/types/getter-setter-functions";
-import { dropdownPosition, DropdownPosition } from "@/components/ui/dropdown/dropdown-types";
+import { DropdownIcons, dropdownPosition, DropdownPosition } from "@/components/ui/dropdown/dropdown-types";
 import { AnimatePresence, motion } from "framer-motion";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
-import { iconNames } from "@/components/ui/icon/icon-constants";
+import { defaultIcons } from "@/components/ui/dropdown/dropdown-config";
 
 interface DropdownContextConfig {
     isOpen: boolean;
@@ -62,13 +62,25 @@ export function MdDropdown({
     );
 }
 
-export function MdDropdownTrigger({ children, className }: { children: ReactNode; className?: string }) {
+export function MdDropdownTrigger({
+    children,
+    className,
+    icons = defaultIcons,
+}: {
+    children: ReactNode;
+    className?: string;
+    icons?: DropdownIcons;
+}) {
     const { isOpen, toggleDropdown: toggle, triggerRef } = useContext(DropdownContext)!;
 
     return (
         <div ref={triggerRef} onClick={toggle} className={cn(Styles.trigger, className)}>
-            {children}
-            {isOpen ? <MdIcon name={iconNames.arrowUp} /> : <MdIcon name={iconNames.arrowDown} />}
+            <div className={Styles.triggerInner}>{children}</div>
+            <MdIcon
+                name={isOpen ? icons.iconWhenOpen : icons.iconWhenClosed}
+                color={icons.color}
+                size={icons.size}
+            />
         </div>
     );
 }

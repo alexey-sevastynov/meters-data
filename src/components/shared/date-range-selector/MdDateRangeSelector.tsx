@@ -50,7 +50,7 @@ export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateR
                 className={cn(Styles.dateRangeSelector__btn, isOpen && Styles.dateRangeSelector__btn_active)}
                 onClick={handleButtonClick}
             >
-                <p>{selectedDateDisplay}</p>
+                <p className={Styles.dateRangeSelector__btn_date}>{selectedDateDisplay}</p>
                 <MdIcon name={iconNames.calendar} size={iconSizes.large} color={colorNames.grey} />
             </button>
 

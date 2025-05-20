@@ -1,0 +1,22 @@
+@import "@/styles/colors.scss";
+
+.dropdownThemeMode {
+    width: 100%;
+
+    .dropdownThemeModeTrigger {
+        &:hover {
+            background-color: var(--color-bg-hover-item);
+        }
+    }
+
+    .dropdownThemeModeContent {
+        min-width: calc(100% - 0.1px);
+
+        .dropdownThemeModeItem {
+            min-width: 10rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}

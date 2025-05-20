@@ -62,7 +62,7 @@ export function ItemMonthlyMoneyCalculations({
 
     return (
         <li className={Style.itemMonthlyMoneyCalculations}>
-            <div className={Style.btns}>
+            <div className={Style.btnsLanguage}>
                 <button onClick={() => setLanguage("en")} className={language === "en" ? Style.active : ""}>
                     EN
                 </button>
@@ -90,7 +90,7 @@ export function ItemMonthlyMoneyCalculations({
                     <p className={Style.title}>
                         {language === "en" ? "Amount of money:" : "Кількість грошей:"}
                     </p>
-                    <p className={Style.sumMoney}>{`${sumMoney} ${currencyTranslation}`}</p>
+                    <p>{`${sumMoney} ${currencyTranslation}`}</p>
                 </li>
             </ul>
 

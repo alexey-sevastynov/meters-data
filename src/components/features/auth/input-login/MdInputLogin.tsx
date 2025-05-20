@@ -1,9 +1,10 @@
-import React from "react";
 import Style from "./inputLogin.module.scss";
 import { isValidLoginInput } from "@/components/features/auth/input-login/inputLogin.funcs";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
+import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
+import { getIconColorByTheme } from "@/helpers/theme/get-icon-color";
 
 interface InputLoginProps {
     labelText: "Email" | "Password";
@@ -13,21 +14,14 @@ interface InputLoginProps {
 }
 
 export function MdInputLogin({ labelText = "Email", value, setValue, isError }: InputLoginProps) {
+    const theme = useTheme();
     const type = labelText.toLowerCase();
-    const errorMessage = `wrong ${type} !`;
     const placeholder = `Input ${type}...`;
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    };
-
-    const iconIndicatorInput = isValidLoginInput(value) ? (
-        <MdIcon name={iconNames.check} size={iconSizes.medium} color={colorNames.green} />
-    ) : (
-        <MdIcon name={iconNames.close} size={iconSizes.medium} color={colorNames.red} />
-    );
-
-    const showIconIndicatorInput = value.length > 0 && iconIndicatorInput;
+    const errorMessage = `Wrong ${type} !`;
+    const showIcon = value.length > 0;
+    const iconColor = isValidLoginInput(value)
+        ? colorNames.green
+        : getIconColorByTheme(colorNames.lightRed, colorNames.red, theme.themeMode);
 
     return (
         <div className={Style.inputLogin}>
@@ -35,16 +29,21 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
             <div className={Style.input}>
                 <input
                     id={labelText}
-                    className={isValidLoginInput(value) ? Style.inputTrue : ""}
                     type={type}
                     placeholder={placeholder}
                     value={value}
-                    onChange={handleChange}
+                    onChange={(e) => setValue(e.target.value)}
                 />
-                {showIconIndicatorInput}
+                {showIcon && (
+                    <MdIcon
+                        name={isValidLoginInput(value) ? iconNames.check : iconNames.close}
+                        size={iconSizes.medium}
+                        color={iconColor}
+                    />
+                )}
             </div>
 
-            {isError && (isValidLoginInput(value) || <p className={Style.errorMessage}>{errorMessage}</p>)}
+            {isError && !isValidLoginInput(value) && <p className={Style.errorMessage}>{errorMessage}</p>}
         </div>
     );
 }

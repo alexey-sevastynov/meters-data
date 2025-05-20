@@ -16,11 +16,11 @@
 
     &:hover :global(.react-resizable-handle::after) {
         opacity: 1;
-        border-left: 2px dashed $grey;
+        border-left: 2px dashed var(--color-border);
     }
 
     &:hover.leftResizableHandle {
-        box-shadow: inset 1px 0 0 0 $grey;
+        box-shadow: inset 1px 0 0 0 var(--color-border);
     }
 
     .tableHeaderCellButton {
@@ -51,7 +51,7 @@
 
     .tableHeaderCellLabel {
         font-weight: 600;
-        color: $green;
+        color: var(--color-text-primary);
     }
 }
 
@@ -81,8 +81,8 @@
     @include transition(border-color);
 
     &:hover {
-        border-left-color: $grey;
-        border-right-color: $grey;
+        border-left-color: var(--color-border);
+        border-right-color: var(--color-border);
     }
 }
 

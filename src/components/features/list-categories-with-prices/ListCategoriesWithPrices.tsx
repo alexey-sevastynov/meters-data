@@ -19,8 +19,7 @@ import {
 import { colorNames } from "@/enums/color-names";
 import { stringToNumber } from "@/utils/conversion";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { MdIcon } from "@/components/ui/icon/MdIcon";
-import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
+import { ItemBlock } from "@/components/features/list-categories-with-prices/item-block/ItemBlock";
 
 interface ListCategoriesWithPricesProps {
     dispatch: AppDispatch;
@@ -67,30 +66,19 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
     return (
         <ul className={Styles.listCategoriesWithPrices}>
             {currentItem?.map(({ title, description }) => (
-                <div key={title} className={Styles.itemBlock}>
-                    {isShowDeleteButton(title) && (
-                        <button
-                            className={Styles.btn}
-                            type="button"
-                            title={`delete data`}
-                            onClick={() => onDeleteItem(title, description)}
-                        >
-                            <MdIcon name={iconNames.close} size={iconSizes.large} color={colorNames.red} />
-                        </button>
-                    )}
-                    <li className={Styles.item}>
-                        <p className={Styles.title}>{title}:</p>
-                        <p>
-                            {description} {title === "Date" ? "" : translations.value.uah}
-                        </p>
-                    </li>
-                </div>
+                <ItemBlock
+                    key={title}
+                    title={title}
+                    description={description}
+                    showDelete={isShowDeleteButton(title)}
+                    onDelete={onDeleteItem}
+                />
             ))}
 
             <div className={Styles.footer}>
                 <li className={cn(Styles.item, Styles.itemLast)}>
                     <p className={Styles.title}>{translations.price.amount}:</p>
-                    <p className={Styles.sumMoney}>
+                    <p>
                         {sumMoney} {translations.value.uah}
                     </p>
                 </li>

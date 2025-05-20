@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import { ThemeProvider } from "@/components/context/theme-provider/ThemeProvider";
 import App from "@/App.tsx";
 import "@/styles/index.scss";
 import store from "@/store/store.ts";
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Provider store={store}>
             <BrowserRouter basename="/meters-data">
                 <PersistGate persistor={persistor}>
-                    <App />
+                    <ThemeProvider>
+                        <App />
+                    </ThemeProvider>
                 </PersistGate>
             </BrowserRouter>
         </Provider>

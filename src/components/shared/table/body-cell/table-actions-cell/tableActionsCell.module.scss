@@ -19,7 +19,7 @@
 
             svg {
                 &:hover {
-                    fill: $green-hover;
+                    fill: var(--color-default-icon-hover);
                 }
             }
         }

@@ -1,7 +1,7 @@
 @import "@/styles/colors.scss";
 @import "@/styles/sizes.scss";
 
-$border: 1px solid $grey;
+$border: 1px solid var(--color-border);
 
 @mixin layoutStyle($sidebarWidth: $widthSidebarCollapsed) {
     position: absolute;
@@ -10,7 +10,7 @@ $border: 1px solid $grey;
     padding: 35px 20px;
     width: calc(100% - $sidebarWidth);
     min-height: calc(100vh - $heightHeader);
-    background-color: $white;
+    background-color: var(--color-bg);
     border-top-left-radius: 0.5rem;
     @include transition(left);
 
@@ -26,7 +26,6 @@ $border: 1px solid $grey;
 
 @mixin titlePage {
     font-weight: bold;
-    color: $green;
 }
 
 @mixin noFocusBorder {
@@ -36,7 +35,8 @@ $border: 1px solid $grey;
 }
 
 @mixin borderInput {
-    border: 1px solid $green;
+    border: $border;
+    border-radius: 5px;
 }
 
 @mixin custom-scroll($width: 8px, $thumb-color: #888, $thumb-hover-color: #555, $track-color: #f1f1f1) {
@@ -69,8 +69,4 @@ $border: 1px solid $grey;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-@mixin border {
-    border: 1px solid $grey;
 }

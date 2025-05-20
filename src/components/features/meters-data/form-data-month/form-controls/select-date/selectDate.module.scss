@@ -1,9 +1,12 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
+@import "@/styles/index.scss";
 
 .selectDate {
     display: flex;
     flex-direction: column;
+    color: var(--color-text-primary);
+    font-size: $font-size-base;
 
     label {
         font-weight: bold;
@@ -14,7 +17,7 @@
             @include borderInput;
         }
 
-        background-color: $mint;
+        background-color: var(--color-bg);
         margin-top: 10px;
 
         height: 39px;
@@ -31,7 +34,7 @@
     }
 
     .datePicker.datePickerEdit {
-        background-color: $lightGreen;
+        background-color: var(--color-bg-hover-item);
 
         @include noFocusBorder;
     }

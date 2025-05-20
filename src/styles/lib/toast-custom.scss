@@ -1,0 +1,11 @@
+@import "@/styles/mixins.scss";
+
+.Toastify__toast--success {
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    border: $border;
+}
+
+.Toastify__progress-bar {
+    background: var(--color-bg-hover-item) !important;
+}
