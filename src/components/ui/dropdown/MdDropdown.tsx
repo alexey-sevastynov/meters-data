@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useRef, useEffect, ReactNode, RefObject } from "react";
 import { cn } from "@/lib/cn";
-import Styles from "./dropdown.module.scss";
+import styles from "./dropdown.module.scss";
 import { VoidFuncNoParam } from "@/types/getter-setter-functions";
 import { DropdownIcons, dropdownPosition, DropdownPosition } from "@/components/ui/dropdown/dropdown-types";
 import { AnimatePresence, motion } from "framer-motion";
@@ -57,7 +57,7 @@ export function MdDropdown({
         <DropdownContext.Provider
             value={{ isOpen, toggleDropdown, closeDropdown, triggerRef, contentRef, position }}
         >
-            <div className={cn(Styles.dropdown, className)}>{children}</div>
+            <div className={cn(styles.dropdown, className)}>{children}</div>
         </DropdownContext.Provider>
     );
 }
@@ -74,8 +74,8 @@ export function MdDropdownTrigger({
     const { isOpen, toggleDropdown: toggle, triggerRef } = useContext(DropdownContext)!;
 
     return (
-        <div ref={triggerRef} onClick={toggle} className={cn(Styles.trigger, className)}>
-            <div className={Styles.triggerInner}>{children}</div>
+        <div ref={triggerRef} onClick={toggle} className={cn(styles.trigger, className)}>
+            <div className={styles.triggerInner}>{children}</div>
             <MdIcon
                 name={isOpen ? icons.iconWhenOpen : icons.iconWhenClosed}
                 color={icons.color}
@@ -94,7 +94,7 @@ export function MdDropdownContent({ children, className }: { children: ReactNode
         <AnimatePresence>
             <motion.div
                 ref={contentRef}
-                className={cn(Styles.content, Styles[position], className)}
+                className={cn(styles.content, styles[position], className)}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -126,7 +126,7 @@ export function MdDropdownItem({
         closeDropdown();
     };
 
-    const classes = [Styles.item, className, disabled ? Styles.disabled : ""].filter(Boolean).join(" ");
+    const classes = [styles.item, className, disabled ? styles.disabled : ""].filter(Boolean).join(" ");
 
     return (
         <div onClick={handleClick} className={classes} aria-disabled={disabled}>

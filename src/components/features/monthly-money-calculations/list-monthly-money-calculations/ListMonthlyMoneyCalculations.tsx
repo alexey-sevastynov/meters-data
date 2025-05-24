@@ -1,4 +1,4 @@
-import Style from "./listMonthlyMoneyCalculations.module.scss";
+import styles from "./listMonthlyMoneyCalculations.module.scss";
 import { ItemMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/item-monthly-money-calculations/ItemMonthlyMoneyCalculations";
 import { MonthlyMoneyCalculationsWithObjectId } from "@/store/models/monthly-money-calculations";
 
@@ -9,7 +9,7 @@ interface ListMonthlyMoneyCalculationsProps {
 
 export function ListMonthlyMoneyCalculations({ items, status }: ListMonthlyMoneyCalculationsProps) {
     return (
-        <ul className={Style.listMonthlyMoneyCalculations}>
+        <ul className={styles.listMonthlyMoneyCalculations}>
             {status === "loading" && <p>loading...</p>}
             {items &&
                 items.map(({ _id, data, sumMoney, address }) => (

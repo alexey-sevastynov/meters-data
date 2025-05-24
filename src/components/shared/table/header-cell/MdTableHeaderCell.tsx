@@ -1,4 +1,4 @@
-import Styles from "./tableHeaderCell.module.scss";
+import styles from "./tableHeaderCell.module.scss";
 import { cn } from "@/lib/cn";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { TableAction, TableColumn } from "@/components/shared/table/table-models";
@@ -50,11 +50,11 @@ export function MdTableHeaderCell({
     }, [minWidth]);
 
     if (isActionColumnDisabledForReadOnly(column, isReadOnly, tableAction))
-        return <th className={Styles.tableHeaderCellActionForReadOnly} />;
+        return <th className={styles.tableHeaderCellActionForReadOnly} />;
 
     if (isActionColumnVisible(column, isReadOnly, tableAction) && tableAction) {
         return (
-            <th className={Styles.tableHeaderCellAction}>
+            <th className={styles.tableHeaderCellAction}>
                 {column.isDisplayable && (
                     <button
                         style={{
@@ -77,19 +77,19 @@ export function MdTableHeaderCell({
     return (
         <th
             ref={cellRef}
-            className={cn(Styles.tableHeaderCell, Styles.leftResizableHandle)}
+            className={cn(styles.tableHeaderCell, styles.leftResizableHandle)}
             style={{ display: getTableCellDisplay(isHiddenCell) }}
         >
             <MdResizableBox width={minWidth + 20} minWidth={minWidth} maxWidth={maxWidthColumn}>
                 <button
                     className={cn(
-                        Styles.tableHeaderCellButton,
-                        column.type === tableColumnTypes.number && Styles.tableHeaderCellNumber
+                        styles.tableHeaderCellButton,
+                        column.type === tableColumnTypes.number && styles.tableHeaderCellNumber
                     )}
                     onClick={() => onSort?.(column.key)}
                     type="button"
                 >
-                    <p className={Styles.tableHeaderCellLabel}>
+                    <p className={styles.tableHeaderCellLabel}>
                         {translations.table[column.key as keyof typeof translations.table]}
                     </p>
                     {column.sort && (

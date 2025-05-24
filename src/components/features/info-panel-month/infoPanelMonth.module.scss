@@ -13,20 +13,20 @@
 
         flex-wrap: wrap;
 
-        &__btns {
+        .infoPanelMonthBtns {
             display: none;
             @media (max-width: $mobile-xl) {
                 display: flex;
             }
         }
 
-        &__header {
+        .infoPanelMonthHeader {
             display: flex;
             gap: 10px;
 
             flex-wrap: wrap;
 
-            &_btns {
+            .infoPanelMonthHeaderBtns {
                 @media (max-width: $mobile-xl) {
                     display: none;
                 }

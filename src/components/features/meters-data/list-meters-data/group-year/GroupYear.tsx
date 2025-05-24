@@ -1,5 +1,5 @@
 import React from "react";
-import Style from "./groupYear.module.scss";
+import styles from "./groupYear.module.scss";
 import { cn } from "@/lib/cn";
 import { GroupedData } from "@/types/grouped-data";
 import { ItemMetersData } from "@/components/features/meters-data/list-meters-data/group-year/item-meters-data/ItemMetersData";
@@ -44,7 +44,7 @@ const GroupYear: React.FC<GroupYearProps> = ({
             )}
 
             <HeadMetersData isWaterBlock={isWaterBlock} isOpen={group.isOpen} />
-            <div className={cn(Style.yearGroup, group.isOpen && Style.open)}>
+            <div className={cn(styles.yearGroup, group.isOpen && styles.open)}>
                 {group.items.map((item, index) => {
                     const isOnlyOneYear = !hasMultipleYears;
                     const isFirstIndex = index === 0;

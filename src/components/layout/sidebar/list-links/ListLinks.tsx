@@ -1,4 +1,4 @@
-import Styles from "./listLinks.module.scss";
+import styles from "./listLinks.module.scss";
 import { navigationItems } from "@/constants/navigation-items";
 import { ItemLink } from "@/components/layout/sidebar/list-links/item-link/ItemLink";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
@@ -12,7 +12,7 @@ interface ListLinksProps {
 
 export function ListLinks({ isSidebarCollapsed, toggleSidebar }: ListLinksProps) {
     return (
-        <div className={Styles.listLinks}>
+        <div className={styles.listLinks}>
             <ul>
                 {navigationItems.map((item) => (
                     <ItemLink
@@ -25,7 +25,7 @@ export function ListLinks({ isSidebarCollapsed, toggleSidebar }: ListLinksProps)
                 ))}
             </ul>
 
-            <button className={Styles.toggleButton} onClick={toggleSidebar}>
+            <button className={styles.toggleButton} onClick={toggleSidebar}>
                 {isSidebarCollapsed ? (
                     <MdIcon name={iconNames.caretSquareRight} />
                 ) : (

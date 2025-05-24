@@ -164,4 +164,28 @@ export default [
             "import/no-cycle": "off",
         },
     },
+
+    {
+        files: ["**/*.tsx"],
+        rules: {
+            "no-restricted-syntax": [
+                "error",
+                {
+                    selector:
+                        "ImportDeclaration[source.value=/\\.module\\.scss$/] > ImportDefaultSpecifier:not([local.name='styles'])",
+                    message: "Use `styles` as the import name for .module.scss files.",
+                },
+                {
+                    selector:
+                        "JSXAttribute[name.name='className'] > JSXExpressionContainer > MemberExpression[object.name='styles'] > Identifier.property[name=/^([^a-z]|.*_.*)/]",
+                    message: "Use camelCase class names from `styles` only.",
+                },
+                {
+                    selector:
+                        "CallExpression[callee.name='cn'] MemberExpression[object.name='styles'] > Identifier.property[name=/^([^a-z]|.*_.*)/]",
+                    message: "Use camelCase class names from `styles` only inside cn().",
+                },
+            ],
+        },
+    },
 ];

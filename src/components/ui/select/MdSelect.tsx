@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import Styles from "./select.module.scss";
+import styles from "./select.module.scss";
 import { UtilityPrice } from "@/store/models/utility-price";
 
 interface MdSelectProps extends HTMLAttributes<HTMLSelectElement> {
@@ -11,7 +11,7 @@ interface MdSelectProps extends HTMLAttributes<HTMLSelectElement> {
 
 export function MdSelect({ labelText, options, value, onChange, ...props }: MdSelectProps) {
     return (
-        <div className={Styles.select}>
+        <div className={styles.select}>
             <label>{labelText}:</label>
             <select value={value} onChange={onChange} {...props}>
                 {options.map((option) => (

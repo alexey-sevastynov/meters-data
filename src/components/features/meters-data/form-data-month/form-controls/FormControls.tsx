@@ -1,4 +1,4 @@
-import Style from "./formControls.module.scss";
+import styles from "./formControls.module.scss";
 import { SelectDate } from "@/components/features/meters-data/form-data-month/form-controls/select-date/SelectDate";
 import { createInputFields } from "@/components/features/meters-data/form-data-month/form-controls/inputFields";
 import { FormControlsProps } from "@/components/features/meters-data/form-data-month/form-controls/formControls.interface";
@@ -36,7 +36,7 @@ export function FormControls({
     });
 
     return (
-        <div className={Style.inputs}>
+        <div className={styles.inputs}>
             <SelectDate selectDate={selectDate} setSelectDate={setSelectDate} />
 
             <MeterInputsList

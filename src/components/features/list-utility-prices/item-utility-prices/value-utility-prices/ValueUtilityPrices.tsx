@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import Styles from "./valueUtilityPrices.module.scss";
+import styles from "./valueUtilityPrices.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
@@ -40,7 +40,7 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
     };
 
     return (
-        <div className={Styles.valueUtilityPrices}>
+        <div className={styles.valueUtilityPrices}>
             <p>1 {translations.value[valueName]} =</p>
 
             <MdInput

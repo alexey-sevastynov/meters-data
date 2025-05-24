@@ -1,4 +1,4 @@
-import Styles from "./tableBody.module.scss";
+import styles from "./tableBody.module.scss";
 import { MdTableBodyRow } from "@/components/shared/table/body-row/MdTableBodyRow";
 import { TableColumn, TableRow } from "@/components/shared/table/table-models";
 import { isTableEmpty } from "@/components/shared/table/body/tableBody.funcs";
@@ -16,9 +16,9 @@ export function MdTableBody({ rows, columns, isReadOnly, listHiddenColumns }: Md
     const translations = useAppSelector(selectTranslations);
 
     return (
-        <tbody className={Styles.tableBody}>
+        <tbody className={styles.tableBody}>
             {isTableEmpty(rows) ? (
-                <p className={Styles.tableBodyNoData}>{translations.table.noData}</p>
+                <p className={styles.tableBodyNoData}>{translations.table.noData}</p>
             ) : (
                 rows.map((row, index) => (
                     <MdTableBodyRow

@@ -1,5 +1,5 @@
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
-import Styles from "./itemBlock.module.scss";
+import styles from "./itemBlock.module.scss";
 import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { getIconColorByTheme } from "@/helpers/theme/get-icon-color";
@@ -20,10 +20,10 @@ export function ItemBlock({ title, description, showDelete, onDelete }: ItemBloc
     const translations = useAppSelector(selectTranslations);
 
     return (
-        <div className={Styles.itemBlock}>
+        <div className={styles.itemBlock}>
             {showDelete && (
                 <button
-                    className={Styles.btn}
+                    className={styles.btn}
                     type="button"
                     title="delete data"
                     onClick={() => onDelete(title, description)}
@@ -35,8 +35,8 @@ export function ItemBlock({ title, description, showDelete, onDelete }: ItemBloc
                     />
                 </button>
             )}
-            <li className={Styles.item}>
-                <p className={Styles.title}>{title}:</p>
+            <li className={styles.item}>
+                <p className={styles.title}>{title}:</p>
                 <p>
                     {description} {title === titlesForMeterReadings.date ? "" : translations.value.uah}
                 </p>

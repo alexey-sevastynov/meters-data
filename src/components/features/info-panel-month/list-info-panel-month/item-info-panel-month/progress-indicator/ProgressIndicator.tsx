@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Style from "./progressIndicator.module.scss";
+import styles from "./progressIndicator.module.scss";
 import { ProgressIndicatorProps } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/progress-indicator/progressIndicator.interface";
 import {
     calculateBorderRadius,
@@ -25,10 +25,10 @@ export function ProgressIndicator({ index, percentDifference, isMinus }: Progres
     );
 
     return (
-        <span className={isMinus ? Style.progressIndicator__left : Style.progressIndicator__right}>
+        <span className={isMinus ? styles.progressIndicator__left : styles.progressIndicator__right}>
             <motion.span
                 className={
-                    isMinus ? Style.progressIndicator__left_minus : Style.progressIndicator__right_plus
+                    isMinus ? styles.progressIndicator__left_minus : styles.progressIndicator__right_plus
                 }
                 initial={{ width: 0 }}
                 animate={animate ? { width: `${width}%` } : {}}

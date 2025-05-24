@@ -1,5 +1,5 @@
 import { MdIcon } from "@/components/ui/icon/MdIcon";
-import Styles from "./dropdownThemeMode.module.scss";
+import styles from "./dropdownThemeMode.module.scss";
 import {
     MdDropdown,
     MdDropdownContent,
@@ -24,8 +24,8 @@ export function DropdownThemeMode() {
     };
 
     return (
-        <MdDropdown className={Styles.dropdownThemeMode} position={dropdownPosition.bottom}>
-            <MdDropdownTrigger className={Styles.dropdownThemeModeTrigger} icons={iconsTrigger}>
+        <MdDropdown className={styles.dropdownThemeMode} position={dropdownPosition.bottom}>
+            <MdDropdownTrigger className={styles.dropdownThemeModeTrigger} icons={iconsTrigger}>
                 <MdIcon name={iconNames.lightMode} color={colorNames.grey} size={iconSizes.small} />
                 <p>
                     {theme.isDarkMode
@@ -33,14 +33,14 @@ export function DropdownThemeMode() {
                         : translations.dropdownMenu.lightMode}
                 </p>
             </MdDropdownTrigger>
-            <MdDropdownContent className={Styles.dropdownThemeModeContent}>
-                <MdDropdownItem className={Styles.dropdownThemeModeItem} onSelect={theme.setLightThemeMode}>
+            <MdDropdownContent className={styles.dropdownThemeModeContent}>
+                <MdDropdownItem className={styles.dropdownThemeModeItem} onSelect={theme.setLightThemeMode}>
                     <p>{translations.dropdownMenu.lightMode}</p>
                     {theme.isLightMode && (
                         <MdIcon name={iconNames.check} color={colorNames.grey} size={iconSizes.small} />
                     )}
                 </MdDropdownItem>
-                <MdDropdownItem className={Styles.dropdownThemeModeItem} onSelect={theme.setDarkThemeMode}>
+                <MdDropdownItem className={styles.dropdownThemeModeItem} onSelect={theme.setDarkThemeMode}>
                     <p>{translations.dropdownMenu.darkMode}</p>
                     {theme.isDarkMode && (
                         <MdIcon name={iconNames.check} color={colorNames.grey} size={iconSizes.small} />

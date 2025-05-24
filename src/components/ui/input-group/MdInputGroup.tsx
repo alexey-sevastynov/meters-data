@@ -1,4 +1,4 @@
-import Style from "./inputGroup.module.scss";
+import styles from "./inputGroup.module.scss";
 import Select, {
     MultiValueRemoveProps,
     ClearIndicatorProps,
@@ -30,8 +30,8 @@ export function MdInputGroup({ options, defaultValue, label, onChange }: MdInput
     const translations = useAppSelector(selectTranslations);
 
     return (
-        <div className={Style.inputGroup}>
-            {label && <label className={Style.label}>{label}</label>}
+        <div className={styles.inputGroup}>
+            {label && <label className={styles.label}>{label}</label>}
             <Select
                 key={translations.inputGroup.select}
                 components={{
@@ -45,7 +45,7 @@ export function MdInputGroup({ options, defaultValue, label, onChange }: MdInput
                 }}
                 defaultValue={defaultValue}
                 closeMenuOnSelect={true}
-                className={Style.select}
+                className={styles.select}
                 options={options}
                 isMulti
                 onChange={(value) => onChange?.(value as Option[])}
@@ -61,7 +61,7 @@ function Control(props: ControlProps<Option, true>) {
         <div
             {...props.innerProps}
             ref={props.innerRef}
-            className={cn(Style.control, props.isFocused && Style.focused)}
+            className={cn(styles.control, props.isFocused && styles.focused)}
         >
             {props.children}
         </div>
@@ -70,7 +70,7 @@ function Control(props: ControlProps<Option, true>) {
 
 function ClearIndicator(props: ClearIndicatorProps<Option>) {
     return (
-        <div {...props.innerProps} className={Style.clearIndicator}>
+        <div {...props.innerProps} className={styles.clearIndicator}>
             <MdIcon name={iconNames.close} color={colorNames.grey} />
         </div>
     );
@@ -80,7 +80,7 @@ function IndicatorsContainer(props: IndicatorsContainerProps<Option, true, Group
     const theme = useTheme();
 
     return (
-        <div {...props.innerProps} className={Style.indicatorsContainer}>
+        <div {...props.innerProps} className={styles.indicatorsContainer}>
             <MdIcon name={iconNames.arrowDown} color={getBaseIconColor(theme.themeMode)} />
         </div>
     );
@@ -88,19 +88,19 @@ function IndicatorsContainer(props: IndicatorsContainerProps<Option, true, Group
 
 function MultiValueRemove(props: MultiValueRemoveProps<Option>) {
     return (
-        <div {...props.innerProps} className={Style.multiValueRemove}>
+        <div {...props.innerProps} className={styles.multiValueRemove}>
             <MdIcon name={iconNames.close} color={colorNames.black} size={iconSizes.small} />
         </div>
     );
 }
 
 function MultiValueLabel(props: MultiValueGenericProps<Option, true, GroupBase<Option>>) {
-    return <div className={Style.multiValueLabel}>{props.data.label}</div>;
+    return <div className={styles.multiValueLabel}>{props.data.label}</div>;
 }
 
 function CustomOption(props: OptionProps<Option, true>) {
     return (
-        <div className={Style.option} ref={props.innerRef} {...props.innerProps}>
+        <div className={styles.option} ref={props.innerRef} {...props.innerProps}>
             {props.data.label}
         </div>
     );
@@ -108,7 +108,7 @@ function CustomOption(props: OptionProps<Option, true>) {
 
 function Menu(props: MenuProps<Option, true>) {
     return (
-        <div className={Style.menu} ref={props.innerRef} {...props.innerProps}>
+        <div className={styles.menu} ref={props.innerRef} {...props.innerProps}>
             {props.children}
         </div>
     );

@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import Styles from "./input.module.scss";
+import styles from "./input.module.scss";
 import { InputType, inputTypes } from "@/components/ui/input/input.type";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
@@ -36,19 +36,19 @@ export function MdInput({
     const isModified = value !== defaultValue;
 
     return (
-        <div className={Styles.input}>
+        <div className={styles.input}>
             {label && <label>{label}:</label>}
 
-            <div className={Styles.inputContainer}>
+            <div className={styles.inputContainer}>
                 <input
-                    className={cn(isEdit && Styles.inputEdit)}
+                    className={cn(isEdit && styles.inputEdit)}
                     type={type}
                     value={value}
                     onChange={onChange}
                     {...getNumberInputProps(type, step)}
                 />
                 {isModified && onReset && (
-                    <button className={Styles.close} onClick={onReset} type="button">
+                    <button className={styles.close} onClick={onReset} type="button">
                         <MdIcon
                             name={iconNames.close}
                             color={getIconColorByTheme(colorNames.lightRed, colorNames.red, theme.themeMode)}

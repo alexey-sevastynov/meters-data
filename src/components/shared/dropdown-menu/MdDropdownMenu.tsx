@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import Styles from "./dropdownMenu.module.scss";
+import styles from "./dropdownMenu.module.scss";
 import {
     MdDropdown,
     MdDropdownContent,
@@ -37,21 +37,21 @@ export function MdDropdownMenu() {
     }, [isExit, idDeleteItem, dispatch]);
 
     return (
-        <MdDropdown className={Styles.dropdownMenu}>
-            <MdDropdownTrigger className={Styles.dropdownTriggerMenu}>
+        <MdDropdown className={styles.dropdownMenu}>
+            <MdDropdownTrigger className={styles.dropdownTriggerMenu}>
                 <MdImage fileName={"avatar.svg"} alt="avatar" width={30} height={30} />
-                <h5 className={Styles.dropdownTriggerMenuText}>Lesha Sev</h5>
+                <h5 className={styles.dropdownTriggerMenuText}>Lesha Sev</h5>
             </MdDropdownTrigger>
-            <MdDropdownContent className={Styles.dropdownContentMenu}>
+            <MdDropdownContent className={styles.dropdownContentMenu}>
                 <DropdownThemeMode />
-                <MdDropdownItem className={Styles.dropdownItemMenu} disabled>
-                    <div className={Styles.dropdownItemMenuInner}>
+                <MdDropdownItem className={styles.dropdownItemMenu} disabled>
+                    <div className={styles.dropdownItemMenuInner}>
                         <MdIcon name={iconNames.gear} color={colorNames.grey} size={iconSizes.small} />
                         <p>{translations.dropdownMenu.settings}</p>
                     </div>
                 </MdDropdownItem>
-                <MdDropdownItem className={Styles.dropdownItemMenu} onSelect={onExitAccount}>
-                    <div className={Styles.dropdownItemMenuInner}>
+                <MdDropdownItem className={styles.dropdownItemMenu} onSelect={onExitAccount}>
+                    <div className={styles.dropdownItemMenuInner}>
                         <MdIcon name={iconNames.signOut} color={colorNames.grey} size={iconSizes.small} />
                         <p>{translations.dropdownMenu.signOut}</p>
                     </div>

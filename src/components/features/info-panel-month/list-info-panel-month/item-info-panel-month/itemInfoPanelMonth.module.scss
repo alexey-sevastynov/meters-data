@@ -11,25 +11,25 @@ $gap-line: 3px;
     row-gap: 10px;
     width: $width;
 
-    &__header {
+    .itemInfoPanelMonthHeader {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        &_value_percent {
+        .itemInfoPanelMonthHeaderValuePercent {
             display: flex;
             align-items: center;
         }
     }
 
-    &__line {
+    .itemInfoPanelMonthLine {
         position: relative;
         background-color: var(--color-border);
         width: 100%;
         height: 10px;
         border-radius: $border-radius;
 
-        &_center {
+        .itemInfoPanelMonthLineCenter {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -40,7 +40,7 @@ $gap-line: 3px;
         }
     }
 
-    &__title {
+    .itemInfoPanelMonthTitle {
         text-align: center;
     }
 }

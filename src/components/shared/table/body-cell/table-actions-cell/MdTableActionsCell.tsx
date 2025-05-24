@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Styles from "./tableActionsCell.module.scss";
+import styles from "./tableActionsCell.module.scss";
 import { TableAction, TableRow } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
@@ -30,8 +30,8 @@ export function MdTableActionsCell({ id, actions, row, address }: MdTableActions
     }, [isDelete]);
 
     return (
-        <td className={Styles.tableActionsCell}>
-            <div className={Styles.tableActionsCellButtons}>
+        <td className={styles.tableActionsCell}>
+            <div className={styles.tableActionsCellButtons}>
                 {actions
                     .filter((action) => action.visible)
                     .map((action) => (

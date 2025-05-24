@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { cn } from "@/lib/cn";
-import Styles from "./listCategoriesWithPrices.module.scss";
+import styles from "./listCategoriesWithPrices.module.scss";
 import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
 import { getKeyOnPage } from "@/helpers/address/get-key-on-page";
@@ -64,7 +64,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
     }, [dispatch, listInfoDataMonth, utilityPrices]);
 
     return (
-        <ul className={Styles.listCategoriesWithPrices}>
+        <ul className={styles.listCategoriesWithPrices}>
             {currentItem?.map(({ title, description }) => (
                 <ItemBlock
                     key={title}
@@ -75,15 +75,15 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
                 />
             ))}
 
-            <div className={Styles.footer}>
-                <li className={cn(Styles.item, Styles.itemLast)}>
-                    <p className={Styles.title}>{translations.price.amount}:</p>
+            <div className={styles.footer}>
+                <li className={cn(styles.item, styles.itemLast)}>
+                    <p className={styles.title}>{translations.price.amount}:</p>
                     <p>
                         {sumMoney} {translations.value.uah}
                     </p>
                 </li>
                 {isEdit ? (
-                    <div className={Styles.btns}>
+                    <div className={styles.btns}>
                         <MdButton type="button" onClick={onCancel} color={colorNames.red}>
                             Cancel
                         </MdButton>

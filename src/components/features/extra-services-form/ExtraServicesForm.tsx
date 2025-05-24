@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import Styles from "./extraServicesForm.module.scss";
+import styles from "./extraServicesForm.module.scss";
 import { MdSelect } from "@/components/ui/select/MdSelect";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { MdButton } from "@/components/ui/button/MdButton";
@@ -56,10 +56,10 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
     }, [selectedOption, optionValue]);
 
     return (
-        <form className={Styles.extraServicesForm}>
-            <div className={Styles.inputs}>
+        <form className={styles.extraServicesForm}>
+            <div className={styles.inputs}>
                 <MdSelect
-                    className={Styles.select}
+                    className={styles.select}
                     options={options}
                     value={selectedOption}
                     onChange={handleSelectChange}
@@ -75,7 +75,7 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
                     step={0.01}
                 />
             </div>
-            <div className={Styles.btns}>
+            <div className={styles.btns}>
                 <MdButton type="button" onClick={onAddValueUtilityPrice} color={colorNames.green}>
                     {translations.btn.add}
                 </MdButton>

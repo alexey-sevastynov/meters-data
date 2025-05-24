@@ -1,4 +1,4 @@
-import Styles from "./tableBodyCell.module.scss";
+import styles from "./tableBodyCell.module.scss";
 import { cn } from "@/lib/cn";
 import { TableAction, TableColumn, TableRow } from "@/components/shared/table/table-models";
 import {
@@ -38,7 +38,7 @@ export function MdTableBodyCell({
 
     if (isHiddenCell) return;
 
-    if (isReadOnly && isColumnAction(column)) return <td className={Styles.tableBodyCell}></td>;
+    if (isReadOnly && isColumnAction(column)) return <td className={styles.tableBodyCell}></td>;
 
     return renderCellByType(column, value, actions, row, location, lang);
 }
@@ -53,10 +53,10 @@ function renderCellByType(
 ) {
     const address = location.pathname.slice(1);
     const numberCellClassName = cn(
-        Styles.tableBodyCell,
-        Styles.tableBodyCellNumber,
-        isWaterColumn(column.key) && Styles.tableBodyCellWater,
-        isGasColumn(column.key) && Styles.tableBodyCellGas
+        styles.tableBodyCell,
+        styles.tableBodyCellNumber,
+        isWaterColumn(column.key) && styles.tableBodyCellWater,
+        isGasColumn(column.key) && styles.tableBodyCellGas
     );
 
     switch (column.type) {
@@ -66,14 +66,14 @@ function renderCellByType(
                 ? getDaysInMonths(value as string, true, true, currentLang)
                 : (value as string);
 
-            return <td className={Styles.tableBodyCell}>{displayValue}</td>;
+            return <td className={styles.tableBodyCell}>{displayValue}</td>;
         }
         case tableColumnTypes.number:
             return <td className={numberCellClassName}>{value as number}</td>;
         case tableColumnTypes.boolean:
-            return <td className={Styles.tableBodyCell}>{value as boolean}</td>;
+            return <td className={styles.tableBodyCell}>{value as boolean}</td>;
         case tableColumnTypes.date:
-            return <td className={Styles.tableBodyCell}>{getFormatDate(value as string)}</td>;
+            return <td className={styles.tableBodyCell}>{getFormatDate(value as string)}</td>;
         case tableColumnTypes.actions:
             return (
                 <MdTableActionsCell
@@ -85,6 +85,6 @@ function renderCellByType(
             );
 
         default:
-            return <td className={Styles.tableBodyCell}>{value as string}</td>;
+            return <td className={styles.tableBodyCell}>{value as string}</td>;
     }
 }

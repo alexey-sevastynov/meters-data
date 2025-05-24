@@ -1,4 +1,4 @@
-import Styles from "./metersManager.module.scss";
+import styles from "./metersManager.module.scss";
 import { useMemo, useState } from "react";
 import { MdTable } from "@/components/shared/table/MdTable";
 import { TableFilters } from "@/components/features/meters-manager/table-filters/TableFilters";
@@ -46,7 +46,7 @@ export function MdMetersManager({ isWaterBlock = true }: MetersManagerProps) {
     );
 
     return (
-        <div className={Styles.metersManager}>
+        <div className={styles.metersManager}>
             <TableFilters
                 columnVisibilityOptions={getTableMeterDataColumnVisibilityOptions(translations)}
                 sortedAddressMeterData={sortedAddressMeterData}
@@ -55,7 +55,7 @@ export function MdMetersManager({ isWaterBlock = true }: MetersManagerProps) {
                 setSelectedYears={setSelectedYears}
                 setVisibleColumns={setVisibleColumns}
             />
-            <div className={Styles.tableContainer}>
+            <div className={styles.tableContainer}>
                 <MdTable
                     tableConfig={tableMeterDataConfig}
                     listHiddenColumns={[

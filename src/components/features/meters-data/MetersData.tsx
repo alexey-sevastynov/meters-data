@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { BsCalendar2Plus, BsCalendar3 } from "react-icons/bs";
-import Styles from "./metersData.module.scss";
+import styles from "./metersData.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
@@ -31,9 +31,9 @@ export function MdMetersData({ isWaterBlock = true, isTableVisible = true }: Met
     }, [dispatch, meterReadingsList, status]);
 
     return (
-        <section className={Styles.metersData}>
+        <section className={styles.metersData}>
             <div className="overflow-auto">
-                <h4 className={Styles.title}>
+                <h4 className={styles.title}>
                     <BsCalendar2Plus style={{ marginRight: "10px" }} />
                     {translations.metersData["Meter Reading Submission Form for the end of the month"]}:
                 </h4>
@@ -47,7 +47,7 @@ export function MdMetersData({ isWaterBlock = true, isTableVisible = true }: Met
 
                 {isTableVisible && (
                     <>
-                        <h4 className={Styles.title}>
+                        <h4 className={styles.title}>
                             <BsCalendar3 style={{ marginRight: "10px" }} />
                             {translations.metersData["Meter Reading Data Table by Months"]}:
                         </h4>

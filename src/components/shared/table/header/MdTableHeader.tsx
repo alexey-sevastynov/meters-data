@@ -1,4 +1,4 @@
-import Styles from "./tableHeader.module.scss";
+import styles from "./tableHeader.module.scss";
 import { TableAction, TableColumn } from "@/components/shared/table/table-models";
 import { MdTableHeaderCell } from "@/components/shared/table/header-cell/MdTableHeaderCell";
 import { VoidFunc } from "@/types/getter-setter-functions";
@@ -19,7 +19,7 @@ export function MdTableHeader({
     onSort,
 }: MdTableHeaderProps) {
     return (
-        <thead className={Styles.tableHeader}>
+        <thead className={styles.tableHeader}>
             <tr>
                 {columns.map((col) => {
                     const isHiddenCell = !listHiddenColumns || listHiddenColumns.includes(col.key);

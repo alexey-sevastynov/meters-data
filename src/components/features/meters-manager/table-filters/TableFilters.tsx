@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import Styles from "./tableFilters.module.scss";
+import styles from "./tableFilters.module.scss";
 import { MdInputGroup } from "@/components/ui/input-group/MdInputGroup";
 import {
     getAllYears,
@@ -46,7 +46,7 @@ export function TableFilters({
     }, [allYears, selectedYears, setSelectedYears]);
 
     return (
-        <div className={Styles.tableFilters}>
+        <div className={styles.tableFilters}>
             <MdInputGroup
                 options={allYears}
                 defaultValue={allYears.length > 0 ? [allYears[0]] : []}

@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import Style from "./monthlyMoneyCalculations.module.scss";
+import styles from "./monthlyMoneyCalculations.module.scss";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { ListMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/list-monthly-money-calculations/ListMonthlyMoneyCalculations";
 import { useLocation } from "react-router-dom";
@@ -28,9 +28,9 @@ export function MdMonthlyMoneyCalculations() {
     );
 
     return (
-        <section className={Style.monthlyMoneyCalculations}>
+        <section className={styles.monthlyMoneyCalculations}>
             <h4>{translations.price.monthlyMoneyCalculations}</h4>
-            <div className={Style.inputBlock}>
+            <div className={styles.inputBlock}>
                 <MdInput
                     onChange={onChange}
                     value={inputValue}
