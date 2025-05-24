@@ -1,4 +1,4 @@
-import Styles from "./chart.module.scss";
+import styles from "./chart.module.scss";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -48,7 +48,7 @@ export function MdChart({ data, title }: MdChartProps) {
     });
 
     return (
-        <div className={Styles.chart}>
+        <div className={styles.chart}>
             <h4>
                 {title} {translations.graphics["graphic"]}:
             </h4>
@@ -59,32 +59,32 @@ export function MdChart({ data, title }: MdChartProps) {
                         {
                             label: "Light",
                             data: filteredData.map((obj) => obj.light),
-                            backgroundColor: Styles.green,
-                            borderColor: Styles.green,
+                            backgroundColor: styles.green,
+                            borderColor: styles.green,
                         },
                         {
                             label: "Light Night",
                             data: filteredData.map((obj) => obj.lightNight),
-                            backgroundColor: Styles.grey,
-                            borderColor: Styles.grey,
+                            backgroundColor: styles.grey,
+                            borderColor: styles.grey,
                         },
                         {
                             label: "Light Day",
                             data: filteredData.map((obj) => obj.lightDay),
-                            backgroundColor: Styles.lightGreen,
-                            borderColor: Styles.lightGreen,
+                            backgroundColor: styles.lightGreen,
+                            borderColor: styles.lightGreen,
                         },
                         {
                             label: "Gas",
                             data: filteredData.map((obj) => obj.gas),
-                            backgroundColor: Styles.red,
-                            borderColor: Styles.red,
+                            backgroundColor: styles.red,
+                            borderColor: styles.red,
                         },
                         {
                             label: "Water",
                             data: filteredData.map((obj) => obj.water),
-                            backgroundColor: Styles.blue,
-                            borderColor: Styles.blue,
+                            backgroundColor: styles.blue,
+                            borderColor: styles.blue,
                         },
                     ].filter((dataset) =>
                         title !== "Light"

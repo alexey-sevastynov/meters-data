@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import Style from "./meterInputsList.module.scss";
+import styles from "./meterInputsList.module.scss";
 import { InputField } from "@/components/features/meters-data/form-data-month/form-controls/inputFields";
 import { MdInput } from "@/components/ui/input/MdInput";
 import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
@@ -59,7 +59,7 @@ export function MeterInputsList({
                     value={value}
                     setValue={setValue}
                     sortedAddressMeterData={sortedAddressMeterData}
-                    className={Style.input}
+                    className={styles.input}
                 />
             ))}
 

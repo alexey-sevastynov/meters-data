@@ -1,4 +1,4 @@
-import Styles from "./languageDropdown.module.scss";
+import styles from "./languageDropdown.module.scss";
 import {
     MdDropdown,
     MdDropdownContent,
@@ -21,15 +21,15 @@ export function MdLanguageDropdown() {
     const isEnglish = lang === languageKeys.en;
     const isUkraine = lang === languageKeys.ua;
     return (
-        <MdDropdown className={Styles.dropdownLanguage}>
-            <MdDropdownTrigger className={Styles.dropdownTriggerLanguage}>
+        <MdDropdown className={styles.dropdownLanguage}>
+            <MdDropdownTrigger className={styles.dropdownTriggerLanguage}>
                 <MdIcon name={iconNames.language} />
-                <h5 className={Styles.dropdownTriggerLanguageText}>{currentLanguage(lang)}</h5>
+                <h5 className={styles.dropdownTriggerLanguageText}>{currentLanguage(lang)}</h5>
             </MdDropdownTrigger>
-            <MdDropdownContent className={Styles.dropdownContentLanguage}>
+            <MdDropdownContent className={styles.dropdownContentLanguage}>
                 <MdDropdownItem
                     onSelect={() => dispatch(setLang(languageKeys.en))}
-                    className={Styles.dropdownItemLanguage}
+                    className={styles.dropdownItemLanguage}
                 >
                     <p>{translations.dropdownLanguage.english}</p>
                     {isEnglish && (
@@ -38,7 +38,7 @@ export function MdLanguageDropdown() {
                 </MdDropdownItem>
                 <MdDropdownItem
                     onSelect={() => dispatch(setLang(languageKeys.ua))}
-                    className={Styles.dropdownItemLanguage}
+                    className={styles.dropdownItemLanguage}
                 >
                     <p>{translations.dropdownLanguage.ukraine}</p>
                     {isUkraine && (

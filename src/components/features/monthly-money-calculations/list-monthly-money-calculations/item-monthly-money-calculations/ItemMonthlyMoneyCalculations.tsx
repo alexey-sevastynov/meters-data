@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import Style from "./itemMonthlyMoneyCalculations.module.scss";
+import styles from "./itemMonthlyMoneyCalculations.module.scss";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { MdButton } from "@/components/ui/button/MdButton";
@@ -61,12 +61,12 @@ export function ItemMonthlyMoneyCalculations({
     };
 
     return (
-        <li className={Style.itemMonthlyMoneyCalculations}>
-            <div className={Style.btnsLanguage}>
-                <button onClick={() => setLanguage("en")} className={language === "en" ? Style.active : ""}>
+        <li className={styles.itemMonthlyMoneyCalculations}>
+            <div className={styles.btnsLanguage}>
+                <button onClick={() => setLanguage("en")} className={language === "en" ? styles.active : ""}>
                     EN
                 </button>
-                <button onClick={() => setLanguage("ua")} className={language === "ua" ? Style.active : ""}>
+                <button onClick={() => setLanguage("ua")} className={language === "ua" ? styles.active : ""}>
                     UA
                 </button>
             </div>
@@ -75,8 +75,8 @@ export function ItemMonthlyMoneyCalculations({
                 {items &&
                     items.map(({ title, description }) => {
                         return (
-                            <li key={title} className={Style.item}>
-                                <p className={Style.title}>
+                            <li key={title} className={styles.item}>
+                                <p className={styles.title}>
                                     {language === "en" ? title : translationTitle(title)}:
                                 </p>
                                 <p>
@@ -86,15 +86,15 @@ export function ItemMonthlyMoneyCalculations({
                             </li>
                         );
                     })}
-                <li className={`${Style.item} ${Style.itemLast}`}>
-                    <p className={Style.title}>
+                <li className={`${styles.item} ${styles.itemLast}`}>
+                    <p className={styles.title}>
                         {language === "en" ? "Amount of money:" : "Кількість грошей:"}
                     </p>
                     <p>{`${sumMoney} ${currencyTranslation}`}</p>
                 </li>
             </ul>
 
-            <div className={Style.btns}>
+            <div className={styles.btns}>
                 <MdButton onClick={onEditItem} disabled={isEdit}>
                     {translations.btn.edit}
                 </MdButton>

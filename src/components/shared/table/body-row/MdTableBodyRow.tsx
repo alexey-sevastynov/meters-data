@@ -1,4 +1,4 @@
-import Styles from "./tableBodyRow.module.scss";
+import styles from "./tableBodyRow.module.scss";
 import { useLocation } from "react-router-dom";
 import { MdTableBodyCell } from "@/components/shared/table/body-cell/MdTableBodyCell";
 import { TableAction, TableColumn, TableRow } from "@/components/shared/table/table-models";
@@ -30,7 +30,7 @@ export function MdTableBodyRow({
     // </Temporary solution, to be removed in the future>
 
     return (
-        <tr className={cn(Styles.tableBodyRow, row.id === selectedMonthId && Styles.active)}>
+        <tr className={cn(styles.tableBodyRow, row.id === selectedMonthId && styles.active)}>
             {columns.map((col) => {
                 const isHiddenCell = listHiddenColumns.includes(col.key);
 

@@ -1,4 +1,4 @@
-import Style from "./inputLogin.module.scss";
+import styles from "./inputLogin.module.scss";
 import { isValidLoginInput } from "@/components/features/auth/input-login/inputLogin.funcs";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
@@ -24,9 +24,9 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
         : getIconColorByTheme(colorNames.lightRed, colorNames.red, theme.themeMode);
 
     return (
-        <div className={Style.inputLogin}>
+        <div className={styles.inputLogin}>
             <label htmlFor={labelText}>{labelText}</label>
-            <div className={Style.input}>
+            <div className={styles.input}>
                 <input
                     id={labelText}
                     type={type}
@@ -43,7 +43,7 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
                 )}
             </div>
 
-            {isError && !isValidLoginInput(value) && <p className={Style.errorMessage}>{errorMessage}</p>}
+            {isError && !isValidLoginInput(value) && <p className={styles.errorMessage}>{errorMessage}</p>}
         </div>
     );
 }

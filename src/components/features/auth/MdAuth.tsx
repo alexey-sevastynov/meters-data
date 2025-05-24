@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Style from "./auth.module.scss";
+import styles from "./auth.module.scss";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@/store/hook";
 import { logIn } from "@/store/slices/auth-slice";
@@ -25,10 +25,10 @@ export function MdAuth() {
 
     return (
         <section
-            className={Style.loginPage}
+            className={styles.loginPage}
             style={{ backgroundImage: `url(${getImageUrl("background-main.png")})` }}
         >
-            <div className={Style.login}>
+            <div className={styles.login}>
                 <h3>Sign in to your account</h3>
                 <MdInputLogin labelText="Email" value={email} setValue={setEmail} isError={isError} />
                 <MdInputLogin
@@ -41,7 +41,7 @@ export function MdAuth() {
                 <MdButtonLogin onClick={tryLogIn} />
                 <footer>
                     <p>Need help? Contact the developer:</p>
-                    <Link to={"mailto:mail@alexeseva94@gmail.com"} className={Style.link}>
+                    <Link to={"mailto:mail@alexeseva94@gmail.com"} className={styles.link}>
                         alexeseva94@gmail.com
                     </Link>
                 </footer>

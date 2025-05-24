@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { cn } from "@/lib/cn";
-import Styles from "./dateRangeSelector.module.scss";
+import styles from "./dateRangeSelector.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { colorNames } from "@/enums/color-names";
 import { showMeterReadingCalc } from "@/store/slices/meters-data/slice";
@@ -36,7 +36,7 @@ export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateR
 
     React.useEffect(() => {
         const handleOutsideClick = (event: MouseEvent) =>
-            handleClickOutside(event, dropdownRef, setIsOpen, Styles.dateRangeSelector__btn);
+            handleClickOutside(event, dropdownRef, setIsOpen, styles.dateRangeSelector__btn);
 
         document.addEventListener("mousedown", handleOutsideClick);
         return () => {
@@ -45,25 +45,25 @@ export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateR
     }, []);
 
     return (
-        <div className={Styles.dateRangeSelector}>
+        <div className={styles.dateRangeSelector}>
             <button
-                className={cn(Styles.dateRangeSelector__btn, isOpen && Styles.dateRangeSelector__btn_active)}
+                className={cn(styles.dateRangeSelectorBtn, isOpen && styles.dateRangeSelectorBtnActive)}
                 onClick={handleButtonClick}
             >
-                <p className={Styles.dateRangeSelector__btn_date}>{selectedDateDisplay}</p>
+                <p className={styles.dateRangeSelectorBtnDate}>{selectedDateDisplay}</p>
                 <MdIcon name={iconNames.calendar} size={iconSizes.large} color={colorNames.grey} />
             </button>
 
             {isOpen && (
-                <div ref={dropdownRef} className={Styles.dateRangeSelector__dropdown}>
+                <div ref={dropdownRef} className={styles.dateRangeSelectorDropdown}>
                     {data
                         .map((item) => (
                             <button
                                 key={item._id}
                                 className={cn(
-                                    Styles.dateRangeSelector__dropdown_btn,
+                                    styles.dateRangeSelectorDropdownBtn,
                                     isActive(selectedDateDisplay, item.date, currentLang) &&
-                                        Styles.dateRangeSelector__dropdown_btn_active
+                                        styles.dateRangeSelectorDropdownBtnActive
                                 )}
                                 onClick={() => {
                                     dispatch(

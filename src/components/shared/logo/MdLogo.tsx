@@ -1,4 +1,4 @@
-import Styles from "./logo.module.scss";
+import styles from "./logo.module.scss";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
@@ -12,9 +12,9 @@ export function MdLogo() {
     const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.xl });
 
     return (
-        <div className={Styles.logo} onClick={() => dispatch(getAllMetersData())}>
+        <div className={styles.logo} onClick={() => dispatch(getAllMetersData())}>
             <MdImage fileName={"logo.png"} alt="logo" width={40} height={40} />
-            {!isMobileView && <h3 className={Styles.text}>{translations.header.metersData}</h3>}
+            {!isMobileView && <h3 className={styles.text}>{translations.header.metersData}</h3>}
         </div>
     );
 }

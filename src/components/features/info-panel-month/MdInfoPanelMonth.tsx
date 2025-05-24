@@ -1,4 +1,4 @@
-import Styles from "./infoPanelMonth.module.scss";
+import styles from "./infoPanelMonth.module.scss";
 import { ListInfoPanelMonth } from "@/components/features/info-panel-month/list-info-panel-month/ListInfoPanelMonth";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store/hook";
@@ -45,9 +45,9 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
     const year = selectedMonth.split(",")[1];
 
     return (
-        <section className={Styles.infoPanelMonthSection}>
-            <div className={Styles.infoPanelMonth}>
-                <div className={Styles.infoPanelMonth__header}>
+        <section className={styles.infoPanelMonthSection}>
+            <div className={styles.infoPanelMonth}>
+                <div className={styles.infoPanelMonthHeader}>
                     <MdDateRangeSelector
                         data={removeFirstAddedMonth(filterMeterDataByAddress(items, currentPage))}
                         selectedMonth={month}
@@ -56,14 +56,14 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
 
                     <LinkButtonGroup
                         linksGroup={getLinkButtons(pathname, translations)}
-                        className={Styles.infoPanelMonth__header_btns}
+                        className={styles.infoPanelMonthHeaderBtns}
                     />
                 </div>
 
                 <ListInfoPanelMonth isWaterBlock={isWaterBlock} items={lastValue} />
                 <LinkButtonGroup
                     linksGroup={getLinkButtons(pathname, translations)}
-                    className={Styles.infoPanelMonth__btns}
+                    className={styles.infoPanelMonthBtns}
                 />
             </div>
         </section>

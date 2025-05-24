@@ -9,7 +9,7 @@ $padding-window: 5px 10px;
 .dateRangeSelector {
     position: relative;
 
-    &__btn {
+    .dateRangeSelectorBtn {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -20,16 +20,16 @@ $padding-window: 5px 10px;
         height: 39px;
         width: $width;
 
-        &_date {
+        .dateRangeSelectorBtnDate {
             color: var(--color-text-primary);
         }
 
-        &_active {
+        .dateRangeSelectorBtnActive {
             border-color: $green-active;
         }
     }
 
-    &__dropdown {
+    .dateRangeSelectorDropdown {
         position: absolute;
         top: 49px;
         display: flex;
@@ -47,13 +47,13 @@ $padding-window: 5px 10px;
         overflow-y: scroll;
 
         @include custom-scroll;
-        &_btn {
+        .dateRangeSelectorDropdownBtn {
             padding: $padding-window;
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            &_active {
+            .dateRangeSelectorDropdownBtnActive {
                 background-color: var(--color-bg-hover-item);
 
                 &:hover {
@@ -69,8 +69,8 @@ $padding-window: 5px 10px;
 
     @media (max-width: $mobile-xl) {
         width: 100%;
-        &__btn,
-        &__dropdown {
+        .dateRangeSelectorBtn,
+        .dateRangeSelectorDropdown {
             width: 100%;
         }
     }

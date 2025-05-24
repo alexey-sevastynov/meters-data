@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { cn } from "@/lib/cn";
-import Styles from "./itemMetersData.module.scss";
+import styles from "./itemMetersData.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { showMeterReadingCalc } from "@/store/slices/meters-data/slice";
 import { formatDate } from "@/helpers/meters-data/dates/format-date";
@@ -67,19 +67,19 @@ export function ItemMetersData({ meterData, isLastItem, isFirstItem, isWaterBloc
     }, [isEdit]);
 
     return (
-        <li className={cn(Styles.itemMetersData, selectedMonthId === meterData._id && Styles.active)}>
-            <div className={`${Styles.data} `}>
-                <p className={Styles.date} title={selectedDateDisplay}>
+        <li className={cn(styles.itemMetersData, selectedMonthId === meterData._id && styles.active)}>
+            <div className={`${styles.data} `}>
+                <p className={styles.date} title={selectedDateDisplay}>
                     {translations.months[month]}
                 </p>
-                <p className={Styles.light}>{meterData.light}</p>
-                <p className={Styles.lightDay}>{meterData.lightDay}</p>
-                <p className={Styles.lightNight}>{meterData.lightNight}</p>
-                <p className={Styles.gas}>{meterData.gas}</p>
-                {isWaterBlock && <p className={Styles.water}>{meterData.water}</p>}
+                <p className={styles.light}>{meterData.light}</p>
+                <p className={styles.lightDay}>{meterData.lightDay}</p>
+                <p className={styles.lightNight}>{meterData.lightNight}</p>
+                <p className={styles.gas}>{meterData.gas}</p>
+                {isWaterBlock && <p className={styles.water}>{meterData.water}</p>}
             </div>
 
-            <div className={Styles.btns}>
+            <div className={styles.btns}>
                 {isFirstItem || (
                     <button
                         type="button"

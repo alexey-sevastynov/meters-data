@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Styles from "./confirm.module.scss";
+import styles from "./confirm.module.scss";
 import { useAppDispatch } from "@/store/hook";
 import {
     closePopup,
@@ -43,17 +43,17 @@ export function MdConfirm({ question }: MdConfirmProps) {
         };
     }, []);
     return (
-        <section className={Styles.confirmPage}>
-            <h2 className={Styles.hidden}>confirm</h2>
-            <div className={`${Styles.confirm} ${isOpen ? Styles.active : ""}`}>
-                <MdImage className={Styles.image} fileName={"cat.png"} alt="cat-eyes" width={300} />
-                <button type="button" className={Styles.close} onClick={cancel}>
+        <section className={styles.confirmPage}>
+            <h2 className={styles.hidden}>confirm</h2>
+            <div className={`${styles.confirm} ${isOpen ? styles.active : ""}`}>
+                <MdImage className={styles.image} fileName={"cat.png"} alt="cat-eyes" width={300} />
+                <button type="button" className={styles.close} onClick={cancel}>
                     <MdIcon name={iconNames.close} size={iconSizes.large} />
                 </button>
 
-                <p className={Styles.text}>{question}</p>
+                <p className={styles.text}>{question}</p>
 
-                <div className={Styles.btns}>
+                <div className={styles.btns}>
                     <MdButton onClick={cancel}>No</MdButton>
                     <MdButton onClick={handleYesClick} color={colorNames.red}>
                         Yes!

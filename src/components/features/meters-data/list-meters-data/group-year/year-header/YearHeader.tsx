@@ -1,5 +1,5 @@
 import React from "react";
-import Style from "./yearHeader.module.scss";
+import styles from "./yearHeader.module.scss";
 import { motion } from "framer-motion";
 import { colorNames } from "@/enums/color-names";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
@@ -14,7 +14,7 @@ interface YearHeaderProps {
 
 const YearHeader: React.FC<YearHeaderProps> = ({ year, isOpen, onToggle }) => {
     return (
-        <button onClick={onToggle} className={Style.yearHeader}>
+        <button onClick={onToggle} className={styles.yearHeader}>
             <p>{year}</p>
             <motion.div
                 initial={{ rotate: 180 }}

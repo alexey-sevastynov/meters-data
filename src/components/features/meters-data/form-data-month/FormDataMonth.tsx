@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { format, parse, startOfDay } from "date-fns";
-import Style from "./formDataMonth.module.scss";
+import styles from "./formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { selectTranslations } from "@/store/slices/i-18-next";
@@ -128,7 +128,7 @@ export function FormDataMonth({
     }, [pathname]);
 
     return (
-        <form className={Style.formDataMonth} onSubmit={onSubmit}>
+        <form className={styles.formDataMonth} onSubmit={onSubmit}>
             <FormControls
                 isWaterBlock={isWaterBlock}
                 selectDate={selectDate}

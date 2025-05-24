@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Style from "./listMetersData.module.scss";
+import styles from "./listMetersData.module.scss";
 import GroupYear from "@/components/features/meters-data/list-meters-data/group-year/GroupYear";
 import { useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
@@ -30,7 +30,7 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) 
     }, [items, addressCurrentPage]);
 
     return (
-        <ul ref={listMetersDataRef} className={Style.listMetersData}>
+        <ul ref={listMetersDataRef} className={styles.listMetersData}>
             {status === statusNames.loading && <p>Loading...</p>}
             {isEmptyList(groupedData, status) ? (
                 <p>No data</p>

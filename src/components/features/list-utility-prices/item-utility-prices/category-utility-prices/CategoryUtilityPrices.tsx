@@ -1,4 +1,4 @@
-import Styles from "./categoryUtilityPrices.module.scss";
+import styles from "./categoryUtilityPrices.module.scss";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { CategoryName } from "@/enums/category-names";
@@ -13,9 +13,9 @@ export function CategoryUtilityPrices({ category, image }: CategoryUtilityPrices
     const translations = useAppSelector(selectTranslations);
 
     return (
-        <div className={Styles.categoryUtilityPrices}>
+        <div className={styles.categoryUtilityPrices}>
             <p>{translations.home[category as CategoryName]},</p>
-            <div className={Styles.images}>
+            <div className={styles.images}>
                 {image.map((name) => (
                     <MdImage key={name} fileName={name} alt={category} width={29} height={29} />
                 ))}

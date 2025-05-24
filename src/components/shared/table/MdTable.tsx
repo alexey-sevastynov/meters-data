@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import Styles from "./table.module.scss";
+import styles from "./table.module.scss";
 import { TableConfig } from "@/components/shared/table/table-config";
 import { MdTableHeader } from "@/components/shared/table/header/MdTableHeader";
 import { MdTableBody } from "@/components/shared/table/body/MdTableBody";
@@ -32,7 +32,7 @@ export function MdTable({ tableConfig, isReadOnly = false, listHiddenColumns = [
     );
 
     return (
-        <table className={Styles.table}>
+        <table className={styles.table}>
             <MdTableHeader
                 columns={tableConfig.columns}
                 isReadOnly={isReadOnly}

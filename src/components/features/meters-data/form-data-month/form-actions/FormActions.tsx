@@ -1,5 +1,5 @@
 import { MdButton } from "@/components/ui/button/MdButton";
-import Style from "./formActions.module.scss";
+import styles from "./formActions.module.scss";
 import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { AppDispatch } from "@/store/store";
 import { TranslationKeys } from "@/types/i-18-next-types";
@@ -14,7 +14,7 @@ interface FormActionsProps {
 
 export function FormActions({ isEdit, dispatch, lang }: FormActionsProps) {
     return (
-        <div className={Style.btns}>
+        <div className={styles.btns}>
             {isEdit && (
                 <MdButton type="button" onClick={() => dispatch(setNotEdit())} color={colorNames.red}>
                     {lang.btn.cancel}

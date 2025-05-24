@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/store/hook";
-import Styles from "./utilityAccount.module.scss";
+import styles from "./utilityAccount.module.scss";
 import { useLocation } from "react-router-dom";
 import { BillingAccount } from "@/store/models/billing-account";
 import { selectTranslations } from "@/store/slices/i-18-next";
@@ -22,19 +22,19 @@ export function MdBillingAccounts() {
     if (status === "error") return <p>error: {errorMessage}</p>;
 
     return (
-        <div className={Styles.utilityAccount}>
-            <h2 className={Styles.utilityAccount__title}>{translations.utilityAccount.title}</h2>
+        <div className={styles.utilityAccount}>
+            <h2 className={styles.utilityAccountTitle}>{translations.utilityAccount.title}</h2>
 
             {/* todo: add items & item component later */}
-            <div className={Styles.utilityAccount__items}>
+            <div className={styles.utilityAccountItems}>
                 {item?.light && (
-                    <div className={Styles.utilityAccount__items_item}>
+                    <div className={styles.utilityAccountItemsItem}>
                         <p>{translations.utilityAccount.light}:</p>
-                        <div className={Styles.utilityAccount__items_item_content}>
-                            <p className={Styles.utilityAccount__items_item_content_value}>{item?.light}</p>
+                        <div className={styles.utilityAccountItemsItemContent}>
+                            <p className={styles.utilityAccountItemsItemContentValue}>{item?.light}</p>
                             <button
                                 title={translations.utilityAccount.copy}
-                                className={Styles.utilityAccount__items_item_content_copy}
+                                className={styles.utilityAccountItemsItemContentCopy}
                                 onClick={() => navigator.clipboard.writeText(item?.light)}
                             >
                                 <MdIcon
@@ -48,13 +48,13 @@ export function MdBillingAccounts() {
                 )}
 
                 {item?.water && (
-                    <div className={Styles.utilityAccount__items_item}>
+                    <div className={styles.utilityAccountItemsItem}>
                         <p>{translations.utilityAccount.water}:</p>
-                        <div className={Styles.utilityAccount__items_item_content}>
-                            <p className={Styles.utilityAccount__items_item_content_value}>{item?.water}</p>
+                        <div className={styles.utilityAccountItemsItemContent}>
+                            <p className={styles.utilityAccountItemsItemContentValue}>{item?.water}</p>
                             <button
                                 title={translations.utilityAccount.copy}
-                                className={Styles.utilityAccount__items_item_content_copy}
+                                className={styles.utilityAccountItemsItemContentCopy}
                                 onClick={() => navigator.clipboard.writeText(item?.water)}
                             >
                                 <MdIcon
@@ -68,13 +68,13 @@ export function MdBillingAccounts() {
                 )}
 
                 {item?.gas && (
-                    <div className={Styles.utilityAccount__items_item}>
+                    <div className={styles.utilityAccountItemsItem}>
                         <p>{translations.utilityAccount.gas}:</p>
-                        <div className={Styles.utilityAccount__items_item_content}>
-                            <p className={Styles.utilityAccount__items_item_content_value}>{item?.gas}</p>
+                        <div className={styles.utilityAccountItemsItemContent}>
+                            <p className={styles.utilityAccountItemsItemContentValue}>{item?.gas}</p>
                             <button
                                 title={translations.utilityAccount.copy}
-                                className={Styles.utilityAccount__items_item_content_copy}
+                                className={styles.utilityAccountItemsItemContentCopy}
                                 onClick={() => navigator.clipboard.writeText(item?.gas)}
                             >
                                 <MdIcon

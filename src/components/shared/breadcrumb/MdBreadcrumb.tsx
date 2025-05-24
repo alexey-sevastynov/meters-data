@@ -1,4 +1,4 @@
-import Styles from "./breadcrumb.module.scss";
+import styles from "./breadcrumb.module.scss";
 import { cn } from "@/lib/cn";
 import { MdLink } from "@/components/ui/link/MdLink";
 import { isHomeRoute, isNotLastItem } from "@/components/shared/breadcrumb/breadcrumb.function";
@@ -15,11 +15,11 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
     if (!items) return null;
 
     return (
-        <nav className={Styles.breadcrumb}>
+        <nav className={styles.breadcrumb}>
             {items.map((item, index) => {
                 const isLastItem = !isNotLastItem(index, items.length);
                 const linkContent = isHomeRoute(item) ? (
-                    <div className={Styles.homeIcon}>
+                    <div className={styles.homeIcon}>
                         <MdIcon name={iconNames.home} size={iconSizes.medium} color={iconColor} />
                     </div>
                 ) : (
@@ -27,16 +27,16 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
                 );
 
                 return (
-                    <div key={item.id} className={Styles.breadcrumbItem}>
+                    <div key={item.id} className={styles.breadcrumbItem}>
                         {isLastItem ? (
-                            <p className={cn(Styles.link, Styles.active)}>{linkContent}</p>
+                            <p className={cn(styles.link, styles.active)}>{linkContent}</p>
                         ) : (
-                            <MdLink to={item.link} className={Styles.link}>
+                            <MdLink to={item.link} className={styles.link}>
                                 {linkContent}
                             </MdLink>
                         )}
                         {!isLastItem && (
-                            <div className={Styles.separator}>
+                            <div className={styles.separator}>
                                 <MdIcon name={iconNames.circle} size={iconSizes.tiny} color={iconColor} />
                             </div>
                         )}
