@@ -1,4 +1,4 @@
-export interface ItemInfoPanelMonthProps {
+export interface MonthlyInfoItemProps {
     isWaterBlock: boolean;
     title: string;
     description: string | number;

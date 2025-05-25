@@ -30,7 +30,7 @@ export function MdTableBodyRow({
     // </Temporary solution, to be removed in the future>
 
     return (
-        <tr className={cn(styles.tableBodyRow, row.id === selectedMonthId && styles.active)}>
+        <tr className={cn(styles.root, row.id === selectedMonthId && styles.active)}>
             {columns.map((col) => {
                 const isHiddenCell = listHiddenColumns.includes(col.key);
 

@@ -64,7 +64,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
     }, [dispatch, listInfoDataMonth, utilityPrices]);
 
     return (
-        <ul className={styles.listCategoriesWithPrices}>
+        <ul className={styles.root}>
             {currentItem?.map(({ title, description }) => (
                 <ItemBlock
                     key={title}
@@ -83,7 +83,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
                     </p>
                 </li>
                 {isEdit ? (
-                    <div className={styles.btns}>
+                    <div className={styles.buttons}>
                         <MdButton type="button" onClick={onCancel} color={colorNames.red}>
                             Cancel
                         </MdButton>

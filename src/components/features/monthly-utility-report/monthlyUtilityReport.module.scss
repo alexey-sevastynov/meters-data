@@ -1,0 +1,36 @@
+@import "@/styles/breakpoints.scss";
+@import "@/styles/colors.scss";
+
+.root {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    .header {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+
+        .headerButtonGroup {
+            @media (max-width: $mobile-xl) {
+                display: none;
+            }
+        }
+    }
+
+    .footerButtonGroup {
+        display: none;
+
+        @media (max-width: $mobile-xl) {
+            display: flex;
+        }
+    }
+
+    @media (max-width: $mobile-xl) {
+        flex-direction: column;
+        align-items: unset;
+        width: 100%;
+    }
+}

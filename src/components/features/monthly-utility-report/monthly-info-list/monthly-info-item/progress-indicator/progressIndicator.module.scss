@@ -5,27 +5,25 @@ $width: 150px;
 $border-radius: 5px;
 $gap-line: 3px;
 
-.progressIndicator__left,
-.progressIndicator__right {
+.progressTrackLeft,
+.progressTrackRight {
     position: absolute;
     height: 100%;
     width: calc(50% - $gap-line / 2);
 
-    &_minus {
+    .progressBarMinus {
         position: absolute;
         height: 100%;
         background-color: var(--color-bg-green);
         right: 0px;
-
         border-radius: $border-radius 0px 0px $border-radius;
     }
 
-    &_plus {
+    .progressBarPlus {
         position: absolute;
         height: 100%;
         background-color: var(--color-bg-red);
         left: calc(100% + $gap-line);
-
         border-radius: 0px $border-radius $border-radius 0px;
     }
 }

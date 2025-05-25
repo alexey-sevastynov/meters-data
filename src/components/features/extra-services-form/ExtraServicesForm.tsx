@@ -56,16 +56,14 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
     }, [selectedOption, optionValue]);
 
     return (
-        <form className={styles.extraServicesForm}>
-            <div className={styles.inputs}>
+        <form className={styles.root}>
+            <div className={styles.fieldsGroup}>
                 <MdSelect
-                    className={styles.select}
                     options={options}
                     value={selectedOption}
                     onChange={handleSelectChange}
                     labelText={translations.price.addCategory}
                 />
-
                 <MdInput
                     value={inputValue}
                     onChange={onChange}
@@ -75,7 +73,7 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
                     step={0.01}
                 />
             </div>
-            <div className={styles.btns}>
+            <div className={styles.buttonWrapper}>
                 <MdButton type="button" onClick={onAddValueUtilityPrice} color={colorNames.green}>
                     {translations.btn.add}
                 </MdButton>

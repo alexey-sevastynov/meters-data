@@ -1,13 +1,9 @@
 @import "@/styles/colors.scss";
 @import "@/styles/breakpoints.scss";
 
-.authPanel {
+.root {
     position: relative;
     display: flex;
     align-items: center;
     gap: 15px;
-
-    .signOutButton {
-        color: $white;
-    }
 }

@@ -31,20 +31,18 @@ export function MdMetersData({ isWaterBlock = true, isTableVisible = true }: Met
     }, [dispatch, meterReadingsList, status]);
 
     return (
-        <section className={styles.metersData}>
+        <section className={styles.root}>
             <div className="overflow-auto">
                 <h4 className={styles.title}>
                     <BsCalendar2Plus style={{ marginRight: "10px" }} />
                     {translations.metersData["Meter Reading Submission Form for the end of the month"]}:
                 </h4>
-
                 <FormDataMonth
                     isWaterBlock={isWaterBlock}
                     sortedAddressMeterData={sortedAddressMeterData}
                     pathname={location.pathname}
                     addressPath={addressPath}
                 />
-
                 {isTableVisible && (
                     <>
                         <h4 className={styles.title}>

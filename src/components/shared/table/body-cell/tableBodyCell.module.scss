@@ -1,7 +1,7 @@
 @import "@/styles/mixins.scss";
 @import "@/styles/sizes.scss";
 
-.tableBodyCell {
+.root {
     padding-left: $paddingLeftCellTable;
     padding-right: $paddingRightCellTable;
     border-bottom: $border;

@@ -5,42 +5,41 @@ $width: 150px;
 $border-radius: 5px;
 $gap-line: 3px;
 
-.itemInfoPanelMonth {
+.root {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
     width: $width;
 
-    .itemInfoPanelMonthHeader {
+    .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        .itemInfoPanelMonthHeaderValuePercent {
+        .valuePercent {
             display: flex;
             align-items: center;
         }
     }
 
-    .itemInfoPanelMonthLine {
+    .line {
         position: relative;
         background-color: var(--color-border);
         width: 100%;
         height: 10px;
         border-radius: $border-radius;
 
-        .itemInfoPanelMonthLineCenter {
+        .lineCenter {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-
             width: $gap-line;
             height: 100%;
             background-color: var(--color-bg);
         }
     }
 
-    .itemInfoPanelMonthTitle {
+    .title {
         text-align: center;
     }
 }

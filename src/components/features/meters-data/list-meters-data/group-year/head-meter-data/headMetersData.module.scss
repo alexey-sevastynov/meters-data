@@ -1,7 +1,7 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
 
-.headMetersData {
+.root {
     display: flex;
     padding: 10px;
     gap: 7px;
@@ -13,15 +13,15 @@
         font-weight: 700;
     }
 
-    .headMetersDataDate {
+    .month {
         min-width: 151px;
     }
 
-    .headMetersDataLight,
-    .headMetersDataLightDay,
-    .headMetersDataLightNight,
-    .headMetersDataGas,
-    .headMetersDataWater {
+    .light,
+    .lightDay,
+    .lightNight,
+    .gas,
+    .water {
         min-width: 130px;
     }
 }

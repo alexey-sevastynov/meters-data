@@ -19,7 +19,7 @@ export function MdTableHeader({
     onSort,
 }: MdTableHeaderProps) {
     return (
-        <thead className={styles.tableHeader}>
+        <thead className={styles.root}>
             <tr>
                 {columns.map((col) => {
                     const isHiddenCell = !listHiddenColumns || listHiddenColumns.includes(col.key);

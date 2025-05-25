@@ -12,7 +12,7 @@ interface ListLinksProps {
 
 export function ListLinks({ isSidebarCollapsed, toggleSidebar }: ListLinksProps) {
     return (
-        <div className={styles.listLinks}>
+        <div className={styles.root}>
             <ul>
                 {navigationItems.map((item) => (
                     <ItemLink
@@ -24,13 +24,8 @@ export function ListLinks({ isSidebarCollapsed, toggleSidebar }: ListLinksProps)
                     />
                 ))}
             </ul>
-
-            <button className={styles.toggleButton} onClick={toggleSidebar}>
-                {isSidebarCollapsed ? (
-                    <MdIcon name={iconNames.caretSquareRight} />
-                ) : (
-                    <MdIcon name={iconNames.caretSquareLeft} />
-                )}
+            <button onClick={toggleSidebar}>
+                <MdIcon name={isSidebarCollapsed ? iconNames.caretSquareRight : iconNames.caretSquareLeft} />
             </button>
         </div>
     );

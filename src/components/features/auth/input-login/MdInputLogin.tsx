@@ -24,9 +24,9 @@ export function MdInputLogin({ labelText = "Email", value, setValue, isError }: 
         : getIconColorByTheme(colorNames.lightRed, colorNames.red, theme.themeMode);
 
     return (
-        <div className={styles.inputLogin}>
+        <div className={styles.root}>
             <label htmlFor={labelText}>{labelText}</label>
-            <div className={styles.input}>
+            <div className={styles.inputBox}>
                 <input
                     id={labelText}
                     type={type}

@@ -2,7 +2,7 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
 
-.bottomSidebar {
+.root {
     position: fixed;
     height: $widthSidebarCollapsed;
     bottom: 0px;

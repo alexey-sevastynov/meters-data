@@ -7,7 +7,7 @@ export function AuthPanel() {
     const authPanelRef = useRef<HTMLDivElement | null>(null);
 
     return (
-        <div ref={authPanelRef} className={styles.authPanel}>
+        <div ref={authPanelRef} className={styles.root}>
             <MdLanguageDropdown />
             <MdDropdownMenu />
         </div>

@@ -15,7 +15,7 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
     if (!items) return null;
 
     return (
-        <nav className={styles.breadcrumb}>
+        <nav className={styles.root}>
             {items.map((item, index) => {
                 const isLastItem = !isNotLastItem(index, items.length);
                 const linkContent = isHomeRoute(item) ? (
@@ -27,7 +27,7 @@ export function MdBreadcrumb({ items }: MdBreadcrumbProps) {
                 );
 
                 return (
-                    <div key={item.id} className={styles.breadcrumbItem}>
+                    <div key={item.id} className={styles.item}>
                         {isLastItem ? (
                             <p className={cn(styles.link, styles.active)}>{linkContent}</p>
                         ) : (

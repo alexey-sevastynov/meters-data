@@ -1,19 +1,19 @@
 @import "@/styles/colors.scss";
 
-.dropdownLanguage {
-    .dropdownTriggerLanguage {
+.root {
+    .dropdownTrigger {
         display: flex;
         align-items: center;
         gap: 7px;
         color: $white;
 
-        .dropdownTriggerLanguageText {
+        .title {
             color: $white;
         }
     }
 
-    .dropdownContentLanguage {
-        .dropdownItemLanguage {
+    .dropdownContent {
+        .item {
             display: flex;
             justify-content: space-between;
             align-items: center;

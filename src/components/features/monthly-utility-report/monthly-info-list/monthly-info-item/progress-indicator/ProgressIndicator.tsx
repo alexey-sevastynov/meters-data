@@ -1,11 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styles from "./progressIndicator.module.scss";
-import { ProgressIndicatorProps } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/progress-indicator/progressIndicator.interface";
+import { ProgressIndicatorProps } from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/progress-indicator/progressIndicator.interface";
 import {
     calculateBorderRadius,
     calculateWidth,
-} from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/progress-indicator/progressIndicator.function";
+} from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/progress-indicator/progressIndicator.function";
+import { cn } from "@/lib/cn";
 
 export function ProgressIndicator({ index, percentDifference, isMinus }: ProgressIndicatorProps) {
     const [animate, setAnimate] = React.useState(false);
@@ -25,11 +26,9 @@ export function ProgressIndicator({ index, percentDifference, isMinus }: Progres
     );
 
     return (
-        <span className={isMinus ? styles.progressIndicator__left : styles.progressIndicator__right}>
+        <span className={cn(isMinus ? styles.progressTrackLeft : styles.progressTrackRight)}>
             <motion.span
-                className={
-                    isMinus ? styles.progressIndicator__left_minus : styles.progressIndicator__right_plus
-                }
+                className={cn(isMinus ? styles.progressBarMinus : styles.progressBarPlus)}
                 initial={{ width: 0 }}
                 animate={animate ? { width: `${width}%` } : {}}
                 transition={{ duration: 0.6, ease: "easeInOut", delay: index * 0.2 }}

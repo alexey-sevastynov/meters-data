@@ -10,7 +10,7 @@ export const MdButton = forwardRef<HTMLButtonElement, ButtonProps>(
         const colorStyles = `bg-${color} hover:bg-${color} active:bg-${color}`;
 
         return (
-            <button ref={ref} className={cn(styles.button, className, colorStyles)} {...props}>
+            <button ref={ref} className={cn(styles.root, className, colorStyles)} {...props}>
                 {iconName && <MdIcon name={iconName} />}
                 {children}
             </button>

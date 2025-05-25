@@ -13,7 +13,7 @@ export function CategoryUtilityPrices({ category, image }: CategoryUtilityPrices
     const translations = useAppSelector(selectTranslations);
 
     return (
-        <div className={styles.categoryUtilityPrices}>
+        <div className={styles.root}>
             <p>{translations.home[category as CategoryName]},</p>
             <div className={styles.images}>
                 {image.map((name) => (

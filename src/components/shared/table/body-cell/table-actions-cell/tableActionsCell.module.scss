@@ -1,14 +1,14 @@
 @import "@/styles/mixins.scss";
 @import "@/styles/sizes.scss";
 
-.tableActionsCell {
+.root {
     border-bottom: $border;
     min-width: $widthHeaderCellActionTable;
     height: $heightRowTable;
     padding-left: $paddingLeftCellTable;
     padding-right: $paddingRightCellTable;
 
-    .tableActionsCellButtons {
+    .buttons {
         height: 100%;
         display: flex;
         align-items: center;

@@ -28,9 +28,9 @@ export function MdMonthlyMoneyCalculations() {
     );
 
     return (
-        <section className={styles.monthlyMoneyCalculations}>
+        <section className={styles.root}>
             <h4>{translations.price.monthlyMoneyCalculations}</h4>
-            <div className={styles.inputBlock}>
+            <div className={styles.input}>
                 <MdInput
                     onChange={onChange}
                     value={inputValue}

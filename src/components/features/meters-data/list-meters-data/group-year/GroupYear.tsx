@@ -44,7 +44,7 @@ const GroupYear: React.FC<GroupYearProps> = ({
             )}
 
             <HeadMetersData isWaterBlock={isWaterBlock} isOpen={group.isOpen} />
-            <div className={cn(styles.yearGroup, group.isOpen && styles.open)}>
+            <div className={cn(styles.root, group.isOpen && styles.open)}>
                 {group.items.map((item, index) => {
                     const isOnlyOneYear = !hasMultipleYears;
                     const isFirstIndex = index === 0;

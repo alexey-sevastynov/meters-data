@@ -1,23 +1,23 @@
 @import "@/styles/breakpoints.scss";
 
-.valueUtilityPrices {
-  display: flex;
+.root {
+    display: flex;
+    align-items: flex-end;
 
-  align-items: flex-end;
-
-  p {
-    padding-right: 2px;
-    padding-bottom: 10px;
-  }
-
-  button {
-    margin-left: 30px;
-  }
-
-  @media (max-width: $mobile-xl) {
-    width: 100%;
-    button {
-      margin-left: auto;
+    p {
+        padding-right: 2px;
+        padding-bottom: 10px;
     }
-  }
+
+    button {
+        margin-left: 30px;
+    }
+
+    @media (max-width: $mobile-xl) {
+        width: 100%;
+
+        button {
+            margin-left: auto;
+        }
+    }
 }

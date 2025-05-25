@@ -1,16 +1,17 @@
 import styles from "./sidebar.module.scss";
 import { ListLinks } from "@/components/layout/sidebar/list-links/ListLinks";
 import { useSidebar } from "@/components/context/SidebarProvider";
+import { cn } from "@/lib/cn";
 
 export function MdSidebar() {
-    const sidebarContext = useSidebar();
+    const sidebar = useSidebar();
 
     return (
         <nav className={styles.sidebar}>
-            <div className={sidebarContext.isSidebarCollapsed ? styles.collapsed : styles.expanded}>
+            <div className={cn(sidebar.isSidebarCollapsed ? styles.collapsed : styles.expanded)}>
                 <ListLinks
-                    isSidebarCollapsed={sidebarContext.isSidebarCollapsed}
-                    toggleSidebar={sidebarContext.toggleSidebar}
+                    isSidebarCollapsed={sidebar.isSidebarCollapsed}
+                    toggleSidebar={sidebar.toggleSidebar}
                 />
             </div>
         </nav>

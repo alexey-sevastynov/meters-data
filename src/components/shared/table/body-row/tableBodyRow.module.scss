@@ -1,10 +1,10 @@
 @import "@/styles/sizes.scss";
 @import "@/styles/colors.scss";
 
-.tableBodyRow {
+.root {
     height: $heightRowTable;
 }
 
-.tableBodyRow.active {
+.root.active {
     background-color: var(--color-border);
 }

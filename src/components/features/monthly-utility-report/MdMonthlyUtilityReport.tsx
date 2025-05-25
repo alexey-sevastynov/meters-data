@@ -1,21 +1,21 @@
-import styles from "./infoPanelMonth.module.scss";
-import { ListInfoPanelMonth } from "@/components/features/info-panel-month/list-info-panel-month/ListInfoPanelMonth";
+import styles from "./monthlyUtilityReport.module.scss";
+import { MdMonthlyInfoList } from "@/components/features/monthly-utility-report/monthly-info-list/MdMonthlyInfoList";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { filterMeterDataByAddress } from "@/helpers/meters-data/filters";
 import { MdDateRangeSelector } from "@/components/shared/date-range-selector/MdDateRangeSelector";
-import { LinkButtonGroup } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup";
+import { LinkButtonGroup } from "@/components/features/monthly-utility-report/link-button-group/LinkButtonGroup";
 import { getStringEnv } from "@/infra/env/env-functions";
 import { envKeys } from "@/infra/env/env-keys";
-import { getLinkButtons } from "@/components/features/info-panel-month/link-button-group/LinkButtonGroup.funcs";
-import { removeFirstAddedMonth } from "@/components/features/info-panel-month/infoPanelMonth.funcs";
+import { getLinkButtons } from "@/components/features/monthly-utility-report/link-button-group/LinkButtonGroup.funcs";
+import { removeFirstAddedMonth } from "@/components/features/monthly-utility-report/monthlyUtilityReport.funcs";
 
-interface MdInfoPanelMonthProps {
+interface MdMonthlyUtilityReportProps {
     isWaterBlock?: boolean;
 }
 
-export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps) {
+export function MdMonthlyUtilityReport({ isWaterBlock = true }: MdMonthlyUtilityReportProps) {
     const { pathname } = useLocation();
     const currentPage = pathname.slice(1);
     const items = useAppSelector((state) => state.metersData.items);
@@ -45,27 +45,24 @@ export function MdInfoPanelMonth({ isWaterBlock = true }: MdInfoPanelMonthProps)
     const year = selectedMonth.split(",")[1];
 
     return (
-        <section className={styles.infoPanelMonthSection}>
-            <div className={styles.infoPanelMonth}>
-                <div className={styles.infoPanelMonthHeader}>
-                    <MdDateRangeSelector
-                        data={removeFirstAddedMonth(filterMeterDataByAddress(items, currentPage))}
-                        selectedMonth={month}
-                        selectedYear={year}
-                    />
-
-                    <LinkButtonGroup
-                        linksGroup={getLinkButtons(pathname, translations)}
-                        className={styles.infoPanelMonthHeaderBtns}
-                    />
-                </div>
-
-                <ListInfoPanelMonth isWaterBlock={isWaterBlock} items={lastValue} />
+        <section className={styles.root}>
+            <div className={styles.header}>
+                <MdDateRangeSelector
+                    data={removeFirstAddedMonth(filterMeterDataByAddress(items, currentPage))}
+                    selectedMonth={month}
+                    selectedYear={year}
+                />
                 <LinkButtonGroup
                     linksGroup={getLinkButtons(pathname, translations)}
-                    className={styles.infoPanelMonthBtns}
+                    className={styles.headerButtonGroup}
                 />
             </div>
+
+            <MdMonthlyInfoList isWaterBlock={isWaterBlock} items={lastValue} />
+            <LinkButtonGroup
+                linksGroup={getLinkButtons(pathname, translations)}
+                className={styles.footerButtonGroup}
+            />
         </section>
     );
 }

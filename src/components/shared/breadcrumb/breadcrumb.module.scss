@@ -1,10 +1,10 @@
 @import "@/styles/colors.scss";
 
-.breadcrumb {
+.root {
     display: flex;
     flex-wrap: wrap;
 
-    .breadcrumbItem {
+    .item {
         display: flex;
         align-items: center;
         white-space: nowrap;
@@ -23,6 +23,7 @@
         }
 
         .separator {
+            display: flex;
             margin: 0 0.5rem;
         }
     }
