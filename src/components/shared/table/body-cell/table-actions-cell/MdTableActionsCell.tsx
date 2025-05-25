@@ -8,6 +8,7 @@ import { selectTranslations } from "@/store/slices/i-18-next";
 import { deleteItemMeterData } from "@/components/shared/table/body-cell/table-actions-cell/tableActionsCell.funcs";
 import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
 import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
+import { getPropertyValue } from "@/lib/utils";
 
 interface MdTableActionsCellProps {
     id: string;
@@ -51,7 +52,7 @@ export function MdTableActionsCell({ id, actions, row, address }: MdTableActions
                                     updatedAt: row.updatedAt,
                                 })
                             }
-                            title={translations.table[action.label as keyof typeof translations.table]}
+                            title={getPropertyValue(translations.table, action.label)}
                             type="button"
                         >
                             <MdIcon name={iconNames[action.icon]} color={getBaseIconColor(theme.themeMode)} />

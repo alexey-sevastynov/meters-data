@@ -20,6 +20,8 @@ import { colorNames } from "@/enums/color-names";
 import { stringToNumber } from "@/utils/conversion";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { ItemBlock } from "@/components/features/list-categories-with-prices/item-block/ItemBlock";
+import { getPropertyValue } from "@/lib/utils";
+import { UtilityCost } from "@/types/utility-cost";
 
 interface ListCategoriesWithPricesProps {
     dispatch: AppDispatch;
@@ -28,7 +30,7 @@ interface ListCategoriesWithPricesProps {
 export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPricesProps) {
     const { pathname } = useLocation();
     const translations = useAppSelector(selectTranslations);
-    const currentPageName: string = pathname.replace(/^\/|\/price$/g, "");
+    const currentPageName = pathname.replace(/^\/|\/price$/g, "");
     const currentItem = useAppSelector((state) => state.monthlyMoneyCalculations.utilityCosts);
     const sumMoney = useAppSelector((state) => state.monthlyMoneyCalculations.sumMoney);
     const utilityPrices = useAppSelector((state) => state.utilityPrices.items);
@@ -36,8 +38,10 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
     const isEdit = useAppSelector((state) => state.monthlyMoneyCalculations.isEdit);
     const idEdit = useAppSelector((state) => state.monthlyMoneyCalculations.idEdit);
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
-    const listInfoDataMonth =
-        infoMeterReading[getKeyOnPage(currentPageName) as keyof typeof infoMeterReading];
+    const listInfoDataMonth = getPropertyValue<typeof infoMeterReading, string, UtilityCost[]>(
+        infoMeterReading,
+        getKeyOnPage(currentPageName)
+    );
     const dateCurrent = currentItem && currentItem.find((item) => item.title === "Date")?.description;
     const isUniqueObj = !allListMonthlyMoneyCalculations?.some(
         (item) => item.data[0]?.description === dateCurrent && item.address === currentPageName

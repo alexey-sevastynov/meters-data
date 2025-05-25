@@ -10,7 +10,6 @@ import { openPopup, setIdDelete, setQuestion } from "@/store/slices/confirm-popu
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { formatDateDisplay } from "@/components/shared/date-range-selector/dateRangeSelector.function";
 import { getUtilityCostByAddress } from "@/helpers/meters-data/get-utility-cost-by-address";
-import { MonthsType } from "@/types/months-type";
 import {
     deleteItemMeterData,
     editItem,
@@ -20,6 +19,7 @@ import { iconNames } from "@/components/ui/icon/icon-constants";
 import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
 import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
+import { getPropertyValue } from "@/lib/utils";
 
 interface ItemMetersDataProps {
     meterData: MeterDataWithObjectId;
@@ -41,7 +41,7 @@ export function ItemMetersData({ meterData, isLastItem, isFirstItem, isWaterBloc
     const currentInfoMeterReading = getUtilityCostByAddress(infoMeterReading, currentPage);
     const selectedMonthId = currentInfoMeterReading?.[0].id;
     const newDate = formatDate(meterData.date);
-    const month = newDate.split(",")[0] as MonthsType;
+    const month = newDate.split(",")[0];
     const year = newDate.split(",")[1];
     const selectedDateDisplay = formatDateDisplay(`${month},${year}`, true, true);
     const iconColor = getBaseIconColor(theme.themeMode);
@@ -70,7 +70,7 @@ export function ItemMetersData({ meterData, isLastItem, isFirstItem, isWaterBloc
         <li className={cn(styles.root, selectedMonthId === meterData._id && styles.active)}>
             <div className={`${styles.data} `}>
                 <p className={styles.date} title={selectedDateDisplay}>
-                    {translations.months[month]}
+                    {getPropertyValue(translations.months, month)}
                 </p>
                 <p className={styles.light}>{meterData.light}</p>
                 <p className={styles.lightDay}>{meterData.lightDay}</p>

@@ -35,15 +35,19 @@ export function MdDropdown({
     const closeDropdown = () => setIsOpen(false);
 
     useEffect(() => {
+        const isClickOutside = (event: MouseEvent) => {
+            const target = event.target;
+
+            if (!(target instanceof Node)) return false;
+
+            const clickedOutsideTrigger = !triggerRef.current?.contains(target);
+            const clickedOutsideContent = !contentRef.current?.contains(target);
+
+            return clickedOutsideTrigger && clickedOutsideContent;
+        };
+
         const handleClickOutside = (event: MouseEvent) => {
-            if (
-                triggerRef.current &&
-                !triggerRef.current.contains(event.target as Node) &&
-                contentRef.current &&
-                !contentRef.current.contains(event.target as Node)
-            ) {
-                closeDropdown();
-            }
+            if (isClickOutside(event)) closeDropdown();
         };
 
         if (isOpen) {
