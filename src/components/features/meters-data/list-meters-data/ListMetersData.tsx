@@ -30,7 +30,7 @@ export const ListMetersData: React.FC<ListMetersDataProps> = ({ isWaterBlock }) 
     }, [items, addressCurrentPage]);
 
     return (
-        <ul ref={listMetersDataRef} className={styles.listMetersData}>
+        <ul ref={listMetersDataRef} className={styles.root}>
             {status === statusNames.loading && <p>Loading...</p>}
             {isEmptyList(groupedData, status) ? (
                 <p>No data</p>

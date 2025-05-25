@@ -6,7 +6,7 @@ import { MdImage } from "@/components/ui/image/MdImage";
 
 export function MdBottomSidebar() {
     return (
-        <nav className={styles.bottomSidebar}>
+        <nav className={styles.root}>
             <ul className={styles.listLinks}>
                 {navigationItems.map((item) => (
                     <li key={item.id} className={styles.itemLink}>

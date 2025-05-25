@@ -1,26 +1,26 @@
 @import "@/styles/colors.scss";
 
-.dropdownMenu {
-    .dropdownTriggerMenu {
+.root {
+    .dropdownTrigger {
         display: flex;
         align-items: center;
         gap: 7px;
 
-        .dropdownTriggerMenuText {
+        .title {
             color: $white;
         }
     }
 
-    .dropdownContentMenu {
+    .dropdownContent {
         min-width: 12rem;
 
-        .dropdownItemMenu {
+        .item {
             min-width: 10rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
 
-            .dropdownItemMenuInner {
+            .inner {
                 display: flex;
                 gap: 0.75rem;
                 align-items: center;

@@ -20,10 +20,10 @@ export function ItemBlock({ title, description, showDelete, onDelete }: ItemBloc
     const translations = useAppSelector(selectTranslations);
 
     return (
-        <div className={styles.itemBlock}>
+        <div className={styles.root}>
             {showDelete && (
                 <button
-                    className={styles.btn}
+                    className={styles.button}
                     type="button"
                     title="delete data"
                     onClick={() => onDelete(title, description)}

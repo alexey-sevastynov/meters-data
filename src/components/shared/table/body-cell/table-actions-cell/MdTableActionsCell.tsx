@@ -30,8 +30,8 @@ export function MdTableActionsCell({ id, actions, row, address }: MdTableActions
     }, [isDelete]);
 
     return (
-        <td className={styles.tableActionsCell}>
-            <div className={styles.tableActionsCellButtons}>
+        <td className={styles.root}>
+            <div className={styles.buttons}>
                 {actions
                     .filter((action) => action.visible)
                     .map((action) => (

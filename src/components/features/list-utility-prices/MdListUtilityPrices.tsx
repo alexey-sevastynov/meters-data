@@ -16,7 +16,7 @@ export function MdListUtilityPrices() {
     }, [dispatch, items, status]);
 
     return (
-        <ul className={styles.listUtilityPrices}>
+        <ul className={styles.root}>
             {status === statusNames.loading && <p className={styles.loading}>Loading...</p>}
             {status === statusNames.error && <p className={styles.error}>Error: {errorMessage}</p>}
             {items.map(({ value, valueName, image, category, _id }) => (

@@ -1,7 +1,7 @@
 @import "@/styles/sizes.scss";
 
-.tableBody {
-    .tableBodyNoData {
+.root {
+    .noData {
         padding-left: $paddingLeftCellTable;
         padding-top: 1rem;
         padding-bottom: 1rem;

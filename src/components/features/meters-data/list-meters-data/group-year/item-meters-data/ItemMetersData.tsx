@@ -67,7 +67,7 @@ export function ItemMetersData({ meterData, isLastItem, isFirstItem, isWaterBloc
     }, [isEdit]);
 
     return (
-        <li className={cn(styles.itemMetersData, selectedMonthId === meterData._id && styles.active)}>
+        <li className={cn(styles.root, selectedMonthId === meterData._id && styles.active)}>
             <div className={`${styles.data} `}>
                 <p className={styles.date} title={selectedDateDisplay}>
                     {translations.months[month]}

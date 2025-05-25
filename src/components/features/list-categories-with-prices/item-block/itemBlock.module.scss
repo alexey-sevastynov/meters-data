@@ -1,13 +1,13 @@
 @import "@/styles/mixins.scss";
 
-.itemBlock {
+.root {
     position: relative;
 
     &:nth-child(1) {
         border-bottom: $border;
     }
 
-    .btn {
+    .button {
         position: absolute;
         top: 0;
         left: 0;

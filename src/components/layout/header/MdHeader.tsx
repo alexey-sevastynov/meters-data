@@ -4,7 +4,7 @@ import { AuthPanel } from "@/components/shared/auth-panel/MdAuthPanel";
 
 export function MdHeader() {
     return (
-        <header className={styles.header}>
+        <header className={styles.root}>
             <MdLogo />
             <AuthPanel />
         </header>

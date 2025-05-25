@@ -14,7 +14,7 @@ export function MdAuth() {
     const [password, setPassword] = useState("");
     const [isError, isSetError] = useState(false);
 
-    const tryLogIn = () => {
+    const onLogin = () => {
         if (isValidCredentials(email, password)) {
             dispatch(logIn());
             isSetError(false);
@@ -25,10 +25,10 @@ export function MdAuth() {
 
     return (
         <section
-            className={styles.loginPage}
+            className={styles.root}
             style={{ backgroundImage: `url(${getImageUrl("background-main.png")})` }}
         >
-            <div className={styles.login}>
+            <div className={styles.authBox}>
                 <h3>Sign in to your account</h3>
                 <MdInputLogin labelText="Email" value={email} setValue={setEmail} isError={isError} />
                 <MdInputLogin
@@ -38,7 +38,7 @@ export function MdAuth() {
                     isError={isError}
                 />
 
-                <MdButtonLogin onClick={tryLogIn} />
+                <MdButtonLogin onLoginClick={onLogin} />
                 <footer>
                     <p>Need help? Contact the developer:</p>
                     <Link to={"mailto:mail@alexeseva94@gmail.com"} className={styles.link}>

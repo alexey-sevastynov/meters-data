@@ -1,27 +1,27 @@
 @import "@/styles/colors.scss";
 
-.utilityAccount {
+.root {
     margin-top: 20px;
 
-    .utilityAccountTitle {
+    .title {
         margin-bottom: 20px;
     }
 
-    .utilityAccountItems {
+    .items {
         display: flex;
         flex-direction: column;
         gap: 10px;
 
-        .utilityAccountItemsItem {
+        .item {
             display: flex;
             gap: 10px;
 
-            .utilityAccountItemsItemContent {
+            .content {
                 display: flex;
                 align-items: center;
                 gap: 10px;
 
-                .utilityAccountItemsItemContentValue {
+                .value {
                     letter-spacing: 0.8px;
                 }
             }

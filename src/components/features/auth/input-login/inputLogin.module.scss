@@ -1,7 +1,7 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
 
-.inputLogin {
+.root {
     height: 80px;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
     label {
         margin-bottom: 5px;
     }
-    .input {
+    .inputBox {
         position: relative;
 
         input {

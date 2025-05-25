@@ -1,17 +1,16 @@
-.extraServicesForm {
+.root {
     margin-top: 20px;
-
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-
     align-items: flex-end;
 
-    .inputs {
+    .fieldsGroup {
         display: flex;
         gap: 10px;
     }
-    .btns {
+
+    .buttonWrapper {
         display: flex;
         gap: 10px;
     }

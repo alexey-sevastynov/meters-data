@@ -16,9 +16,9 @@ export function MdTableBody({ rows, columns, isReadOnly, listHiddenColumns }: Md
     const translations = useAppSelector(selectTranslations);
 
     return (
-        <tbody className={styles.tableBody}>
+        <tbody className={styles.root}>
             {isTableEmpty(rows) ? (
-                <p className={styles.tableBodyNoData}>{translations.table.noData}</p>
+                <p className={styles.noData}>{translations.table.noData}</p>
             ) : (
                 rows.map((row, index) => (
                     <MdTableBodyRow

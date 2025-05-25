@@ -48,7 +48,7 @@ export function MdChart({ data, title }: MdChartProps) {
     });
 
     return (
-        <div className={styles.chart}>
+        <div className={styles.root}>
             <h4>
                 {title} {translations.graphics["graphic"]}:
             </h4>

@@ -12,9 +12,9 @@ export function MdLogo() {
     const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.xl });
 
     return (
-        <div className={styles.logo} onClick={() => dispatch(getAllMetersData())}>
+        <div className={styles.root} onClick={() => dispatch(getAllMetersData())}>
             <MdImage fileName={"logo.png"} alt="logo" width={40} height={40} />
-            {!isMobileView && <h3 className={styles.text}>{translations.header.metersData}</h3>}
+            {!isMobileView && <h3 className={styles.title}>{translations.header.metersData}</h3>}
         </div>
     );
 }

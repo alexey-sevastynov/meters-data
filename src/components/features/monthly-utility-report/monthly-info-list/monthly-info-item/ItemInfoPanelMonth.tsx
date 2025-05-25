@@ -6,20 +6,20 @@ import { selectTranslations } from "@/store/slices/i-18-next";
 import {
     shouldRenderDescriptionTitle,
     showValue,
-} from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/itemInfoPanelMonth.function";
+} from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/itemInfoPanelMonth.function";
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
-import { ValueChangeIndicator } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/value-change-indicator/ValueChangeIndicator";
-import { ProgressIndicator } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/progress-indicator/ProgressIndicator";
-import { ItemInfoPanelMonthProps } from "@/components/features/info-panel-month/list-info-panel-month/item-info-panel-month/itemInfoPanelMonth.interface";
+import { ValueChangeIndicator } from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/value-change-indicator/ValueChangeIndicator";
+import { ProgressIndicator } from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/progress-indicator/ProgressIndicator";
+import { MonthlyInfoItemProps } from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/itemInfoPanelMonth.interface";
 import { TitleInfoPanelMonthType } from "@/types/title-info-panel-month-type";
 
-export function ItemInfoPanelMonth({
+export function MdMonthlyInfoItem({
     isWaterBlock,
     title,
     description,
     percentDifference,
     index,
-}: ItemInfoPanelMonthProps) {
+}: MonthlyInfoItemProps) {
     const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.md });
     const translations = useAppSelector(selectTranslations);
 
@@ -37,23 +37,23 @@ export function ItemInfoPanelMonth({
     }
 
     return (
-        <div className={styles.itemInfoPanelMonth}>
-            <dd className={styles.itemInfoPanelMonthHeader}>
+        <div className={styles.root}>
+            <dd className={styles.header}>
                 <p>
                     {description} {showValue(title, translations)}
                 </p>
-                <div className={styles.itemInfoPanelMonthHeaderValuePercent}>
+                <div className={styles.valuePercent}>
                     <ValueChangeIndicator percentDifference={percentDifference} />
                     <p>{Math.abs(percentDifference)}%</p>
                 </div>
             </dd>
-            <div className={styles.itemInfoPanelMonthLine}>
+            <div className={styles.line}>
                 <ProgressIndicator index={index} percentDifference={percentDifference} isMinus={true} />
-                <span className={styles.itemInfoPanelMonthLineCenter} />
+                <span className={styles.lineCenter} />
                 <ProgressIndicator index={index} percentDifference={percentDifference} isMinus={false} />
             </div>
 
-            <p className={styles.itemInfoPanelMonthTitle}>
+            <p className={styles.title}>
                 {shouldRenderDescriptionTitle(isMobileView, title) && showDescriptionTitle}
             </p>
         </div>

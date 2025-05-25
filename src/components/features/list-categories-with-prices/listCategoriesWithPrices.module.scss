@@ -1,7 +1,7 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
 
-.listCategoriesWithPrices {
+.root {
     min-width: max-content;
 
     .item {
@@ -27,7 +27,7 @@
         justify-content: space-between;
         gap: 20px;
 
-        .btns {
+        .buttons {
             display: flex;
             gap: 20px;
         }

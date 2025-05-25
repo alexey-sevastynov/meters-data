@@ -2,7 +2,7 @@ import styles from "./linkButtonGroup.module.scss";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/cn";
 import { MdButton } from "@/components/ui/button/MdButton";
-import { LinkButtonGroupProps } from "@/components/features/info-panel-month/link-button-group/linkButtonGroup.interface";
+import { LinkButtonGroupProps } from "@/components/features/monthly-utility-report/link-button-group/linkButtonGroup.interface";
 import { colorNames } from "@/enums/color-names";
 
 export function LinkButtonGroup({ linksGroup, className }: LinkButtonGroupProps) {

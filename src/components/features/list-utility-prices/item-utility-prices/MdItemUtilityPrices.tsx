@@ -12,9 +12,8 @@ interface ItemUtilityPricesProps {
 
 export function MdItemUtilityPrices({ category, image, valueName, value, id }: ItemUtilityPricesProps) {
     return (
-        <li className={styles.itemUtilityPrices}>
+        <li className={styles.root}>
             <CategoryUtilityPrices category={category} image={image} />
-
             <ValueUtilityPrices valueName={valueName} value={value} id={id} />
         </li>
     );

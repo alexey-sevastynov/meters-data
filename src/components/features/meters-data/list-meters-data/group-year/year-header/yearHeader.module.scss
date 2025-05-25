@@ -1,12 +1,12 @@
 @import "@/styles/colors.scss";
 
-.yearHeader {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+.root {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 
-  gap: 10px;
+    gap: 10px;
 
-  padding: 10px;
-  color: $black;
+    padding: 10px;
+    color: $black;
 }

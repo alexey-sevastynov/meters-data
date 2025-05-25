@@ -1,11 +1,11 @@
 @import "@/styles/colors.scss";
 
-.logo {
+.root {
     display: flex;
     align-items: center;
     gap: 15px;
 
-    .text {
+    .title {
         color: $white;
     }
 }

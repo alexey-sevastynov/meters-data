@@ -43,7 +43,7 @@ export function MdConfirm({ question }: MdConfirmProps) {
         };
     }, []);
     return (
-        <section className={styles.confirmPage}>
+        <section className={styles.root}>
             <h2 className={styles.hidden}>confirm</h2>
             <div className={`${styles.confirm} ${isOpen ? styles.active : ""}`}>
                 <MdImage className={styles.image} fileName={"cat.png"} alt="cat-eyes" width={300} />

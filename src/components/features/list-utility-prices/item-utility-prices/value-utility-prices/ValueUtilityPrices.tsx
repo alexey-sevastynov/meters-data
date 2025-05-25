@@ -40,9 +40,8 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
     };
 
     return (
-        <div className={styles.valueUtilityPrices}>
+        <div className={styles.root}>
             <p>1 {translations.value[valueName]} =</p>
-
             <MdInput
                 value={valueInput}
                 onChange={onChange}
@@ -51,7 +50,6 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
                 label={translations.home.price}
                 step={0.01}
             />
-
             <MdButton
                 type="button"
                 disabled={valueInput === numberToString(value)}

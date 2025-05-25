@@ -9,7 +9,7 @@ interface ListMonthlyMoneyCalculationsProps {
 
 export function ListMonthlyMoneyCalculations({ items, status }: ListMonthlyMoneyCalculationsProps) {
     return (
-        <ul className={styles.listMonthlyMoneyCalculations}>
+        <ul className={styles.root}>
             {status === "loading" && <p>loading...</p>}
             {items &&
                 items.map(({ _id, data, sumMoney, address }) => (

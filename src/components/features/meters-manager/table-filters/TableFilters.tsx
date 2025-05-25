@@ -46,7 +46,7 @@ export function TableFilters({
     }, [allYears, selectedYears, setSelectedYears]);
 
     return (
-        <div className={styles.tableFilters}>
+        <div className={styles.root}>
             <MdInputGroup
                 options={allYears}
                 defaultValue={allYears.length > 0 ? [allYears[0]] : []}

@@ -45,25 +45,24 @@ export function MdDateRangeSelector({ data, selectedMonth, selectedYear }: DateR
     }, []);
 
     return (
-        <div className={styles.dateRangeSelector}>
+        <div className={styles.root}>
             <button
-                className={cn(styles.dateRangeSelectorBtn, isOpen && styles.dateRangeSelectorBtnActive)}
+                className={cn(styles.dropdownTrigger, isOpen && styles.active)}
                 onClick={handleButtonClick}
             >
-                <p className={styles.dateRangeSelectorBtnDate}>{selectedDateDisplay}</p>
+                <p className={styles.title}>{selectedDateDisplay}</p>
                 <MdIcon name={iconNames.calendar} size={iconSizes.large} color={colorNames.grey} />
             </button>
 
             {isOpen && (
-                <div ref={dropdownRef} className={styles.dateRangeSelectorDropdown}>
+                <div ref={dropdownRef} className={styles.dropdownContent}>
                     {data
                         .map((item) => (
                             <button
                                 key={item._id}
                                 className={cn(
-                                    styles.dateRangeSelectorDropdownBtn,
-                                    isActive(selectedDateDisplay, item.date, currentLang) &&
-                                        styles.dateRangeSelectorDropdownBtnActive
+                                    styles.button,
+                                    isActive(selectedDateDisplay, item.date, currentLang) && styles.active
                                 )}
                                 onClick={() => {
                                     dispatch(

@@ -32,7 +32,7 @@ export function MdTable({ tableConfig, isReadOnly = false, listHiddenColumns = [
     );
 
     return (
-        <table className={styles.table}>
+        <table className={styles.root}>
             <MdTableHeader
                 columns={tableConfig.columns}
                 isReadOnly={isReadOnly}

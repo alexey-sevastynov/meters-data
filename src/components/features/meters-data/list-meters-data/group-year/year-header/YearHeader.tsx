@@ -14,7 +14,7 @@ interface YearHeaderProps {
 
 const YearHeader: React.FC<YearHeaderProps> = ({ year, isOpen, onToggle }) => {
     return (
-        <button onClick={onToggle} className={styles.yearHeader}>
+        <button onClick={onToggle} className={styles.root}>
             <p>{year}</p>
             <motion.div
                 initial={{ rotate: 180 }}

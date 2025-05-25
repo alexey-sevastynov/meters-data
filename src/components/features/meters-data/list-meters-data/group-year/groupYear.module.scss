@@ -1,25 +1,21 @@
 @import "@/styles/breakpoints.scss";
 @import "@/styles/mixins.scss";
 
-.yearGroup {
+.root {
     overflow: hidden;
     max-height: 0;
 
     @include transition(max-height);
 }
 
-.yearGroup.open {
+.root.open {
     width: 100%;
     max-height: 600px;
     @include transition(max-height);
 }
 
 @media (max-width: $desktop) {
-    .yearGroup {
-        @include transition(max-height);
-    }
-    .yearGroup.yearGroup.open {
-        overflow: visible;
+    .root {
         @include transition(max-height);
     }
 }

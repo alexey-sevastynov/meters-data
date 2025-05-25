@@ -36,7 +36,7 @@ export function MdInput({
     const isModified = value !== defaultValue;
 
     return (
-        <div className={styles.input}>
+        <div className={styles.root}>
             {label && <label>{label}:</label>}
 
             <div className={styles.inputContainer}>

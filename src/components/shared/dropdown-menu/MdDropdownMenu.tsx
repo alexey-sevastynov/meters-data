@@ -37,21 +37,21 @@ export function MdDropdownMenu() {
     }, [isExit, idDeleteItem, dispatch]);
 
     return (
-        <MdDropdown className={styles.dropdownMenu}>
-            <MdDropdownTrigger className={styles.dropdownTriggerMenu}>
+        <MdDropdown className={styles.root}>
+            <MdDropdownTrigger className={styles.dropdownTrigger}>
                 <MdImage fileName={"avatar.svg"} alt="avatar" width={30} height={30} />
-                <h5 className={styles.dropdownTriggerMenuText}>Lesha Sev</h5>
+                <h5 className={styles.title}>Lesha Sev</h5>
             </MdDropdownTrigger>
-            <MdDropdownContent className={styles.dropdownContentMenu}>
+            <MdDropdownContent className={styles.dropdownContent}>
                 <DropdownThemeMode />
-                <MdDropdownItem className={styles.dropdownItemMenu} disabled>
-                    <div className={styles.dropdownItemMenuInner}>
+                <MdDropdownItem className={styles.item} disabled>
+                    <div className={styles.inner}>
                         <MdIcon name={iconNames.gear} color={colorNames.grey} size={iconSizes.small} />
                         <p>{translations.dropdownMenu.settings}</p>
                     </div>
                 </MdDropdownItem>
-                <MdDropdownItem className={styles.dropdownItemMenu} onSelect={onExitAccount}>
-                    <div className={styles.dropdownItemMenuInner}>
+                <MdDropdownItem className={styles.item} onSelect={onExitAccount}>
+                    <div className={styles.inner}>
                         <MdIcon name={iconNames.signOut} color={colorNames.grey} size={iconSizes.small} />
                         <p>{translations.dropdownMenu.signOut}</p>
                     </div>

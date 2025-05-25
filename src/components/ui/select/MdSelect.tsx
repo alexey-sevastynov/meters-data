@@ -11,7 +11,7 @@ interface MdSelectProps extends HTMLAttributes<HTMLSelectElement> {
 
 export function MdSelect({ labelText, options, value, onChange, ...props }: MdSelectProps) {
     return (
-        <div className={styles.select}>
+        <div className={styles.root}>
             <label>{labelText}:</label>
             <select value={value} onChange={onChange} {...props}>
                 {options.map((option) => (

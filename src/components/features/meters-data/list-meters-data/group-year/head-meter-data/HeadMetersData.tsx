@@ -14,22 +14,22 @@ export const HeadMetersData: React.FC<HeadMetersDataProps> = ({ isWaterBlock, is
     if (!isOpen) return null;
 
     return (
-        <li className={styles.headMetersData}>
-            <p className={styles.headMetersDataDate}> {translations.infoPanel["month"]}</p>
-            <p className={styles.headMetersDataLight}>
+        <li className={styles.root}>
+            <p className={styles.month}> {translations.infoPanel["month"]}</p>
+            <p className={styles.light}>
                 {translations.infoPanel["Light general"]}, {translations.value.kW}
             </p>
-            <p className={styles.headMetersDataLightDay}>
+            <p className={styles.lightDay}>
                 {translations.infoPanel["Light day"]}, {translations.value.kW}
             </p>
-            <p className={styles.headMetersDataLightNight}>
+            <p className={styles.lightNight}>
                 {translations.infoPanel["Light night"]}, {translations.value.kW}
             </p>
-            <p className={styles.headMetersDataGas}>
+            <p className={styles.gas}>
                 {translations.infoPanel["Gas General"]}, {translations.value["m³"]}
             </p>
             {isWaterBlock && (
-                <p className={styles.headMetersDataWater}>
+                <p className={styles.water}>
                     {translations.infoPanel["Water general"]}, {translations.value["m³"]}
                 </p>
             )}

@@ -46,7 +46,7 @@ export function MdMetersManager({ isWaterBlock = true }: MetersManagerProps) {
     );
 
     return (
-        <div className={styles.metersManager}>
+        <div className={styles.root}>
             <TableFilters
                 columnVisibilityOptions={getTableMeterDataColumnVisibilityOptions(translations)}
                 sortedAddressMeterData={sortedAddressMeterData}
@@ -55,7 +55,7 @@ export function MdMetersManager({ isWaterBlock = true }: MetersManagerProps) {
                 setSelectedYears={setSelectedYears}
                 setVisibleColumns={setVisibleColumns}
             />
-            <div className={styles.tableContainer}>
+            <div className={styles.table}>
                 <MdTable
                     tableConfig={tableMeterDataConfig}
                     listHiddenColumns={[

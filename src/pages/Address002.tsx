@@ -1,5 +1,5 @@
 import "@/styles/pages/address002.scss";
-import { MdInfoPanelMonth } from "@/components/features/info-panel-month/MdInfoPanelMonth";
+import { MdMonthlyUtilityReport } from "@/components/features/monthly-utility-report/MdMonthlyUtilityReport";
 import { MdMetersData } from "@/components/features/meters-data/MetersData";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { BREADCRUMB_ITEMS_ADDR_002 } from "@/constants/breadcrumb-items";
@@ -17,7 +17,7 @@ export function Address002() {
         <section className="address002">
             <div className={layoutStyle}>
                 <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_002} />
-                <MdInfoPanelMonth />
+                <MdMonthlyUtilityReport />
                 <MdMetersData isTableVisible={false} />
                 <MdMetersManager />
             </div>

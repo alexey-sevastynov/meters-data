@@ -1,17 +1,15 @@
-.categoryUtilityPrices {
-  display: flex;
-  align-items: center;
-
-  padding-bottom: 6px;
-
-  min-width: 190px;
-
-  p {
-    min-width: 130px;
-  }
-
-  .images {
+.root {
     display: flex;
-    gap: 10px;
-  }
+    align-items: center;
+    padding-bottom: 6px;
+    min-width: 190px;
+
+    p {
+        min-width: 130px;
+    }
+
+    .images {
+        display: flex;
+        gap: 10px;
+    }
 }
