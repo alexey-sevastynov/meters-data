@@ -11,7 +11,7 @@ import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
 import { ValueChangeIndicator } from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/value-change-indicator/ValueChangeIndicator";
 import { ProgressIndicator } from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/progress-indicator/ProgressIndicator";
 import { MonthlyInfoItemProps } from "@/components/features/monthly-utility-report/monthly-info-list/monthly-info-item/itemInfoPanelMonth.interface";
-import { TitleInfoPanelMonthType } from "@/types/title-info-panel-month-type";
+import { getPropertyValue } from "@/lib/utils";
 
 export function MdMonthlyInfoItem({
     isWaterBlock,
@@ -24,7 +24,7 @@ export function MdMonthlyInfoItem({
     const translations = useAppSelector(selectTranslations);
 
     const showDescriptionTitle = (
-        <dt className={styles.title}>{translations.infoPanel[title as TitleInfoPanelMonthType]}</dt>
+        <dt className={styles.title}>{getPropertyValue(translations.infoPanel, title)}</dt>
     );
     const hideBlockWater = !isWaterBlock && title === titlesForMeterReadings.water;
 

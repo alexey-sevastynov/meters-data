@@ -5,7 +5,7 @@ import { CategoryName } from "@/enums/category-names";
 import { MdImage } from "@/components/ui/image/MdImage";
 
 interface CategoryUtilityPricesProps {
-    category: string;
+    category: CategoryName;
     image: string[];
 }
 
@@ -14,7 +14,7 @@ export function CategoryUtilityPrices({ category, image }: CategoryUtilityPrices
 
     return (
         <div className={styles.root}>
-            <p>{translations.home[category as CategoryName]},</p>
+            <p>{translations.home[category]},</p>
             <div className={styles.images}>
                 {image.map((name) => (
                     <MdImage key={name} fileName={name} alt={category} width={29} height={29} />

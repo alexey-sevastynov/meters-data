@@ -20,6 +20,7 @@ import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
 import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
+import { getPropertyValue } from "@/lib/utils";
 
 interface MdTableHeaderCellProps {
     column: TableColumn;
@@ -60,7 +61,7 @@ export function MdTableHeaderCell({
                         style={{
                             display: getTableCellDisplay(isHiddenCell),
                         }}
-                        title={translations.table[tableAction.label as keyof typeof translations.table]}
+                        title={getPropertyValue(translations.table, tableAction.label)}
                         type="button"
                     >
                         <MdIcon name={iconNames[tableAction.icon]} color={colorNames.grey} />
@@ -90,7 +91,7 @@ export function MdTableHeaderCell({
                     type="button"
                 >
                     <p className={styles.tableHeaderCellLabel}>
-                        {translations.table[column.key as keyof typeof translations.table]}
+                        {getPropertyValue(translations.table, column.key)}
                     </p>
                     {column.sort && (
                         <MdIcon

@@ -50,7 +50,7 @@ export function MdInputGroup({ options, defaultValue, label, onChange }: MdInput
                 isMulti
                 onChange={(value) => onChange?.(value as Option[])}
                 noOptionsMessage={() => <p>{translations.inputGroup.noOptions}</p>}
-                placeholder={translations.inputGroup.select as string}
+                placeholder={translations.inputGroup.select}
             />
         </div>
     );
