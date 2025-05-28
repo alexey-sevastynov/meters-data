@@ -10,6 +10,7 @@ $font-size-base: 14px;
     --color-text-secondary: #{$darkGrey};
     --color-text-muted: #{$grey};
     --color-text-disabled: #{$grey};
+    --color-bg-disabled: #{$grey};
     --color-text-link: #{$green};
     --color-text-red: #{$red};
     --color-text-blue: #{$blue};
@@ -27,6 +28,7 @@ html.dark {
     --color-text-secondary: #{$grey};
     --color-text-muted: #{$darkGrey};
     --color-text-disabled: #{$darkGrey};
+    --color-bg-disabled: #{$grey};
     --color-text-link: #{$green};
     --color-text-red: #{$lightRed};
     --color-text-blue: #{$lightBlue};

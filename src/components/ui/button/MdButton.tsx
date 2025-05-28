@@ -6,11 +6,16 @@ import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
 
 export const MdButton = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ children, iconName, className, color = colorNames.green, ...props }, ref) => {
-        const colorStyles = `bg-${color} hover:bg-${color} active:bg-${color}`;
+    ({ children, iconName, className, disabled, color = colorNames.green, ...props }, ref) => {
+        const colorStyles = !disabled && `bg-${color} hover:bg-${color} active:bg-${color}`;
 
         return (
-            <button ref={ref} className={cn(styles.root, className, colorStyles)} {...props}>
+            <button
+                ref={ref}
+                className={cn(styles.root, className, colorStyles)}
+                disabled={disabled}
+                {...props}
+            >
                 {iconName && <MdIcon name={iconName} />}
                 {children}
             </button>
