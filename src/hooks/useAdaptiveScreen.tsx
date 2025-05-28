@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { eventListenerEvents } from "@/constants/events";
 
 interface MediaQueryParams {
     maxWidth: number;
@@ -13,10 +14,10 @@ const useAdaptiveScreen = ({ maxWidth }: MediaQueryParams) => {
 
     useEffect(() => {
         checkScreenSize();
-        window.addEventListener("resize", checkScreenSize);
+        window.addEventListener(eventListenerEvents.resize, checkScreenSize);
 
         return () => {
-            window.removeEventListener("resize", checkScreenSize);
+            window.removeEventListener(eventListenerEvents.resize, checkScreenSize);
         };
     }, [maxWidth]);
 
