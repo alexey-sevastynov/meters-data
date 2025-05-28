@@ -5,7 +5,7 @@ import styles from "./bottomSidebar.module.scss";
 import { navigationItems } from "@/constants/navigation-items";
 import { iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdImage } from "@/components/ui/image/MdImage";
-import { toggleBottomBarOnScroll } from "@/components/layout/bottom-sidebar/bottomSidebar.funcs";
+import { updateBottomBarVisibilityOnScroll } from "@/components/layout/bottom-sidebar/bottomSidebar.funcs";
 import { eventListenerEvents } from "@/constants/events";
 
 export function MdBottomSidebar() {
@@ -13,7 +13,7 @@ export function MdBottomSidebar() {
     const lastScrollY = useRef(0);
 
     useEffect(() => {
-        const onScroll = () => toggleBottomBarOnScroll(lastScrollY, setIsBottomSidebarVisible);
+        const onScroll = () => updateBottomBarVisibilityOnScroll(lastScrollY, setIsBottomSidebarVisible);
         window.addEventListener(eventListenerEvents.scroll, onScroll);
 
         return () => window.removeEventListener(eventListenerEvents.scroll, onScroll);
