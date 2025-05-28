@@ -6,6 +6,7 @@ import { DropdownIcons, dropdownPosition, DropdownPosition } from "@/components/
 import { AnimatePresence, motion } from "framer-motion";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { defaultIcons } from "@/components/ui/dropdown/dropdown-config";
+import { isDomNode } from "@/utils/dom";
 
 interface DropdownContextConfig {
     isOpen: boolean;
@@ -38,7 +39,7 @@ export function MdDropdown({
         const isClickOutside = (event: MouseEvent) => {
             const target = event.target;
 
-            if (!(target instanceof Node)) return false;
+            if (!isDomNode(target)) return false;
 
             const clickedOutsideTrigger = !triggerRef.current?.contains(target);
             const clickedOutsideContent = !contentRef.current?.contains(target);
