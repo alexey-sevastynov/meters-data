@@ -56,6 +56,7 @@ function getEditAction(dispatch: AppDispatch) {
                     updatedAt: String(action.updatedAt),
                 })
             );
+            smoothScrollTo();
         },
     };
 
