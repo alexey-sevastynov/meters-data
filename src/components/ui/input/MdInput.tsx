@@ -20,6 +20,7 @@ interface MdInputProps {
     placeholder?: string;
     isEdit?: boolean;
     step?: number;
+    className?: string;
 }
 
 export function MdInput({
@@ -31,12 +32,13 @@ export function MdInput({
     type = inputTypes.number,
     isEdit = false,
     step,
+    className,
 }: MdInputProps) {
     const theme = useTheme();
     const isModified = value !== defaultValue;
 
     return (
-        <div className={styles.root}>
+        <div className={cn(className, styles.root)}>
             {label && <label>{label}:</label>}
 
             <div className={styles.inputContainer}>

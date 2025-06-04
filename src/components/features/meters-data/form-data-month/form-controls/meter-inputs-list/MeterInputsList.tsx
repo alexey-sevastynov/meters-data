@@ -71,6 +71,7 @@ export function MeterInputsList({
                     onChange={onChange}
                     onReset={returnCurrentValues}
                     isEdit={isEdit}
+                    className={styles.input}
                 />
             )}
         </>

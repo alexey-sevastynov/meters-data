@@ -4,6 +4,7 @@ import { MdMetersData } from "@/components/features/meters-data/MetersData";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { BREADCRUMB_ITEMS_ADDR_004 } from "@/constants/breadcrumb-items";
 import { useSidebar } from "@/components/context/SidebarProvider";
+import { MdMetersManager } from "@/components/features/meters-manager/MdMetersManager";
 
 export function Address004() {
     const sidebarContext = useSidebar();
@@ -17,7 +18,8 @@ export function Address004() {
             <div className={layoutStyle}>
                 <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_004} />
                 <MdMonthlyUtilityReport isWaterBlock={false} />
-                <MdMetersData isWaterBlock={false} />
+                <MdMetersData isTableVisible={false} isWaterBlock={false} />
+                <MdMetersManager isWaterBlock={false} />
             </div>
         </section>
     );

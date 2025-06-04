@@ -25,6 +25,7 @@ export function MeterInput({
     value,
     setValue,
     sortedAddressMeterData,
+    className,
 }: MeterInputProps) {
     const isEditingMeterData = isEdit && meterDataEdit;
 
@@ -51,6 +52,7 @@ export function MeterInput({
             onChange={onChange}
             onReset={returnCurrentValues}
             isEdit={isEdit}
+            className={className}
         />
     );
 }

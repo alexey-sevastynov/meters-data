@@ -1,3 +1,9 @@
+@import "@/styles/breakpoints.scss";
+
 .input {
-  margin-top: 10px;
+    input {
+        @media (max-width: $mobile-xl) {
+            min-width: calc(100vw - 20px);
+        }
+    }
 }
