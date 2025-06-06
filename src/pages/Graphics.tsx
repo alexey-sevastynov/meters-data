@@ -8,7 +8,7 @@ import { MdChart } from "@/components/shared/chart/MdChart";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
-import { useSidebar } from "@/components/context/SidebarProvider";
+import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
 
 export function Graphics() {
     const sidebarContext = useSidebar();

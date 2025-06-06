@@ -5,7 +5,7 @@ import { MdListUtilityPrices } from "@/components/features/list-utility-prices/M
 import { MdDateDisplay } from "@/components/shared/date-display/MdDateDisplay";
 import { languages } from "@/components/shared/date-display/constants";
 import { language } from "@/constants/language";
-import { useSidebar } from "@/components/context/SidebarProvider";
+import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
 
 export function Home() {
     const sidebarContext = useSidebar();

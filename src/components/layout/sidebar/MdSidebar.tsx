@@ -1,6 +1,6 @@
 import styles from "./sidebar.module.scss";
 import { ListLinks } from "@/components/layout/sidebar/list-links/ListLinks";
-import { useSidebar } from "@/components/context/SidebarProvider";
+import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
 import { cn } from "@/lib/cn";
 
 export function MdSidebar() {

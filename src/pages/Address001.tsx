@@ -3,7 +3,7 @@ import { MdMonthlyUtilityReport } from "@/components/features/monthly-utility-re
 import { MdMetersData } from "@/components/features/meters-data/MetersData";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { BREADCRUMB_ITEMS_ADDR_001 } from "@/constants/breadcrumb-items";
-import { useSidebar } from "@/components/context/SidebarProvider";
+import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
 import { MdMetersManager } from "@/components/features/meters-manager/MdMetersManager";
 
 export function Address001() {

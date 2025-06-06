@@ -1,6 +1,9 @@
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { errorMessage } from "@/constants/error-message";
+import { localStorageKeys } from "@/enums/local-storage-keys";
 import { VoidFuncNoParam } from "@/types/getter-setter-functions";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { getSidebarCollapsedStateFromStorage } from "@/components/context/sidebar-provider/sidebarProvider.funcs";
+import { setLocalStorageItem } from "@/utils/local-storage";
 
 interface SidebarContextType {
     isSidebarCollapsed: boolean;
@@ -15,8 +18,15 @@ const initialSidebarContext: SidebarContextType = {
 const SidebarContext = createContext<SidebarContextType>(initialSidebarContext);
 
 export function SidebarProvider({ children }: { children: ReactNode }) {
-    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(() =>
+        getSidebarCollapsedStateFromStorage(localStorageKeys.isSidebarCollapsed, false)
+    );
+
     const toggleSidebar = () => setIsSidebarCollapsed((prev) => !prev);
+
+    useEffect(() => {
+        setLocalStorageItem(localStorageKeys.isSidebarCollapsed, isSidebarCollapsed);
+    }, [isSidebarCollapsed]);
 
     return (
         <SidebarContext.Provider value={{ isSidebarCollapsed, toggleSidebar }}>
