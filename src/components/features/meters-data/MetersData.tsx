@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BsCalendar2Plus, BsCalendar3 } from "react-icons/bs";
+import { BsCalendar2Plus } from "react-icons/bs";
 import styles from "./metersData.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
@@ -8,14 +8,12 @@ import { useLocation } from "react-router-dom";
 import { FormDataMonth } from "@/components/features/meters-data/form-data-month/FormDataMonth";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 import { statusNames } from "@/constants/status";
-import { ListMetersData } from "@/components/features/meters-data/list-meters-data/ListMetersData";
 
 interface MetersDataProps {
     isWaterBlock?: boolean;
-    isTableVisible?: boolean;
 }
 
-export function MdMetersData({ isWaterBlock = true, isTableVisible = true }: MetersDataProps) {
+export function MdMetersFormSection({ isWaterBlock = true }: MetersDataProps) {
     const dispatch = useAppDispatch();
     const location = useLocation();
     const translations = useAppSelector(selectTranslations);
@@ -43,15 +41,6 @@ export function MdMetersData({ isWaterBlock = true, isTableVisible = true }: Met
                     pathname={location.pathname}
                     addressPath={addressPath}
                 />
-                {isTableVisible && (
-                    <>
-                        <h4 className={styles.title}>
-                            <BsCalendar3 style={{ marginRight: "10px" }} />
-                            {translations.metersData["Meter Reading Data Table by Months"]}:
-                        </h4>
-                        <ListMetersData isWaterBlock={isWaterBlock} />
-                    </>
-                )}
             </div>
         </section>
     );
