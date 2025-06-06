@@ -1,10 +1,10 @@
 import "@/styles/pages/address001.scss";
 import { MdMonthlyUtilityReport } from "@/components/features/monthly-utility-report/MdMonthlyUtilityReport";
-import { MdMetersData } from "@/components/features/meters-data/MetersData";
+import { MdMetersFormSection } from "@/components/features/meters-data/MetersData";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { BREADCRUMB_ITEMS_ADDR_001 } from "@/constants/breadcrumb-items";
 import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
-import { MdMetersManager } from "@/components/features/meters-manager/MdMetersManager";
+import { MdMetersTableManager } from "@/components/features/meters-manager/MdMetersManager";
 
 export function Address001() {
     const sidebarContext = useSidebar();
@@ -18,8 +18,8 @@ export function Address001() {
             <div className={layoutStyle}>
                 <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_001} />
                 <MdMonthlyUtilityReport />
-                <MdMetersData isTableVisible={false} />
-                <MdMetersManager />
+                <MdMetersFormSection />
+                <MdMetersTableManager />
             </div>
         </section>
     );

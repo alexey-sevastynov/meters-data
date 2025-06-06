@@ -1,10 +1,10 @@
 import "@/styles/pages/address004.scss";
 import { MdMonthlyUtilityReport } from "@/components/features/monthly-utility-report/MdMonthlyUtilityReport";
-import { MdMetersData } from "@/components/features/meters-data/MetersData";
+import { MdMetersFormSection } from "@/components/features/meters-data/MetersData";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { BREADCRUMB_ITEMS_ADDR_005 } from "@/constants/breadcrumb-items";
 import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
-import { MdMetersManager } from "@/components/features/meters-manager/MdMetersManager";
+import { MdMetersTableManager } from "@/components/features/meters-manager/MdMetersManager";
 
 export function Address005() {
     const sidebarContext = useSidebar();
@@ -18,8 +18,8 @@ export function Address005() {
             <div className={layoutStyle}>
                 <MdBreadcrumb items={BREADCRUMB_ITEMS_ADDR_005} />
                 <MdMonthlyUtilityReport isWaterBlock={false} />
-                <MdMetersData isTableVisible={false} isWaterBlock={false} />
-                <MdMetersManager isWaterBlock={false} />
+                <MdMetersFormSection isWaterBlock={false} />
+                <MdMetersTableManager isWaterBlock={false} />
             </div>
         </section>
     );

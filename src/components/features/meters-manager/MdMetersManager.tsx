@@ -21,7 +21,7 @@ interface MetersManagerProps {
     isWaterBlock?: boolean;
 }
 
-export function MdMetersManager({ isWaterBlock = true }: MetersManagerProps) {
+export function MdMetersTableManager({ isWaterBlock = true }: MetersManagerProps) {
     const dispatch = useAppDispatch();
     const location = useLocation();
     const translations = useAppSelector(selectTranslations);
