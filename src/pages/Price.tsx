@@ -13,7 +13,7 @@ import { MdListCategoriesWithPrices } from "@/components/features/list-categorie
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
 import { getAllMonthlyMoneyCalculations } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
 import { statusNames } from "@/constants/status";
-import { useSidebar } from "@/components/context/SidebarProvider";
+import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
 
 export function Price() {
     const sidebarContext = useSidebar();
