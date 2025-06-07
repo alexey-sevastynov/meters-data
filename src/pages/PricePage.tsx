@@ -14,8 +14,9 @@ import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-
 import { getAllMonthlyMoneyCalculations } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
 import { statusNames } from "@/constants/status";
 import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
+import { getSidebarLayoutClass } from "@/helpers/pages/get-sidebar-layout-class";
 
-export function Price() {
+export function PricePage() {
     const sidebarContext = useSidebar();
     const params = useParams();
     const dispatch = useAppDispatch();
@@ -43,15 +44,11 @@ export function Price() {
         monthlyMoneyCalculationsStatus,
     ]);
 
-    const layoutStyle = sidebarContext.isSidebarCollapsed
-        ? "page-layout--collapsed"
-        : "page-layout--expanded";
-
     return (
         <div className="price">
-            <div className={layoutStyle}>
+            <div className={getSidebarLayoutClass(sidebarContext.isSidebarCollapsed)}>
                 <div className="title">
-                    <MdBreadcrumb items={getBreadcrumbItemsPrice(params.address!, route, addressName)} />
+                    <MdBreadcrumb items={getBreadcrumbItemsPrice(params.address!, addressName, route)} />
                 </div>
                 <MdUtilityAccount />
                 <MdExtraServicesForm dispatch={dispatch} />

@@ -1,12 +1,12 @@
-import styles from "./metersManager.module.scss";
+import styles from "./metersTableManager.module.scss";
 import { useMemo, useState } from "react";
 import { MdTable } from "@/components/shared/table/MdTable";
-import { TableFilters } from "@/components/features/meters-manager/table-filters/TableFilters";
+import { TableFilters } from "@/components/features/meters-table-manager/table-filters/TableFilters";
 import {
     filterBySelectedYears,
     getHiddenColumnListKeys,
     initialTableMeterDataConfig,
-} from "@/components/features/meters-manager/metersManager.funcs";
+} from "@/components/features/meters-table-manager/metersTableManager.funcs";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
 import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
@@ -14,14 +14,14 @@ import { Option } from "@/components/ui/input-group/input-group-models";
 import {
     getTableMeterDataColumnVisibilityOptions,
     getTableMeterDataMetaColumnVisibilityOptions,
-} from "@/components/features/meters-manager/table-config/table-column-visibility-options";
+} from "@/components/features/meters-table-manager/table-config/table-column-visibility-options";
 import { selectTranslations } from "@/store/slices/i-18-next";
 
-interface MetersManagerProps {
+interface MetersTableManagerProps {
     isWaterBlock?: boolean;
 }
 
-export function MdMetersTableManager({ isWaterBlock = true }: MetersManagerProps) {
+export function MdMetersTableManager({ isWaterBlock = true }: MetersTableManagerProps) {
     const dispatch = useAppDispatch();
     const location = useLocation();
     const translations = useAppSelector(selectTranslations);

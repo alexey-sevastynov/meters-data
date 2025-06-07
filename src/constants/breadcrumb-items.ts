@@ -4,55 +4,63 @@ import { routeNames, appRoutes } from "@/constants/routes";
 
 const unknownAddressString = "unknown address";
 
-const createAddressItem = (addressId: string, addressName: string, route: string) => ({
-    id: addressId,
-    label: addressName,
-    link: "/" + route,
-});
-
-const createBreadcrumbItems = (additionalItems: BreadcrumbItem[] = []) => [
-    { id: addressLinkNames.home, label: addressNames.home, link: appRoutes.home },
-    ...additionalItems,
-];
-
-export const BREADCRUMB_ITEMS_ADDR_001 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address001, addressNames.address001, appRoutes.addr001),
-]);
-
-export const BREADCRUMB_ITEMS_ADDR_002 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address002, addressNames.address002, appRoutes.addr002),
-]);
-
-export const BREADCRUMB_ITEMS_ADDR_003 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address003, addressNames.address003, appRoutes.addr003),
-]);
-
-export const BREADCRUMB_ITEMS_ADDR_004 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address004, addressNames.address004, appRoutes.addr004),
-]);
-
-export const BREADCRUMB_ITEMS_ADDR_005 = createBreadcrumbItems([
-    createAddressItem(addressLinkNames.address005, addressNames.address005, appRoutes.addr005),
-]);
-
-export const getBreadcrumbItemsGraphics = (
-    address: string,
-    route: string,
-    addressName = unknownAddressString
-) => {
-    return createBreadcrumbItems([
-        createAddressItem(address, addressName, address),
-        createAddressItem(routeNames.graphics, routeNames.graphics, routeNames.meterData + route),
+export function getBreadcrumbsItemsAddress(
+    addressLinkName: string,
+    addressName: string,
+    appRoutePath: string
+) {
+    const breadcrumbItemsAddress = createBreadcrumbItems([
+        createAddressItem(addressLinkName, addressName, appRoutePath),
     ]);
-};
 
-export const getBreadcrumbItemsPrice = (
-    address: string,
-    route: string,
-    addressName = unknownAddressString
-) => {
-    return createBreadcrumbItems([
-        createAddressItem(address, addressName, address),
-        createAddressItem(routeNames.price, routeNames.price, routeNames.meterData + route),
+    return breadcrumbItemsAddress;
+}
+
+export function getBreadcrumbItemsGraphics(
+    addressLinkName: string,
+    addressName = unknownAddressString,
+    appRoutePath: string
+) {
+    const breadcrumbItemsGraphics = createBreadcrumbItems([
+        createAddressItem(addressLinkName, addressName, addressLinkName),
+        createAddressItem(routeNames.graphics, routeNames.graphics, routeNames.meterData + appRoutePath),
     ]);
-};
+
+    return breadcrumbItemsGraphics;
+}
+
+export function getBreadcrumbItemsPrice(
+    addressLinkName: string,
+    addressName = unknownAddressString,
+    appRoutePath: string
+) {
+    const breadcrumbItemsPrice = createBreadcrumbItems([
+        createAddressItem(addressLinkName, addressName, addressLinkName),
+        createAddressItem(routeNames.price, routeNames.price, routeNames.meterData + appRoutePath),
+    ]);
+
+    return breadcrumbItemsPrice;
+}
+
+function createAddressItem(addressId: string, addressName: string, route: string) {
+    const addressItem = {
+        id: addressId,
+        label: addressName,
+        link: "/" + route,
+    };
+
+    return addressItem;
+}
+
+function createBreadcrumbItems(additionalItems: BreadcrumbItem[]) {
+    const breadcrumbItems = [
+        {
+            id: addressLinkNames.home,
+            label: addressNames.home,
+            link: appRoutes.home,
+        },
+        ...additionalItems,
+    ];
+
+    return breadcrumbItems;
+}

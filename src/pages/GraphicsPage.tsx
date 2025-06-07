@@ -9,8 +9,9 @@ import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
 import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
+import { getSidebarLayoutClass } from "@/helpers/pages/get-sidebar-layout-class";
 
-export function Graphics() {
+export function GraphicsPage() {
     const sidebarContext = useSidebar();
     const { address } = useParams();
     const { pathname } = useLocation();
@@ -53,19 +54,15 @@ export function Graphics() {
         dataWater.push({ label, water: waterDiff });
     }
 
-    const layoutStyle = sidebarContext.isSidebarCollapsed
-        ? "page-layout--collapsed"
-        : "page-layout--expanded";
-
     return (
         <div className="graphics">
-            <div className={layoutStyle}>
+            <div className={getSidebarLayoutClass(sidebarContext.isSidebarCollapsed)}>
                 <div className="title">
                     <MdBreadcrumb
                         items={getBreadcrumbItemsGraphics(
                             address!,
-                            `/${address}/${routeNames.graphics}`,
-                            addressItem?.text
+                            addressItem?.text,
+                            `/${address}/${routeNames.graphics}`
                         )}
                     />
 

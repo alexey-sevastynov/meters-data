@@ -11,9 +11,9 @@ import {
     getNextMonthDate,
     setDefaultValue,
     submitFormData,
-} from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
-import { FormActions } from "@/components/features/meters-data/form-data-month/form-actions/FormActions";
-import { FormControls } from "@/components/features/meters-data/form-data-month/form-controls/FormControls";
+} from "@/components/features/meters-form-section/form-data-month/formDataMonth.funcs";
+import { FormActions } from "@/components/features/meters-form-section/form-data-month/form-actions/FormActions";
+import { FormControls } from "@/components/features/meters-form-section/form-data-month/form-controls/FormControls";
 import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";

@@ -1,8 +1,8 @@
 import styles from "./formControls.module.scss";
-import { SelectDate } from "@/components/features/meters-data/form-data-month/form-controls/select-date/SelectDate";
-import { createInputFields } from "@/components/features/meters-data/form-data-month/form-controls/inputFields";
-import { FormControlsProps } from "@/components/features/meters-data/form-data-month/form-controls/formControls.interface";
-import { MeterInputsList } from "@/components/features/meters-data/form-data-month/form-controls/meter-inputs-list/MeterInputsList";
+import { SelectDate } from "@/components/features/meters-form-section/form-data-month/form-controls/select-date/SelectDate";
+import { createInputFields } from "@/components/features/meters-form-section/form-data-month/form-controls/inputFields";
+import { FormControlsProps } from "@/components/features/meters-form-section/form-data-month/form-controls/formControls.interface";
+import { MeterInputsList } from "@/components/features/meters-form-section/form-data-month/form-controls/meter-inputs-list/MeterInputsList";
 
 export function FormControls({
     isWaterBlock,

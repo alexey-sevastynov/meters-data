@@ -1,6 +1,6 @@
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
-import { getTableMeterDataColumns } from "@/components/features/meters-manager/table-config/table-columns/get-table-meter-data-columns";
-import { getTableMeterDataRows } from "@/components/features/meters-manager/table-config/table-rows";
+import { getTableMeterDataColumns } from "@/components/features/meters-table-manager/table-config/table-columns/get-table-meter-data-columns";
+import { getTableMeterDataRows } from "@/components/features/meters-table-manager/table-config/table-rows";
 import { TableConfig } from "@/components/shared/table/table-config";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { TableAction } from "@/components/shared/table/table-models";

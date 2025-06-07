@@ -5,7 +5,7 @@ import {
     getAllYears,
     isClearSelectionNeeded,
     isCurrentYearSelectionNeeded,
-} from "@/components/features/meters-manager/table-filters/tableFilters.funcs";
+} from "@/components/features/meters-table-manager/table-filters/tableFilters.funcs";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { Option } from "@/components/ui/input-group/input-group-models";
 import { VoidFunc } from "@/types/getter-setter-functions";

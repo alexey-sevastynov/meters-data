@@ -8,11 +8,11 @@ export const routeNames = {
 
 export const appRoutes = {
     home: `/`,
-    addr001: `/` + addressLinkNames.address001,
-    addr002: `/` + addressLinkNames.address002,
-    addr003: `/` + addressLinkNames.address003,
-    addr004: `/` + addressLinkNames.address004,
-    addr005: `/` + addressLinkNames.address005,
+    address001: `/` + addressLinkNames.address001,
+    address002: `/` + addressLinkNames.address002,
+    address003: `/` + addressLinkNames.address003,
+    address004: `/` + addressLinkNames.address004,
+    address005: `/` + addressLinkNames.address005,
     price: `:address/${routeNames.price}`,
     graphics: `:address/${routeNames.graphics}`,
 } as const;

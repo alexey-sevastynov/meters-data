@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { v4 } from "uuid";
+import { createUniqueId } from "@/utils/id";
 import { UtilityPrice } from "@/store/models/utility-price";
 import { calculateUtilityData } from "@/store/slices/monthly-money-calculations/calculate-utility-data";
 import { UtilityCost } from "@/types/utility-cost";
@@ -29,7 +29,7 @@ export function addUtilityItem(
         state.utilityCosts = [
             ...state.utilityCosts,
             {
-                id: v4(),
+                id: createUniqueId(),
                 title: action.payload.title,
                 description: action.payload.description,
                 percentDifference: action.payload.percentDifference,

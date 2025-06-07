@@ -1,28 +1,27 @@
+import "@/styles/pages/address.scss";
 import { RouteObject } from "react-router-dom";
-import { Layout } from "@/pages/Layout";
-import { Home } from "@/pages/Home";
-import { Address001 } from "@/pages/Address001";
-import { Address002 } from "@/pages/Address002";
-import { Address003 } from "@/pages/Address003";
-import { Address004 } from "@/pages/Address004";
-import { Address005 } from "@/pages/Address005";
-import { Price } from "@/pages/Price";
-import { Graphics } from "@/pages/Graphics";
+import { LayoutPage } from "@/pages/LayoutPage";
+import { HomePage } from "@/pages/HomePage";
+import { PricePage } from "@/pages/PricePage";
+import { GraphicsPage } from "@/pages/GraphicsPage";
 import { appRoutes } from "@/constants/routes";
+import { AddressPage } from "@/pages/AddressPage";
+import { addressPages } from "@/routes/address-pages";
 
 const routes: RouteObject[] = [
     {
         path: appRoutes.home,
-        element: <Layout />,
+        element: <LayoutPage />,
         children: [
-            { index: true, element: <Home /> },
-            { path: appRoutes.addr001, element: <Address001 /> },
-            { path: appRoutes.addr002, element: <Address002 /> },
-            { path: appRoutes.addr003, element: <Address003 /> },
-            { path: appRoutes.addr004, element: <Address004 /> },
-            { path: appRoutes.addr005, element: <Address005 /> },
-            { path: appRoutes.price, element: <Price /> },
-            { path: appRoutes.graphics, element: <Graphics /> },
+            { index: true, element: <HomePage /> },
+            ...addressPages.map(({ id, path, breadcrumbItems, isWaterBlock }) => ({
+                path,
+                element: (
+                    <AddressPage key={id} breadcrumbItems={breadcrumbItems} isWaterBlock={isWaterBlock} />
+                ),
+            })),
+            { path: appRoutes.price, element: <PricePage /> },
+            { path: appRoutes.graphics, element: <GraphicsPage /> },
         ],
     },
 ];

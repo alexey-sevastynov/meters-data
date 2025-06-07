@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { MdInput } from "@/components/ui/input/MdInput";
-import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
+import { setDefaultValue } from "@/components/features/meters-form-section/form-data-month/formDataMonth.funcs";
 import { CategoryKey } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { SetStateFunc } from "@/types/getter-setter-functions";

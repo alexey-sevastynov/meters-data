@@ -1,6 +1,6 @@
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
 import { formatDate } from "@/helpers/meters-data/dates/format-date";
-import { v4 } from "uuid";
+import { createUniqueId } from "@/utils/id";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { stringToNumber } from "@/utils/conversion";
 
@@ -25,7 +25,7 @@ export function calculateDifference(
             percentDifference: 0,
         },
         {
-            id: v4(),
+            id: createUniqueId(),
             title: titlesForMeterReadings.light,
             description: (mostRecentItem.light - secondMostRecentItem.light).toFixed(2),
             percentDifference: calculatePercentDifference(
@@ -34,7 +34,7 @@ export function calculateDifference(
             ),
         },
         {
-            id: v4(),
+            id: createUniqueId(),
             title: titlesForMeterReadings.lightDay,
             description: (mostRecentItem.lightDay - secondMostRecentItem.lightDay).toFixed(2),
             percentDifference: calculatePercentDifference(
@@ -43,7 +43,7 @@ export function calculateDifference(
             ),
         },
         {
-            id: v4(),
+            id: createUniqueId(),
             title: titlesForMeterReadings.lightNight,
             description: (mostRecentItem.lightNight - secondMostRecentItem.lightNight).toFixed(2),
             percentDifference: calculatePercentDifference(
@@ -52,7 +52,7 @@ export function calculateDifference(
             ),
         },
         {
-            id: v4(),
+            id: createUniqueId(),
             title: titlesForMeterReadings.gas,
             description: (mostRecentItem.gas - secondMostRecentItem.gas).toFixed(2),
             percentDifference: calculatePercentDifference(
@@ -61,7 +61,7 @@ export function calculateDifference(
             ),
         },
         {
-            id: v4(),
+            id: createUniqueId(),
             title: titlesForMeterReadings.water,
             description: ((mostRecentItem.water || 0) - (secondMostRecentItem.water || 0)).toFixed(2),
             percentDifference: calculatePercentDifference(
