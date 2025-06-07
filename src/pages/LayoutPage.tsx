@@ -9,7 +9,7 @@ import { MdBottomSidebar } from "@/components/layout/bottom-sidebar/BottomSideba
 import useAdaptiveScreen from "@/hooks/useAdaptiveScreen";
 import { breakPoints } from "@/constants/break-points";
 
-export function Layout() {
+export function LayoutPage() {
     const dispatch = useAppDispatch();
     const isMobileView = useAdaptiveScreen({ maxWidth: breakPoints.md });
 

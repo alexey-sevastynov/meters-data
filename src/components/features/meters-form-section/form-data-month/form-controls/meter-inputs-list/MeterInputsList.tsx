@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
 import styles from "./meterInputsList.module.scss";
-import { InputField } from "@/components/features/meters-data/form-data-month/form-controls/inputFields";
+import { InputField } from "@/components/features/meters-form-section/form-data-month/form-controls/inputFields";
 import { MdInput } from "@/components/ui/input/MdInput";
-import { setDefaultValue } from "@/components/features/meters-data/form-data-month/formDataMonth.funcs";
+import { setDefaultValue } from "@/components/features/meters-form-section/form-data-month/formDataMonth.funcs";
 import { TranslationKeys } from "@/types/i-18-next-types";
-import { MeterInput } from "@/components/features/meters-data/form-data-month/form-controls/meter-inputs-list/meter-input/MeterInput";
+import { MeterInput } from "@/components/features/meters-form-section/form-data-month/form-controls/meter-inputs-list/meter-input/MeterInput";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { categoryKeys } from "@/enums/category-keys";
 import { SetStateFunc } from "@/types/getter-setter-functions";

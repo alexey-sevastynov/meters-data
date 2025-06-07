@@ -1,7 +1,7 @@
 import { TableRow } from "@/components/shared/table/table-models";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { AppDispatch } from "@/store/store";
-import { getActionsTableRow } from "@/components/features/meters-manager/table-config/action-table-row";
+import { getActionsTableRow } from "@/components/features/meters-table-manager/table-config/action-table-row";
 
 export function getTableMeterDataRows(
     data: MeterDataWithObjectId[],

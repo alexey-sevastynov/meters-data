@@ -2,7 +2,7 @@
 @import "@/styles/breakpoints.scss";
 @import "@/styles/sizes.scss";
 
-.address001 {
+.address {
     .page-layout--expanded {
         @include layoutStyle($widthSidebarExpanded);
     }
