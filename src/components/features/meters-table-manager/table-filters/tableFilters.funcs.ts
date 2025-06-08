@@ -21,5 +21,5 @@ export function isCurrentYearSelectionNeeded(years: Option[], selectedYears: Opt
 }
 
 export function isClearSelectionNeeded(years: Option[], selectedYears: Option[]) {
-    return years.length === 0 && selectedYears.length === 0;
+    return years.length === 0 && selectedYears.length > 0;
 }
