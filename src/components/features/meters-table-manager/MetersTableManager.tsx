@@ -26,6 +26,7 @@ export function MdMetersTableManager({ isWaterBlock = true }: MetersTableManager
     const location = useLocation();
     const translations = useAppSelector(selectTranslations);
     const meterReadingsList = useAppSelector((state) => state.metersData.items);
+    const status = useAppSelector((state) => state.metersData.status);
     const addressPath = location.pathname.slice(1);
     const sortedAddressMeterData = filterMeterDataByAddressAndSortByDate(meterReadingsList, addressPath);
     const [selectedYears, setSelectedYears] = useState<Option[]>([]);
@@ -58,6 +59,7 @@ export function MdMetersTableManager({ isWaterBlock = true }: MetersTableManager
             <div className={styles.table}>
                 <MdTable
                     tableConfig={tableMeterDataConfig}
+                    status={status}
                     listHiddenColumns={[
                         ...getHiddenColumnListKeys(
                             getTableMeterDataColumnVisibilityOptions(translations),

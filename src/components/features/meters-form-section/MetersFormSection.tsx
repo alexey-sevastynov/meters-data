@@ -1,32 +1,21 @@
-import { useEffect } from "react";
 import { BsCalendar2Plus } from "react-icons/bs";
 import styles from "./metersFormSection.module.scss";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
 import { useLocation } from "react-router-dom";
 import { FormDataMonth } from "@/components/features/meters-form-section/form-data-month/FormDataMonth";
-import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
-import { statusNames } from "@/constants/status";
 
 interface MetersFormSectionProps {
     isWaterBlock?: boolean;
 }
 
 export function MdMetersFormSection({ isWaterBlock = true }: MetersFormSectionProps) {
-    const dispatch = useAppDispatch();
     const location = useLocation();
     const translations = useAppSelector(selectTranslations);
     const meterReadingsList = useAppSelector((state) => state.metersData.items);
-    const status = useAppSelector((state) => state.metersData.status);
     const addressPath = location.pathname.slice(1);
     const sortedAddressMeterData = filterMeterDataByAddressAndSortByDate(meterReadingsList, addressPath);
-
-    useEffect(() => {
-        if (meterReadingsList.length === 0 && status !== statusNames.loading) {
-            dispatch(getAllMetersData());
-        }
-    }, [dispatch, meterReadingsList, status]);
 
     return (
         <section className={styles.root}>

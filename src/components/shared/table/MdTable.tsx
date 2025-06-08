@@ -5,14 +5,21 @@ import { MdTableHeader } from "@/components/shared/table/header/MdTableHeader";
 import { MdTableBody } from "@/components/shared/table/body/MdTableBody";
 import { TableSortDirection, tableSortDirection } from "@/components/shared/table/table-enums";
 import { getSortedTableRows, initDefaultSort, tableSort } from "@/components/shared/table/MdTable.funcs";
+import { StatusName } from "@/constants/status";
 
 interface TableMetresDataProps {
     tableConfig: TableConfig;
+    status: StatusName;
     isReadOnly?: boolean;
     listHiddenColumns?: string[];
 }
 
-export function MdTable({ tableConfig, isReadOnly = false, listHiddenColumns = [] }: TableMetresDataProps) {
+export function MdTable({
+    tableConfig,
+    isReadOnly = false,
+    listHiddenColumns = [],
+    status,
+}: TableMetresDataProps) {
     const [sortKey, setSortKey] = useState<string | null>(null);
     const [sortDirection, setSortDirection] = useState<TableSortDirection>(tableSortDirection.asc);
 
@@ -45,6 +52,7 @@ export function MdTable({ tableConfig, isReadOnly = false, listHiddenColumns = [
                 columns={tableConfig.columns}
                 isReadOnly={isReadOnly}
                 listHiddenColumns={listHiddenColumns}
+                status={status}
             />
         </table>
     );

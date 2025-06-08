@@ -112,6 +112,8 @@
     },
     "table": {
         "noData": "No data",
+        "loading": "Loading...",
+        "error": "Error loading data",
         "id": "ID",
         "date": "Date",
         "light": "Light, kW",
