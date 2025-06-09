@@ -1,4 +1,3 @@
-import axios from "axios";
 import { envKeys } from "@/infra/env/env-keys";
 import { getStringEnv } from "@/infra/env/env-functions";
 import { ApiEndpointName } from "@/store/api-endpoint-names";
