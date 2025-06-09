@@ -10,6 +10,7 @@ export const envKeys = {
     addressName004: "VITE_ADDR_NAME_004",
     addressName005: "VITE_ADDR_NAME_005",
     apiUrl: "VITE_API_URL",
+    apiKey: "VITE_API_KEY",
     chatId: "VITE_CHAD_ID",
     email: "VITE_EMAIL",
     password: "VITE_PASSWORD",
