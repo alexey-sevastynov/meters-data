@@ -13,25 +13,25 @@ export async function getAll<T>(endpoint: ApiEndpointName) {
 }
 
 export async function createOne<T>(endpoint: string, body: T) {
-    const { data } = await axios.post<T>(endpoint, body);
+    const { data } = await apiClient.post<T>(endpoint, body);
 
     return data;
 }
 
 export async function getOne<T>(endpoint: string, id: string) {
-    const { data } = await axios.get<T>(`${endpoint}/${id}`);
+    const { data } = await apiClient.get<T>(`${endpoint}/${id}`);
 
     return data;
 }
 
 export async function deleteOne<T>(endpoint: string, id: string) {
-    const { data } = await axios.delete<T>(`${endpoint}/${id}`);
+    const { data } = await apiClient.delete<T>(`${endpoint}/${id}`);
 
     return data;
 }
 
 export async function updateOne<T>(endpoint: string, id: string, body: Partial<T>) {
-    const { data } = await axios.patch<T[]>(`${endpoint}/${id}`, body);
+    const { data } = await apiClient.patch<T[]>(`${endpoint}/${id}`, body);
 
     return data;
 }
