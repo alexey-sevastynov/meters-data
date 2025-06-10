@@ -1,12 +1,12 @@
 import { useAppSelector } from "@/store/hook";
-import styles from "./utilityAccount.module.scss";
+import styles from "./billingAccounts.module.scss";
 import { useLocation } from "react-router-dom";
 import { BillingAccount } from "@/store/models/billing-account";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { UtilityAccountsList } from "@/components/features/utility-account/utility-accounts-list/UtilityAccountsList";
+import { MdBillingAccountsList } from "@/components/features/billing-accounts/billing-accounts-list/BillingAccountsList";
 import { statusNames } from "@/constants/status";
 
-export function MdUtilityAccount() {
+export function MdBillingAccounts() {
     const translations = useAppSelector(selectTranslations);
     const { pathname } = useLocation();
     const currentAddressName: string = pathname.slice(1).replace("/price", "");
@@ -21,8 +21,8 @@ export function MdUtilityAccount() {
 
     return (
         <div className={styles.root}>
-            <h2 className={styles.title}>{translations.utilityAccount.title}</h2>
-            <UtilityAccountsList billingAccount={item} />
+            <h2 className={styles.title}>{translations.billingAccount.title}</h2>
+            <MdBillingAccountsList billingAccount={item} />
         </div>
     );
 }
