@@ -9,7 +9,7 @@ import { sliceNames } from "@/store/slice-names";
 
 export const getAllBillingAccounts = createAsyncThunk<BillingAccount[], void, { rejectValue: AxiosError }>(
     actionNames.billingAccount.getAll,
-    async () => getAll<BillingAccount>(apiEndpointNames.billingAccount)
+    async () => getAll<BillingAccount>(apiEndpointNames.billingAccounts)
 );
 
 interface IBillingAccountSlice {

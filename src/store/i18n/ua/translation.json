@@ -79,7 +79,7 @@
         "Meter Reading Submission Form for the end of the month": "Форма для заповнення показників лічильника на кінець місяця",
         "Meter Reading Data Table by Months": "Таблиця показників лічильника за місяцями"
     },
-    "utilityAccount": {
+    "billingAccount": {
         "title": "Особисті рахунки",
         "copy": "Копіювати",
         "light": "Світло",
