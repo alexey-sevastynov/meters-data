@@ -9,7 +9,7 @@ import {
 import { statusNames } from "@/constants/status";
 import { IMonthlyMoneyCalculationsSlice } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.types";
 import { ActionReducerMapBuilder, PayloadAction } from "@reduxjs/toolkit";
-import { MonthlyMoneyCalculationsWithObjectId } from "@/store/models/monthly-money-calculations";
+import { MonthlyMoneyCalculationWithObjectId } from "@/store/models/monthly-money-calculation";
 
 const messageSuccessAddCalculation = "Monthly expense calculations added successfully! 👌";
 const messageSuccessUpdateCalculation = "Monthly expense calculations updated successfully! 👌";
@@ -24,7 +24,7 @@ export function extraReducers(builder: ActionReducerMapBuilder<IMonthlyMoneyCalc
         getAllMonthlyMoneyCalculations.fulfilled,
         (
             state: IMonthlyMoneyCalculationsSlice,
-            action: PayloadAction<MonthlyMoneyCalculationsWithObjectId[]>
+            action: PayloadAction<MonthlyMoneyCalculationWithObjectId[]>
         ) => {
             state.items = action.payload;
             state.status = statusNames.loaded;
