@@ -12,12 +12,12 @@ const messageSuccessUpdate = "Price changed, success! 👌";
 
 export const getAllUtilityPrice = createAsyncThunk<UtilityPrice[], void, { rejectValue: AxiosError }>(
     actionNames.utilityPrice.getAll,
-    async () => getAll<UtilityPrice>(apiEndpointNames.utilityPrises)
+    async () => getAll<UtilityPrice>(apiEndpointNames.utilityPrices)
 );
 
 export const updateUtilityPrice = createAsyncThunk<UtilityPrice[], { _id: string; value: number }>(
     actionNames.utilityPrice.updateOne,
-    async ({ _id, value }) => updateOne<UtilityPrice>(apiEndpointNames.utilityPrises, _id, { value })
+    async ({ _id, value }) => updateOne<UtilityPrice>(apiEndpointNames.utilityPrices, _id, { value })
 );
 
 interface IUtilityPriceState {
