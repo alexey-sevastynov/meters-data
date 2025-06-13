@@ -1,5 +1,5 @@
 import { StatusName, statusNames } from "@/constants/status";
-import { MonthlyMoneyCalculationsWithObjectId } from "@/store/models/monthly-money-calculations";
+import { MonthlyMoneyCalculationWithObjectId } from "@/store/models/monthly-money-calculation";
 import { UtilityCost } from "@/types/utility-cost";
 
 export const initialState: IMonthlyMoneyCalculationsSlice = {
@@ -13,7 +13,7 @@ export const initialState: IMonthlyMoneyCalculationsSlice = {
 
 export interface IMonthlyMoneyCalculationsSlice {
     status: StatusName;
-    items: MonthlyMoneyCalculationsWithObjectId[] | null;
+    items: MonthlyMoneyCalculationWithObjectId[] | null;
     isEdit: boolean;
     idEdit: string | null;
     utilityCosts: UtilityCost[] | null;
