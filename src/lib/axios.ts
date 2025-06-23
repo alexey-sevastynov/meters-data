@@ -13,7 +13,7 @@ export const apiClient = axios.create({
 
 function getApiBaseUrl() {
     const apiUrl = getStringEnv(envKeys.apiUrl);
-    const apiPrefix = "/api";
+    const apiPrefix = "api";
     const apiBaseUrl = apiUrl + apiPrefix;
 
     return apiBaseUrl;
