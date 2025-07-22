@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import styles from "./tableFilters.module.scss";
 import { MdInputGroup } from "@/components/ui/input-group/MdInputGroup";
 import {
     getAllYears,
-    isClearSelectionNeeded,
     isCurrentYearSelectionNeeded,
 } from "@/components/features/meters-table-manager/table-filters/tableFilters.funcs";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
@@ -30,19 +29,12 @@ export function TableFilters({
     setVisibleColumns,
 }: TableFiltersProps) {
     const translations = useAppSelector(selectTranslations);
-    const isInitializedRef = useRef(false);
     const allYears = useMemo(() => getAllYears(sortedAddressMeterData), [sortedAddressMeterData]);
 
     useEffect(() => {
-        if (!isInitializedRef.current) {
-            isInitializedRef.current = true;
-
-            if (isCurrentYearSelectionNeeded(allYears, selectedYears)) setSelectedYears([allYears[0]]);
-
-            return;
+        if (isCurrentYearSelectionNeeded(allYears, selectedYears)) {
+            setSelectedYears([allYears[0]]);
         }
-
-        if (isClearSelectionNeeded(allYears, selectedYears)) setSelectedYears([]);
     }, [allYears, selectedYears, setSelectedYears]);
 
     return (
@@ -54,6 +46,7 @@ export function TableFilters({
                 onChange={(selected) => {
                     setSelectedYears(selected);
                 }}
+                preventClearLastOption={true}
             />
             <MdInputGroup
                 options={columnVisibilityOptions}

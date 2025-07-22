@@ -1,0 +1,14 @@
+@import "@/styles/colors.scss";
+
+.option {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg);
+
+    &:hover {
+        background-color: var(--color-bg-hover-item);
+        color: var(--color-text-primary);
+    }
+}
