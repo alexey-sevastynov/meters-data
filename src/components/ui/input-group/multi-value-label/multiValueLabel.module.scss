@@ -1,0 +1,16 @@
+@import "@/styles/colors.scss";
+
+$multi-value-border-radius: 4px;
+
+.multiValueLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $lightGrey;
+    color: $black;
+    border-bottom-left-radius: $multi-value-border-radius;
+    border-top-left-radius: $multi-value-border-radius;
+    min-height: 22px;
+    font-size: 14px;
+    padding: 0px 5px;
+}

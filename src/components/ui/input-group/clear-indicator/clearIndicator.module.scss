@@ -1,0 +1,15 @@
+@import "@/styles/colors.scss";
+
+.clearIndicator {
+    padding: 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+        svg {
+            fill: $black;
+        }
+    }
+}

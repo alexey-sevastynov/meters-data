@@ -1,33 +1,41 @@
 import styles from "./inputGroup.module.scss";
-import Select, {
-    MultiValueRemoveProps,
-    ClearIndicatorProps,
-    GroupBase,
-    MultiValueGenericProps,
-    OptionProps,
-    ControlProps,
-    IndicatorsContainerProps,
-    MenuProps,
-} from "react-select";
+import Select, { MultiValueRemoveProps, MultiValue } from "react-select";
 import { Option } from "@/components/ui/input-group/input-group-models";
-import { MdIcon } from "@/components/ui/icon/MdIcon";
-import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
-import { colorNames } from "@/enums/color-names";
-import { cn } from "@/lib/cn";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
-import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
+import { VoidFunc } from "@/types/getter-setter-functions";
+import { MdControl } from "@/components/ui/input-group/control/MdControl";
+import { MdClearIndicator } from "@/components/ui/input-group/clear-indicator/MdClearIndicator";
+import { isTryingToRemoveLastOption } from "@/components/ui/input-group/inputGroup.funcs";
+import { MdPreventableMultiValueRemove } from "@/components/ui/input-group/preventable-multi-value-remove/MdPreventableMultiValueRemove";
+import { MdMenu } from "@/components/ui/input-group/menu/MdMenu";
+import { MdIndicatorsContainer } from "@/components/ui/input-group/indicators-container/MdIndicatorsContainer";
+import { MdMultiValueRemove } from "@/components/ui/input-group/multi-value-remove/MdMultiValueRemove";
+import { MdMultiValueLabel } from "@/components/ui/input-group/multi-value-label/MultiValueLabel";
+import { MdCustomOption } from "@/components/ui/input-group/custom-option/MdCustomOption";
 
 interface MdInputGroupProps {
     options: Option[];
     defaultValue: Option[];
     label?: string;
-    onChange?: (selected: Option[]) => void;
+    onChange?: VoidFunc<Option[]>;
+    preventClearLastOption?: boolean;
 }
 
-export function MdInputGroup({ options, defaultValue, label, onChange }: MdInputGroupProps) {
+export function MdInputGroup({
+    options,
+    defaultValue,
+    label,
+    onChange,
+    preventClearLastOption = false,
+}: MdInputGroupProps) {
     const translations = useAppSelector(selectTranslations);
+
+    const onInputGroupChange = (newValue: MultiValue<Option>) => {
+        if (isTryingToRemoveLastOption(newValue, preventClearLastOption)) return;
+
+        onChange?.([...newValue]);
+    };
 
     return (
         <div className={styles.inputGroup}>
@@ -35,20 +43,20 @@ export function MdInputGroup({ options, defaultValue, label, onChange }: MdInput
             <Select
                 key={translations.inputGroup.select}
                 components={{
-                    Control,
-                    ClearIndicator,
-                    MultiValueRemove,
-                    MultiValueLabel,
-                    Option: CustomOption,
-                    IndicatorsContainer,
-                    Menu,
+                    Control: MdControl,
+                    ClearIndicator: MdClearIndicator,
+                    MultiValueRemove: getMultiValueRemoveComponent(preventClearLastOption),
+                    MultiValueLabel: MdMultiValueLabel,
+                    Option: MdCustomOption,
+                    IndicatorsContainer: MdIndicatorsContainer,
+                    Menu: MdMenu,
                 }}
                 defaultValue={defaultValue}
                 closeMenuOnSelect={true}
                 className={styles.select}
                 options={options}
                 isMulti
-                onChange={(value) => onChange?.(value as Option[])}
+                onChange={onInputGroupChange}
                 noOptionsMessage={() => <p>{translations.inputGroup.noOptions}</p>}
                 placeholder={translations.inputGroup.select}
             />
@@ -56,60 +64,8 @@ export function MdInputGroup({ options, defaultValue, label, onChange }: MdInput
     );
 }
 
-function Control(props: ControlProps<Option, true>) {
-    return (
-        <div
-            {...props.innerProps}
-            ref={props.innerRef}
-            className={cn(styles.control, props.isFocused && styles.focused)}
-        >
-            {props.children}
-        </div>
-    );
-}
-
-function ClearIndicator(props: ClearIndicatorProps<Option>) {
-    return (
-        <div {...props.innerProps} className={styles.clearIndicator}>
-            <MdIcon name={iconNames.close} color={colorNames.grey} />
-        </div>
-    );
-}
-
-function IndicatorsContainer(props: IndicatorsContainerProps<Option, true, GroupBase<Option>>) {
-    const theme = useTheme();
-
-    return (
-        <div {...props.innerProps} className={styles.indicatorsContainer}>
-            <MdIcon name={iconNames.arrowDown} color={getBaseIconColor(theme.themeMode)} />
-        </div>
-    );
-}
-
-function MultiValueRemove(props: MultiValueRemoveProps<Option>) {
-    return (
-        <div {...props.innerProps} className={styles.multiValueRemove}>
-            <MdIcon name={iconNames.close} color={colorNames.black} size={iconSizes.small} />
-        </div>
-    );
-}
-
-function MultiValueLabel(props: MultiValueGenericProps<Option, true, GroupBase<Option>>) {
-    return <div className={styles.multiValueLabel}>{props.data.label}</div>;
-}
-
-function CustomOption(props: OptionProps<Option, true>) {
-    return (
-        <div className={styles.option} ref={props.innerRef} {...props.innerProps}>
-            {props.data.label}
-        </div>
-    );
-}
-
-function Menu(props: MenuProps<Option, true>) {
-    return (
-        <div className={styles.menu} ref={props.innerRef} {...props.innerProps}>
-            {props.children}
-        </div>
-    );
+function getMultiValueRemoveComponent(preventClearLastOption: boolean) {
+    return preventClearLastOption
+        ? (props: MultiValueRemoveProps<Option>) => <MdPreventableMultiValueRemove {...props} />
+        : MdMultiValueRemove;
 }

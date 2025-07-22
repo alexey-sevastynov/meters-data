@@ -1,0 +1,20 @@
+@import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
+
+.control {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 12.2rem;
+    max-width: 22rem;
+    min-height: 38px;
+    border: $border;
+    border-radius: 4px;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    cursor: text;
+
+    &.focused {
+        border-color: var(--color-border);
+    }
+}
