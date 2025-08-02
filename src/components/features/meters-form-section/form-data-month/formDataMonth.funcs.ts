@@ -16,6 +16,8 @@ import {
 import { numberToString, stringToNumber } from "@/utils/conversion";
 import { isNumber } from "@/utils/guards";
 import { errorMessage } from "@/constants/error-message";
+import { emitMetaDataSocketEvent } from "@/infra/socket/socket-client";
+import { socketEventNames } from "@/infra/socket/socket-event-names";
 
 export function calculateSum(a: number, b: number) {
     if (!isNumber(a) || !isNumber(b)) {
@@ -131,6 +133,8 @@ export async function handleEditMeterData(
         dispatch(setNotEdit());
 
         await dispatch(getAllMetersData());
+
+        emitMetaDataSocketEvent(socketEventNames.updateItem, response.payload);
     }
 }
 
@@ -164,6 +168,8 @@ export async function handlePostMeterData(
             const message = generateMessage(addressPath, selectDate, light, lightDay, lightNight, gas, water);
 
             sendMessageToTelegram(message);
+
+            emitMetaDataSocketEvent(socketEventNames.createItem, response.payload);
         }, 2500);
     }
 }

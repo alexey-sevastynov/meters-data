@@ -9,6 +9,7 @@ import { getSidebarLayoutClass } from "@/helpers/pages/get-sidebar-layout-class"
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { statusNames } from "@/constants/status";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
+import { initSocket } from "@/infra/socket/socket-client";
 
 interface AddressPageProps {
     breadcrumbItems: BreadcrumbItem[];
@@ -22,6 +23,10 @@ export function AddressPage({ breadcrumbItems, isWaterBlock = true }: AddressPag
 
     const meterReadingsList = useAppSelector((state) => state.metersData.items);
     const status = useAppSelector((state) => state.metersData.status);
+
+    useEffect(() => {
+        initSocket(dispatch);
+    }, [dispatch]);
 
     useEffect(() => {
         if (meterReadingsList.length === 0 && status === statusNames.inactive) {
