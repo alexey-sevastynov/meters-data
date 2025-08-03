@@ -4,8 +4,7 @@ import { AppDispatch } from "@/store/store";
 import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 import { SocketEventName, socketEventNames } from "@/infra/socket/socket-event-names";
 
-const socketUrl = isDev() ? "http://localhost:3000" : "https://meters-data-backend.vercel.app";
-
+const socketUrl = isDev() ? "http://localhost:3000" : "https://meters-socket-server.up.railway.app";
 let socket: Socket | null = null;
 
 export function initSocket(dispatch: AppDispatch) {
