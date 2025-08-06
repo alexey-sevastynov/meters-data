@@ -16,6 +16,7 @@ import {
     getTableMeterDataMetaColumnVisibilityOptions,
 } from "@/components/features/meters-table-manager/table-config/table-column-visibility-options";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { getAllMetersData } from "@/store/slices/meters-data/meters-data.thunks";
 
 interface MetersTableManagerProps {
     isWaterBlock?: boolean;
@@ -46,6 +47,10 @@ export function MdMetersTableManager({ isWaterBlock = true }: MetersTableManager
         dispatch
     );
 
+    const refreshMetersTableData = () => {
+        dispatch(getAllMetersData());
+    };
+
     return (
         <div className={styles.root}>
             <TableFilters
@@ -55,6 +60,7 @@ export function MdMetersTableManager({ isWaterBlock = true }: MetersTableManager
                 selectedYears={selectedYears}
                 setSelectedYears={setSelectedYears}
                 setVisibleColumns={setVisibleColumns}
+                onRefresh={refreshMetersTableData}
             />
             <div className={styles.table}>
                 <MdTable

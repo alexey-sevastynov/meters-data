@@ -64,7 +64,8 @@
         "cancel": "Відміна",
         "save": "Зберегти",
         "delete": "Видалити",
-        "capture": "Знімок"
+        "capture": "Знімок",
+        "refresh": "Оновити"
     },
     "graphics": {
         "graphics": "графіки",

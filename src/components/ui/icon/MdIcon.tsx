@@ -22,7 +22,7 @@ import {
 } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { FaCircle, FaCheck, FaGear, FaArrowRight } from "react-icons/fa6";
-import { MdOutlineViewInAr, MdDelete } from "react-icons/md";
+import { MdOutlineViewInAr, MdDelete, MdRefresh } from "react-icons/md";
 
 interface MdIconProps {
     name: IconName;
@@ -60,6 +60,7 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     view: MdOutlineViewInAr,
     delete: MdDelete,
     sort: FaSort,
+    refresh: MdRefresh,
 } as const;
 
 export function MdIcon({ name, id, color = colorNames.white, size = iconSizes.medium }: MdIconProps) {

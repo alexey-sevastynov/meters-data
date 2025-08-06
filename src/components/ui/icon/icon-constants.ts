@@ -35,6 +35,7 @@ export const iconNames = {
     view: "view",
     delete: "delete",
     sort: "sort",
+    refresh: "refresh",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];
