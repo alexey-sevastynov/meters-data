@@ -1,0 +1,14 @@
+@import "@/styles/mixins.scss";
+@import "@/styles/colors.scss";
+
+.root {
+    display: flex;
+    min-height: 39px;
+    padding: 0.6rem 1.2rem;
+
+    background-color: var(--color-bg-red);
+
+    .message {
+        color: $white;
+    }
+}

@@ -6,16 +6,23 @@ import DatePicker, { DatePickerProps } from "react-date-picker";
 import { DataPickerValue } from "@/types/data-picker";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
+import { SetStateFunc } from "@/types/getter-setter-functions";
+import { useEffect } from "react";
 
 interface SelectDateProps extends DatePickerProps {
     selectDate: DataPickerValue;
-    setSelectDate: (value: DataPickerValue) => void;
+    setSelectDate: SetStateFunc<DataPickerValue>;
+    setErrorMessage: SetStateFunc<string | null>;
 }
 
-export function SelectDate({ selectDate, setSelectDate, ...props }: SelectDateProps) {
+export function SelectDate({ selectDate, setSelectDate, setErrorMessage, ...props }: SelectDateProps) {
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const language = useAppSelector((state) => state.i18n.lang);
     const translations = useAppSelector(selectTranslations);
+
+    useEffect(() => {
+        setErrorMessage(null);
+    }, [selectDate, setErrorMessage]);
 
     return (
         <div className={styles.selectDate}>
