@@ -1,5 +1,6 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
 
 .root {
     display: flex;
@@ -15,7 +16,7 @@
 
         input {
             max-width: 130px;
-            height: 39px;
+            height: $heightInput;
             padding-right: 36px;
             padding-left: 5px;
             background-color: var(--color-bg);
