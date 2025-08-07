@@ -1,6 +1,7 @@
 @import "@/styles/breakpoints.scss";
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
 
 $width: 250px;
 $border-radius: 5px;
@@ -17,7 +18,7 @@ $padding-window: 5px 10px;
         padding: $padding-window;
         border: $border;
         border-radius: $border-radius;
-        height: 39px;
+        height: $heightSelect;
         width: $width;
 
         &.title {

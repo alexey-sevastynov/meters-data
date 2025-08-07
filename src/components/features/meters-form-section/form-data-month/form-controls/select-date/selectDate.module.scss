@@ -1,6 +1,7 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
 @import "@/styles/index.scss";
+@import "@/styles/sizes.scss";
 
 .selectDate {
     display: flex;
@@ -20,7 +21,7 @@
         background-color: var(--color-bg);
         margin-top: 10px;
 
-        height: 39px;
+        height: $heightSelect;
         min-width: 9.375rem;
 
         input,

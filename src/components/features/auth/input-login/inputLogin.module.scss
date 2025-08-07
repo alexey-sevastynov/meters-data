@@ -1,5 +1,6 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
 
 .root {
     height: 80px;
@@ -16,7 +17,7 @@
             padding-left: 12px;
             padding-right: 38px;
             min-width: 260px;
-            min-height: 39px;
+            min-height: $heightInput;
             border: $border;
             border-radius: 4px;
 

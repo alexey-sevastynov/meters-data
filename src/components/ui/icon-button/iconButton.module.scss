@@ -1,9 +1,10 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
 
 .root {
-    height: 39px;
-    width: 39px;
+    height: $heightButton;
+    width: $heightButton;
     display: flex;
     align-items: center;
     justify-content: center;

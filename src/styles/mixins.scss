@@ -70,3 +70,17 @@ $border: 1px solid var(--color-border);
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@mixin absolute-center-y($left: null, $right: null) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @if $left != null {
+        left: $left;
+    }
+
+    @if $right != null {
+        right: $right;
+    }
+}

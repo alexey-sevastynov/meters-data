@@ -1,5 +1,6 @@
 @import "@/styles/colors.scss";
 @import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
 
 .root {
     display: flex;
@@ -10,7 +11,7 @@
     background-color: $green;
     color: $white;
     min-width: 80px;
-    height: 39px;
+    height: $heightButton;
     border-radius: 5px;
 
     @include transition(background-color);

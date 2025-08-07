@@ -1,14 +1,12 @@
 import { ChangeEvent } from "react";
 import styles from "./meterInputsList.module.scss";
 import { InputField } from "@/components/features/meters-form-section/form-data-month/form-controls/inputFields";
-import { MdInput } from "@/components/ui/input/MdInput";
-import { setDefaultValue } from "@/components/features/meters-form-section/form-data-month/formDataMonth.funcs";
 import { TranslationKeys } from "@/types/i-18-next-types";
 import { MeterInput } from "@/components/features/meters-form-section/form-data-month/form-controls/meter-inputs-list/meter-input/MeterInput";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
-import { categoryKeys } from "@/enums/category-keys";
 import { SetStateFunc } from "@/types/getter-setter-functions";
-import { numberToString } from "@/utils/conversion";
+import { MdInputModern } from "@/components/ui/input/input-modern/MdInputModern";
+import { iconNames } from "@/components/ui/icon/icon-constants";
 
 interface MeterInputsListProps {
     items: InputField[];
@@ -31,25 +29,15 @@ export function MeterInputsList({
     water,
     setWater,
 }: MeterInputsListProps) {
-    const isEditingMeterData = isEdit && meterDataEdit;
-    const waterReadingValue = meterDataEdit?.water ?? 0;
-    const waterDefaultValue = isEditingMeterData
-        ? numberToString(waterReadingValue)
-        : setDefaultValue(categoryKeys.water, sortedAddressMeterData);
-
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const targetValue = e.target.value;
 
         setWater(targetValue);
     };
 
-    const returnCurrentValues = () => {
-        setWater(waterDefaultValue);
-    };
-
     return (
         <>
-            {items.map(({ key, label, value, setValue }) => (
+            {items.map(({ key, label, value, setValue, iconName }) => (
                 <MeterInput
                     key={key}
                     isEdit={isEdit}
@@ -60,18 +48,18 @@ export function MeterInputsList({
                     setValue={setValue}
                     sortedAddressMeterData={sortedAddressMeterData}
                     className={styles.input}
+                    iconName={iconName}
                 />
             ))}
 
             {isWaterBlock && (
-                <MdInput
-                    defaultValue={waterDefaultValue}
+                <MdInputModern
                     label={translations.infoPanel["Water general"]}
                     value={water}
                     onChange={onChange}
-                    onReset={returnCurrentValues}
                     isEdit={isEdit}
                     className={styles.input}
+                    iconName={iconNames.water}
                 />
             )}
         </>

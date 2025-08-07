@@ -1,0 +1,45 @@
+@import "@/styles/colors.scss";
+@import "@/styles/mixins.scss";
+@import "@/styles/sizes.scss";
+
+$padding: 0.6rem;
+
+.root {
+    height: $heightInput;
+    position: relative;
+
+    .iconContainer {
+        display: flex;
+        align-items: center;
+        pointer-events: none;
+        @include absolute-center-y($left: $padding);
+    }
+
+    .label {
+        pointer-events: none;
+        @include absolute-center-y($left: 2rem);
+    }
+
+    input {
+        text-align: end;
+        width: 13.3rem;
+        height: 100%;
+        padding-right: $padding;
+        padding-left: 8.5rem;
+        background-color: var(--color-bg);
+        @include borderInput;
+
+        &::placeholder {
+            color: $grey;
+        }
+
+        &:focus {
+            outline: none;
+            background-color: var(--color-bg-hover-item);
+        }
+    }
+}
+
+.inputEdit {
+    background-color: var(--color-bg-hover-item) !important;
+}
