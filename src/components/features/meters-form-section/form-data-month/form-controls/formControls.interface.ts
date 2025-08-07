@@ -6,7 +6,7 @@ import { TranslationKeys } from "@/types/i-18-next-types";
 export interface FormControlsProps {
     isWaterBlock: boolean;
     selectDate: DataPickerValue;
-    setSelectDate: (value: DataPickerValue) => void;
+    setSelectDate: SetStateFunc<DataPickerValue>;
     light: string;
     setLight: SetStateFunc<string>;
     lightDay: string;
@@ -21,4 +21,5 @@ export interface FormControlsProps {
     meterDataEdit: MeterDataWithObjectId | null;
     sortedAddressMeterData: MeterDataWithObjectId[];
     translations: TranslationKeys;
+    setErrorMessage: SetStateFunc<string | null>;
 }
