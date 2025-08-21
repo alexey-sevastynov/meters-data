@@ -12,9 +12,9 @@ interface IConfirmPopup {
 const initialState: IConfirmPopup = {
     isOpen: false,
     message: "",
-    isActionDeleteItem: false, // signal for component ItemMetersData, useEffect
-    isActionExit: false, // signal for component Auth, useEffect for exit for app
-    idDeleteItem: null, // id item in component ItemMetersData for delete item !
+    isActionDeleteItem: false,
+    isActionExit: false,
+    idDeleteItem: null,
 };
 
 const ConfirmPopup = createSlice({

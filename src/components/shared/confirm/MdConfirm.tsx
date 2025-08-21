@@ -34,7 +34,7 @@ export function MdConfirm({ question }: MdConfirmProps) {
         dispatch(confirmActionOnDelete(true));
         dispatch(confirmActionExit(true));
 
-        dispatch(closePopup()); // Close the confirmation popup
+        dispatch(closePopup());
     };
 
     useEffect(() => {
@@ -42,6 +42,7 @@ export function MdConfirm({ question }: MdConfirmProps) {
             setIsOpen(true);
         };
     }, []);
+
     return (
         <section className={styles.root}>
             <h2 className={styles.hidden}>confirm</h2>
