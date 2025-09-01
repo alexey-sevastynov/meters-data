@@ -3,6 +3,7 @@ import { UtilityCost } from "@/types/utility-cost";
 import { CategoryName, categoryNames } from "@/enums/category-names";
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
 import { stringToNumber } from "@/utils/conversion";
+import { unitNames } from "@/types/value-names";
 
 const emptyPrice = "0.00";
 
@@ -42,6 +43,18 @@ function getPriceByCategory(utilityPrices: UtilityPrice[], category: CategoryNam
 }
 
 function calculateItemPrice(item: UtilityCost, utilityPrices: UtilityPrice[]) {
+    const pricePerUnit = getPricePerUnit(item.title, utilityPrices);
+    const unitName = getUnitName(item.title);
+
+    if (!pricePerUnit || item.description === emptyPrice) return { updatedItem: item, itemSum: 0 };
+
+    const result = stringToNumber(item.description) * pricePerUnit;
+    const textDescription = `${item.description} ${unitName} * ${pricePerUnit} uah = ${result.toFixed(2)}`;
+
+    return { updatedItem: { ...item, description: textDescription }, itemSum: result };
+}
+
+function getPricePerUnit(itemTitle: string, utilityPrices: UtilityPrice[]) {
     const categoryToPriceMap: Record<string, number> = {
         [titlesForMeterReadings.lightDay]: getPriceByCategory(utilityPrices, categoryNames.lightDay),
         [titlesForMeterReadings.lightNight]: getPriceByCategory(utilityPrices, categoryNames.lightNight),
@@ -49,12 +62,18 @@ function calculateItemPrice(item: UtilityCost, utilityPrices: UtilityPrice[]) {
         [titlesForMeterReadings.water]: getPriceByCategory(utilityPrices, categoryNames.water),
     };
 
-    const pricePerUnit = categoryToPriceMap[item.title];
+    const pricePerUnit = categoryToPriceMap[itemTitle];
 
-    if (!pricePerUnit || item.description === emptyPrice) return { updatedItem: item, itemSum: 0 };
+    return pricePerUnit;
+}
 
-    const result = stringToNumber(item.description) * pricePerUnit;
-    const textDescription = `${item.description} * ${pricePerUnit} uah = ${result.toFixed(2)}`;
+function getUnitName(itemTitle: string) {
+    const titleToUnitMap: Record<string, string> = {
+        [titlesForMeterReadings.lightDay]: unitNames.kW,
+        [titlesForMeterReadings.lightNight]: unitNames.kW,
+        [titlesForMeterReadings.gas]: unitNames.m3,
+        [titlesForMeterReadings.water]: unitNames.m3,
+    };
 
-    return { updatedItem: { ...item, description: textDescription }, itemSum: result };
+    return titleToUnitMap[itemTitle];
 }
