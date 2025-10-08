@@ -1,5 +1,5 @@
-@import "@/styles/colors.scss";
-@import "@/styles/breakpoints.scss";
+@use "@/styles/colors.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
 
 $width: 150px;
 $border-radius: 5px;

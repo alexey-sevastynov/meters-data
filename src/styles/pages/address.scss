@@ -1,6 +1,7 @@
-@import "@/styles/mixins.scss";
-@import "@/styles/breakpoints.scss";
-@import "@/styles/sizes.scss";
+@use "@/styles/mixins.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
+@use "@/styles/sizes.scss" as *;
+@use "@/styles/colors.scss" as *;
 
 .address {
     .page-layout--expanded {

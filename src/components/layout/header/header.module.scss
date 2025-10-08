@@ -1,6 +1,6 @@
-@import "@/styles/colors.scss";
-@import "@/styles/breakpoints.scss";
-@import "@/styles/sizes.scss";
+@use "@/styles/colors.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
+@use "@/styles/sizes.scss" as *;
 
 .root {
     left: 0px;

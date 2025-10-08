@@ -1,5 +1,5 @@
-@import "@/styles/sizes.scss";
-@import "@/styles/colors.scss";
+@use "@/styles/sizes.scss" as *;
+@use "@/styles/colors.scss" as *;
 
 .root {
     height: $heightRowTable;

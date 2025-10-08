@@ -1,4 +1,4 @@
-@import "@/styles/sizes.scss";
+@use "@/styles/sizes.scss" as *;
 
 .root {
     .noData,

@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $white: #ffffff;
 $black: #1a1a1a;
 $lightGreen: #73b37c;
@@ -49,11 +51,11 @@ $colors: (
 
 $color-variants: ();
 @each $name, $base in $colors {
-    $hover: if(map-has-key($colors, #{$name + "-hover"}), map-get($colors, #{$name + "-hover"}), $base);
-    $active: if(map-has-key($colors, #{$name + "-active"}), map-get($colors, #{$name + "-active"}), $base);
-    $focus: if(map-has-key($colors, #{$name + "-focus"}), map-get($colors, #{$name + "-focus"}), $base);
+    $hover: if(map.has-key($colors, #{$name + "-hover"}), map.get($colors, #{$name + "-hover"}), $base);
+    $active: if(map.has-key($colors, #{$name + "-active"}), map.get($colors, #{$name + "-active"}), $base);
+    $focus: if(map.has-key($colors, #{$name + "-focus"}), map.get($colors, #{$name + "-focus"}), $base);
 
-    $color-variants: map-merge(
+    $color-variants: map.merge(
         $color-variants,
         (
             $name: (
@@ -69,16 +71,16 @@ $color-variants: ();
 @mixin generate-classes($type, $property) {
     @each $name, $variants in $color-variants {
         .#{$type}-#{$name} {
-            #{$property}: map-get($variants, base);
+            #{$property}: map.get($variants, base);
         }
         .hover\:#{$type}-#{$name}:hover {
-            #{$property}: map-get($variants, hover);
+            #{$property}: map.get($variants, hover);
         }
         .active\:#{$type}-#{$name}:active {
-            #{$property}: map-get($variants, active);
+            #{$property}: map.get($variants, active);
         }
         .focus\:#{$type}-#{$name}:focus {
-            #{$property}: map-get($variants, focus);
+            #{$property}: map.get($variants, focus);
         }
     }
 }

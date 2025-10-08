@@ -1,4 +1,4 @@
-@import "@/styles/colors.scss";
+@use "@/styles/colors.scss" as *;
 
 .clearIndicator {
     padding: 0px 5px;

@@ -1,5 +1,6 @@
-@import "@/styles/colors.scss";
-@import "@/styles/sizes.scss";
+@use "@/styles/colors.scss" as *;
+@use "@/styles/sizes.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
 
 $border: 1px solid var(--color-border);
 
@@ -39,7 +40,7 @@ $border: 1px solid var(--color-border);
     border-radius: 5px;
 }
 
-@mixin custom-scroll($width: 8px, $thumb-color: #888, $thumb-hover-color: #555, $track-color: #f1f1f1) {
+@mixin custom-scroll($width: 8px, $thumb-color: #888, $thumb-hover-color: #555, $track-color: #f1f1) {
     scrollbar-width: thin;
     scrollbar-color: $thumb-color $track-color;
 
