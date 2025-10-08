@@ -1,6 +1,6 @@
-@import "@/styles/colors.scss";
-@import "@/styles/breakpoints.scss";
-@import "@/styles/mixins.scss";
+@use "@/styles/colors.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
+@use "@/styles/mixins.scss" as *;
 
 .itemMonthlyMoneyCalculations {
     border: $border;

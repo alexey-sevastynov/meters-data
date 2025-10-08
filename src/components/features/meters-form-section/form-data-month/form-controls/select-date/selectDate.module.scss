@@ -1,7 +1,7 @@
-@import "@/styles/colors.scss";
-@import "@/styles/mixins.scss";
-@import "@/styles/index.scss";
-@import "@/styles/sizes.scss";
+@use "@/styles/colors.scss" as *;
+@use "@/styles/mixins.scss" as *;
+@use "@/styles/index.scss" as *;
+@use "@/styles/sizes.scss" as *;
 
 .selectDate {
     display: flex;
