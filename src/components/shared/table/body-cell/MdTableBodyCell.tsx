@@ -9,7 +9,7 @@ import {
 } from "@/components/shared/table/body-cell/MdTableBodyCell.funcs";
 import { useLocation, Location } from "react-router-dom";
 import { isColumnAction } from "@/components/shared/table/header-cell/TableHeaderCell.funcs";
-import { MdTableActionsCell } from "@/components/shared/table/body-cell/table-actions-cell/MdTableActionsCell";
+import { MdTableBodyActionsCell } from "@/components/shared/table/body-cell/table-body-actions-cell/MdTableBodyActionsCell";
 import { tableColumnTypes } from "@/components/shared/table/table-enums";
 import { getDaysInMonths } from "@/helpers/meters-data/dates/get-days-in-months";
 import { useAppSelector } from "@/store/hook";
@@ -76,7 +76,7 @@ function renderCellByType(
             return <td className={styles.root}>{getFormatDate(value as string)}</td>;
         case tableColumnTypes.actions:
             return (
-                <MdTableActionsCell
+                <MdTableBodyActionsCell
                     id={row.id as string}
                     actions={actions as TableAction[]}
                     row={row}

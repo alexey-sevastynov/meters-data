@@ -17,6 +17,10 @@ export function isColumnAction(column: TableColumn) {
     return column.type === tableColumnTypes.actions;
 }
 
+export function isColumnSort(column: TableColumn) {
+    return !!column?.sort;
+}
+
 export function calculateMinColumnWidth(element: HTMLElement | null) {
     if (!element) return 0;
 
