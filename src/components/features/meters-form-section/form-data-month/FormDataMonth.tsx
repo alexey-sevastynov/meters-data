@@ -18,6 +18,7 @@ import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { numberToString, stringToNumber } from "@/utils/conversion";
+import { MdErrorMessage } from "@/components/ui/error-message/MdErrorMessage";
 
 interface FormDataMonthProps {
     isWaterBlock: boolean;
@@ -35,6 +36,7 @@ export function FormDataMonth({
 }: FormDataMonthProps) {
     const dispatch = useAppDispatch();
     const [selectDate, setSelectDate] = useState<DataPickerValue>(getNextMonthDate(sortedAddressMeterData));
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const meterDataEdit = useAppSelector((state) => state.metersData.meterDataEdit);
 
@@ -72,6 +74,7 @@ export function FormDataMonth({
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setErrorMessage(null);
 
         const formData = {
             date: format(checkDate(selectDate), "MM.yyyy"),
@@ -95,7 +98,8 @@ export function FormDataMonth({
             lightNight,
             gas,
             water,
-            dispatch
+            dispatch,
+            setErrorMessage
         );
     };
 
@@ -147,9 +151,12 @@ export function FormDataMonth({
                 meterDataEdit={meterDataEdit}
                 sortedAddressMeterData={sortedAddressMeterData}
                 translations={translations}
+                setErrorMessage={setErrorMessage}
             />
 
             <FormActions isEdit={isEdit} dispatch={dispatch} lang={translations} />
+
+            {errorMessage && <MdErrorMessage message={errorMessage} />}
         </form>
     );
 }

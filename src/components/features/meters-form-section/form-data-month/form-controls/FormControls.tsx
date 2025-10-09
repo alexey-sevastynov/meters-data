@@ -22,6 +22,7 @@ export function FormControls({
     meterDataEdit,
     sortedAddressMeterData,
     translations,
+    setErrorMessage,
 }: FormControlsProps) {
     const inputFields = createInputFields({
         translations,
@@ -37,7 +38,11 @@ export function FormControls({
 
     return (
         <div className={styles.inputs}>
-            <SelectDate selectDate={selectDate} setSelectDate={setSelectDate} />
+            <SelectDate
+                selectDate={selectDate}
+                setSelectDate={setSelectDate}
+                setErrorMessage={setErrorMessage}
+            />
 
             <MeterInputsList
                 items={inputFields}

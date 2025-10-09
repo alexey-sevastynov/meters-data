@@ -18,6 +18,7 @@ import { isNumber } from "@/utils/guards";
 import { errorMessage } from "@/constants/error-message";
 import { emitMetaDataSocketEvent } from "@/infra/socket/socket-client";
 import { socketEventNames } from "@/infra/socket/socket-event-names";
+import { SetStateFunc } from "@/types/getter-setter-functions";
 
 export function calculateSum(a: number, b: number) {
     if (!isNumber(a) || !isNumber(b)) {
@@ -49,7 +50,8 @@ export async function submitFormData(
     lightNight: string,
     gas: string,
     water: string,
-    dispatch: AppDispatch
+    dispatch: AppDispatch,
+    setErrorMessage: SetStateFunc<string | null>
 ) {
     const isUniqueDate = !sortedAddressMeterData.some(
         (item: MeterDataWithObjectId) => item.date === formData.date && meterDataEdit?.date !== formData.date
@@ -58,6 +60,10 @@ export async function submitFormData(
     const isDateAlreadyExists = sortedAddressMeterData.some(
         (item: MeterDataWithObjectId) => item.date === format(checkDate(selectDate), "MM.yyyy")
     );
+
+    if (!isEdit && isDateAlreadyExists) {
+        setErrorMessage("This date already exists. Please choose a different date.");
+    }
 
     if (isEdit && meterDataEdit && isUniqueDate) {
         await handleEditMeterData(meterDataEdit, formData, dispatch);
