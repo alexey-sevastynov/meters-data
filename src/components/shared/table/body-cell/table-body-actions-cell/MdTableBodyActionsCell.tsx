@@ -1,23 +1,23 @@
 import { useEffect } from "react";
-import styles from "./tableActionsCell.module.scss";
+import styles from "./tableBodyActionsCell.module.scss";
 import { TableAction, TableRow } from "@/components/shared/table/table-models";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { deleteItemMeterData } from "@/components/shared/table/body-cell/table-actions-cell/tableActionsCell.funcs";
+import { deleteItemMeterData } from "@/components/shared/table/body-cell/table-body-actions-cell/tableActionsBodyCell.funcs";
 import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
 import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 import { getPropertyValue } from "@/lib/utils";
 
-interface MdTableActionsCellProps {
+interface MdTableBodyActionsCellProps {
     id: string;
     actions: TableAction[];
     row: TableRow;
     address: string;
 }
 
-export function MdTableActionsCell({ id, actions, row, address }: MdTableActionsCellProps) {
+export function MdTableBodyActionsCell({ id, actions, row, address }: MdTableBodyActionsCellProps) {
     const theme = useTheme();
     const dispatch = useAppDispatch();
     const translations = useAppSelector(selectTranslations);

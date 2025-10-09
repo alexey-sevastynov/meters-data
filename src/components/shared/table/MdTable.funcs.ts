@@ -10,9 +10,9 @@ export function initDefaultSort(
 ) {
     const defaultSortColumn = findDefaultSortColumn(columns);
 
-    if (defaultSortColumn) {
+    if (defaultSortColumn?.sort) {
         setSortKey(defaultSortColumn.key);
-        setSortDirection(defaultSortColumn.sort!.defaultDirection);
+        setSortDirection(defaultSortColumn.sort.defaultDirection);
     }
 }
 
@@ -24,6 +24,10 @@ export function tableSort(
     columns: TableColumn[],
     currentSortDirection: TableSortDirection
 ) {
+    const column = columns.find((col) => col.key === columnKey);
+
+    if (!column?.sort) return;
+
     if (sortKey === columnKey) {
         const newSortDirection = isSortDirectionAsc(currentSortDirection)
             ? tableSortDirection.desc
@@ -31,10 +35,8 @@ export function tableSort(
 
         setSortDirection(newSortDirection);
     } else {
-        const column = columns.find((col) => col.key === columnKey);
-
         setSortKey(columnKey);
-        setSortDirection(column?.sort?.defaultDirection ?? tableSortDirection.asc);
+        setSortDirection(column.sort.defaultDirection);
     }
 }
 
@@ -49,7 +51,7 @@ export function getSortedTableRows(
 
     const sortColumn = tableConfig.columns.find((column) => column.key === sortKey);
 
-    if (!sortColumn || !sortColumn.sort) return rows;
+    if (!sortColumn?.sort) return rows;
 
     const sortFn = isSortDirectionAsc(sortDirection) ? sortColumn.sort.sortByAsc : sortColumn.sort.sortByDesc;
 

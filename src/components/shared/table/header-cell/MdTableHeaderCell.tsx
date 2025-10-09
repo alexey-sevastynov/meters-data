@@ -9,10 +9,10 @@ import {
     isActionColumnDisabledForReadOnly,
     isActionColumnVisible,
     isColumnAction,
+    isColumnSort,
 } from "@/components/shared/table/header-cell/TableHeaderCell.funcs";
 import { useState, useRef, useEffect } from "react";
 import { MdResizableBox } from "@/components/ui/resizable-box/MdResizableBox";
-import { colorNames } from "@/enums/color-names";
 import { VoidFunc } from "@/types/getter-setter-functions";
 import { maxWidthColumn } from "@/components/shared/table/table-constants";
 import { tableColumnTypes } from "@/components/shared/table/table-enums";
@@ -21,6 +21,7 @@ import { selectTranslations } from "@/store/slices/i-18-next";
 import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
 import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 import { getPropertyValue } from "@/lib/utils";
+import { MdTableHeaderActionsCell } from "@/components/shared/table/header-cell/table-header-actions-cell/MdTableHeaderActionsCell";
 
 interface MdTableHeaderCellProps {
     column: TableColumn;
@@ -30,6 +31,7 @@ interface MdTableHeaderCellProps {
     onSort?: VoidFunc<string>;
 }
 
+// eslint-disable-next-line complexity
 export function MdTableHeaderCell({
     column,
     isReadOnly,
@@ -55,25 +57,19 @@ export function MdTableHeaderCell({
 
     if (isActionColumnVisible(column, isReadOnly, tableAction) && tableAction) {
         return (
-            <th className={styles.tableHeaderCellAction}>
-                {column.isDisplayable && (
-                    <button
-                        style={{
-                            display: getTableCellDisplay(isHiddenCell),
-                        }}
-                        title={getPropertyValue(translations.table, tableAction.label)}
-                        type="button"
-                    >
-                        <MdIcon name={iconNames[tableAction.icon]} color={colorNames.grey} />
-                    </button>
-                )}
-            </th>
+            <MdTableHeaderActionsCell column={column} isHiddenCell={isHiddenCell} tableAction={tableAction} />
         );
     }
 
     if (isColumnAction(column) && isReadOnly) {
         return <th style={{ display: getTableCellDisplay(isHiddenCell), minWidth: "5rem" }} />;
     }
+
+    const onSortClick = () => {
+        if (isColumnSort(column) && onSort) {
+            onSort(column.key);
+        }
+    };
 
     return (
         <th
@@ -85,9 +81,10 @@ export function MdTableHeaderCell({
                 <button
                     className={cn(
                         styles.tableHeaderCellButton,
-                        column.type === tableColumnTypes.number && styles.tableHeaderCellNumber
+                        column.type === tableColumnTypes.number && styles.tableHeaderCellNumber,
+                        isColumnSort(column) && styles.tableHeaderCellButtonSortable
                     )}
-                    onClick={() => onSort?.(column.key)}
+                    onClick={onSortClick}
                     type="button"
                 >
                     <p className={styles.tableHeaderCellLabel}>

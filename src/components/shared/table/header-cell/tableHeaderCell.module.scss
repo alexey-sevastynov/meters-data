@@ -30,7 +30,7 @@
         align-items: center;
         justify-content: space-between;
         padding-right: $paddingRightCellTable;
-        cursor: pointer;
+        cursor: default;
 
         svg {
             opacity: 0;
@@ -49,6 +49,10 @@
         }
     }
 
+    .tableHeaderCellButtonSortable {
+        cursor: pointer;
+    }
+
     .tableHeaderCellLabel {
         font-weight: 600;
         color: var(--color-text-primary);
@@ -57,33 +61,6 @@
 
 .leftResizableHandle {
     @include transition(box-shadow);
-}
-
-.tableHeaderCellAction {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: $widthHeaderCellActionTable;
-    height: $heightRowTable;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-
-    button {
-        svg {
-            display: flex;
-
-            &:hover {
-                fill: $green-hover;
-            }
-        }
-    }
-
-    @include transition(border-color);
-
-    &:hover {
-        border-left-color: var(--color-border);
-        border-right-color: var(--color-border);
-    }
 }
 
 .tableHeaderCellActionForReadOnly {
