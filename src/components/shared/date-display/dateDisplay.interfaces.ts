@@ -13,4 +13,9 @@ export interface DateFormats {
     short: string;
     timeOnly: string;
     fullWithTime: string;
+    iso: string;
+    dayMonthYear: string;
+    monthYear: string;
+    dateTime: string;
+    monthYearFull: string;
 }
