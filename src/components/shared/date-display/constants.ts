@@ -1,10 +1,51 @@
 import { DateFormats } from "@/components/shared/date-display/dateDisplay.interfaces";
 
 export const dateFormats: DateFormats = {
-    full: "yyyy, d MMMM", // Example: 2024 year, 1 January
-    short: "yyyy, d MMM", // Example: 2024, 1 Jan
-    timeOnly: "HH:mm", // Example: 14:35
-    fullWithTime: "yyyy-MM-dd HH:mm:ss", // Example: 2024-01-01 14:35:22
+    /**
+     * Full date with year, day, and full month name.
+     * Example: "2024, 1 January"
+     */
+    full: "yyyy, d MMMM",
+    /**
+     * Short date format with abbreviated month name.
+     * Example: "2024, 1 Jan"
+     */
+    short: "yyyy, d MMM",
+    /**
+     * Time only, in 24-hour format.
+     * Example: "14:35"
+     */
+    timeOnly: "HH:mm",
+    /**
+     * Full ISO-style date and time including seconds.
+     * Example: "2024-01-01 14:35:22"
+     */
+    fullWithTime: "yyyy-MM-dd HH:mm:ss",
+    /**
+     * ISO date format (used in APIs and data storage).
+     * Example: "2024-01-01"
+     */
+    iso: "yyyy-MM-dd",
+    /**
+     * European date format: day, month, and year.
+     * Example: "01.01.2024"
+     */
+    dayMonthYear: "dd.MM.yyyy",
+    /**
+     * Month and year only — often used for meter readings or billing.
+     * Example: "01.2024"
+     */
+    monthYear: "MM.yyyy",
+    /**
+     * Date and time without seconds — compact and user-friendly.
+     * Example: "01.01.2024 14:35"
+     */
+    dateTime: "dd.MM.yyyy HH:mm",
+    /**
+     * Full date with year, day, and full month name.
+     * Example: "1 January, 2024"
+     */
+    monthYearFull: "MMMM, yyyy",
 } as const;
 
 export type DateFormat = (typeof dateFormats)[keyof typeof dateFormats];
@@ -14,6 +55,11 @@ export const dateFormatKeys = {
     short: "short",
     timeOnly: "timeOnly",
     fullWithTime: "fullWithTime",
+    iso: "iso",
+    dayMonthYear: "dayMonthYear",
+    monthYear: "monthYear",
+    dateTime: "dateTime",
+    monthYearFull: "monthYearFull",
 } as const;
 
 export type DateFormatKey = (typeof dateFormatKeys)[keyof typeof dateFormatKeys];

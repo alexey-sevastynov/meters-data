@@ -5,5 +5,5 @@ export interface FormMeterDataType {
     lightDay: string;
     lightNight: string;
     gas: string;
-    water?: string;
+    water: string;
 }

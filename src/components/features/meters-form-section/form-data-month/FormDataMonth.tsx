@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { format, parse, startOfDay } from "date-fns";
+import { format, parse } from "date-fns";
 import styles from "./formDataMonth.module.scss";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { setNotEdit } from "@/store/slices/meters-data/slice";
 import { selectTranslations } from "@/store/slices/i-18-next";
 import {
-    calculateSum,
-    checkDate,
-    getLastMeterValue,
     getNextMonthDate,
+    recalculateTotalLight,
+    resetEditModeOnPathChange,
     setDefaultValue,
+    setEditValues,
+    setLastMeterValues,
     submitFormData,
+    updateDateValue,
+    updateDateWhenNotEdit,
+    updateMeterValue,
 } from "@/components/features/meters-form-section/form-data-month/formDataMonth.funcs";
 import { FormActions } from "@/components/features/meters-form-section/form-data-month/form-actions/FormActions";
 import { FormControls } from "@/components/features/meters-form-section/form-data-month/form-controls/FormControls";
-import { DataPickerValue } from "@/types/data-picker";
 import { categoryKeys } from "@/enums/category-keys";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
-import { numberToString, stringToNumber } from "@/utils/conversion";
+import { FormMeterDataType } from "@/types/form-meter-data";
+import { dateFormats } from "@/components/shared/date-display/constants";
 
 interface FormDataMonthProps {
     isWaterBlock: boolean;
@@ -26,7 +29,6 @@ interface FormDataMonthProps {
     addressPath: string;
 }
 
-// eslint-disable-next-line max-lines-per-function
 export function FormDataMonth({
     isWaterBlock,
     sortedAddressMeterData,
@@ -34,115 +36,78 @@ export function FormDataMonth({
     addressPath,
 }: FormDataMonthProps) {
     const dispatch = useAppDispatch();
-    const [selectDate, setSelectDate] = useState<DataPickerValue>(getNextMonthDate(sortedAddressMeterData));
     const isEdit = useAppSelector((state) => state.metersData.isEdit);
     const meterDataEdit = useAppSelector((state) => state.metersData.meterDataEdit);
-
     const translations = useAppSelector(selectTranslations);
+    const parsedDate = meterDataEdit && parse(meterDataEdit?.date, dateFormats.monthYear, new Date());
+
+    const [meterValues, setMeterValues] = useState<FormMeterDataType>({
+        date: format(getNextMonthDate(sortedAddressMeterData), dateFormats.monthYear),
+        address: addressPath,
+        light: setDefaultValue(categoryKeys.light, sortedAddressMeterData),
+        lightDay: setDefaultValue(categoryKeys.lightDay, sortedAddressMeterData),
+        lightNight: setDefaultValue(categoryKeys.lightNight, sortedAddressMeterData),
+        gas: setDefaultValue(categoryKeys.gas, sortedAddressMeterData),
+        water: setDefaultValue(categoryKeys.water, sortedAddressMeterData),
+    });
 
     useEffect(() => {
-        if (!isEdit) {
-            const nextMonth = getNextMonthDate(sortedAddressMeterData);
-
-            setSelectDate(nextMonth);
-        }
+        if (!isEdit) updateDateWhenNotEdit(sortedAddressMeterData, setMeterValues);
     }, [sortedAddressMeterData, isEdit]);
 
-    const [light, setLight] = useState<string>(() =>
-        setDefaultValue(categoryKeys.light, sortedAddressMeterData)
-    );
-    const [lightDay, setLightDay] = useState<string>(() =>
-        setDefaultValue(categoryKeys.lightDay, sortedAddressMeterData)
-    );
-    const [lightNight, setLightNight] = useState<string>(() =>
-        setDefaultValue(categoryKeys.lightNight, sortedAddressMeterData)
-    );
-    const [gas, setGas] = useState<string>(() => setDefaultValue(categoryKeys.gas, sortedAddressMeterData));
-    const [water, setWater] = useState<string>(() =>
-        setDefaultValue(categoryKeys.water, sortedAddressMeterData)
-    );
-
     useEffect(() => {
-        const totalLight = calculateSum(stringToNumber(lightDay), stringToNumber(lightNight));
-
-        setLight(totalLight);
-    }, [lightDay, lightNight]);
-
-    const parsedDate = meterDataEdit && parse(meterDataEdit?.date, "MM.yyyy", new Date());
-
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        const formData = {
-            date: format(checkDate(selectDate), "MM.yyyy"),
-            address: addressPath,
-            light,
-            lightDay,
-            lightNight,
-            gas,
-            water: water,
-        };
-
-        await submitFormData(
-            formData,
-            sortedAddressMeterData,
-            meterDataEdit,
-            isEdit,
-            addressPath,
-            selectDate,
-            light,
-            lightDay,
-            lightNight,
-            gas,
-            water,
-            dispatch
-        );
-    };
+        recalculateTotalLight(meterValues.lightDay, meterValues.lightNight, setMeterValues);
+    }, [meterValues.lightDay, meterValues.lightNight]);
 
     useEffect(() => {
         if (isEdit && meterDataEdit && parsedDate) {
-            const normalizedDate = startOfDay(parsedDate);
-
-            setSelectDate(normalizedDate);
-            setLight(numberToString(meterDataEdit.light));
-            setLightDay(numberToString(meterDataEdit.lightDay));
-            setLightNight(numberToString(meterDataEdit.lightNight));
-            setGas(numberToString(meterDataEdit.gas));
-
-            if (water && meterDataEdit.water) setWater(numberToString(meterDataEdit.water));
+            setEditValues(meterDataEdit, parsedDate, setMeterValues);
         }
     }, [isEdit]);
 
     useEffect(() => {
-        if (isEdit || !sortedAddressMeterData.length) return;
-
-        setLight(getLastMeterValue(categoryKeys.light, sortedAddressMeterData));
-        setLightDay(getLastMeterValue(categoryKeys.lightDay, sortedAddressMeterData));
-        setLightNight(getLastMeterValue(categoryKeys.lightNight, sortedAddressMeterData));
-        setGas(getLastMeterValue(categoryKeys.gas, sortedAddressMeterData));
-        setWater(getLastMeterValue(categoryKeys.water, sortedAddressMeterData));
+        setLastMeterValues(isEdit, sortedAddressMeterData, setMeterValues);
     }, [isEdit, dispatch]);
 
     useEffect(() => {
-        if (isEdit) dispatch(setNotEdit());
+        resetEditModeOnPathChange(isEdit, dispatch);
     }, [pathname]);
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        await submitFormData(
+            meterValues,
+            sortedAddressMeterData,
+            meterDataEdit,
+            isEdit,
+            addressPath,
+            parse(meterValues.date, dateFormats.monthYear, new Date()),
+            meterValues.light,
+            meterValues.lightDay,
+            meterValues.lightNight,
+            meterValues.gas,
+            meterValues.water,
+            dispatch
+        );
+    };
 
     return (
         <form className={styles.formDataMonth} onSubmit={onSubmit}>
             <FormControls
                 isWaterBlock={isWaterBlock}
-                selectDate={selectDate}
-                setSelectDate={setSelectDate}
-                light={light}
-                setLight={setLight}
-                lightDay={lightDay}
-                setLightDay={setLightDay}
-                lightNight={lightNight}
-                setLightNight={setLightNight}
-                water={water}
-                setWater={setWater}
-                gas={gas}
-                setGas={setGas}
+                selectDate={parse(meterValues.date, dateFormats.monthYear, new Date())}
+                setSelectDate={(date) => updateDateValue(date, setMeterValues)}
+                light={meterValues.light}
+                setLight={(value) => updateMeterValue(categoryKeys.light, value, setMeterValues)}
+                lightDay={meterValues.lightDay}
+                setLightDay={(value) => updateMeterValue(categoryKeys.lightDay, value, setMeterValues)}
+                lightNight={meterValues.lightNight}
+                setLightNight={(value) => updateMeterValue(categoryKeys.lightNight, value, setMeterValues)}
+                water={meterValues.water}
+                setWater={(value) => updateMeterValue(categoryKeys.water, value, setMeterValues)}
+                gas={meterValues.gas}
+                setGas={(value) => updateMeterValue(categoryKeys.gas, value, setMeterValues)}
                 isEdit={isEdit}
                 meterDataEdit={meterDataEdit}
                 sortedAddressMeterData={sortedAddressMeterData}
