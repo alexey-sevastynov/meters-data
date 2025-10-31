@@ -3,23 +3,15 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import svgr from "vite-plugin-svgr";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), svgr()], // register the plugin
-
-    base: "/meters-data/",
-
+    plugins: [react(), svgr()],
+    base: `/meters-data/`,
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
         },
     },
-
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: "modern-compiler",
-            },
-        },
+    build: {
+        chunkSizeWarningLimit: 1500,
     },
 });
