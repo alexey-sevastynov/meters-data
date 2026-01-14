@@ -1,9 +1,10 @@
 import { CategoryName } from "@/enums/category-names";
+import { UnitName } from "@/types/value-names";
 
 export type TypeListUtilityPrices = {
     _id: string;
     category: CategoryName;
     image: string[];
-    valueName: "kW" | "m³" | "piece";
+    valueName: UnitName;
     value: number;
 }[];

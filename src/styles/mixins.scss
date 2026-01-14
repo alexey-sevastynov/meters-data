@@ -85,3 +85,10 @@ $border: 1px solid var(--color-border);
         right: $right;
     }
 }
+
+@mixin bg-glass {
+    background: rgba($white, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba($black, 0.2);
+}

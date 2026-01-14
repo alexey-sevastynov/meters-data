@@ -1,11 +1,11 @@
 .root {
     display: flex;
+    gap: 1rem;
     align-items: center;
-    padding-bottom: 6px;
-    min-width: 190px;
+    justify-content: space-between;
 
     p {
-        min-width: 130px;
+        white-space: nowrap;
     }
 
     .images {

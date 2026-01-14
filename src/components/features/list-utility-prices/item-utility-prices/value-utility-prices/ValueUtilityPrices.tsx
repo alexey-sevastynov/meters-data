@@ -9,11 +9,10 @@ import { numberToString, stringToNumber } from "@/utils/conversion";
 
 interface ValueUtilityPricesProps {
     id: string;
-    valueName: "kW" | "m³" | "piece";
     value: number;
 }
 
-export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesProps) {
+export function ValueUtilityPrices({ value, id }: ValueUtilityPricesProps) {
     const dispatch = useAppDispatch();
     const translations = useAppSelector(selectTranslations);
 
@@ -41,13 +40,11 @@ export function ValueUtilityPrices({ valueName, value, id }: ValueUtilityPricesP
 
     return (
         <div className={styles.root}>
-            <p>1 {translations.value[valueName]} =</p>
             <MdInput
                 value={valueInput}
                 onChange={onChange}
                 onReset={returnCurrentValues}
                 defaultValue={numberToString(value)}
-                label={translations.home.price}
                 step={0.01}
             />
             <MdButton

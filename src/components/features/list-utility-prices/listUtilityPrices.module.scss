@@ -2,9 +2,10 @@
 @use "@/styles/colors.scss" as *;
 
 .root {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 0.5rem;
 
     .loading,
     .error {
