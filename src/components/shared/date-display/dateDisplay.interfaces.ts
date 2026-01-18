@@ -18,4 +18,5 @@ export interface DateFormats {
     monthYear: string;
     dateTime: string;
     monthYearFull: string;
+    fullWithWeekday: string;
 }

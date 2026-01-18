@@ -12,20 +12,17 @@
         @include layoutStyle($widthSidebarCollapsed);
     }
 
-    .title__block {
-        display: flex;
-        column-gap: 50px;
-        row-gap: 20px;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+    .title {
+        @include titlePage;
+    }
 
-        .title {
-            @include titlePage;
-        }
+    .date {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
     }
 
     .subtitle {
-        margin-top: 20px;
+        margin-top: 2rem;
     }
 }

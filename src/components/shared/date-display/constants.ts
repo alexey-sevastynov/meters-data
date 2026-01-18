@@ -46,6 +46,11 @@ export const dateFormats: DateFormats = {
      * Example: "1 January, 2024"
      */
     monthYearFull: "MMMM, yyyy",
+    /**
+     * Full date with year, day, and full month name and weekday.
+     * Example: "Thursday, 1 January 2024"
+     */
+    fullWithWeekday: "EEEE, d MMMM yyyy 'р.'",
 } as const;
 
 export type DateFormat = (typeof dateFormats)[keyof typeof dateFormats];
@@ -60,6 +65,7 @@ export const dateFormatKeys = {
     monthYear: "monthYear",
     dateTime: "dateTime",
     monthYearFull: "monthYearFull",
+    fullWithWeekday: "fullWithWeekday",
 } as const;
 
 export type DateFormatKey = (typeof dateFormatKeys)[keyof typeof dateFormatKeys];

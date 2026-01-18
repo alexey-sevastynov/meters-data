@@ -7,7 +7,7 @@ export function MdDateDisplay({
     date,
     className,
     subTitle,
-    formatType = dateFormatKeys.full,
+    formatType = dateFormatKeys.fullWithWeekday,
     language = languages.en,
 }: MdDateDisplayProps) {
     const lang = language === languages.en ? enUS : uk;

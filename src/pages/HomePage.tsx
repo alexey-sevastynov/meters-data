@@ -7,6 +7,9 @@ import { languages } from "@/components/shared/date-display/constants";
 import { language } from "@/constants/language";
 import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
 import { getSidebarLayoutClass } from "@/helpers/pages/get-sidebar-layout-class";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames } from "@/components/ui/icon/icon-constants";
+import { colorNames } from "@/enums/color-names";
 
 export function HomePage() {
     const sidebarContext = useSidebar();
@@ -18,13 +21,10 @@ export function HomePage() {
     return (
         <section className="home">
             <div className={getSidebarLayoutClass(sidebarContext.isSidebarCollapsed)}>
-                <div className="title__block">
-                    <h3 className="title">{translations.home.home}</h3>
-                    <MdDateDisplay
-                        date={date}
-                        subTitle={translations.home.currentDate}
-                        language={isUkraineLanguage ? languages.ua : languages.en}
-                    />
+                <h3 className="title">{translations.home.welcome}, Lesha! 👋</h3>
+                <div className="date">
+                    <MdIcon name={iconNames.calendar} color={colorNames.grey} />
+                    <MdDateDisplay date={date} language={isUkraineLanguage ? languages.ua : languages.en} />
                 </div>
 
                 <h5 className="subtitle">{translations.home.utilityPrices}</h5>

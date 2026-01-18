@@ -27,6 +27,8 @@ $border: 1px solid var(--color-border);
 
 @mixin titlePage {
     font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 0.5rem;
 }
 
 @mixin noFocusBorder {
