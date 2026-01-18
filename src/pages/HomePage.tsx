@@ -21,7 +21,7 @@ export function HomePage() {
     return (
         <section className="home">
             <div className={getSidebarLayoutClass(sidebarContext.isSidebarCollapsed)}>
-                <h3 className="title">{translations.home.welcome}, Lesha! 👋</h3>
+                <h1 className="title">{translations.home.welcome}, Lesha! 👋</h1>
                 <div className="date">
                     <MdIcon name={iconNames.calendar} color={colorNames.grey} />
                     <MdDateDisplay date={date} language={isUkraineLanguage ? languages.ua : languages.en} />

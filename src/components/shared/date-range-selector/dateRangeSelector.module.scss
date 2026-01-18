@@ -10,6 +10,30 @@ $padding-window: 5px 10px;
 .root {
     position: relative;
 
+    .navWrapper {
+        display: flex;
+        gap: 1rem;
+
+        .navButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:disabled {
+                cursor: not-allowed;
+                svg {
+                    fill: var(--color-bg-disabled);
+                }
+            }
+
+            &:not(:disabled):hover {
+                svg {
+                    fill: var(--color-default-icon-hover);
+                }
+            }
+        }
+    }
+
     .dropdownTrigger {
         display: flex;
         align-items: center;
@@ -40,6 +64,7 @@ $padding-window: 5px 10px;
         border-radius: $border-radius;
         border: $border;
         width: $width;
+        left: 2.5rem;
         height: 30px * 6;
         overflow-y: scroll;
 
@@ -71,6 +96,7 @@ $padding-window: 5px 10px;
         .dropdownTrigger,
         .dropdownContent {
             width: 100%;
+            left: 0;
         }
     }
 }

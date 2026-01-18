@@ -47,14 +47,11 @@ export function MdMonthlyUtilityReport({ isWaterBlock = true }: MdMonthlyUtility
     return (
         <section className={styles.root}>
             <div className={styles.header}>
+                <h2>{translations.address.meterReadings}</h2>
                 <MdDateRangeSelector
-                    data={removeFirstAddedMonth(filterMeterDataByAddress(items, currentPage))}
+                    meterReadings={removeFirstAddedMonth(filterMeterDataByAddress(items, currentPage))}
                     selectedMonth={month}
                     selectedYear={year}
-                />
-                <LinkButtonGroup
-                    linksGroup={getLinkButtons(pathname, translations)}
-                    className={styles.headerButtonGroup}
                 />
             </div>
 

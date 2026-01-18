@@ -30,6 +30,9 @@
         "price": "ціна",
         "currentDate": "Поточна дата"
     },
+    "address": {
+        "meterReadings": "Показники лічильників"
+    },
     "value": {
         "kW": "кВт",
         "m³": "м³",
