@@ -1,6 +1,6 @@
 import "@/styles/pages/graphics.scss";
 import { useLocation, useParams } from "react-router-dom";
-import { navigationItems } from "@/constants/navigation-items";
+import { navigationAddressItems } from "@/constants/navigation-items";
 import { formatDate } from "@/helpers/meters-data/dates/format-date";
 import { useAppSelector } from "@/store/hook";
 import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
@@ -20,7 +20,7 @@ export function GraphicsPage() {
     const addressCurrentPage = pathname.slice(1).replace("/graphics", "");
     const listMetersData = filterMeterDataByAddressAndSortByDate(items, addressCurrentPage);
 
-    const addressItem = navigationItems.find(({ link }) => link === `/${address}`);
+    const addressItem = navigationAddressItems.find(({ link }) => link === `/${address}`);
 
     const dataLight = [];
     const dataGas = [];
@@ -62,7 +62,7 @@ export function GraphicsPage() {
                         items={getBreadcrumbItemsGraphics(
                             address!,
                             addressItem?.text,
-                            `/${address}/${routeNames.graphics}`
+                            `/${address}/${routeNames.graphics}`,
                         )}
                     />
 

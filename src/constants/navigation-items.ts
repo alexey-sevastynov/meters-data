@@ -10,13 +10,14 @@ export interface NavigationItem {
     imageName: string;
 }
 
-export const navigationItems: NavigationItem[] = [
-    {
-        link: appRoutes.home,
-        id: createUniqueId(),
-        text: "Home",
-        imageName: "home.svg",
-    },
+export const navigationHomeItem: NavigationItem = {
+    link: appRoutes.home,
+    id: createUniqueId(),
+    text: "Home",
+    imageName: "home.svg",
+} as const;
+
+export const navigationAddressItems: NavigationItem[] = [
     {
         link: `/${getStringEnv(envKeys.address003)}`,
         id: createUniqueId(),

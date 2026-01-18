@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "@/styles/pages/price.scss";
 import { useParams } from "react-router-dom";
-import { navigationItems } from "@/constants/navigation-items";
+import { navigationAddressItems } from "@/constants/navigation-items";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { getAllUtilityPrice } from "@/store/slices/utility-price-slice";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
@@ -24,7 +24,7 @@ export function PricePage() {
     const utilityPricesStatus = useAppSelector((state) => state.utilityPrices.status);
     const monthlyMoneyCalculations = useAppSelector((state) => state.monthlyMoneyCalculations.items);
     const monthlyMoneyCalculationsStatus = useAppSelector((state) => state.monthlyMoneyCalculations.status);
-    const addressItem = navigationItems.find(({ link }) => link === `/${params.address}`);
+    const addressItem = navigationAddressItems.find(({ link }) => link === `/${params.address}`);
     const addressName = addressItem?.text;
     const route = `/${params.address}/${routeNames.price}`;
 

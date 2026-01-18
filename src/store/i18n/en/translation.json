@@ -4,6 +4,9 @@
         "mail": "Hello, alexseva94@gmail.com",
         "signOut": "Sign out"
     },
+    "sidebar": {
+        "addresses": "Addresses"
+    },
     "home": {
         "home": "Home",
         "utilityPrices": "Utility prices:",

@@ -4,8 +4,11 @@
         "mail": "Привіт, alexseva94@gmail.com",
         "signOut": "Вийти"
     },
+    "sidebar": {
+        "addresses": "Адреси"
+    },
     "home": {
-        "home": "Сюрпризові Відомості",
+        "home": "Головна",
         "utilityPrices": "Ціни на комунальні послуги:",
         "Light general": "Світло",
         "Light day": "Світло день",

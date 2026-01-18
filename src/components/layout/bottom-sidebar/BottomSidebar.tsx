@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./bottomSidebar.module.scss";
-import { navigationItems } from "@/constants/navigation-items";
+import { navigationAddressItems } from "@/constants/navigation-items";
 import { iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdImage } from "@/components/ui/image/MdImage";
 import { updateBottomBarVisibilityOnScroll } from "@/components/layout/bottom-sidebar/bottomSidebar.funcs";
@@ -30,7 +30,7 @@ export function MdBottomSidebar() {
                     className={styles.root}
                 >
                     <ul className={styles.listLinks}>
-                        {navigationItems.map((item) => (
+                        {navigationAddressItems.map((item) => (
                             <li key={item.id} className={styles.itemLink}>
                                 <NavLink
                                     to={item.link}

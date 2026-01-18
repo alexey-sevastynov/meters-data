@@ -1,6 +1,6 @@
 import { addMonths, format, parse, startOfDay } from "date-fns";
 import { SetStateAction } from "react";
-import { navigationItems } from "@/constants/navigation-items";
+import { navigationAddressItems } from "@/constants/navigation-items";
 import { sortMeterDataListByDateAsc } from "@/helpers/meters-data/sort";
 import { CategoryKey, categoryKeys } from "@/enums/category-keys";
 import { DataPickerValue } from "@/types/data-picker";
@@ -24,7 +24,7 @@ import { dateFormats } from "@/components/shared/date-display/constants";
 
 export function updateDateWhenNotEdit(
     sortedAddressMeterData: MeterDataWithObjectId[],
-    setMeterValues: SetStateFunc<FormMeterDataType>
+    setMeterValues: SetStateFunc<FormMeterDataType>,
 ) {
     const nextMonth = getNextMonthDate(sortedAddressMeterData);
     const formattedDate = format(nextMonth, dateFormats.monthYear);
@@ -35,7 +35,7 @@ export function updateDateWhenNotEdit(
 export function recalculateTotalLight(
     lightDay: string,
     lightNight: string,
-    setMeterValues: SetStateFunc<FormMeterDataType>
+    setMeterValues: SetStateFunc<FormMeterDataType>,
 ) {
     const totalLight = calculateSum(stringToNumber(lightDay), stringToNumber(lightNight));
 
@@ -45,7 +45,7 @@ export function recalculateTotalLight(
 export function setEditValues(
     meterDataEdit: MeterDataWithObjectId,
     parsedDate: Date,
-    setMeterValues: SetStateFunc<FormMeterDataType>
+    setMeterValues: SetStateFunc<FormMeterDataType>,
 ) {
     const normalizedDate = startOfDay(parsedDate);
     const formattedDate = format(normalizedDate, dateFormats.monthYear);
@@ -64,7 +64,7 @@ export function setEditValues(
 export function setLastMeterValues(
     isEdit: boolean,
     sortedAddressMeterData: MeterDataWithObjectId[],
-    setMeterValues: SetStateFunc<FormMeterDataType>
+    setMeterValues: SetStateFunc<FormMeterDataType>,
 ) {
     if (isEdit || !sortedAddressMeterData.length) return;
 
@@ -85,7 +85,7 @@ export function resetEditModeOnPathChange(isEdit: boolean, dispatch: AppDispatch
 export function updateMeterValue<K extends keyof FormMeterDataType>(
     key: K,
     value: SetStateAction<FormMeterDataType[K]>,
-    setMeterValues: SetStateFunc<FormMeterDataType>
+    setMeterValues: SetStateFunc<FormMeterDataType>,
 ) {
     setMeterValues((prev) => ({ ...prev, [key]: value }));
 }
@@ -112,14 +112,14 @@ export async function submitFormData(
     lightNight: string,
     gas: string,
     water: string,
-    dispatch: AppDispatch
+    dispatch: AppDispatch,
 ) {
     const isUniqueDate = !sortedAddressMeterData.some(
-        (item: MeterDataWithObjectId) => item.date === formData.date && meterDataEdit?.date !== formData.date
+        (item: MeterDataWithObjectId) => item.date === formData.date && meterDataEdit?.date !== formData.date,
     );
 
     const isDateAlreadyExists = sortedAddressMeterData.some(
-        (item: MeterDataWithObjectId) => item.date === format(checkDate(selectDate), dateFormats.monthYear)
+        (item: MeterDataWithObjectId) => item.date === format(checkDate(selectDate), dateFormats.monthYear),
     );
 
     if (isEdit && meterDataEdit && isUniqueDate) {
@@ -136,7 +136,7 @@ export async function submitFormData(
             stringToNumber(lightNight),
             stringToNumber(gas),
             stringToNumber(water),
-            dispatch
+            dispatch,
         );
     }
 }
@@ -169,7 +169,7 @@ function calculateSum(a: number, b: number) {
                 .replace("{0}", a.toString())
                 .replace("{1}", typeof a)
                 .replace("{2}", b.toString())
-                .replace("{3}", typeof b)
+                .replace("{3}", typeof b),
         );
     }
 
@@ -195,7 +195,7 @@ function checkDate(date: DataPickerValue) {
 async function handleEditMeterData(
     meterDataEdit: MeterDataWithObjectId,
     formData: FormMeterDataType,
-    dispatch: AppDispatch
+    dispatch: AppDispatch,
 ) {
     const response = await dispatch(
         updateMeterData({
@@ -207,7 +207,7 @@ async function handleEditMeterData(
             lightNight: stringToNumber(formData.lightNight),
             gas: stringToNumber(formData.gas),
             water: stringToNumber(formData.water),
-        })
+        }),
     );
 
     if (response.payload) {
@@ -228,7 +228,7 @@ async function handlePostMeterData(
     lightNight: number,
     gas: number,
     water: number,
-    dispatch: AppDispatch
+    dispatch: AppDispatch,
 ) {
     const response = await dispatch(
         createMetersData({
@@ -239,7 +239,7 @@ async function handlePostMeterData(
             lightNight: stringToNumber(formData.lightNight),
             gas: stringToNumber(formData.gas),
             water: stringToNumber(formData.water),
-        })
+        }),
     );
 
     if (response.payload) {
@@ -262,7 +262,7 @@ function generateMessage(
     lightDay: number,
     lightNight: number,
     gas: number,
-    water: number
+    water: number,
 ) {
     let message = `<b>${getAddressName(currentPage)}</b>`;
     const ensureDate = checkDate(selectDate);
@@ -283,5 +283,5 @@ function generateMessage(
 function getAddressName(pageName: string) {
     const unknownAddressString = "Unknown address";
 
-    return navigationItems.find((item) => item.link === `/${pageName}`)?.text || unknownAddressString;
+    return navigationAddressItems.find((item) => item.link === `/${pageName}`)?.text || unknownAddressString;
 }

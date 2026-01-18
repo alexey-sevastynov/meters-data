@@ -1,9 +1,11 @@
 import styles from "./listLinks.module.scss";
-import { navigationItems } from "@/constants/navigation-items";
+import { navigationAddressItems, navigationHomeItem } from "@/constants/navigation-items";
 import { ItemLink } from "@/components/layout/sidebar/list-links/item-link/ItemLink";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { VoidFuncNoParam } from "@/types/getter-setter-functions";
+import { useAppSelector } from "@/store/hook";
+import { selectTranslations } from "@/store/slices/i-18-next";
 
 interface ListLinksProps {
     isSidebarCollapsed: boolean;
@@ -11,10 +13,22 @@ interface ListLinksProps {
 }
 
 export function ListLinks({ isSidebarCollapsed, toggleSidebar }: ListLinksProps) {
+    const translations = useAppSelector(selectTranslations);
+
     return (
         <div className={styles.root}>
             <ul>
-                {navigationItems.map((item) => (
+                <ItemLink
+                    link={navigationHomeItem.link}
+                    text={translations.home["home"] ?? navigationHomeItem.text}
+                    imageName={navigationHomeItem.imageName}
+                    isSidebarCollapsed={isSidebarCollapsed}
+                />
+            </ul>
+
+            {!isSidebarCollapsed && <p className={styles.title}>{translations.sidebar.addresses}</p>}
+            <ul>
+                {navigationAddressItems.map((item) => (
                     <ItemLink
                         key={item.id}
                         link={item.link}
@@ -24,6 +38,7 @@ export function ListLinks({ isSidebarCollapsed, toggleSidebar }: ListLinksProps)
                     />
                 ))}
             </ul>
+
             <button onClick={toggleSidebar}>
                 <MdIcon name={isSidebarCollapsed ? iconNames.caretSquareRight : iconNames.caretSquareLeft} />
             </button>
