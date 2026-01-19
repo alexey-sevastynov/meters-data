@@ -42,7 +42,9 @@
     "infoPanel": {
         "title": "Споживання комунальних послуг за",
         "price": "Ціни",
+        "priceDescription": "Тарифи та розрахунок вартості",
         "graphics": "Графіки",
+        "graphicsDescription": "Графіки споживання комунальних послуг",
         "Light general": "Світло",
         "Light day": "Світло день",
         "Light night": "Світло ніч",

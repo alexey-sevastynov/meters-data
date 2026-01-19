@@ -1,4 +1,13 @@
-.linkButtonGroup {
+@use "@/styles/breakpoints.scss" as *;
+
+.root {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     display: flex;
-    gap: 10px;
+    gap: 1rem;
+
+    @media (max-width: $mobile-xl) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    }
 }

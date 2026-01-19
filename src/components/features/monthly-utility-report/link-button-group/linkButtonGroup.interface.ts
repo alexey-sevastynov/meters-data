@@ -4,6 +4,7 @@ export interface LinkButton {
     path: string;
     iconName: IconName;
     label: string;
+    description: string;
 }
 
 export interface LinkButtonGroupProps {

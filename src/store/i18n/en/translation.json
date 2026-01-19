@@ -43,7 +43,9 @@
     "infoPanel": {
         "title": "Consumption of Utilities for",
         "price": "Price",
+        "priceDescription": "Tariffs and calculation of cost",
         "graphics": "Graphics",
+        "graphicsDescription": "Graphics of Utilities consumption",
         "Light general": "Light",
         "Light day": "Light day",
         "Light night": "Light night",
