@@ -16,6 +16,12 @@ export function getLinkButtons(pathname: string, translations: TranslationKeys) 
             label: translations.infoPanel.graphics,
             description: translations.infoPanel.graphicsDescription,
         },
+        {
+            path: `${pathname}/info`,
+            iconName: iconNames.info,
+            label: translations.infoPanel.info,
+            description: translations.infoPanel.infoDescription,
+        },
     ];
 
     return linksGroup;

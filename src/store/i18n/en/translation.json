@@ -46,6 +46,8 @@
         "priceDescription": "Tariffs and calculation of cost",
         "graphics": "Graphics",
         "graphicsDescription": "Graphics of Utilities consumption",
+        "info": "Info",
+        "infoDescription": "Personal accounts and address information",
         "Light general": "Light",
         "Light day": "Light day",
         "Light night": "Light night",
@@ -93,6 +95,7 @@
     },
     "billingAccount": {
         "title": "Personal accounts",
+        "notData": "No data",
         "copy": "Copy",
         "light": "Light",
         "gas": "Gas",

@@ -7,6 +7,7 @@ import { GraphicsPage } from "@/pages/GraphicsPage";
 import { appRoutes } from "@/constants/routes";
 import { AddressPage } from "@/pages/AddressPage";
 import { addressPages } from "@/routes/address-pages";
+import { InfoPage } from "@/pages/InfoPage";
 
 const routes: RouteObject[] = [
     {
@@ -22,6 +23,7 @@ const routes: RouteObject[] = [
             })),
             { path: appRoutes.price, element: <PricePage /> },
             { path: appRoutes.graphics, element: <GraphicsPage /> },
+            { path: appRoutes.info, element: <InfoPage /> },
         ],
     },
 ];

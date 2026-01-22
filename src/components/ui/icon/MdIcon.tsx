@@ -4,7 +4,6 @@ import { ColorName, colorNames } from "@/enums/color-names";
 import { IconName, IconSize, iconSizes } from "@/components/ui/icon/icon-constants";
 import { RiPriceTagFill } from "react-icons/ri";
 import { IoBarChartSharp, IoTriangle, IoClose, IoLanguage, IoSunny } from "react-icons/io5";
-import { BsCopy } from "react-icons/bs";
 import {
     FaLongArrowAltDown,
     FaLongArrowAltUp,
@@ -19,6 +18,8 @@ import {
     FaSignOutAlt,
     FaPlus,
     FaSort,
+    FaInfo,
+    FaCopy,
 } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { FaCircle, FaCheck, FaGear, FaArrowRight } from "react-icons/fa6";
@@ -47,7 +48,7 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     edit: FaEdit,
     plusCircle: FaPlusCircle,
     triangle: IoTriangle,
-    copy: BsCopy,
+    copy: FaCopy,
     home: GoHome,
     circle: FaCircle,
     calendar: FaCalendarAlt,
@@ -71,6 +72,7 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     water: MdOutlineWaterDrop,
     gas: PiFireSimpleBold,
     light: MdOutlineLightbulb,
+    info: FaInfo,
 } as const;
 
 export function MdIcon({ name, id, color = colorNames.white, size = iconSizes.medium }: MdIconProps) {

@@ -1,0 +1,32 @@
+@use "@/styles/mixins.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
+@use "@/styles/sizes.scss" as *;
+@use "@/styles/colors.scss" as *;
+
+.info {
+    .page-layout--expanded {
+        @include layoutStyle($widthSidebarExpanded);
+    }
+
+    .page-layout--collapsed {
+        @include layoutStyle($widthSidebarCollapsed);
+    }
+
+    .title {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .link {
+            color: $green;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        p {
+            color: $black;
+        }
+    }
+}

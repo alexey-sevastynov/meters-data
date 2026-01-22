@@ -7,7 +7,6 @@ import { getAllUtilityPrice } from "@/store/slices/utility-price-slice";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsPrice } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
-import { MdBillingAccounts } from "@/components/features/billing-accounts/MdBillingAccounts";
 import { MdExtraServicesForm } from "@/components/features/extra-services-form/ExtraServicesForm";
 import { MdListCategoriesWithPrices } from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices";
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
@@ -50,7 +49,6 @@ export function PricePage() {
                 <div className="title">
                     <MdBreadcrumb items={getBreadcrumbItemsPrice(params.address!, addressName, route)} />
                 </div>
-                <MdBillingAccounts />
                 <MdExtraServicesForm dispatch={dispatch} />
                 <div className="overflow-auto mt-40">
                     <MdListCategoriesWithPrices dispatch={dispatch} />

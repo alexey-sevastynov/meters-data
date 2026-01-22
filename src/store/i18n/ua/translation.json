@@ -45,6 +45,8 @@
         "priceDescription": "Тарифи та розрахунок вартості",
         "graphics": "Графіки",
         "graphicsDescription": "Графіки споживання комунальних послуг",
+        "info": "Інформація",
+        "infoDescription": "Дані по особистих рахунках та адресу",
         "Light general": "Світло",
         "Light day": "Світло день",
         "Light night": "Світло ніч",
@@ -91,6 +93,7 @@
     },
     "billingAccount": {
         "title": "Особисті рахунки",
+        "notData": "Дані відсутні",
         "copy": "Копіювати",
         "light": "Світло",
         "gas": "Газ",

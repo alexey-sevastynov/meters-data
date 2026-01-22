@@ -1,14 +1,22 @@
 .root {
     display: flex;
     gap: 10px;
-
+    .title {
+        width: 4rem;
+    }
     .content {
         display: flex;
         align-items: center;
-        gap: 10px;
-
+        gap: 1rem;
         .value {
             letter-spacing: 0.8px;
+        }
+        .copy {
+            &:hover {
+                svg {
+                    fill: var(--color-default-icon-hover);
+                }
+            }
         }
     }
 }
