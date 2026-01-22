@@ -87,9 +87,21 @@ $border: 1px solid var(--color-border);
     }
 }
 
-@mixin bg-glass {
+@mixin bg-glass($with-shadow: true) {
     background: rgba($white, 0.06);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba($black, 0.2);
+
+    @if $with-shadow {
+        box-shadow: 0 8px 32px rgba($black, 0.2);
+    }
+}
+
+@mixin hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

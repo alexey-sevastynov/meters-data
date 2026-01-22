@@ -3,7 +3,7 @@
 @use "@/styles/breakpoints.scss" as *;
 
 .root {
-    @include bg-glass;
+    @include bg-glass(false);
 
     padding: 1rem;
     display: flex;
@@ -38,9 +38,5 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
-    }
-
-    @media (max-width: $mobile-xl) {
-        width: unset;
     }
 }

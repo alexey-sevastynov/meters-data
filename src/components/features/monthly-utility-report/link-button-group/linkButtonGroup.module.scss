@@ -1,13 +1,13 @@
 @use "@/styles/breakpoints.scss" as *;
+@use "@/styles/mixins.scss" as *;
 
 .root {
+    width: 100%;
     margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
     gap: 1rem;
-
-    @media (max-width: $mobile-xl) {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-    }
+    box-sizing: border-box;
+    overflow-x: auto;
+    @include hide-scrollbar;
 }
