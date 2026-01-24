@@ -81,13 +81,17 @@
         "refresh": "Refresh"
     },
     "graphics": {
-        "graphics": "graphics",
+        "title": "Consumption graphs",
+        "description": "Analysis of utility usage",
         "graphic": "graphic",
-        "Light": "Light",
-        "Light day": "Light Day",
-        "Light night": "Light Night",
-        "Gas": "Gas",
-        "Water": "Water"
+        "lightTitle": "Light (kW)",
+        "gasTitle": "Gas (m3)",
+        "waterTitle": "Water (m3)",
+        "light": "Total light",
+        "lightDay": "Light day",
+        "lightNight": "Light night",
+        "gas": "Gas",
+        "water": "Water"
     },
     "metersData": {
         "Meter Reading Submission Form for the end of the month": "Meter Reading Submission Form for the end of the month",

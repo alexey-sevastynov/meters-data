@@ -1,80 +1,31 @@
 import "@/styles/pages/graphics.scss";
-import { useLocation, useParams } from "react-router-dom";
-import { navigationAddressItems } from "@/constants/navigation-items";
-import { formatDate } from "@/helpers/meters-data/dates/format-date";
-import { useAppSelector } from "@/store/hook";
-import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
-import { MdChart } from "@/components/shared/chart/MdChart";
+import { useParams } from "react-router-dom";
 import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsGraphics } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
 import { useSidebar } from "@/components/context/sidebar-provider/SidebarProvider";
 import { getSidebarLayoutClass } from "@/helpers/pages/get-sidebar-layout-class";
+import { MdGraphicHeader } from "@/components/features/graphics/graphics-header/MdGraphicsHeader";
+import { MdGraphicsChartSection } from "@/components/features/graphics/graphics-chart-section/MdGraphicsChartSection";
+import { getNavigationItem } from "@/helpers/links/navigation-items";
 
 export function GraphicsPage() {
     const sidebarContext = useSidebar();
-    const { address } = useParams();
-    const { pathname } = useLocation();
-
-    const items = useAppSelector((state) => state.metersData.items);
-    const addressCurrentPage = pathname.slice(1).replace("/graphics", "");
-    const listMetersData = filterMeterDataByAddressAndSortByDate(items, addressCurrentPage);
-
-    const addressItem = navigationAddressItems.find(({ link }) => link === `/${address}`);
-
-    const dataLight = [];
-    const dataGas = [];
-    const dataWater = [];
-
-    for (let i = 1; i < listMetersData.length; i++) {
-        const currentMonth = listMetersData[i];
-        const previousMonth = listMetersData[i - 1];
-
-        const lightDiff = currentMonth.light - previousMonth.light;
-        const lightDayDiff = currentMonth.lightDay - previousMonth.lightDay;
-        const lightNightDiff = currentMonth.lightNight - previousMonth.lightNight;
-        const gasDiff = currentMonth.gas - previousMonth.gas;
-        const waterDiff =
-            (currentMonth.water && previousMonth.water && currentMonth.water - previousMonth.water) || null;
-
-        const label = formatDate(currentMonth.date);
-
-        dataLight.push({
-            label,
-            light: lightDiff,
-            lightDay: lightDayDiff,
-            lightNight: lightNightDiff,
-        });
-
-        dataGas.push({
-            label,
-            gas: gasDiff >= 0 ? gasDiff : 0,
-        });
-
-        dataWater.push({ label, water: waterDiff });
-    }
+    const routeParams = useParams();
+    const navigationAddressItem = getNavigationItem(routeParams.address);
+    const addressName = navigationAddressItem?.text;
+    const appRoutePath = `/${routeParams.address}/${routeNames.graphics}`;
 
     return (
         <div className="graphics">
             <div className={getSidebarLayoutClass(sidebarContext.isSidebarCollapsed)}>
                 <div className="title">
                     <MdBreadcrumb
-                        items={getBreadcrumbItemsGraphics(
-                            address!,
-                            addressItem?.text,
-                            `/${address}/${routeNames.graphics}`,
-                        )}
+                        items={getBreadcrumbItemsGraphics(routeParams.address!, addressName, appRoutePath)}
                     />
-
-                    <div className="items">
-                        <MdChart data={dataLight} title={"Light"} />
-                        <MdChart data={dataGas} title={"Gas"} />
-
-                        {dataWater.every((item) => item.water !== null) && (
-                            <MdChart data={dataWater} title={"Water"} />
-                        )}
-                    </div>
                 </div>
+                <MdGraphicHeader />
+                <MdGraphicsChartSection />
             </div>
         </div>
     );

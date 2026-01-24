@@ -79,13 +79,17 @@
         "refresh": "Оновити"
     },
     "graphics": {
-        "graphics": "графіки",
+        "title": "Графіки споживання",
+        "description": "Аналітика використання комунальних послуг",
         "graphic": "графік",
-        "Light": "Світло",
-        "Light day": "Світло День",
-        "Light night": "Світло Ніч",
-        "Gas": "Газ",
-        "Water": "Вода"
+        "lightTitle": "Електроенергія (кВт)",
+        "gasTitle": "Газ (м3)",
+        "waterTitle": "Вода (м3)",
+        "light": "Загальна світло",
+        "lightDay": "Світло день",
+        "lightNight": "Світло ніч",
+        "gas": "Газ",
+        "water": "Вода"
     },
     "metersData": {
         "Meter Reading Submission Form for the end of the month": "Форма для заповнення показників лічильника на кінець місяця",

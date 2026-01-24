@@ -26,72 +26,74 @@ defaults.responsive = true;
 interface MdChartProps {
     data: ChartsDataType[];
     title: string;
+    titleKey: string;
 }
 
-export function MdChart({ data, title }: MdChartProps) {
+export function MdChart({ data, title, titleKey }: MdChartProps) {
     const theme = useTheme();
     const translations = useAppSelector(selectTranslations);
-    const filteredData = data.map((obj: ChartsDataType) => {
-        const { label, light, lightDay, lightNight, gas, water } = obj;
-
-        if (water === null) {
+    const filteredData = data.map((chartData: ChartsDataType) => {
+        if (chartData.water === null) {
             return {
-                label,
-                light,
-                lightDay,
-                lightNight,
-                gas,
+                label: chartData.label,
+                light: chartData.light,
+                lightDay: chartData.lightDay,
+                lightNight: chartData.lightNight,
+                gas: chartData.gas,
             };
         } else {
-            return { ...obj };
+            return { ...chartData };
         }
     });
 
     return (
         <div className={styles.root}>
-            <h4>
-                {title} {translations.graphics["graphic"]}:
-            </h4>
+            <h4>{title}</h4>
             <Line
                 data={{
                     labels: filteredData.map((obj) => obj.label),
                     datasets: [
                         {
-                            label: "Light",
+                            label: translations.graphics.light,
+                            labelKey: "Light",
                             data: filteredData.map((obj) => obj.light),
                             backgroundColor: styles.green,
                             borderColor: styles.green,
                         },
                         {
-                            label: "Light Night",
+                            label: translations.graphics.lightDay,
+                            labelKey: "Light Night",
                             data: filteredData.map((obj) => obj.lightNight),
                             backgroundColor: styles.grey,
                             borderColor: styles.grey,
                         },
                         {
-                            label: "Light Day",
+                            label: translations.graphics.lightNight,
+                            labelKey: "Light Day",
                             data: filteredData.map((obj) => obj.lightDay),
                             backgroundColor: styles.lightGreen,
                             borderColor: styles.lightGreen,
                         },
                         {
-                            label: "Gas",
+                            label: translations.graphics.gas,
+                            labelKey: "Gas",
                             data: filteredData.map((obj) => obj.gas),
                             backgroundColor: styles.red,
                             borderColor: styles.red,
                         },
                         {
-                            label: "Water",
+                            label: translations.graphics.water,
+                            labelKey: "Water",
                             data: filteredData.map((obj) => obj.water),
                             backgroundColor: styles.blue,
                             borderColor: styles.blue,
                         },
                     ].filter((dataset) =>
-                        title !== "Light"
-                            ? dataset.label === title
-                            : dataset.label === "Light" ||
-                              dataset.label === "Light Day" ||
-                              dataset.label === "Light Night"
+                        titleKey !== "Light"
+                            ? dataset.labelKey === titleKey
+                            : dataset.labelKey === "Light" ||
+                              dataset.labelKey === "Light Day" ||
+                              dataset.labelKey === "Light Night",
                     ),
                 }}
                 options={getChartOptions(theme.themeMode)}
