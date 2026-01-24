@@ -20,6 +20,7 @@ interface MdInputGroupProps {
     label?: string;
     onChange?: VoidFunc<Option[]>;
     preventClearLastOption?: boolean;
+    value?: Option[];
 }
 
 export function MdInputGroup({
@@ -28,6 +29,7 @@ export function MdInputGroup({
     label,
     onChange,
     preventClearLastOption = false,
+    value,
 }: MdInputGroupProps) {
     const translations = useAppSelector(selectTranslations);
 
@@ -52,6 +54,7 @@ export function MdInputGroup({
                     Menu: MdMenu,
                 }}
                 defaultValue={defaultValue}
+                value={value}
                 closeMenuOnSelect={true}
                 className={styles.select}
                 options={options}

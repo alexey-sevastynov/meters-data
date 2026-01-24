@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import styles from "./tableFilters.module.scss";
 import { MdInputGroup } from "@/components/ui/input-group/MdInputGroup";
 import {
-    getAllYears,
-    isCurrentYearSelectionNeeded,
+    getAvailableYears,
+    onAutomaticYearSelection,
 } from "@/components/features/meters-table-manager/table-filters/tableFilters.funcs";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { Option } from "@/components/ui/input-group/input-group-models";
@@ -33,37 +33,34 @@ export function TableFilters({
     onRefresh,
 }: TableFiltersProps) {
     const translations = useAppSelector(selectTranslations);
-    const allYears = useMemo(() => getAllYears(sortedAddressMeterData), [sortedAddressMeterData]);
+    const availableYears = useMemo(() => getAvailableYears(sortedAddressMeterData), [sortedAddressMeterData]);
+    const previousLatestYearRef = useRef<string | null>(null);
 
     useEffect(() => {
-        if (isCurrentYearSelectionNeeded(allYears, selectedYears)) {
-            setSelectedYears([allYears[0]]);
-        }
-    }, [allYears, selectedYears, setSelectedYears]);
+        onAutomaticYearSelection(availableYears, selectedYears, previousLatestYearRef, setSelectedYears);
+    }, [availableYears, selectedYears, setSelectedYears]);
 
     return (
         <div className={styles.root}>
             <MdIconButton
                 iconName={iconNames.refresh}
-                tooltip={translations.btn.refresh as string}
+                tooltip={translations.btn.refresh}
                 onClick={onRefresh}
             />
             <MdInputGroup
-                options={allYears}
-                defaultValue={allYears.length > 0 ? [allYears[0]] : []}
-                label={translations.inputGroup.selectYears as string}
-                onChange={(selected) => {
-                    setSelectedYears(selected);
-                }}
+                options={availableYears}
+                defaultValue={availableYears.length > 0 ? [availableYears[0]] : []}
+                value={selectedYears}
+                label={translations.inputGroup.selectYears}
+                onChange={(selected) => setSelectedYears(selected)}
                 preventClearLastOption={true}
             />
             <MdInputGroup
                 options={columnVisibilityOptions}
                 defaultValue={visibleColumns}
-                label={translations.inputGroup.selectColumns as string}
-                onChange={(selected) => {
-                    setVisibleColumns(selected);
-                }}
+                value={visibleColumns}
+                label={translations.inputGroup.selectColumns}
+                onChange={(selected) => setVisibleColumns(selected)}
             />
         </div>
     );
