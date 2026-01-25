@@ -1,10 +1,11 @@
 import { parse, format, isValid } from "date-fns";
-import { enUS } from "date-fns/locale";
 import { dateFormats } from "@/components/shared/date-display/constants";
+import { LanguageKey, languageKeys } from "@/enums/language-keys";
+import { getLocale } from "@/helpers/language/get-current-language";
 
-export function formatDate(inputDate: string) {
+export function formatDate(inputDate: string, language: LanguageKey = languageKeys.en) {
     const parsedDate = parse(inputDate, dateFormats.monthYear, new Date());
-    const formattedDate = format(parsedDate, dateFormats.monthYearFull, { locale: enUS });
+    const formattedDate = format(parsedDate, dateFormats.monthYearFull, { locale: getLocale(language) });
 
     return formattedDate;
 }
