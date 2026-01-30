@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef } from "react";
 import styles from "./tableFilters.module.scss";
-import { MdInputGroup } from "@/components/ui/input-group/MdInputGroup";
+import { MdInputGroup } from "@/components/ui/select/input-group/MdInputGroup";
 import {
     getAvailableYears,
     onAutomaticYearSelection,
 } from "@/components/features/meters-table-manager/table-filters/tableFilters.funcs";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 import { VoidFunc, VoidFuncNoParam } from "@/types/getter-setter-functions";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";

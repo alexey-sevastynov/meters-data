@@ -1,35 +1,55 @@
 @use "@/styles/colors.scss" as *;
 @use "@/styles/mixins.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
 
 .root {
-    min-width: max-content;
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    .list {
+        overflow-x: auto;
+    }
 
     .item {
-        padding-left: 40px;
         display: flex;
         gap: 20px;
 
         p {
             line-height: 1.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .title {
-            font-weight: bold;
         }
     }
 
     .itemLast {
         border-top: $border;
+        display: flex;
+        justify-content: space-between;
+
+        .value {
+            color: var(--color-text-blue);
+        }
     }
 
     .footer {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         gap: 20px;
+    }
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-        }
+    .buttons {
+        margin-top: 1rem;
+        display: flex;
+        gap: 20px;
+    }
+
+    @media (max-width: $mobile-xl) {
+        min-width: 100%;
     }
 }

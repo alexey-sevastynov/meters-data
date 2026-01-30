@@ -7,7 +7,6 @@ import { MdBreadcrumb } from "@/components/shared/breadcrumb/MdBreadcrumb";
 import { getBreadcrumbItemsPrice } from "@/constants/breadcrumb-items";
 import { routeNames } from "@/constants/routes";
 import { MdExtraServicesForm } from "@/components/features/extra-services-form/ExtraServicesForm";
-import { MdListCategoriesWithPrices } from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices";
 import { MdMonthlyMoneyCalculations } from "@/components/features/monthly-money-calculations/MonthlyMoneyCalculations";
 import { getAllMonthlyMoneyCalculations } from "@/store/slices/monthly-money-calculations/monthly-money-calculations.thunks";
 import { statusNames } from "@/constants/status";
@@ -52,9 +51,6 @@ export function PricePage() {
                     />
                 </div>
                 <MdExtraServicesForm dispatch={dispatch} />
-                <div className="overflow-auto mt-40">
-                    <MdListCategoriesWithPrices dispatch={dispatch} />
-                </div>
                 <MdMonthlyMoneyCalculations />
             </div>
         </div>

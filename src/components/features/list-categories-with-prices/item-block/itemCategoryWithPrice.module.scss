@@ -1,0 +1,46 @@
+@use "@/styles/mixins.scss" as *;
+
+.root {
+    position: relative;
+
+    &:nth-child(1) {
+        border-bottom: $border;
+    }
+
+    .button {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &:hover {
+            svg {
+                fill: var(--color-default-icon-hover);
+            }
+        }
+    }
+
+    .itemDelete {
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .item {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+
+        p {
+            line-height: 1.8;
+        }
+
+        .title {
+        }
+    }
+    .itemDate {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+}

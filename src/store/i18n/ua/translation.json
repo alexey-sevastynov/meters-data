@@ -114,9 +114,11 @@
         "ukraine": "Українська"
     },
     "price": {
+        "title": "Місячні рахунки",
+        "addNewAccount": "Додати новий рахунок",
         "price": "Ціна",
         "addCategory": "Додати категорію",
-        "amount": "Кількість",
+        "amount": "Кількість грошей",
         "date": "Дата",
         "monthlyMoneyCalculations": "Місячні рахунки",
         "choosePeriod": "Виберіть період"

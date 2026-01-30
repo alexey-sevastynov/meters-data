@@ -6,14 +6,14 @@ import { iconNames } from "@/components/ui/icon/icon-constants";
 import { TableAction } from "@/components/shared/table/table-models";
 import { AppDispatch } from "@/store/store";
 import { getYearFromDate } from "@/helpers/meters-data/dates/get-date";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 import { crudActionNames } from "@/constants/crud-action-names";
 
 export function initialTableMeterDataConfig(
     data: MeterDataWithObjectId[],
     filteredData: MeterDataWithObjectId[],
     isVisibleWaterColumn: boolean,
-    dispatch: AppDispatch
+    dispatch: AppDispatch,
 ) {
     const tableConfig: TableConfig = {
         columns: getTableMeterDataColumns(isVisibleWaterColumn),
@@ -26,7 +26,7 @@ export function initialTableMeterDataConfig(
 
 export function filterBySelectedYears(
     data: MeterDataWithObjectId[],
-    selectedYears: Option[]
+    selectedYears: Option[],
 ): MeterDataWithObjectId[] {
     const result: MeterDataWithObjectId[] = [];
     const selectedYearSet = new Set(selectedYears.map((opt) => opt.value));

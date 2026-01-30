@@ -10,7 +10,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { useLocation } from "react-router-dom";
 import { filterMeterDataByAddressAndSortByDate } from "@/helpers/meters-data/filters";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 import {
     getTableMeterDataColumnVisibilityOptions,
     getTableMeterDataMetaColumnVisibilityOptions,
@@ -32,19 +32,19 @@ export function MdMetersTableManager({ isWaterBlock = true }: MetersTableManager
     const sortedAddressMeterData = filterMeterDataByAddressAndSortByDate(meterReadingsList, addressPath);
     const [selectedYears, setSelectedYears] = useState<Option[]>([]);
     const [visibleColumns, setVisibleColumns] = useState<Option[]>(
-        getTableMeterDataMetaColumnVisibilityOptions(translations)
+        getTableMeterDataMetaColumnVisibilityOptions(translations),
     );
 
     const filteredByYear = useMemo(
         () => filterBySelectedYears(sortedAddressMeterData, selectedYears),
-        [sortedAddressMeterData, selectedYears]
+        [sortedAddressMeterData, selectedYears],
     );
 
     const tableMeterDataConfig = initialTableMeterDataConfig(
         sortedAddressMeterData,
         filteredByYear,
         isWaterBlock,
-        dispatch
+        dispatch,
     );
 
     const refreshMetersTableData = () => {
@@ -69,7 +69,7 @@ export function MdMetersTableManager({ isWaterBlock = true }: MetersTableManager
                     listHiddenColumns={[
                         ...getHiddenColumnListKeys(
                             getTableMeterDataColumnVisibilityOptions(translations),
-                            visibleColumns
+                            visibleColumns,
                         ),
                     ]}
                 />

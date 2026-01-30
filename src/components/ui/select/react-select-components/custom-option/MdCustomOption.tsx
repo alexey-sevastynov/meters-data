@@ -1,8 +1,8 @@
 import styles from "./customOption.module.scss";
 import { OptionProps } from "react-select";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 
-export function MdCustomOption(props: OptionProps<Option, true>) {
+export function MdCustomOption<IsMulti extends boolean = false>(props: OptionProps<Option, IsMulti>) {
     return (
         <div className={styles.option} ref={props.innerRef} {...props.innerProps}>
             {props.data.label}

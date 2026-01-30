@@ -19,7 +19,7 @@ export function addValueUtilityPrice(
     id: string,
     inputValue: string,
     selectedOption: string,
-    dispatch: AppDispatch
+    dispatch: AppDispatch,
 ) {
     if (!id && !inputValue) return;
 
@@ -28,6 +28,6 @@ export function addValueUtilityPrice(
             title: selectedOption,
             description: inputValue,
             percentDifference: 0,
-        })
+        }),
     );
 }

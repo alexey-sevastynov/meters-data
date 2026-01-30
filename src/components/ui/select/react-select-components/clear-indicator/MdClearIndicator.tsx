@@ -3,11 +3,13 @@ import { ClearIndicatorProps, GroupBase } from "react-select";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { colorNames } from "@/enums/color-names";
-import { CustomSelectProps, Option } from "@/components/ui/input-group/input-group-models";
-import { isClearIndicatorShouldBeHidden } from "@/components/ui/input-group/clear-indicator/clearIndicator.funcs";
+import { CustomSelectProps, Option } from "@/components/ui/select/select-models";
+import { isClearIndicatorShouldBeHidden } from "@/components/ui/select/react-select-components/clear-indicator/clearIndicator.funcs";
 
-export function MdClearIndicator(
-    props: ClearIndicatorProps<Option, true, GroupBase<Option>> & { selectProps: CustomSelectProps<Option> }
+export function MdClearIndicator<OptionType = Option, IsMulti extends boolean = true>(
+    props: ClearIndicatorProps<OptionType, IsMulti, GroupBase<OptionType>> & {
+        selectProps: CustomSelectProps<OptionType>;
+    },
 ) {
     if (isClearIndicatorShouldBeHidden(props.selectProps.value, props.selectProps.preventClearLastOption)) {
         return null;

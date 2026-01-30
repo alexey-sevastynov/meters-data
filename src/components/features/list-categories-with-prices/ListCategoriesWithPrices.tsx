@@ -19,7 +19,7 @@ import {
 import { colorNames } from "@/enums/color-names";
 import { stringToNumber } from "@/utils/conversion";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { ItemBlock } from "@/components/features/list-categories-with-prices/item-block/ItemBlock";
+import { MdItemCategoryWithPrice } from "@/components/features/list-categories-with-prices/item-block/ItemCategoryWithPrice";
 import { getPropertyValue } from "@/lib/utils";
 import { UtilityCost } from "@/types/utility-cost";
 
@@ -31,7 +31,7 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
     const { pathname } = useLocation();
     const translations = useAppSelector(selectTranslations);
     const currentPageName = pathname.replace(/^\/|\/price$/g, "");
-    const currentItem = useAppSelector((state) => state.monthlyMoneyCalculations.utilityCosts);
+    const utilityCosts = useAppSelector((state) => state.monthlyMoneyCalculations.utilityCosts);
     const sumMoney = useAppSelector((state) => state.monthlyMoneyCalculations.sumMoney);
     const utilityPrices = useAppSelector((state) => state.utilityPrices.items);
     const allListMonthlyMoneyCalculations = useAppSelector((state) => state.monthlyMoneyCalculations.items);
@@ -40,24 +40,24 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
     const infoMeterReading = useAppSelector((state) => state.metersData.infoMeterReading);
     const listInfoDataMonth = getPropertyValue<typeof infoMeterReading, string, UtilityCost[]>(
         infoMeterReading,
-        getKeyOnPage(currentPageName)
+        getKeyOnPage(currentPageName),
     );
-    const dateCurrent = currentItem && currentItem.find((item) => item.title === "Date")?.description;
+    const dateCurrent = utilityCosts && utilityCosts.find((item) => item.title === "Date")?.description;
     const isUniqueObj = !allListMonthlyMoneyCalculations?.some(
-        (item) => item.data[0]?.description === dateCurrent && item.address === currentPageName
+        (item) => item.data[0]?.description === dateCurrent && item.address === currentPageName,
     );
 
     const onSaveItem = useCallback(() => {
-        saveItemDB(currentItem, sumMoney, isUniqueObj, currentPageName, dispatch);
-    }, [currentItem, sumMoney, isUniqueObj, currentPageName, dispatch]);
+        saveItemDB(utilityCosts, sumMoney, isUniqueObj, currentPageName, dispatch);
+    }, [utilityCosts, sumMoney, isUniqueObj, currentPageName, dispatch]);
 
     const onDeleteItem = (title: string, value: string) => {
         dispatch(deleteUtilityItem({ title, value: stringToNumber(value) }));
     };
 
     const onEditItem = useCallback(() => {
-        editItem(currentItem, sumMoney, idEdit, dispatch);
-    }, [currentItem, sumMoney, idEdit, dispatch]);
+        editItem(utilityCosts, sumMoney, idEdit, dispatch);
+    }, [utilityCosts, sumMoney, idEdit, dispatch]);
 
     const onCancel = () => {
         dispatch(resetEdit());
@@ -69,35 +69,40 @@ export function MdListCategoriesWithPrices({ dispatch }: ListCategoriesWithPrice
 
     return (
         <ul className={styles.root}>
-            {currentItem?.map(({ title, description }) => (
-                <ItemBlock
-                    key={title}
-                    title={title}
-                    description={description}
-                    showDelete={isShowDeleteButton(title)}
-                    onDelete={onDeleteItem}
-                />
-            ))}
+            <div className={styles.list}>
+                {utilityCosts?.map((utilityCost) => (
+                    <MdItemCategoryWithPrice
+                        key={utilityCost.title}
+                        title={utilityCost.title}
+                        description={utilityCost.description}
+                        showDelete={isShowDeleteButton(utilityCost.title)}
+                        onDelete={onDeleteItem}
+                    />
+                ))}
 
-            <div className={styles.footer}>
-                <li className={cn(styles.item, styles.itemLast)}>
-                    <p className={styles.title}>{translations.price.amount}:</p>
-                    <p>
-                        {sumMoney} {translations.value.uah}
-                    </p>
-                </li>
+                <div className={styles.footer}>
+                    <li className={cn(styles.item, styles.itemLast)}>
+                        <p className={styles.title}>{translations.price.amount}:</p>
+                        <p className={styles.value}>
+                            {sumMoney} {translations.value.uah}
+                        </p>
+                    </li>
+                </div>
+            </div>
+
+            <div className={styles.buttons}>
                 {isEdit ? (
-                    <div className={styles.buttons}>
+                    <>
                         <MdButton type="button" onClick={onCancel} color={colorNames.red}>
-                            Cancel
+                            {translations.btn.cancel}
                         </MdButton>
                         <MdButton type="button" onClick={onEditItem} color={colorNames.green}>
-                            Edit
+                            {translations.btn.save}
                         </MdButton>
-                    </div>
+                    </>
                 ) : (
                     <MdButton type="button" onClick={onSaveItem} disabled={!isUniqueObj}>
-                        Save
+                        {translations.btn.save}
                     </MdButton>
                 )}
             </div>

@@ -1,9 +1,11 @@
 import styles from "./control.module.scss";
 import { ControlProps } from "react-select";
 import { cn } from "@/lib/cn";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 
-export function MdControl(props: ControlProps<Option, true>) {
+export function MdControl<OptionType = Option, IsMulti extends boolean = false>(
+    props: ControlProps<OptionType, IsMulti>,
+) {
     return (
         <div
             {...props.innerProps}

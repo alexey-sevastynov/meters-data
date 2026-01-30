@@ -1,6 +1,6 @@
 import styles from "./preventableMultiValueRemove.module.scss";
 import { MultiValueRemoveProps } from "react-select";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 import { cn } from "@/lib/cn";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";

@@ -1,12 +1,12 @@
 import { iconNames, iconSizes } from "@/components/ui/icon/icon-constants";
-import styles from "./itemBlock.module.scss";
+import styles from "./itemCategoryWithPrice.module.scss";
 import { useTheme } from "@/components/context/theme-provider/ThemeProvider";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
-import { getIconColorByTheme } from "@/helpers/theme/get-icon-color";
+import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
 import { useAppSelector } from "@/store/hook";
 import { selectTranslations } from "@/store/slices/i-18-next";
-import { colorNames } from "@/enums/color-names";
 import { titlesForMeterReadings } from "@/constants/titles-for-meter-readings";
+import { cn } from "@/lib/cn";
 
 interface ItemBlockProps {
     title: string;
@@ -15,7 +15,7 @@ interface ItemBlockProps {
     onDelete: (title: string, value: string) => void;
 }
 
-export function ItemBlock({ title, description, showDelete, onDelete }: ItemBlockProps) {
+export function MdItemCategoryWithPrice({ title, description, showDelete, onDelete }: ItemBlockProps) {
     const theme = useTheme();
     const translations = useAppSelector(selectTranslations);
 
@@ -29,13 +29,19 @@ export function ItemBlock({ title, description, showDelete, onDelete }: ItemBloc
                     onClick={() => onDelete(title, description)}
                 >
                     <MdIcon
-                        name={iconNames.close}
+                        name={iconNames.delete}
                         size={iconSizes.large}
-                        color={getIconColorByTheme(colorNames.lightRed, colorNames.red, theme.themeMode)}
+                        color={getBaseIconColor(theme.themeMode)}
                     />
                 </button>
             )}
-            <li className={styles.item}>
+            <li
+                className={cn(
+                    styles.item,
+                    showDelete && styles.itemDelete,
+                    title === titlesForMeterReadings.date && styles.itemDate,
+                )}
+            >
                 <p className={styles.title}>{title}:</p>
                 <p>
                     {description} {title === titlesForMeterReadings.date ? "" : translations.value.uah}

@@ -12,8 +12,10 @@ import { colorNames } from "@/enums/color-names";
 import { useAppSelector } from "@/store/hook";
 import { numberToString } from "@/utils/conversion";
 import { selectTranslations } from "@/store/slices/i-18-next";
-
-const fixedWaterString = "Fixed Water";
+import { MdIcon } from "@/components/ui/icon/MdIcon";
+import { iconNames } from "@/components/ui/icon/icon-constants";
+import { Option } from "@/components/ui/select/select-models";
+import { MdListCategoriesWithPrices } from "@/components/features/list-categories-with-prices/ListCategoriesWithPrices";
 
 interface ExtraServicesFormProps {
     dispatch: AppDispatch;
@@ -21,15 +23,20 @@ interface ExtraServicesFormProps {
 
 export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
     const items = useAppSelector((state) => state.utilityPrices.items);
-    const options = filterOptions(items);
     const translations = useAppSelector(selectTranslations);
+    const utilityPrices = filterOptions(items);
 
-    const [selectedOption, setSelectedOption] = useState<string>(options[0]?.category || fixedWaterString);
+    const [selectedOption, setSelectedOption] = useState<Option>({
+        label: utilityPrices[0].category,
+        value: utilityPrices[0].category,
+    });
 
-    const option = options.find((item) => item.category === selectedOption);
+    const option = utilityPrices.find((utilityPrice) => utilityPrice.category === selectedOption.value);
     const optionValue = numberToString(option?.value);
 
-    const currentId = options.find((item) => item.category === selectedOption)?._id;
+    const currentId = utilityPrices.find(
+        (utilityPrice) => utilityPrice.category === selectedOption.value,
+    )?._id;
 
     const [inputValue, setInputValue] = useState<string>(optionValue);
 
@@ -41,13 +48,9 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
         setInputValue(optionValue);
     };
 
-    const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption(event.target.value);
-    };
-
     const onAddValueUtilityPrice = useCallback(() => {
         if (currentId && inputValue) {
-            addValueUtilityPrice(currentId, inputValue, selectedOption, dispatch);
+            addValueUtilityPrice(currentId, inputValue, selectedOption.value, dispatch);
         }
     }, [currentId, inputValue, selectedOption, dispatch]);
 
@@ -57,27 +60,41 @@ export function MdExtraServicesForm({ dispatch }: ExtraServicesFormProps) {
 
     return (
         <form className={styles.root}>
-            <div className={styles.fieldsGroup}>
-                <MdSelect
-                    options={options}
-                    value={selectedOption}
-                    onChange={handleSelectChange}
-                    labelText={translations.price.addCategory}
-                />
-                <MdInput
-                    value={inputValue}
-                    onChange={onChange}
-                    onReset={returnCurrentValues}
-                    defaultValue={optionValue}
-                    label={translations.price.price}
-                    step={0.01}
-                />
+            <div className={styles.header}>
+                <MdIcon name={iconNames.plus} color={colorNames.green} />
+                <p>{translations.price.addNewAccount}</p>
             </div>
-            <div className={styles.buttonWrapper}>
-                <MdButton type="button" onClick={onAddValueUtilityPrice} color={colorNames.green}>
-                    {translations.btn.add}
-                </MdButton>
+            <div className={styles.content}>
+                <div className={styles.fields}>
+                    <div className={styles.inputWrapper}>
+                        <MdSelect
+                            options={utilityPrices.map((item) => ({
+                                label: item.category,
+                                value: item.category,
+                            }))}
+                            value={selectedOption}
+                            onChange={(newOption) => setSelectedOption(newOption)}
+                            labelText={translations.price.addCategory}
+                        />
+                        <MdInput
+                            value={inputValue}
+                            onChange={onChange}
+                            onReset={returnCurrentValues}
+                            defaultValue={optionValue}
+                            label={translations.price.price}
+                            step={0.01}
+                            className={styles.input}
+                        />
+                    </div>
+                </div>
+                <div className={styles.buttonWrapper}>
+                    <MdButton type="button" onClick={onAddValueUtilityPrice} color={colorNames.green}>
+                        {translations.btn.add}
+                    </MdButton>
+                </div>
             </div>
+
+            <MdListCategoriesWithPrices dispatch={dispatch} />
         </form>
     );
 }

@@ -4,9 +4,11 @@ import { GroupBase, IndicatorsContainerProps } from "react-select";
 import { iconNames } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { getBaseIconColor } from "@/helpers/theme/get-icon-color";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 
-export function MdIndicatorsContainer(props: IndicatorsContainerProps<Option, true, GroupBase<Option>>) {
+export function MdIndicatorsContainer<IsMulti extends boolean = true>(
+    props: IndicatorsContainerProps<Option, IsMulti, GroupBase<Option>>,
+) {
     const theme = useTheme();
 
     return (

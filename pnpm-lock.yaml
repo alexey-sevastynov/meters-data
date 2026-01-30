@@ -39,8 +39,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-chartjs-2:
-        specifier: ^5.3.0
-        version: 5.3.0(chart.js@4.5.0)(react@18.3.1)
+        specifier: ^5.3.1
+        version: 5.3.1(chart.js@4.5.0)(react@18.3.1)
       react-date-picker:
         specifier: ^10.6.0
         version: 10.6.0(@types/react-dom@18.3.7(@types/react@18.3.26))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2167,8 +2167,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-chartjs-2@5.3.0:
-    resolution: {integrity: sha512-UfZZFnDsERI3c3CZGxzvNJd02SHjaSJ8kgW1djn65H1KK8rehwTjyrRKOG3VTMG8wtHZ5rgAO5oTHtHi9GCCmw==}
+  react-chartjs-2@5.3.1:
+    resolution: {integrity: sha512-h5IPXKg9EXpjoBzUfyWJvllMjG2mQ4EiuHQFhms/AjUm0XSZHhyRy2xVmLXHKrtcdrPO4mnGqRtYoD0vp95A0A==}
     peerDependencies:
       chart.js: ^4.1.1
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -4894,7 +4894,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.26
 
-  react-chartjs-2@5.3.0(chart.js@4.5.0)(react@18.3.1):
+  react-chartjs-2@5.3.1(chart.js@4.5.0)(react@18.3.1):
     dependencies:
       chart.js: 4.5.0
       react: 18.3.1

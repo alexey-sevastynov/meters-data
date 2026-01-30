@@ -1,17 +1,42 @@
+@use "@/styles/colors.scss" as *;
+@use "@/styles/mixins.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
+
 .root {
     margin-top: 20px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    @include bg-glass;
+    padding: 1rem;
+    border: $border;
+    border-radius: 5px;
 
-    .fieldsGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .header {
         display: flex;
-        gap: 10px;
+        gap: 1rem;
     }
 
-    .buttonWrapper {
+    .content {
         display: flex;
-        gap: 10px;
+        gap: 1rem;
+        .fields {
+            .inputWrapper {
+                display: flex;
+                gap: 1rem;
+
+                .select {
+                    max-width: 600px;
+                }
+            }
+        }
+        .buttonWrapper {
+            display: flex;
+            align-items: end;
+        }
+        @media (max-width: $mobile-xl) {
+            flex-direction: column;
+        }
     }
 }

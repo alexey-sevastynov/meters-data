@@ -1,4 +1,4 @@
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 import { tableMeterDataColumnKeys } from "@/components/shared/table/table-enums";
 import { TranslationKeys } from "@/types/i-18-next-types";
 

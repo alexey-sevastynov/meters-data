@@ -41,7 +41,7 @@
         "uah": "uah"
     },
     "infoPanel": {
-        "title": "Consumption of Utilities for",
+        "title": "Monthly bills",
         "price": "Price",
         "priceDescription": "Tariffs and calculation of cost",
         "graphics": "Graphics",
@@ -116,9 +116,11 @@
         "ukraine": "Ukraine"
     },
     "price": {
+        "title": "Tariffs and calculation of cost",
+        "addNewAccount": "Add new account",
         "price": "Price",
         "addCategory": "Add category",
-        "amount": "Amount",
+        "amount": "Amount of money",
         "date": "Date",
         "monthlyMoneyCalculations": "Monthly Money Calculations",
         "choosePeriod": "Choose period"

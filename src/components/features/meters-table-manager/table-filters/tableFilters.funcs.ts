@@ -1,5 +1,5 @@
 import { MutableRefObject } from "react";
-import { Option } from "@/components/ui/input-group/input-group-models";
+import { Option } from "@/components/ui/select/select-models";
 import { getYearFromDate } from "@/helpers/meters-data/dates/get-date";
 import { MeterDataWithObjectId } from "@/store/models/meter-data";
 import { VoidFunc } from "@/types/getter-setter-functions";
