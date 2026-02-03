@@ -55,6 +55,12 @@ export function getBreadcrumbItemsInfo(
     return breadcrumbItemsInfo;
 }
 
+export function getBreadcrumbItemsAuditLogs() {
+    const breadcrumbItemsAuditLogs = createBreadcrumbItems([createAuditLogsItem()]);
+
+    return breadcrumbItemsAuditLogs;
+}
+
 function createAddressItem(addressId: string, addressName: string, route: string) {
     const addressItem = {
         id: addressId,
@@ -63,6 +69,14 @@ function createAddressItem(addressId: string, addressName: string, route: string
     };
 
     return addressItem;
+}
+
+function createAuditLogsItem() {
+    return {
+        id: routeNames.auditLogs,
+        label: routeNames.auditLogs,
+        link: appRoutes.auditLogs,
+    };
 }
 
 function createBreadcrumbItems(additionalItems: BreadcrumbItem[]) {

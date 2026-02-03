@@ -107,6 +107,7 @@
         "lightMode": "Світлий режим",
         "darkMode": "Темний режим",
         "settings": "Налаштування",
+        "actionLog": "Журнал дій",
         "signOut": "Вихід"
     },
     "dropdownLanguage": {
@@ -145,6 +146,17 @@
         "create": "Додати",
         "edit": "Редагувати",
         "delete": "Видалити",
-        "view": "Переглянути"
+        "view": "Переглянути",
+        "action": "Дія",
+        "ip": "IP",
+        "userAgent": "User Agent",
+        "newValue": "Нове значення",
+        "oldValue": "Старе значення",
+        "resourceId": "ID ресурсу",
+        "resourceName": "Назва ресурсу"
+    },
+    "auditLogs": {
+        "title": "Журнал дій",
+        "description": "Історія всіх змін у системі"
     }
 }

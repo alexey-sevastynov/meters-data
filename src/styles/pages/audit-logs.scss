@@ -1,0 +1,18 @@
+@use "@/styles/mixins.scss" as *;
+@use "@/styles/breakpoints.scss" as *;
+@use "@/styles/sizes.scss" as *;
+@use "@/styles/colors.scss" as *;
+
+.audit-logs {
+    .page-layout--expanded {
+        @include layoutStyle($widthSidebarExpanded);
+    }
+
+    .page-layout--collapsed {
+        @include layoutStyle($widthSidebarCollapsed);
+    }
+
+    .title {
+        @include titlePage;
+    }
+}

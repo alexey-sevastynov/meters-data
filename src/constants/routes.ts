@@ -5,6 +5,7 @@ export const routeNames = {
     graphics: "graphics",
     meterData: "meters-data",
     info: "info",
+    auditLogs: "audit-logs",
 };
 
 export const appRoutes = {
@@ -17,4 +18,5 @@ export const appRoutes = {
     price: `:address/${routeNames.price}`,
     graphics: `:address/${routeNames.graphics}`,
     info: `:address/${routeNames.info}`,
+    auditLogs: `/${routeNames.auditLogs}`,
 } as const;

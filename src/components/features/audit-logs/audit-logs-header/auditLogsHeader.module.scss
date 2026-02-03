@@ -1,0 +1,9 @@
+@use "@/styles/colors.scss" as *;
+@use "@/styles/mixins.scss" as *;
+
+.root {
+    .description {
+        margin-top: 0.5rem;
+        color: var(--color-text-secondary);
+    }
+}

@@ -40,6 +40,7 @@ export const iconNames = {
     gas: "gas",
     light: "light",
     info: "info",
+    history: "history",
 } as const;
 
 export type IconName = (typeof iconNames)[keyof typeof iconNames];

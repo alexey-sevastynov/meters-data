@@ -3,6 +3,7 @@ export const apiEndpointNames = {
     billingAccounts: "billing-accounts",
     utilityPrices: "utility-prices",
     meterData: "meter-data",
+    auditLogs: "audit-logs",
 } as const;
 
 export type ApiEndpointName = (typeof apiEndpointNames)[keyof typeof apiEndpointNames];

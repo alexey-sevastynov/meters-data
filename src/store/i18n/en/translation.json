@@ -109,6 +109,7 @@
         "lightMode": "Light mode",
         "darkMode": "Dark mode",
         "settings": "Settings",
+        "actionLog": "Action log",
         "signOut": "Sign out"
     },
     "dropdownLanguage": {
@@ -147,6 +148,17 @@
         "create": "Add",
         "edit": "Edit",
         "delete": "Delete",
-        "view": "View"
+        "view": "View",
+        "action": "Action",
+        "ip": "IP",
+        "userAgent": "User Agent",
+        "newValue": "New value",
+        "oldValue": "Old value",
+        "resourceId": "ID resource",
+        "resourceName": "Resource name"
+    },
+    "auditLogs": {
+        "title": "Action log",
+        "description": "History of all changes in the system"
     }
 }

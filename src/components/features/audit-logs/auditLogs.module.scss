@@ -1,0 +1,15 @@
+@use "@/styles/colors.scss" as *;
+@use "@/styles/mixins.scss" as *;
+
+.root {
+    margin-top: 20px;
+    @include bg-glass;
+    padding: 1rem;
+    border: $border;
+    border-radius: 5px;
+    .table {
+        padding-top: 2rem;
+        padding-bottom: 0.8rem;
+        overflow-x: auto;
+    }
+}

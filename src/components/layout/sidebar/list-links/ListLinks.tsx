@@ -20,7 +20,7 @@ export function ListLinks({ isSidebarCollapsed, toggleSidebar }: ListLinksProps)
             <ul>
                 <ItemLink
                     link={navigationHomeItem.link}
-                    text={translations.home["home"] ?? navigationHomeItem.text}
+                    text={translations.home.home ?? navigationHomeItem.text}
                     imageName={navigationHomeItem.imageName}
                     isSidebarCollapsed={isSidebarCollapsed}
                 />

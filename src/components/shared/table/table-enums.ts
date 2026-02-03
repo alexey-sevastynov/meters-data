@@ -57,3 +57,34 @@ export const tableMeterDataColumnLabels = {
 
 export type TableMeterDataColumnLabel =
     (typeof tableMeterDataColumnLabels)[keyof typeof tableMeterDataColumnLabels];
+
+export const tableAuditLogsDataKeys = {
+    id: technicalColumnKeys.id,
+    action: "action",
+    ip: "ip",
+    userAgent: "userAgent",
+    newValue: "newValue",
+    oldValue: "oldValue",
+    resourceId: "resourceId",
+    resourceName: "resourceName",
+    createdAt: technicalColumnKeys.createdAt,
+    updatedAt: technicalColumnKeys.updatedAt,
+} as const;
+
+export type TableAuditLogsDataKey = (typeof tableAuditLogsDataKeys)[keyof typeof tableAuditLogsDataKeys];
+
+export const tableAuditLogsDataLabels = {
+    id: "ID",
+    action: "Дія",
+    ip: "IP",
+    userAgent: "User Agent",
+    newValue: "Нове значення",
+    oldValue: "Старе значення",
+    resourceId: "Id ресурсу",
+    resourceName: "Назва ресурсу",
+    createdAt: "Створено",
+    updatedAt: "Оновлено",
+} as const;
+
+export type TableAuditLogsDataLabel =
+    (typeof tableAuditLogsDataLabels)[keyof typeof tableAuditLogsDataLabels];

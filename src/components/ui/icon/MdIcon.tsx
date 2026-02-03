@@ -20,6 +20,7 @@ import {
     FaSort,
     FaInfo,
     FaCopy,
+    FaHistory,
 } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { FaCircle, FaCheck, FaGear, FaArrowRight } from "react-icons/fa6";
@@ -73,6 +74,7 @@ const iconMap: Record<IconName, React.ComponentType<IconBaseProps & RefAttribute
     gas: PiFireSimpleBold,
     light: MdOutlineLightbulb,
     info: FaInfo,
+    history: FaHistory,
 } as const;
 
 export function MdIcon({ name, id, color = colorNames.white, size = iconSizes.medium }: MdIconProps) {

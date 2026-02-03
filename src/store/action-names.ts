@@ -19,4 +19,9 @@ export const actionNames = {
         updateOne: "meters-data/updateMetersData",
         deleteOne: "meters-data/deleteMetersData",
     },
+    auditLogs: {
+        getAll: "audit-logs/getAllAuditLogs",
+        getOne: "audit-logs/getOneAuditLog",
+        deleteOne: "audit-logs/deleteAuditLog",
+    },
 };

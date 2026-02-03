@@ -16,6 +16,8 @@ import { exitAccount } from "@/components/shared/dropdown-menu/dropdownMenu.func
 import { selectTranslations } from "@/store/slices/i-18-next";
 import { MdImage } from "@/components/ui/image/MdImage";
 import { DropdownThemeMode } from "@/components/shared/dropdown-menu/dropdown-theme-mode/DropdownThemeMode";
+import { MdLink } from "@/components/ui/link/MdLink";
+import { routeNames } from "@/constants/routes";
 
 export function MdDropdownMenu() {
     const dispatch = useAppDispatch();
@@ -49,6 +51,12 @@ export function MdDropdownMenu() {
                         <MdIcon name={iconNames.gear} color={colorNames.grey} size={iconSizes.small} />
                         <p>{translations.dropdownMenu.settings}</p>
                     </div>
+                </MdDropdownItem>
+                <MdDropdownItem className={styles.item}>
+                    <MdLink className={styles.innerLink} to={`/${routeNames.auditLogs}`}>
+                        <MdIcon name={iconNames.history} color={colorNames.grey} size={iconSizes.small} />
+                        <p>{translations.dropdownMenu.actionLog}</p>
+                    </MdLink>
                 </MdDropdownItem>
                 <MdDropdownItem className={styles.item} onSelect={onExitAccount}>
                     <div className={styles.inner}>

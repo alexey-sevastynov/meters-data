@@ -82,7 +82,7 @@ export function MdTableHeaderCell({
                     className={cn(
                         styles.tableHeaderCellButton,
                         column.type === tableColumnTypes.number && styles.tableHeaderCellNumber,
-                        isColumnSort(column) && styles.tableHeaderCellButtonSortable
+                        isColumnSort(column) && styles.tableHeaderCellButtonSortable,
                     )}
                     onClick={onSortClick}
                     type="button"
