@@ -5,7 +5,7 @@ import { IconName, iconSizes } from "@/components/ui/icon/icon-constants";
 import { MdIcon } from "@/components/ui/icon/MdIcon";
 import { colorNames } from "@/enums/color-names";
 
-export interface MdNavigationCardProps {
+interface MdNavigationCardProps {
     label: string;
     description: string;
     iconName: IconName;

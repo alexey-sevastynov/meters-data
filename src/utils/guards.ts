@@ -11,7 +11,3 @@ export function isString(value: unknown): value is string {
 export function isNumber(value: unknown): value is number {
     return typeof value === typeNames.number;
 }
-
-export function isEmptyObject(obj: unknown) {
-    return isObject(obj) && !Array.isArray(obj) && Object.keys(obj).length === 0;
-}

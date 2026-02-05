@@ -53,8 +53,6 @@ export const dateFormats: DateFormats = {
     fullWithWeekday: "EEEE, d MMMM yyyy 'р.'",
 } as const;
 
-export type DateFormat = (typeof dateFormats)[keyof typeof dateFormats];
-
 export const dateFormatKeys = {
     full: "full",
     short: "short",

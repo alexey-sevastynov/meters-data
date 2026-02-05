@@ -8,5 +8,3 @@ export const typeNames = {
     symbol: "symbol",
     bigint: "bigint",
 } as const;
-
-export type TypeName = (typeof typeNames)[keyof typeof typeNames];

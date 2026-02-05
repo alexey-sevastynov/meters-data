@@ -30,9 +30,6 @@ const ConfirmPopup = createSlice({
         setQuestion: (state, action: PayloadAction<string>) => {
             state.message = action.payload;
         },
-        isActionToggle: (state, action: PayloadAction<boolean>) => {
-            state.isActionDeleteItem = action.payload;
-        },
         confirmActionOnDelete: (state, action: PayloadAction<boolean>) => {
             state.isOpen = false;
             state.isActionDeleteItem = action.payload;
@@ -47,14 +44,7 @@ const ConfirmPopup = createSlice({
     },
 });
 
-export const {
-    openPopup,
-    closePopup,
-    setQuestion,
-    isActionToggle,
-    confirmActionOnDelete,
-    setIdDelete,
-    confirmActionExit,
-} = ConfirmPopup.actions;
+export const { openPopup, closePopup, setQuestion, confirmActionOnDelete, setIdDelete, confirmActionExit } =
+    ConfirmPopup.actions;
 
 export const confirmReducer = ConfirmPopup.reducer;

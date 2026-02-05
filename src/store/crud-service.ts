@@ -1,9 +1,5 @@
-import { envKeys } from "@/infra/env/env-keys";
-import { getStringEnv } from "@/infra/env/env-functions";
 import { ApiEndpointName } from "@/store/api-endpoint-names";
 import { apiClient } from "@/lib/axios";
-
-export const apiUrl = getStringEnv(envKeys.apiUrl);
 
 export async function getAll<T>(endpoint: ApiEndpointName) {
     const { data } = await apiClient.get<T[]>(endpoint);

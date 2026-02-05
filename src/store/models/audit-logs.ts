@@ -3,7 +3,7 @@ import { WithObjectId } from "@/types/with-object-id";
 
 export interface AuditLogWithObjectId extends AuditLog, WithObjectId {}
 
-export interface AuditLog<T = object> {
+interface AuditLog<T = object> {
     resourceName: string;
     action: AuditHttpMethod;
     resourceId?: string;

@@ -11,8 +11,7 @@
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist",
         "lint": "eslint . && echo \"Linting completed successfully!\"",
-        "preview": "vite preview",
-        "replace-paths": "node plugins/replace-paths.js"
+        "preview": "vite preview"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^2.9.0",
@@ -39,7 +38,6 @@
         "redux-persist": "^6.0.0",
         "sass": "^1.93.2",
         "socket.io-client": "^4.8.1",
-        "styled-components": "^6.1.19",
         "uuid": "^10.0.0",
         "vite-plugin-svgr": "^4.5.0"
     },

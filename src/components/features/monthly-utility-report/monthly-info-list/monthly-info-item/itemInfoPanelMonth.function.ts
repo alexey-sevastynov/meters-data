@@ -6,7 +6,7 @@ interface Lang {
     };
 }
 
-export const valueByTitle: Record<string, string> = {
+const valueByTitle: Record<string, string> = {
     [titlesForMeterReadings.light]: "kW",
     [titlesForMeterReadings.lightDay]: "kW",
     [titlesForMeterReadings.lightNight]: "kW",

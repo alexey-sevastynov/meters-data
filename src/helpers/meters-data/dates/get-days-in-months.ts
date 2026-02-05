@@ -1,8 +1,13 @@
-import { EN, language } from "@/constants/language";
+import { language } from "@/constants/language";
 import { ukrainianMonths } from "@/constants/ukrainian-months";
 import { ukrainianShortMonths } from "@/constants/ukrainian-short-months";
 
-export function getDaysInMonths(dateAsString: string, isShowMonth = true, isShowYear = true, locale = EN) {
+export function getDaysInMonths(
+    dateAsString: string,
+    isShowMonth = true,
+    isShowYear = true,
+    locale = "en-US",
+) {
     const { month, year } = parseMonthAndYear(dateAsString);
     const lastDay = getLastDayOfMonth(year, month);
     const monthLabel = getLocalizedMonthName(month, year, locale);
@@ -65,7 +70,7 @@ function buildRangeLabel(
     showYear: boolean,
     monthName: string,
     lastDay: number,
-    year: number
+    year: number,
 ) {
     if (showMonth && showYear) return `${monthName} 1 - ${monthName} ${lastDay} / ${year}`;
 

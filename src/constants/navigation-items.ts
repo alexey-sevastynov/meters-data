@@ -3,7 +3,7 @@ import { appRoutes } from "@/constants/routes";
 import { envKeys } from "@/infra/env/env-keys";
 import { createUniqueId } from "@/utils/id";
 
-export interface NavigationItem {
+interface NavigationItem {
     link: string;
     id: string;
     text: string;

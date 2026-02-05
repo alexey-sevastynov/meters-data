@@ -6,9 +6,3 @@ export function getYearFromDate(date: string) {
 
     throw new Error(errorMessage.invalidDateFormat.replace("{0}", date));
 }
-
-export function getMonthFromDate(date: string) {
-    if (isValidDateFormat(date)) return date.split(".")[0];
-
-    throw new Error(errorMessage.invalidDateFormat.replace("{0}", date));
-}

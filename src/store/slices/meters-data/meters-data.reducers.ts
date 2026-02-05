@@ -18,7 +18,7 @@ export function setNotEdit(state: IMetersDataSlice) {
 
 export function showMeterReadingCalc(
     state: IMetersDataSlice,
-    action: PayloadAction<{ id: string; address: string }>
+    action: PayloadAction<{ id: string; address: string }>,
 ) {
     const listItemsAddress = filterMeterDataByAddressAndSortByDate(state.items, action.payload.address);
 
@@ -39,7 +39,7 @@ export function showMeterReadingCalc(
             [getKeyOnPage(action.payload.address)]: calculateDifference(
                 currentItem,
                 previousItem,
-                findPreviousDateById(listItemsAddress, previousItem?._id)!
+                findPreviousDateById(listItemsAddress, previousItem?._id)!,
             ),
         };
     }

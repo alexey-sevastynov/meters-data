@@ -28,7 +28,7 @@ export interface TableAction {
     visible?: boolean;
 }
 
-export interface TableColumnSort<T = unknown> {
+interface TableColumnSort<T = unknown> {
     sortByAsc: (a: T, b: T) => number;
     sortByDesc: (a: T, b: T) => number;
     defaultDirection: TableSortDirection;
