@@ -30,7 +30,9 @@ export function MdSelect({
         <div className={styles.root}>
             <label>{labelText}:</label>
             <Select<Option, false>
-                className={styles.select}
+                menuPortalTarget={document.body}
+                menuPosition="absolute"
+                menuPlacement="auto"
                 components={{
                     Control: MdControl,
                     Option: MdCustomOption,
